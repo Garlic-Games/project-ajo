@@ -12,6 +12,9 @@ var activeTile : BoardFloorTile = null;
 @export var sizeY: int = 16;
 @export var tileOffsetY = 0.5;
 
+var coordX = 0;
+var coordY = 0;
+
 func _process(delta: float) -> void:
 	if(Input.is_action_just_released("primary_click")):
 		if(activeTile != null):
@@ -67,7 +70,13 @@ func onTileMouseHover(tile: BoardFloorTile):
 func onTileMouseUnHover(tile: BoardFloorTile):
 	if activeTile == tile:
 		activeTile = null;
-	
 
 func onItemPickedUp(item: BoardItem):
 	item_picked_up.emit(item);
+
+func getItemChilds() ->  Array[BoardItem]:
+	var ret: Array[BoardItem] = [];
+	for item in itemsRoot.get_children():
+		if item is BoardItem:
+			ret.append(item)
+	return ret;
