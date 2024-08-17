@@ -1,12 +1,42 @@
-[gd_scene load_steps=3 format=3 uid="uid://mptivcsfyvgh"]
+[gd_scene load_steps=11 format=3 uid="uid://mptivcsfyvgh"]
+
+[ext_resource type="PackedScene" uid="uid://tmqb1i1kolfm" path="res://prefabs/environment/fan/fan.tscn" id="1_hgb8w"]
+[ext_resource type="Script" path="res://scripts/player/player.gd" id="2_i440h"]
+[ext_resource type="PackedScene" uid="uid://pxw8avkakijr" path="res://prefabs/environment/balancer/balancer.tscn" id="3_a47pe"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_e0fpa"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_a8330"]
+sky_material = SubResource("ProceduralSkyMaterial_e0fpa")
+
+[sub_resource type="Environment" id="Environment_i7554"]
+background_mode = 2
+sky = SubResource("Sky_a8330")
+tonemap_mode = 2
 
 [sub_resource type="BoxMesh" id="BoxMesh_tway3"]
 size = Vector3(80, 1, 80)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_asvfe"]
+albedo_color = Color(0.223103, 0.223103, 0.223103, 1)
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_t5k7m"]
 size = Vector3(80, 1, 80)
 
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ecujn"]
+
 [node name="Dredggez" type="Node3D"]
+
+[node name="Environment" type="Node" parent="."]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Environment"]
+environment = SubResource("Environment_i7554")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Environment"]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+shadow_enabled = true
 
 [node name="Scenario" type="Node" parent="."]
 
@@ -15,6 +45,28 @@ size = Vector3(80, 1, 80)
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Scenario/Floor"]
 mesh = SubResource("BoxMesh_tway3")
 skeleton = NodePath("../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_asvfe")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Scenario/Floor"]
 shape = SubResource("BoxShape3D_t5k7m")
+
+[node name="Fan" parent="Scenario" instance=ExtResource("1_hgb8w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.10062, 0)
+debug_mode = false
+
+[node name="Player" type="CharacterBody3D" parent="Scenario"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.868377, 6.81373)
+script = ExtResource("2_i440h")
+mouse_sensitivity = 0.5
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Scenario/Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_ecujn")
+
+[node name="Camera3D" type="Camera3D" parent="Scenario/Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
+current = true
+
+[node name="Balancer" parent="." instance=ExtResource("3_a47pe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.64869, 0.5, 3.24882)
+debug_mode = false

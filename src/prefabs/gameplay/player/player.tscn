@@ -1,11 +1,11 @@
 [gd_scene load_steps=3 format=3 uid="uid://cr6b74d4fygcy"]
 
-[ext_resource type="Script" path="res://scripts/input/player_input.gd" id="1_v4fpx"]
+[ext_resource type="Script" path="res://scripts/player/player.gd" id="1_h8ujk"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ecujn"]
 
 [node name="Player" type="CharacterBody3D"]
-script = ExtResource("1_v4fpx")
+script = ExtResource("1_h8ujk")
 mouse_sensitivity = 0.5
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
