@@ -6,6 +6,8 @@ const JUMP_VELOCITY = 4.5
 @export var mouse_sensitivity: float = 1;
 @onready var camera: Camera3D = $Camera3D;
 
+var wind_velocity: Vector3 = Vector3.ZERO;
+
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
@@ -29,6 +31,10 @@ func _physics_process(delta: float) -> void:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 
+	if(wind_velocity):
+		velocity.x += wind_velocity.x;
+		velocity.z += wind_velocity.z;
+		
 	move_and_slide()
 
 # Called when the node enters the scene tree for the first time.
@@ -37,3 +43,6 @@ func _input(event):
 		rotate_y(-event.relative.x * (mouse_sensitivity / 100));
 		camera.rotate_x(-event.relative.y * mouse_sensitivity / 100);
 		camera.rotation.x = clampf(camera.rotation.x, -deg_to_rad(70), deg_to_rad(70));
+
+func set_wind_velocity(wind_velocity: Vector3):
+	self.wind_velocity = wind_velocity;
