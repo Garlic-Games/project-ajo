@@ -39,6 +39,7 @@ func _physics_process(delta: float) -> void:
 
 	if(wind_velocity):
 		velocity.x += wind_velocity.x;
+		velocity.y = 0.0;
 		velocity.z += wind_velocity.z;
 
 	move_and_slide()
