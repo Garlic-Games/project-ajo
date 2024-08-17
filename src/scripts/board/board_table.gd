@@ -40,5 +40,13 @@ func spawn_floor() -> void:
 	for ny in unitsY4:
 		for nx in unitsX4:
 			do_spawn_floor_tile(tableTileRoot, size4x4, nx*4, ny*4, -0.1);
-	
+	var nyOccupied = unitsY4*4;
+	var nxOccupied = unitsX4*4;
+	#print(unitsY4, " - ", restY4, " - ", unitsX4, " - ", restX4);
+	#print(nyOccupied, " - ", nxOccupied);
+	for ny in sizeY:
+		for nx in sizeX:
+			if ny >= nyOccupied || nx >= nxOccupied:
+				do_spawn_floor_tile(tableTileRoot, size1x1, nx, ny, -0.1);
+		
 	
