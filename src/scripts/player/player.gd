@@ -46,3 +46,6 @@ func _input(event):
 
 func set_wind_velocity(wind_velocity: Vector3):
 	self.wind_velocity = wind_velocity;
+
+func set_jump_velocity(jumper_velocity: float):
+	self.velocity.y += jumper_velocity;

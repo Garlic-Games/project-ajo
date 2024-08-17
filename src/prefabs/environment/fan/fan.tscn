@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://tmqb1i1kolfm"]
 
-[ext_resource type="Script" path="res://scripts/items/fan.gd" id="1_1yydw"]
+[ext_resource type="Script" path="res://scripts/environment/fan.gd" id="1_1yydw"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_vk0ug"]
 size = Vector3(2, 2, 0.5)
@@ -13,7 +13,6 @@ size = Vector3(2, 2, 10)
 
 [node name="Fan" type="Node3D"]
 script = ExtResource("1_1yydw")
-debug_mode = true
 
 [node name="Blades" type="StaticBody3D" parent="."]
 

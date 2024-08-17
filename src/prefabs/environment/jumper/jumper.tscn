@@ -1,0 +1,45 @@
+[gd_scene load_steps=6 format=3 uid="uid://b8p2pp5apr6r1"]
+
+[ext_resource type="Script" path="res://scripts/environment/jumper.gd" id="1_8cqva"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_eflk4"]
+size = Vector3(2, 0.25, 2)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f0ib7"]
+albedo_color = Color(0.329412, 1, 0.0509804, 1)
+metallic = 0.96
+roughness = 0.0
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5jh38"]
+size = Vector3(2, 0.25, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6f4cu"]
+size = Vector3(2, 0.25, 2)
+
+[node name="Jumper" type="Node3D"]
+script = ExtResource("1_8cqva")
+jump_velocity = 20.0
+
+[node name="Mesh" type="StaticBody3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Mesh"]
+mesh = SubResource("BoxMesh_eflk4")
+surface_material_override/0 = SubResource("StandardMaterial3D_f0ib7")
+
+[node name="MeshCollider" type="CollisionShape3D" parent="Mesh"]
+shape = SubResource("BoxShape3D_5jh38")
+
+[node name="JumpArea" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="JumpArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+shape = SubResource("BoxShape3D_6f4cu")
+
+[node name="Debug" type="Node3D" parent="."]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Debug"]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Camera3D" type="Camera3D" parent="Debug"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 3.87716, 0.36894, 0)
