@@ -13,9 +13,6 @@ signal tile_clicked(item: BoardFloorTile);
 		boardSizeX = val;
 		clean();
 		redraw();
-		boardSizeX = val;
-		clean();
-		redraw();
 @export var boardSizeY: int = 16: 
 	set(val): 
 		boardSizeY = val;

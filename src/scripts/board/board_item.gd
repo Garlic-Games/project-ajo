@@ -6,12 +6,12 @@ enum ItemShape {x11, x12, x22, x24, x44}
 signal item_picked_up;
 
 @export var itemShape: ItemShape = ItemShape.x12;
-@onready var importedMesh: Node3D = $"round-lq-brick-2x2";
 var meshInstance: MeshInstance3D;
 
 var hover_material: StandardMaterial3D = preload("res://art/materials/hover_tile_material.tres");
 #var normal_material: StandardMaterial3D = preload("res://art/materials/standard_tile_material.tres");
 var picked_up_material: StandardMaterial3D = preload("res://art/materials/picked_up_tile_material.tres");
+var item_id: String = "";
 
 var _selected = false;
 var _lastConnection = null;
@@ -27,7 +27,7 @@ func _process(delta: float) -> void:
 func _ready() -> void:
 	self.connect("mouse_entered", self.onMouseEntered);
 	self.connect("mouse_exited", self.onMouseExited);
-	meshInstance = importedMesh.get_children()[0];
+	meshInstance = get_children()[0].get_children()[0];
 
 func onMouseEntered():
 	_selected = true;
@@ -54,3 +54,5 @@ func connectPickupJustOnce(call: Callable):
 func getSize():
 	if itemShape == ItemShape.x22:
 		return Vector2(2, 2);
+	if itemShape == ItemShape.x11:
+		return Vector2(1, 1);
