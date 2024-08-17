@@ -42,4 +42,5 @@ script = ExtResource("2_xrkjw")
 itemShape = 2
 
 [node name="round-lq-brick-2x2" parent="." index="0"]
+transform = Transform3D(12.6, 0, 0, 0, 12.6, 0, 0, 0, 12.6, 0, 0, 0)
 mesh = SubResource("ArrayMesh_u7nsy")

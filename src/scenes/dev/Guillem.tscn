@@ -1,8 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://drncbdu81681f"]
+[gd_scene load_steps=6 format=3 uid="uid://drncbdu81681f"]
 
-[ext_resource type="PackedScene" uid="uid://w5ywl86725vk" path="res://prefabs/board/board.tscn" id="1_3fuwi"]
+[ext_resource type="PackedScene" uid="uid://dgybognntfby0" path="res://prefabs/board/board.tscn" id="1_3fuwi"]
+[ext_resource type="PackedScene" uid="uid://cr6b74d4fygcy" path="res://prefabs/gameplay/player/player.tscn" id="2_jgbfq"]
 
 [sub_resource type="Environment" id="Environment_w4nfk"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_dx3no"]
+size = Vector3(50, 0.1, 50)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_sht57"]
+size = Vector2(50, 50)
 
 [node name="Node3D" type="Node3D"]
 
@@ -10,6 +17,16 @@
 environment = SubResource("Environment_w4nfk")
 
 [node name="Board" parent="." instance=ExtResource("1_3fuwi")]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 5, 0)
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, 0)
+shape = SubResource("BoxShape3D_dx3no")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+mesh = SubResource("PlaneMesh_sht57")
+
+[node name="Player" parent="." instance=ExtResource("2_jgbfq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.0153, 0.893367, -2.0454)
