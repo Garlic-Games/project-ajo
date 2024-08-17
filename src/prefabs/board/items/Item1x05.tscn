@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://ddivd7aekb88o"]
+
+[ext_resource type="Script" path="res://scripts/board/board_item.gd" id="1_m5x4c"]
+[ext_resource type="PackedScene" uid="uid://clnm3v8s4a6wd" path="res://art/models/kenney_brick-kit/inherited/none_lq_plate_1x1.tscn" id="2_y1kvv"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_trx6q"]
+size = Vector3(1, 0.5, 1)
+
+[node name="Item1x1" type="StaticBody3D"]
+script = ExtResource("1_m5x4c")
+
+[node name="none-lq-plate-1x1" parent="." instance=ExtResource("2_y1kvv")]
+transform = Transform3D(1, 0, 0, 0, 1.125, 0, 0, 0, 1, 0.5, 0, 0.5)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.25, 0.5)
+shape = SubResource("BoxShape3D_trx6q")
+
+[node name="GridRoot" type="Node3D" parent="."]
+
+[node name="ItemsRoot" type="Node3D" parent="."]

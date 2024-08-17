@@ -6,5 +6,5 @@
 resource_name = "colormap"
 cull_mode = 2
 albedo_texture = ExtResource("1_kxnb3")
-uv1_offset = Vector3(3.245, -1.005, 0)
+uv1_offset = Vector3(1.6, 0.745, 0)
 texture_filter = 2

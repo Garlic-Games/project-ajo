@@ -36,3 +36,4 @@ mesh = SubResource("PlaneMesh_sht57")
 
 [node name="Player" parent="." instance=ExtResource("2_jgbfq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.855409, 0.144793, 0.366999)
+visible = false

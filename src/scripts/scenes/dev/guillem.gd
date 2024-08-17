@@ -8,11 +8,14 @@ func _ready() -> void:
 	var brik2x2 = preload("res://prefabs/board/items/Item2x2.tscn");
 	var brik1x1 = preload("res://prefabs/board/items/Item1x1.tscn");
 	var item = brik2x2.instantiate();
+	item.color = 0;
 	board.registerItem(item, 2, 2);
 	var item2 = brik2x2.instantiate();
+	item2.color = 1;
 	board.registerItem(item2, 5, 2);
 	var item3 = brik1x1.instantiate();
 	item3.item_id = "ASD;";
+	item3.color = 2;
 	board.registerItem(item3, 3, 4);
 	board.setSize(Vector2(7,9));
 

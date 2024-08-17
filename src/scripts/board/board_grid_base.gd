@@ -11,6 +11,7 @@ var activeTile : BoardFloorTile = null;
 @export var sizeX: int = 1;
 @export var sizeY: int = 1;
 @export var tileOffsetY = 0.5;
+@export var conConstructOver = true;
 
 var coordX = 0;
 var coordY = 0;

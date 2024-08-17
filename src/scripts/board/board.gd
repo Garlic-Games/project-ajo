@@ -79,6 +79,7 @@ func tableTileClicked(tile: BoardFloorTile, base: BoardGridBase):
 			return
 		item_follow_mouse.coordX = tile.coordX;
 		item_follow_mouse.coordY = tile.coordY;
+		item_follow_mouse.onEndPickUp();
 		base.setItem(item_follow_mouse, tile.coordX, tile.coordY);
 		emitItemMoved(item_follow_mouse)
 		item_follow_mouse = null;
@@ -116,6 +117,7 @@ func pickupFollowMouse():
 	var rayEnd = rayOrigin + boardCamera.project_ray_normal(mousePos) * 2000
 	var query = PhysicsRayQueryParameters3D.create(rayOrigin, rayEnd);
 	query.exclude = [item_follow_mouse];
+	query.collision_mask = 1;
 	var result = spaceState.intersect_ray(query);
 	if result && result.collider is BoardFloorTile && result.collider && result.collider.global_position:
 		var floorTile = result.collider as BoardFloorTile;
@@ -124,3 +126,5 @@ func pickupFollowMouse():
 		item_follow_mouse.position.x = floorTile.coordX;
 		item_follow_mouse.position.z = floorTile.coordY;
 		item_follow_mouse.position.y = result.collider.position.y + 1.2;
+	#else:
+		#print(result);

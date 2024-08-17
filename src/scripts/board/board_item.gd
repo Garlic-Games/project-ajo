@@ -3,16 +3,14 @@ class_name BoardItem extends BoardGridBase
 signal self_picked_up;
 
 @export var sizeZ = 1;
+@export var color = 0;
 
 var meshInstance: MeshInstance3D;
 
-
-var hover_material: StandardMaterial3D = preload("res://art/materials/hover_tile_material.tres");
-#var normal_material: StandardMaterial3D = preload("res://art/materials/standard_tile_material.tres");
-var picked_up_material: StandardMaterial3D = preload("res://art/materials/picked_up_tile_material.tres");
 var item_id: String = "";
 
 var _selected = false;
+var _picked_up = false;
 var _lastConnection = null;
 
 var positionOnPickup: Vector3;
@@ -32,23 +30,36 @@ func _ready() -> void:
 	self.connect("mouse_entered", self.onMouseEntered);
 	self.connect("mouse_exited", self.onMouseExited);
 	meshInstance = get_children()[0].get_children()[0];
+	meshInstance.material_override = BoardItemResource.getMaterial(color, BoardItemResource.MaterialType.NORMAL);
 	redraw();
 
 func onMouseEntered():
 	_selected = true;
-	meshInstance.material_override = hover_material;
+	setMaterial();
 
 func onMouseExited():
 	_selected = false;
-	meshInstance.material_override = null;
+	setMaterial();
 
 func onStartPickUp():
+	_picked_up = true;
 	positionOnPickup = Vector3(global_position);
-	meshInstance.material_override = picked_up_material;
+	setMaterial();
 
 func onEndPickUp():
-	meshInstance.material_override = null;
+	_picked_up = false;
+	setMaterial();
 
+func setMaterial():
+	if _picked_up:
+		meshInstance.material_override = BoardItemResource.getMaterial(color, BoardItemResource.MaterialType.FOCUS);
+		return;
+	if _selected:
+		meshInstance.material_override = BoardItemResource.getMaterial(color, BoardItemResource.MaterialType.HOVER);
+	else:
+		meshInstance.material_override = BoardItemResource.getMaterial(color, BoardItemResource.MaterialType.NORMAL);
+	
+		
 
 func connectPickupJustOnce(call: Callable):
 	if _lastConnection != null:
