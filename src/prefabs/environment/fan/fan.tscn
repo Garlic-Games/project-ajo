@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=4 uid="uid://tmqb1i1kolfm"]
+[gd_scene load_steps=23 format=4 uid="uid://tmqb1i1kolfm"]
 
 [ext_resource type="Script" path="res://scripts/environment/fan.gd" id="1_1yydw"]
 [ext_resource type="Texture2D" uid="uid://b0dsobpsm2w5r" path="res://art/models/kenney_brick-kit/Textures/colormap.png" id="2_8oul1"]
@@ -205,7 +205,10 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_p724o")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ydprp"]
-size = Vector3(2, 2, 0.5)
+size = Vector3(2, 2.41992, 0.502686)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_eoib0"]
+size = Vector3(0.529419, 1.94189, 0.521027)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xr40g"]
 size = Vector3(2, 2, 10)
@@ -337,7 +340,12 @@ mesh = SubResource("ArrayMesh_opwr5")
 skeleton = NodePath("")
 
 [node name="MeshCollider" type="CollisionShape3D" parent="Body"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.209961, -0.00134277)
 shape = SubResource("BoxShape3D_ydprp")
+
+[node name="MeshCollider2" type="CollisionShape3D" parent="Body"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00140381, -0.448975, -0.495224)
+shape = SubResource("BoxShape3D_eoib0")
 
 [node name="WindArea" type="Area3D" parent="."]
 
