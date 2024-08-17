@@ -6,7 +6,7 @@ const JUMP_VELOCITY = 4.5
 @export var mouse_sensitivity: float = 1;
 @onready var camera: Camera3D = $Camera3D;
 
-func _init() -> void:
+func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 func _physics_process(delta: float) -> void:
