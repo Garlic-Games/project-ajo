@@ -6,8 +6,9 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_trx6q"]
 size = Vector3(1, 0.5, 1)
 
-[node name="Item1x1" type="StaticBody3D"]
+[node name="Item1x05" type="StaticBody3D"]
 script = ExtResource("1_m5x4c")
+conConstructOver = false
 
 [node name="none-lq-plate-1x1" parent="." instance=ExtResource("2_y1kvv")]
 transform = Transform3D(1, 0, 0, 0, 1.125, 0, 0, 0, 1, 0.5, 0, 0.5)

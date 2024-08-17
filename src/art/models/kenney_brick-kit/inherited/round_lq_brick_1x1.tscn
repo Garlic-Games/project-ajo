@@ -1,8 +1,7 @@
-[gd_scene load_steps=6 format=4 uid="uid://d3lux4gypi127"]
+[gd_scene load_steps=5 format=4 uid="uid://d3lux4gypi127"]
 
 [ext_resource type="PackedScene" uid="uid://basj0dodd50dh" path="res://art/models/kenney_brick-kit/round-lq-brick-1x1.glb" id="1_awk5x"]
 [ext_resource type="Material" uid="uid://dpph78wvd2v04" path="res://art/materials/brick_material_1.tres" id="2_gxrtm"]
-[ext_resource type="Material" uid="uid://bjql5ni2mafex" path="res://art/materials/bricks/01/focus.tres" id="3_aiop1"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_i8m70"]
 _surfaces = [{
@@ -43,4 +42,3 @@ shadow_mesh = SubResource("ArrayMesh_i8m70")
 [node name="round-lq-brick-1x1" parent="." index="0"]
 transform = Transform3D(12.6, 0, 0, 0, 12.6, 0, 0, 0, 12.6, 0, 0, 0)
 mesh = SubResource("ArrayMesh_64w0n")
-surface_material_override/0 = ExtResource("3_aiop1")

@@ -4,6 +4,7 @@ signal self_picked_up;
 
 @export var sizeZ = 1;
 @export var color = 0;
+@export var fixed = false;
 
 var meshInstance: MeshInstance3D;
 
@@ -54,7 +55,7 @@ func setMaterial():
 	if _picked_up:
 		meshInstance.material_override = BoardItemResource.getMaterial(color, BoardItemResource.MaterialType.FOCUS);
 		return;
-	if _selected:
+	if _selected && !fixed:
 		meshInstance.material_override = BoardItemResource.getMaterial(color, BoardItemResource.MaterialType.HOVER);
 	else:
 		meshInstance.material_override = BoardItemResource.getMaterial(color, BoardItemResource.MaterialType.NORMAL);

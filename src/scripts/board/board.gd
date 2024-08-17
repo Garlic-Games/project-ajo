@@ -65,8 +65,9 @@ func connectListeners(target):
 
 
 func tableItemPickedUp(item: BoardItem):
-	item.onStartPickUp();
-	item_follow_mouse = item;
+	if !item.fixed:
+		item.onStartPickUp();
+		item_follow_mouse = item;
 
 func tableTileClicked(tile: BoardFloorTile, base: BoardGridBase):
 	if item_follow_mouse != null:
