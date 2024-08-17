@@ -1,9 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://mptivcsfyvgh"]
+[gd_scene load_steps=13 format=3 uid="uid://mptivcsfyvgh"]
 
 [ext_resource type="PackedScene" uid="uid://tmqb1i1kolfm" path="res://prefabs/environment/fan/fan.tscn" id="1_hgb8w"]
 [ext_resource type="Script" path="res://scripts/player/player.gd" id="2_i440h"]
 [ext_resource type="PackedScene" uid="uid://pxw8avkakijr" path="res://prefabs/environment/balancer/balancer.tscn" id="3_a47pe"]
 [ext_resource type="PackedScene" uid="uid://b8p2pp5apr6r1" path="res://prefabs/environment/jumper/jumper.tscn" id="4_0wsti"]
+[ext_resource type="PackedScene" uid="uid://c6m66r5vllrb1" path="res://prefabs/entities/cool_garlic.tscn" id="5_th380"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_e0fpa"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -72,3 +73,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.64869, 0.5, 3.24882)
 
 [node name="Jumper" parent="." instance=ExtResource("4_0wsti")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 8.95498, 0.464293, 6.13484)
+
+[node name="CoolGarlic" parent="." instance=ExtResource("5_th380")]
+transform = Transform3D(0.624875, 0, 0.780725, 0, 1, 0, -0.780725, 0, 0.624875, -28.7955, 0.374214, -1.02182)
