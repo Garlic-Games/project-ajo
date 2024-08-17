@@ -1,6 +1,7 @@
 class_name BoardTable extends Node3D
 
 signal item_picked_up(item: BoardItem);
+signal tile_clicked(item: BoardFloorTile);
 
 @onready var tableTileRoot: Node3D = $BaseTableRoot;
 @onready var gridTileRoot: Node3D = $BaseGridRoot;
@@ -38,7 +39,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if(Input.is_action_just_released("primary_click")):
 		if(activeTile != null):
-			print(activeTile)
+			tile_clicked.emit(activeTile);
 	pass;
 
 func setItem(item: BoardItem, positionX, positionY):
