@@ -23,7 +23,6 @@ func _process(delta: float) -> void:
 			scroll = -1;
 		if Input.is_action_just_released("scroll_up"):
 			scroll = 1;
-
 		if scroll != 0:
 			camera_position += scroll * rotation_step;
 			position_camera();
@@ -83,6 +82,10 @@ func tableTileClicked(tile: BoardFloorTile, base: BoardGridBase):
 		base.setItem(item_follow_mouse, tile.coordX, tile.coordY);
 		emitItemMoved(item_follow_mouse)
 		item_follow_mouse = null;
+	else:
+		if tile.floorParent is BoardItem:
+			tile.onMouseExited();
+			tableItemPickedUp(tile.floorParent);
 
 func emitItemMoved(itemToEmit: BoardItem):
 	var distanceToFloor = Vector3i(0, 0, -1);
