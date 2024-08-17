@@ -8,13 +8,13 @@ signal tile_clicked(item: BoardFloorTile);
 @onready var baseItemsRoot: Node3D = $BaseItemsRoot;
 
 
-@export var boardSizeX: int = 16 : 
-	set(val): 
+@export var boardSizeX: int = 16 :
+	set(val):
 		boardSizeX = val;
 		clean();
 		redraw();
-@export var boardSizeY: int = 16: 
-	set(val): 
+@export var boardSizeY: int = 16:
+	set(val):
 		boardSizeY = val;
 		clean();
 		redraw();
@@ -32,7 +32,7 @@ var activeTile : BoardFloorTile = null;
 
 func _ready() -> void:
 	redraw();
-	
+
 func _process(delta: float) -> void:
 	if(Input.is_action_just_released("primary_click")):
 		if(activeTile != null):
@@ -53,7 +53,7 @@ func redraw() -> void:
 	spawn_grid();
 	position.x = -boardSizeX/2;
 	position.z = -boardSizeY/2;
-	
+
 func clean() -> void:
 	for item in tableTileRoot.get_children():
 		remove_child(item);
@@ -80,19 +80,19 @@ func spawn_grid() -> void:
 			var tile: BoardFloorTile = do_spawn_floor_tile(gridTileRoot, grid1x1, nx, ny, 0.5);
 			tile.coordX = nx;
 			tile.coordY = ny;
-			tile.connect("mouse_entered", func(): 
+			tile.connect("mouse_entered", func():
 				self.onTileMouseHover(tile);
 				);
-			tile.connect("mouse_exited", func(): 
+			tile.connect("mouse_exited", func():
 				self.onTileMouseUnHover(tile);
 				);
 
 
 func do_spawn_floor_tile(
 	parent: Node3D,
-	tile: PackedScene, 
-	offsetX: int, 
-	offsetZ: int, 
+	tile: PackedScene,
+	offsetX: int,
+	offsetZ: int,
 	offsetY: float) -> Node3D:
 	#print("Instancing", tile, offsetX, offsetZ, offsetY);
 	var instance: Node3D = tile.instantiate();
@@ -104,12 +104,11 @@ func do_spawn_floor_tile(
 
 func onTileMouseHover(tile: BoardFloorTile):
 	activeTile = tile;
-	
+
 func onTileMouseUnHover(tile: BoardFloorTile):
 	if activeTile == tile:
 		activeTile = null;
-	
+
 
 func onItemPickedUp(item: BoardItem):
 	item_picked_up.emit(item);
-	

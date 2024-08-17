@@ -7,16 +7,15 @@ signal item_moved(item: BoardItem, coordX: int, coordY: int);
 @onready var boardTable: BoardTable = $BoardTable;
 @onready var boardCamera: Camera3D = $EditCamera;
 
-
 #Default true for debug
-var edit_mode: bool = true; 
+var edit_mode: bool = true;
 var item_follow_mouse: BoardItem = null;
 
 func _process(delta: float) -> void:
 	if item_follow_mouse != null:
 		pickupFollowMouse();
 
-func changeState(newState: bool): 
+func changeState(newState: bool):
 	edit_mode = newState;
 
 func registerItem(item: BoardItem, coordX: int, coordY: int):
@@ -39,13 +38,13 @@ func tableItemPickedUp(item: BoardItem):
 	item.onStartPickUp();
 	item_follow_mouse = item;
 	item.position.y = 1.2;
-	
+
 func tableTileClicked(tile: BoardFloorTile):
 	if item_follow_mouse != null:
 		boardTable.setItem(item_follow_mouse, tile.coordX, tile.coordY);
 		item_moved.emit(item_follow_mouse, tile.coordX, tile.coordY);
 		item_follow_mouse = null;
-	
+
 func pickupFollowMouse():
 	var spaceState = get_world_3d().direct_space_state;
 	var mousePos = get_viewport().get_mouse_position();
