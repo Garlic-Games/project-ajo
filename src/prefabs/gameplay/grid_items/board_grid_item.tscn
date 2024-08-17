@@ -1,33 +1,33 @@
 [gd_scene load_steps=6 format=3 uid="uid://kbqk1xp6hnb1"]
 
-[ext_resource type="Script" path="res://scripts/gameplay/levels/grid_item.gd" id="1_6nvhv"]
-[ext_resource type="PackedScene" uid="uid://y12idskl2w16" path="res://prefabs/board/items/Item1x1.tscn" id="2_fjjvq"]
-[ext_resource type="Script" path="res://scripts/gameplay/state/board_activator.gd" id="3_uhp66"]
-[ext_resource type="PackedScene" uid="uid://dgybognntfby0" path="res://prefabs/board/board.tscn" id="4_x7k8q"]
+[ext_resource type="Script" path="res://scripts/gameplay/levels/board_grid_item.gd" id="1_3kj2d"]
+[ext_resource type="PackedScene" uid="uid://y12idskl2w16" path="res://prefabs/board/items/Item1x1.tscn" id="2_rqgkr"]
+[ext_resource type="Script" path="res://scripts/gameplay/state/board_activator.gd" id="3_kixc3"]
+[ext_resource type="PackedScene" uid="uid://dgybognntfby0" path="res://prefabs/board/board.tscn" id="4_yhwl2"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1vrml"]
 size = Vector3(4, 1.5, 4)
 
 [node name="BoardGridItem" type="Node3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0.1, 7.5)
-script = ExtResource("1_6nvhv")
-grid_position = Vector3i(2, 0, 0)
-grid_offset = Vector3(-2.5, 0.5, 1.5)
-unit_size = Vector3(5, 0.2, 5)
-prefab = ExtResource("2_fjjvq")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, 0, 7.5)
+script = ExtResource("1_3kj2d")
+offset = Vector3(0, -0.5, 0)
+grid_offset = Vector3(-1.5, 0.5, 1.5)
+unit_size = Vector3(5, 5, 5)
+prefab = ExtResource("2_rqgkr")
 
 [node name="BoardActivator" type="Area3D" parent="." node_paths=PackedStringArray("board")]
 collision_layer = 0
 collision_mask = 2
 input_ray_pickable = false
-script = ExtResource("3_uhp66")
+script = ExtResource("3_kixc3")
 board = NodePath("Board")
 
 [node name="ActivatorSize" type="CollisionShape3D" parent="BoardActivator"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.734814, 0)
 shape = SubResource("BoxShape3D_1vrml")
 
-[node name="Board" parent="BoardActivator" instance=ExtResource("4_x7k8q")]
+[node name="Board" parent="BoardActivator" instance=ExtResource("4_yhwl2")]
 transform = Transform3D(-5.46392e-09, 0, 0.125, 0, 0.125, 0, -0.125, 0, -5.46392e-09, 0, 0, 0)
 
 [connection signal="body_entered" from="BoardActivator" to="BoardActivator" method="_on_body_entered"]
