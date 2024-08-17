@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://scripts/environment/jumper.gd" id="1_8cqva"]
 [ext_resource type="Texture2D" uid="uid://b0dsobpsm2w5r" path="res://art/models/kenney_brick-kit/Textures/colormap.png" id="2_yt3gg"]
-[ext_resource type="Material" uid="uid://caiwm22vwf5ri" path="res://materials/jumper_border.tres" id="3_o45c1"]
-[ext_resource type="Material" uid="uid://dlufqteaihhfh" path="res://materials/jumper_vertex.tres" id="3_pbylv"]
+[ext_resource type="Material" uid="uid://caiwm22vwf5ri" path="res://art/materials/item_metal.tres" id="3_o45c1"]
+[ext_resource type="Material" uid="uid://dlufqteaihhfh" path="res://art/materials/item_plastic.tres" id="3_pbylv"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xjpas"]
 transparency = 1
@@ -109,7 +109,7 @@ jump_velocity = 20.0
 
 [node name="Mesh" type="StaticBody3D" parent="."]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Mesh"]
+[node name="JumperArea" type="MeshInstance3D" parent="Mesh"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.117363, 0)
 mesh = SubResource("BoxMesh_eflk4")
 
