@@ -23,11 +23,11 @@ func _process(delta: float) -> void:
 			scroll = -1;
 		if Input.is_action_just_released("scroll_up"):
 			scroll = 1;
-		
+
 		if scroll != 0:
 			camera_position += scroll * rotation_step;
 			position_camera();
-		
+
 func changeState(newState: bool):
 	edit_mode = newState;
 	boardCamera.current = edit_mode;

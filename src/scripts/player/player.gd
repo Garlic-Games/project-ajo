@@ -5,7 +5,6 @@ const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 @export var mouse_sensitivity: float = 1;
 @onready var camera: Camera3D = $Camera3D;
-@onready var ray_cast_3d: RayCast3D = $Camera3D/RayCast3D
 
 var wind_velocity: Vector3 = Vector3.ZERO;
 

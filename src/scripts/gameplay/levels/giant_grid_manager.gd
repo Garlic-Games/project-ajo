@@ -18,6 +18,7 @@ func _ready() -> void:
 		return;
 	_register_children();
 	if board:
+		board.setSize(grid_size);
 		board.item_moved.connect(_children_moved);
 	_readjust_positions();
 
