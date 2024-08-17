@@ -1,16 +1,26 @@
-[gd_scene load_steps=5 format=3 uid="uid://pyex1a4t0sk4"]
+[gd_scene load_steps=9 format=3 uid="uid://pyex1a4t0sk4"]
 
 [ext_resource type="PackedScene" uid="uid://untq4yp2wlic" path="res://prefabs/gameplay/victory_spot/victory_spot.tscn" id="1_g8t73"]
+[ext_resource type="PackedScene" uid="uid://dgybognntfby0" path="res://prefabs/board/board.tscn" id="2_3g82r"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6ecjw"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p1acc"]
 albedo_color = Color(0, 0.803922, 0.34902, 1)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_5rvl6"]
-material = SubResource("StandardMaterial3D_6ecjw")
-size = Vector2(10, 10)
+material = SubResource("StandardMaterial3D_p1acc")
+size = Vector2(20, 20)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_a42iq"]
-size = Vector3(10, 0.1, 10)
+size = Vector3(20, 0.1, 20)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uahnd"]
+albedo_color = Color(0.188235, 1, 0.764706, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1kpn8"]
+albedo_color = Color(0.188235, 1, 0.764706, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o2ulw"]
+albedo_color = Color(0.188235, 1, 0.764706, 1)
 
 [node name="Level1" type="StaticBody3D"]
 
@@ -23,6 +33,37 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, 0)
 shape = SubResource("BoxShape3D_a42iq")
 
 [node name="VictorySpot" parent="." instance=ExtResource("1_g8t73")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.561723, 1.57479, -5.40178)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.92614, -0.154084, -10.5094)
 next_level_index = 2
 following_level_index = -1
+
+[node name="Board" parent="." instance=ExtResource("2_3g82r")]
+transform = Transform3D(0.125, 0, 0, 0, 0.125, 0, 0, 0, 0.125, -0.339856, 0.0787516, 2.51846)
+
+[node name="Ground" type="Node3D" parent="."]
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="Ground"]
+use_collision = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Ground/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
+size = Vector3(20, 10, 20)
+material = SubResource("StandardMaterial3D_uahnd")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Ground/CSGCombiner3D/CSGBox3D"]
+operation = 2
+size = Vector3(18, 10, 18)
+material = SubResource("StandardMaterial3D_1kpn8")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Ground/CSGCombiner3D/CSGBox3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, -3, -9.85333)
+operation = 2
+size = Vector3(4, 4, 4)
+material = SubResource("StandardMaterial3D_o2ulw")
+
+[node name="Items" type="Node3D" parent="."]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Items"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 2, -7)
+use_collision = true
+size = Vector3(4, 4, 4)
