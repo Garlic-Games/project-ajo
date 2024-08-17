@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://dkwr5uy86j7l3"]
 
-[ext_resource type="Script" path="res://scripts/input/player_input.gd" id="1_ci1po"]
-[ext_resource type="Script" path="res://scripts/input/head_input.gd" id="2_uek5s"]
+[ext_resource type="PackedScene" uid="uid://cr6b74d4fygcy" path="res://prefabs/gameplay/player/player.tscn" id="1_eb2hb"]
+[ext_resource type="Script" path="res://scripts/gameplay/state/victory_spot.gd" id="2_h0f24"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_154dv"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -15,13 +15,14 @@ background_mode = 2
 sky = SubResource("Sky_7otx3")
 tonemap_mode = 2
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ecujn"]
-
 [sub_resource type="PlaneMesh" id="PlaneMesh_tgy8c"]
 size = Vector2(100, 100)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_a42iq"]
 size = Vector3(100, 0.1, 100)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_vgch8"]
+height = 2.60882
 
 [node name="Boxdagla" type="Node3D"]
 
@@ -31,20 +32,6 @@ environment = SubResource("Environment_elqo0")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
 shadow_enabled = true
-
-[node name="Player" type="CharacterBody3D" parent="."]
-script = ExtResource("1_ci1po")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-shape = SubResource("CapsuleShape3D_ecujn")
-
-[node name="Head" type="Node3D" parent="Player"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
-script = ExtResource("2_uek5s")
-mouse_sensitivity = 0.005
-
-[node name="Camera3D" type="Camera3D" parent="Player/Head"]
 
 [node name="Node3D" type="Node3D" parent="."]
 
@@ -57,3 +44,16 @@ skeleton = NodePath("../..")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Node3D/RigidBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, 0)
 shape = SubResource("BoxShape3D_a42iq")
+
+[node name="Player2" parent="." instance=ExtResource("1_eb2hb")]
+collision_layer = 2
+
+[node name="VictorySpot" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("2_h0f24")
+
+[node name="VictoryRange" type="CollisionShape3D" parent="VictorySpot"]
+shape = SubResource("CylinderShape3D_vgch8")
+
+[connection signal="body_entered" from="VictorySpot" to="VictorySpot" method="_on_body_entered"]

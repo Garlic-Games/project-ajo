@@ -3,6 +3,8 @@ extends CharacterBody3D
 
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
+@export var mouse_sensitivity: float = 1;
+@onready var camera: Camera3D = $Camera3D;
 
 func _init() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -28,3 +30,10 @@ func _physics_process(delta: float) -> void:
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 
 	move_and_slide()
+
+# Called when the node enters the scene tree for the first time.
+func _input(event):
+	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
+		rotate_y(-event.relative.x * (mouse_sensitivity / 100));
+		camera.rotate_x(-event.relative.y * mouse_sensitivity / 100);
+		camera.rotation.x = clampf(camera.rotation.x, -deg_to_rad(70), deg_to_rad(70));
