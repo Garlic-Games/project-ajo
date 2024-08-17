@@ -28,6 +28,7 @@ var loaded_item: BoardItem:
 	get:
 		if not loaded_item:
 			loaded_item = prefab.instantiate();
+		loaded_item.item_id = name;
 		return loaded_item;
 
 func _reposition():

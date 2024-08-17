@@ -5,6 +5,8 @@
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ecujn"]
 
 [node name="Player" type="CharacterBody3D"]
+collision_layer = 2
+input_ray_pickable = false
 script = ExtResource("1_h8ujk")
 mouse_sensitivity = 0.5
 
@@ -19,3 +21,5 @@ current = true
 [node name="RayCast3D" type="RayCast3D" parent="Camera3D"]
 target_position = Vector3(0, 0, -1.5)
 collision_mask = 4
+collide_with_areas = true
+collide_with_bodies = false

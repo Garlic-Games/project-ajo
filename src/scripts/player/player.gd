@@ -10,6 +10,7 @@ const JUMP_VELOCITY = 4.5
 var wind_velocity: Vector3 = Vector3.ZERO;
 
 var _is_editing_scenario: bool = false;
+var _last_activator: BoardActivator;
 
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -45,11 +46,6 @@ func _physics_process(delta: float) -> void:
 
 # Called when the node enters the scene tree for the first time.
 func _input(event):
-	if event.is_action_released("interact"):
-		if ray_cast_3d.is_colliding():
-			var activator = ray_cast_3d.get_collider() as BoardActivator;
-			if activator:
-				activator.activate_board();
 	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 		rotate_y(-event.relative.x * (mouse_sensitivity / 100));
 		camera.rotate_x(-event.relative.y * mouse_sensitivity / 100);
@@ -60,3 +56,11 @@ func set_wind_velocity(wind_velocity: Vector3):
 
 func set_jump_velocity(jumper_velocity: float):
 	self.velocity.y += jumper_velocity;
+
+func handle_interact(active: bool):
+	if !active:
+		_is_editing_scenario = false;
+		camera.current = true;
+	else:
+		_is_editing_scenario = true;
+		camera.current = false;
