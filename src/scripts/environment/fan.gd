@@ -11,7 +11,7 @@ extends Node3D
 func _ready() -> void:
 	if not debug_mode:
 		debug_node.queue_free();
-	
+
 	wind_area.body_entered.connect(func(entity: Node3D): on_entity_enters_wind_area(entity));
 	wind_area.body_exited.connect(func(entity: Node3D): on_entity_leaves_wind_area(entity));
 
