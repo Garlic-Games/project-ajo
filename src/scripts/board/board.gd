@@ -72,10 +72,10 @@ func tableItemPickedUp(item: BoardItem):
 func tableTileClicked(tile: BoardFloorTile, base: BoardGridBase):
 	if item_follow_mouse != null:
 		if (item_follow_mouse.sizeX + tile.coordX)  > base.sizeX:
-			print("No cabe por X")
+			#print("No cabe por X")
 			return
 		if (item_follow_mouse.sizeY + tile.coordY)  > base.sizeY:
-			print("No cabe por Y")
+			#print("No cabe por Y")
 			return
 		item_follow_mouse.coordX = tile.coordX;
 		item_follow_mouse.coordY = tile.coordY;
@@ -86,7 +86,7 @@ func tableTileClicked(tile: BoardFloorTile, base: BoardGridBase):
 func emitItemMoved(itemToEmit: BoardItem):
 	var distanceToFloor = Vector3i(0, 0, -1);
 	distanceToFloor = findParentFloor(itemToEmit, distanceToFloor);
-	print("emitting item_moved ", distanceToFloor);
+	#print("emitting item_moved ", distanceToFloor);
 	item_moved.emit(itemToEmit, distanceToFloor);
 	emitForChilds(itemToEmit);
 
