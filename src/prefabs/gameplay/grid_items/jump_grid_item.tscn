@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://mcc421imw5vv"]
+
+[ext_resource type="Script" path="res://scripts/gameplay/levels/grid_item.gd" id="1_7jp3a"]
+[ext_resource type="PackedScene" uid="uid://y12idskl2w16" path="res://prefabs/board/items/Item1x1.tscn" id="2_i5fnb"]
+[ext_resource type="PackedScene" uid="uid://b8p2pp5apr6r1" path="res://prefabs/environment/jumper/jumper.tscn" id="3_arqhu"]
+
+[node name="Jumper" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0, 2.5)
+script = ExtResource("1_7jp3a")
+grid_position = Vector3i(2, 0, 1)
+offset = Vector3(0, -0.5, 0)
+grid_offset = Vector3(-1.5, 0.5, 1.5)
+unit_size = Vector3(5, 5, 5)
+prefab = ExtResource("2_i5fnb")
+
+[node name="Jumper" parent="." instance=ExtResource("3_arqhu")]

@@ -1,15 +1,12 @@
-[gd_scene load_steps=12 format=3 uid="uid://pyex1a4t0sk4"]
+[gd_scene load_steps=11 format=3 uid="uid://pyex1a4t0sk4"]
 
 [ext_resource type="PackedScene" uid="uid://untq4yp2wlic" path="res://prefabs/gameplay/victory_spot/victory_spot.tscn" id="1_g8t73"]
 [ext_resource type="Script" path="res://scripts/gameplay/levels/giant_grid_manager.gd" id="1_rt68t"]
-[ext_resource type="PackedScene" uid="uid://dgybognntfby0" path="res://prefabs/board/board.tscn" id="2_3g82r"]
 [ext_resource type="Script" path="res://scripts/gameplay/levels/grid_item.gd" id="4_frre0"]
 [ext_resource type="PackedScene" uid="uid://y12idskl2w16" path="res://prefabs/board/items/Item1x1.tscn" id="4_gqymp"]
-[ext_resource type="Script" path="res://scripts/gameplay/state/board_activator.gd" id="4_u7weo"]
-[ext_resource type="PackedScene" uid="uid://b8p2pp5apr6r1" path="res://prefabs/environment/jumper/jumper.tscn" id="6_bpy4r"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_1vrml"]
-size = Vector3(4, 1.5, 4)
+[ext_resource type="PackedScene" uid="uid://kbqk1xp6hnb1" path="res://prefabs/gameplay/grid_items/board_grid_item.tscn" id="4_xlnda"]
+[ext_resource type="PackedScene" uid="uid://mcc421imw5vv" path="res://prefabs/gameplay/grid_items/jump_grid_item.tscn" id="5_2f5vk"]
+[ext_resource type="PackedScene" uid="uid://b7ttitq0bbrxj" path="res://prefabs/gameplay/grid_items/fan_grid_item.tscn" id="6_ymusn"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xpwf2"]
 albedo_color = Color(0.188235, 1, 0.764706, 1)
@@ -25,7 +22,7 @@ albedo_color = Color(0.188235, 1, 0.764706, 1)
 [node name="Grid" type="Node3D" parent="." node_paths=PackedStringArray("board")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4, 0)
 script = ExtResource("1_rt68t")
-board = NodePath("GridItem/BoardActivator/Board")
+board = NodePath("BoardGridItem")
 grid_size = Vector2i(4, 4)
 cell_size = 2.0
 offset = Vector3(-1.5, 0.5, 1.5)
@@ -50,38 +47,11 @@ grid_offset = Vector3(-1.5, 0.5, 1.5)
 unit_size = Vector3(5, 5, 5)
 prefab = ExtResource("4_gqymp")
 
-[node name="GridItem" type="Node3D" parent="Grid"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, 0, 7.5)
-script = ExtResource("4_frre0")
-offset = Vector3(0, -0.5, 0)
-grid_offset = Vector3(-1.5, 0.5, 1.5)
-unit_size = Vector3(5, 5, 5)
-prefab = ExtResource("4_gqymp")
+[node name="BoardGridItem" parent="Grid" instance=ExtResource("4_xlnda")]
 
-[node name="BoardActivator" type="Area3D" parent="Grid/GridItem" node_paths=PackedStringArray("board")]
-collision_layer = 0
-collision_mask = 2
-input_ray_pickable = false
-script = ExtResource("4_u7weo")
-board = NodePath("Board")
+[node name="Jumper" parent="Grid" instance=ExtResource("5_2f5vk")]
 
-[node name="ActivatorSize" type="CollisionShape3D" parent="Grid/GridItem/BoardActivator"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.734814, 0)
-shape = SubResource("BoxShape3D_1vrml")
-
-[node name="Board" parent="Grid/GridItem/BoardActivator" instance=ExtResource("2_3g82r")]
-transform = Transform3D(-5.46392e-09, 0, 0.125, 0, 0.125, 0, -0.125, 0, -5.46392e-09, 0, 0, 0)
-
-[node name="Jumper" type="Node3D" parent="Grid"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0, 2.5)
-script = ExtResource("4_frre0")
-grid_position = Vector3i(2, 0, 1)
-offset = Vector3(0, -0.5, 0)
-grid_offset = Vector3(-1.5, 0.5, 1.5)
-unit_size = Vector3(5, 5, 5)
-prefab = ExtResource("4_gqymp")
-
-[node name="Jumper" parent="Grid/Jumper" instance=ExtResource("6_bpy4r")]
+[node name="Fan" parent="Grid" instance=ExtResource("6_ymusn")]
 
 [node name="Ground" type="Node3D" parent="."]
 
@@ -106,7 +76,7 @@ size = Vector3(4, 4, 4)
 material = SubResource("StandardMaterial3D_h30ep")
 
 [node name="VictorySpot" parent="Ground/CSGCombiner3D/CSGBox3D3" instance=ExtResource("1_g8t73")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, -1)
 next_level_index = 2
 following_level_index = -1
 
@@ -115,6 +85,3 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, -1.8944, 9.14667)
 operation = 2
 size = Vector3(4, 4, 4)
 material = SubResource("StandardMaterial3D_h30ep")
-
-[connection signal="body_entered" from="Grid/GridItem/BoardActivator" to="Grid/GridItem/BoardActivator" method="_on_body_entered"]
-[connection signal="body_exited" from="Grid/GridItem/BoardActivator" to="Grid/GridItem/BoardActivator" method="_on_body_exited"]

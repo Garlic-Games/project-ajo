@@ -2,7 +2,7 @@
 class_name  GiantGridManager;
 extends Node3D
 
-@export var board: Board;
+@export var board: BoardGridItem;
 @export var grid_size: Vector2i;
 @export var cell_size: float;
 @export var offset: Vector3:
@@ -18,8 +18,8 @@ func _ready() -> void:
 		return;
 	_register_children();
 	if board:
-		board.setSize(grid_size);
-		board.item_moved.connect(_children_moved);
+		board.board_activator.board.setSize(grid_size);
+		board.board_activator.board.item_moved.connect(_children_moved);
 	_readjust_positions();
 
 func _children_moved(item: BoardItem, coords: Vector3i):
@@ -32,8 +32,8 @@ func _register_children():
 	for item in get_children():
 		var gi = item as GridItem;
 		pieces.get_or_add(item.name, item);
-		if board:
-			board.registerItem(gi.loaded_item, gi.grid_position.z, gi.grid_position.x);
+		if board.board_activator.board:
+			board.board_activator.board.registerItem(gi.loaded_item, gi.grid_position.z, gi.grid_position.x);
 
 func _readjust_positions():
 	for item in get_children():
