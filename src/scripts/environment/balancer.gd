@@ -7,17 +7,20 @@ extends Node3D
 @export var swing_speed: float = 1.0;
 
 @onready var platform: Node3D = $Platform;
+@onready var item_container_one: Node3D = $Platform/ItemContainer1;
+@onready var item_container_two: Node3D = $Platform/ItemContainer2;
 @onready var player_detector: Area3D = $Platform/PlayerDetector;
 @onready var debug_node: Node3D = $Debug;
 
 var player: Player = null;
-var max_rotation: float = 0.0;
-
 var swing_tween: Tween = null;
+var items_container_one: Array[Node3D] = [];
+var items_container_two: Array[Node3D] = [];
 
+var max_rotation: float = 0.0;
 var is_swinging: bool = false;
 
-@export var platform_offset: float = 0.0;
+var platform_offset: float = 0.0;
 var rotation_value: float = 0.0;
 
 func _ready() -> void:
@@ -36,7 +39,7 @@ func _ready() -> void:
 	
 	platform.rotation.x = rotation_value;
 
-func _process(delta):
+func _process(delta: float) -> void:
 	if player and not is_swinging:
 		platform_offset = to_local(player.global_position).z;
 		
@@ -46,7 +49,7 @@ func _process(delta):
 
 	rotation_value = platform.rotation.x;
 
-func start_swing(target_rotation: float):
+func start_swing(target_rotation: float) -> void:
 	swing_tween = get_tree().create_tween();
 	swing_tween.tween_property(platform, "rotation", Vector3(target_rotation, 0.0, 0.0), swing_speed).set_trans(Tween.TRANS_BOUNCE).set_ease(Tween.EASE_OUT);
 	swing_tween.tween_callback(func(): is_swinging = false);
