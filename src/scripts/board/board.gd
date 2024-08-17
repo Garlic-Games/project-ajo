@@ -25,15 +25,15 @@ func registerItem(item: BoardItem, coordX: int, coordY: int):
 
 func _ready() -> void:
 	connectListeners(boardTable)
-	var brik2x2 = preload("res://prefabs/board/items/Item2x2.tscn");
-	var brik1x1 = preload("res://prefabs/board/items/Item1x1.tscn");
-	var item = brik2x2.instantiate();
-	registerItem(item, 2, 2);
-	var item2 = brik2x2.instantiate();
-	registerItem(item2, 7, 2);
-	var item3 = brik1x1.instantiate();
-	item3.item_id = "ASD;";
-	registerItem(item3, 5, 2);
+	#var brik2x2 = preload("res://prefabs/board/items/Item2x2.tscn");
+	#var brik1x1 = preload("res://prefabs/board/items/Item1x1.tscn");
+	#var item = brik2x2.instantiate();
+	#registerItem(item, 2, 2);
+	#var item2 = brik2x2.instantiate();
+	#registerItem(item2, 7, 2);
+	#var item3 = brik1x1.instantiate();
+	#item3.item_id = "ASD;";
+	#registerItem(item3, 5, 2);
 
 func connectListeners(target):
 	target.connect("item_picked_up", tableItemPickedUp);
@@ -48,6 +48,7 @@ func tableItemPickedUp(item: BoardItem):
 	
 func tableTileClicked(tile: BoardFloorTile, base: BoardGridBase):
 	if item_follow_mouse != null:
+		#if tile.
 		item_follow_mouse.coordX = tile.coordX;
 		item_follow_mouse.coordY = tile.coordY;
 		base.setItem(item_follow_mouse, tile.coordX, tile.coordY);
