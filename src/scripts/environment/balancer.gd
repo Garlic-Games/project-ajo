@@ -7,11 +7,15 @@ extends Node3D
 @export var swing_speed: float = 1.0;
 
 @onready var platform: Node3D = $Platform;
+@onready var item_container_one: Node3D = $Platform/ItemContainer1;
+@onready var item_container_two: Node3D = $Platform/ItemContainer2;
 @onready var player_detector: Area3D = $Platform/PlayerDetector;
 @onready var debug_node: Node3D = $Debug;
 
 var player: Player = null;
 var swing_tween: Tween = null;
+var items_container_one: Array[Node3D] = [];
+var items_container_two: Array[Node3D] = [];
 
 var max_rotation: float = 0.0;
 var is_swinging: bool = false;
