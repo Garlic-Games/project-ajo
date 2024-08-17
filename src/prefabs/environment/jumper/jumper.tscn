@@ -105,7 +105,7 @@ size = Vector3(2, 0.25, 2)
 [node name="Jumper" type="Node3D"]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
 script = ExtResource("1_8cqva")
-jump_velocity = 20.0
+jump_velocity = 15.0
 
 [node name="Mesh" type="StaticBody3D" parent="."]
 
@@ -182,6 +182,7 @@ skeleton = NodePath("")
 surface_material_override/0 = ExtResource("3_o45c1")
 
 [node name="JumpArea" type="Area3D" parent="."]
+collision_mask = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="JumpArea"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)

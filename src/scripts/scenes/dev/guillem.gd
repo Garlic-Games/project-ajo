@@ -10,10 +10,10 @@ func _ready() -> void:
 	var item = brik2x2.instantiate();
 	board.registerItem(item, 2, 2);
 	var item2 = brik2x2.instantiate();
-	board.registerItem(item2, 7, 2);
+	board.registerItem(item2, 5, 2);
 	var item3 = brik1x1.instantiate();
 	item3.item_id = "ASD;";
-	board.registerItem(item3, 5, 2);
+	board.registerItem(item3, 3, 4);
 	board.setSize(Vector2(7,9));
 
 
