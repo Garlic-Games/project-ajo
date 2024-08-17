@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://dbddthaq6y1x8"]
+
+[ext_resource type="PackedScene" uid="uid://pyex1a4t0sk4" path="res://scenes/levels/level_1.tscn" id="1_pbdrk"]
+[ext_resource type="PackedScene" uid="uid://cr6b74d4fygcy" path="res://prefabs/gameplay/player/player.tscn" id="2_tqfn8"]
+
+[node name="Level-1-test" type="Node3D"]
+
+[node name="Level1" parent="." instance=ExtResource("1_pbdrk")]
+
+[node name="Player" parent="." instance=ExtResource("2_tqfn8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.33002, 0, 4.50758)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.654991, 0.755636, 0, -0.755636, 0.654991, 0, 0, 0)
