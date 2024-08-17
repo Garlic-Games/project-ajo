@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://mptivcsfyvgh"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_tway3"]
+size = Vector3(80, 1, 80)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_t5k7m"]
+size = Vector3(80, 1, 80)
+
+[node name="Dredggez" type="Node3D"]
+
+[node name="Scenario" type="Node" parent="."]
+
+[node name="Floor" type="StaticBody3D" parent="Scenario"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Scenario/Floor"]
+mesh = SubResource("BoxMesh_tway3")
+skeleton = NodePath("../../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Scenario/Floor"]
+shape = SubResource("BoxShape3D_t5k7m")
