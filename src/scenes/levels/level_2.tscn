@@ -1,21 +1,79 @@
-[gd_scene load_steps=4 format=3 uid="uid://dp547w2bc05v3"]
+[gd_scene load_steps=9 format=3 uid="uid://dp547w2bc05v3"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kmlv7"]
-albedo_color = Color(1, 0.396078, 0.278431, 1)
+[ext_resource type="PackedScene" uid="uid://untq4yp2wlic" path="res://prefabs/gameplay/victory_spot/victory_spot.tscn" id="1_sh057"]
+[ext_resource type="PackedScene" uid="uid://dgybognntfby0" path="res://prefabs/board/board.tscn" id="2_x62qj"]
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_tgy8c"]
-material = SubResource("StandardMaterial3D_kmlv7")
-size = Vector2(10, 10)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6ecjw"]
+albedo_color = Color(0, 0.803922, 0.34902, 1)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_a42iq"]
-size = Vector3(10, 0.1, 10)
+[sub_resource type="PlaneMesh" id="PlaneMesh_huvfm"]
+material = SubResource("StandardMaterial3D_6ecjw")
+size = Vector2(20, 20)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_iqno8"]
+size = Vector3(20, 0.1, 20)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_88qwf"]
+albedo_color = Color(0.188235, 1, 0.764706, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qp53n"]
+albedo_color = Color(0.188235, 1, 0.764706, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4sfs4"]
+albedo_color = Color(0.188235, 1, 0.764706, 1)
 
 [node name="Level2" type="StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("PlaneMesh_tgy8c")
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_huvfm")
+skeleton = NodePath("../..")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, 0)
-shape = SubResource("BoxShape3D_a42iq")
+shape = SubResource("BoxShape3D_iqno8")
+
+[node name="VictorySpot" parent="." instance=ExtResource("1_sh057")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.03053, 3.99253, -9.50937)
+next_level_index = 2
+following_level_index = -1
+
+[node name="Board" parent="." instance=ExtResource("2_x62qj")]
+transform = Transform3D(0.125, 0, 0, 0, 0.125, 0, 0, 0, 0.125, -0.339856, 0.0787516, 2.51846)
+
+[node name="Ground" type="Node3D" parent="."]
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="Ground"]
+use_collision = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Ground/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
+size = Vector3(20, 10, 20)
+material = SubResource("StandardMaterial3D_88qwf")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Ground/CSGCombiner3D/CSGBox3D"]
+operation = 2
+size = Vector3(18, 10, 18)
+material = SubResource("StandardMaterial3D_qp53n")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Ground/CSGCombiner3D/CSGBox3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, -3, 9.14667)
+operation = 2
+size = Vector3(4, 4, 4)
+material = SubResource("StandardMaterial3D_4sfs4")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Ground/CSGCombiner3D/CSGBox3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1, -8.07589)
+operation = 2
+size = Vector3(4, 4, 4)
+material = SubResource("StandardMaterial3D_4sfs4")
+
+[node name="Items" type="Node3D" parent="."]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Items"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 2, 2)
+size = Vector3(4, 4, 4)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Items"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 1, 2)
+size = Vector3(4, 2, 4)

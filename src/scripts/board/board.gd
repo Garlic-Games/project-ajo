@@ -4,10 +4,10 @@ class_name Board extends Node3D
 
 var brik2x2 = preload("res://prefabs/board/items/Item2x2.tscn");
 #Default true for debug
-var edit_mode:bool = true; 
+var edit_mode:bool = true;
 
-func changeState(newState: bool): 
-	
+func changeState(newState: bool):
+
 	pass;
 
 func registerItem(item: BoardItem):
