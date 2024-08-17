@@ -36,15 +36,15 @@ func _ready() -> void:
 
 func connectListeners(target):
 	target.connect("item_picked_up", tableItemPickedUp);
-	target.connect("tile_clicked", func(tile): 
+	target.connect("tile_clicked", func(tile):
 		self.tableTileClicked(tile, target);
 		);
-	
+
 
 func tableItemPickedUp(item: BoardItem):
 	item.onStartPickUp();
 	item_follow_mouse = item;
-	
+
 func tableTileClicked(tile: BoardFloorTile, base: BoardGridBase):
 	if item_follow_mouse != null:
 		#if tile.

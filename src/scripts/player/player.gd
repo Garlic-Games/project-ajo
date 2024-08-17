@@ -5,8 +5,11 @@ const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 @export var mouse_sensitivity: float = 1;
 @onready var camera: Camera3D = $Camera3D;
+@onready var ray_cast_3d: RayCast3D = $Camera3D/RayCast3D
 
 var wind_velocity: Vector3 = Vector3.ZERO;
+
+var _is_editing_scenario: bool = false;
 
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -16,6 +19,9 @@ func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 
+
+	if _is_editing_scenario:
+		return;
 	# Handle jump.
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
@@ -34,11 +40,16 @@ func _physics_process(delta: float) -> void:
 	if(wind_velocity):
 		velocity.x += wind_velocity.x;
 		velocity.z += wind_velocity.z;
-		
+
 	move_and_slide()
 
 # Called when the node enters the scene tree for the first time.
 func _input(event):
+	if event.is_action_released("interact"):
+		if ray_cast_3d.is_colliding():
+			var activator = ray_cast_3d.get_collider() as BoardActivator;
+			if activator:
+				activator.activate_board();
 	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 		rotate_y(-event.relative.x * (mouse_sensitivity / 100));
 		camera.rotate_x(-event.relative.y * mouse_sensitivity / 100);

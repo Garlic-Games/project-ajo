@@ -25,7 +25,7 @@ func _process(delta: float) -> void:
 
 func redraw() -> void:
 	spawn_grid();
-	
+
 func _ready() -> void:
 	super._ready();
 	tileOffsetY = 1.1;
@@ -55,6 +55,6 @@ func connectPickupJustOnce(call: Callable):
 		disconnect("self_picked_up", _lastConnection);
 	_lastConnection = call;
 	connect("self_picked_up", _lastConnection);
-	
+
 func getSize():
 	return Vector2(sizeX, sizeZ);
