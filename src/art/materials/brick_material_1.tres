@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://dpph78wvd2v04"]
+
+[ext_resource type="Texture2D" uid="uid://b0dsobpsm2w5r" path="res://art/models/kenney_brick-kit/Textures/colormap.png" id="1_kxnb3"]
+
+[resource]
+resource_name = "colormap"
+cull_mode = 2
+albedo_texture = ExtResource("1_kxnb3")
+uv1_offset = Vector3(3.245, -1.005, 0)
+texture_filter = 2
