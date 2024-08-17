@@ -55,7 +55,7 @@ shape = SubResource("BoxShape3D_t5k7m")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.10062, 0)
 
 [node name="Player" type="CharacterBody3D" parent="Scenario"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.868377, 6.81373)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.868377, 11.9695)
 script = ExtResource("2_i440h")
 mouse_sensitivity = 0.5
 
@@ -71,4 +71,4 @@ current = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.64869, 0.5, 3.24882)
 
 [node name="Jumper" parent="." instance=ExtResource("4_0wsti")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.73367, 0.5, 7.89269)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 8.95498, 0.464293, 6.13484)
