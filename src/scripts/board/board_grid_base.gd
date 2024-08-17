@@ -44,7 +44,8 @@ func reparentItem(item: BoardItem):
 	var parent = item.get_parent();
 	if parent:
 		parent.remove_child(item);
-	itemsRoot.add_child(item);
+	if(self != item):
+		itemsRoot.add_child(item);
 
 func setItem(item: BoardItem, positionX, positionY):
 	reparentItem(item);
