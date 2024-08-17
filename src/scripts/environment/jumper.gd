@@ -9,7 +9,7 @@ extends Node3D
 func _ready() -> void:
 	if not debug_mode:
 		debug_node.queue_free();
-	
+
 	trigger_area.body_entered.connect(func(entity: Node3D): on_entity_enters_jump_area(entity));
 
 func on_entity_enters_jump_area(entity: Node3D) -> void:

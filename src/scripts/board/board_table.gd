@@ -48,4 +48,3 @@ func spawn_floor() -> void:
 		for nx in sizeX:
 			if ny >= nyOccupied || nx >= nxOccupied:
 				do_spawn_floor_tile(tableTileRoot, size1x1, nx, ny, -0.1);
-		

@@ -6,10 +6,13 @@
 [node name="Level-1-test" type="Node3D"]
 
 [node name="Level1" parent="." instance=ExtResource("1_pbdrk")]
-input_ray_pickable = false
 
 [node name="Player" parent="." instance=ExtResource("2_tqfn8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.33002, 0, 4.50758)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1075, -1.75532, 6.76804)
+speed = 6.0
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.654991, 0.755636, 0, -0.755636, 0.654991, 0, 0, 0)
+
+[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.779108, -0.620539, -0.0890012, 0, -0.141973, 0.989871, -0.626889, 0.771216, 0.110612, 0, 0, 0)

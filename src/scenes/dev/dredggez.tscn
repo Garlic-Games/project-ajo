@@ -53,6 +53,7 @@ shape = SubResource("BoxShape3D_t5k7m")
 
 [node name="Fan" parent="Scenario" instance=ExtResource("1_hgb8w")]
 transform = Transform3D(2.62, 0, 0, 0, 2.62, 0, 0, 0, 2.62, 0, 4.171, -15.214)
+wind_velocity = 8.0
 
 [node name="Player" type="CharacterBody3D" parent="Scenario"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.74177, 0.868377, 11.9695)
@@ -72,3 +73,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.64869, 0.5, 3.24882)
 
 [node name="Jumper" parent="." instance=ExtResource("4_0wsti")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 8.95498, 0.464293, 6.13484)
+jump_velocity = 10.0
