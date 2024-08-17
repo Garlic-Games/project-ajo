@@ -8,11 +8,16 @@ size = Vector3(2, 1, 2)
 
 [node name="Item2x2" type="StaticBody3D"]
 script = ExtResource("1_o63ak")
-itemShape = 2
+sizeX = 2
+sizeY = 2
 
 [node name="round-lq-brick-2x2" parent="." instance=ExtResource("1_aau2e")]
-transform = Transform3D(1, 0, 0, 0, 0.81, 0, 0, 0, 1, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 0.81, 0, 0, 0, 1, 1, 0, 1)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.5, 1)
 shape = SubResource("BoxShape3D_7oukg")
+
+[node name="GridRoot" type="Node3D" parent="."]
+
+[node name="ItemsRoot" type="Node3D" parent="."]

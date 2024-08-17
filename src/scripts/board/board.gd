@@ -21,28 +21,34 @@ func changeState(newState: bool):
 
 func registerItem(item: BoardItem, coordX: int, coordY: int):
 	boardTable.setItem(item, coordX, coordY);
+	connectListeners(item);
 
 func _ready() -> void:
-	boardTable.connect("item_picked_up", tableItemPickedUp);
-	boardTable.connect("tile_clicked", tableTileClicked);
-	#var brik2x2 = preload("res://prefabs/board/items/Item2x2.tscn");
-	#var brik1x1 = preload("res://prefabs/board/items/Item1x1.tscn");
-	#var item = brik2x2.instantiate();
-	#boardTable.setItem(item, 2, 2);
-	#var item2 = brik2x2.instantiate();
-	#boardTable.setItem(item2, 7, 2);
-	#var item3 = brik1x1.instantiate();
-	#item3.item_id = "ASD;";
-	#boardTable.setItem(item3, 5, 2);
+	connectListeners(boardTable)
+	var brik2x2 = preload("res://prefabs/board/items/Item2x2.tscn");
+	var brik1x1 = preload("res://prefabs/board/items/Item1x1.tscn");
+	var item = brik2x2.instantiate();
+	registerItem(item, 2, 2);
+	var item2 = brik2x2.instantiate();
+	registerItem(item2, 7, 2);
+	var item3 = brik1x1.instantiate();
+	item3.item_id = "ASD;";
+	registerItem(item3, 5, 2);
+
+func connectListeners(target):
+	target.connect("item_picked_up", tableItemPickedUp);
+	target.connect("tile_clicked", func(tile): 
+		self.tableTileClicked(tile, target);
+		);
+	
 
 func tableItemPickedUp(item: BoardItem):
 	item.onStartPickUp();
 	item_follow_mouse = item;
-	item.position.y = 1.2;
 	
-func tableTileClicked(tile: BoardFloorTile):
+func tableTileClicked(tile: BoardFloorTile, base: BoardGridBase):
 	if item_follow_mouse != null:
-		boardTable.setItem(item_follow_mouse, tile.coordX, tile.coordY);
+		base.setItem(item_follow_mouse, tile.coordX, tile.coordY);
 		item_moved.emit(item_follow_mouse, tile.coordX, tile.coordY);
 		item_follow_mouse = null;
 	
@@ -54,8 +60,9 @@ func pickupFollowMouse():
 	var query = PhysicsRayQueryParameters3D.create(rayOrigin, rayEnd);
 	query.exclude = [item_follow_mouse];
 	var result = spaceState.intersect_ray(query);
-	if result && result.collider && result.collider.position:
-		var rayPos = result.collider.position;
+	if result && result.collider is BoardFloorTile && result.collider && result.collider.global_position:
+		var rayPos = result.collider.global_position;
 		var itemSize = item_follow_mouse.getSize();
-		item_follow_mouse.position.x = rayPos.x + itemSize.x/2;
-		item_follow_mouse.position.z = rayPos.z + itemSize.y/2;
+		item_follow_mouse.global_position.x = rayPos.x + itemSize.x/2;
+		item_follow_mouse.global_position.z = rayPos.z + itemSize.y/2;
+		item_follow_mouse.global_position.y = rayPos.y + 1.2;
