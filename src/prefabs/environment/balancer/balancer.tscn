@@ -3,10 +3,10 @@
 [ext_resource type="Script" path="res://scripts/items/balancer.gd" id="1_3rwlg"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_u4ch6"]
-size = Vector3(1, 0.1, 4)
+size = Vector3(1, 0.1, 8)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_3hgwg"]
-size = Vector3(1, 0.1, 4)
+size = Vector3(1, 0.1, 8)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_t40gm"]
 size = Vector3(1, 0.1, 4)
@@ -32,10 +32,8 @@ tonemap_mode = 2
 [node name="Balancer" type="Node3D"]
 script = ExtResource("1_3rwlg")
 debug_mode = true
-balancer_state = null
-
-[node name="Pivot" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.55, 0)
+balancer_state = true
+platform_offset = -1.96
 
 [node name="Platform" type="Node3D" parent="."]
 
