@@ -26,14 +26,14 @@ func _children_moved(item: BoardItem, coords: Vector3i):
 	var piece = pieces.get(item.item_id) as GridItem;
 	if not piece:
 		return;
-	piece.grid_position = Vector3i(coords.x, coords.z, coords.y);
+	piece.grid_position = Vector3i(coords.y, coords.z, coords.x);
 
 func _register_children():
 	for item in get_children():
 		var gi = item as GridItem;
 		pieces.get_or_add(item.name, item);
 		if board:
-			board.registerItem(gi.loaded_item, gi.grid_position.x, gi.grid_position.z);
+			board.registerItem(gi.loaded_item, gi.grid_position.z, gi.grid_position.x);
 
 func _readjust_positions():
 	for item in get_children():
