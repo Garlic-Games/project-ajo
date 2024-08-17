@@ -1,6 +1,6 @@
 extends Node3D
 
-@onready var blades: Node3D = $Blades;
+@onready var blades: Node3D = $Body/Mesh/Blades;
 @onready var wind_area: Area3D = $WindArea;
 @onready var debug_node: Node3D = $Debug;
 

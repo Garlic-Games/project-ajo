@@ -52,10 +52,10 @@ surface_material_override/0 = SubResource("StandardMaterial3D_asvfe")
 shape = SubResource("BoxShape3D_t5k7m")
 
 [node name="Fan" parent="Scenario" instance=ExtResource("1_hgb8w")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.10062, 0)
+transform = Transform3D(2.62, 0, 0, 0, 2.62, 0, 0, 0, 2.62, 0, 4.171, -15.214)
 
 [node name="Player" type="CharacterBody3D" parent="Scenario"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.868377, 11.9695)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.74177, 0.868377, 11.9695)
 script = ExtResource("2_i440h")
 mouse_sensitivity = 0.5
 

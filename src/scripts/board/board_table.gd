@@ -26,10 +26,10 @@ func redraw() -> void:
 
 func clean() -> void:
 	for item in tableTileRoot.get_children():
-		remove_child(item);
+		tableTileRoot.remove_child(item);
 		item.queue_free();
 	for item in gridRoot.get_children():
-		remove_child(item);
+		gridRoot.remove_child(item);
 		item.queue_free();
 
 func spawn_floor() -> void:
@@ -49,4 +49,3 @@ func spawn_floor() -> void:
 			if ny >= nyOccupied || nx >= nxOccupied:
 				do_spawn_floor_tile(tableTileRoot, size1x1, nx, ny, -0.1);
 		
-	
