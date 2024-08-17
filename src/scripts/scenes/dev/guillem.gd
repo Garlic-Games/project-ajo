@@ -14,6 +14,7 @@ func _ready() -> void:
 	var item3 = brik1x1.instantiate();
 	item3.item_id = "ASD;";
 	board.registerItem(item3, 5, 2);
+	board.setSize(Vector2(7,9));
 
 
 func _process(delta: float) -> void:

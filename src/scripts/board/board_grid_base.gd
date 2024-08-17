@@ -8,8 +8,8 @@ var gridRoot: Node3D;
 var itemsRoot: Node3D;
 var activeTile : BoardFloorTile = null;
 
-@export var sizeX: int = 16;
-@export var sizeY: int = 16;
+@export var sizeX: int = 1;
+@export var sizeY: int = 1;
 @export var tileOffsetY = 0.5;
 
 var coordX = 0;

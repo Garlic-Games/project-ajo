@@ -10,7 +10,6 @@ var size2x2: PackedScene = preload("res://prefabs/board/floors/round_lq_plate_2x
 var size4x4: PackedScene = preload("res://prefabs/board/floors/round_lq_plate_4x4.tscn");
 var size4x8: PackedScene = preload("res://prefabs/board/floors/round_lq_plate_4x8.tscn");
 
-var items: Array[BoardItem] = [];
 
 func _ready() -> void:
 	super._ready();
@@ -18,7 +17,8 @@ func _ready() -> void:
 
 
 func redraw() -> void:
-	#print("redrawing", sizeY, sizeX)
+	print("redrawing", sizeY, sizeX)
+	clean();
 	spawn_floor();
 	spawn_grid();
 	position.x = -sizeX/2;
@@ -40,3 +40,5 @@ func spawn_floor() -> void:
 	for ny in unitsY4:
 		for nx in unitsX4:
 			do_spawn_floor_tile(tableTileRoot, size4x4, nx*4, ny*4, -0.1);
+	
+	

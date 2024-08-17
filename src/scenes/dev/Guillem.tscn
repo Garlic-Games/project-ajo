@@ -35,4 +35,4 @@ shape = SubResource("BoxShape3D_dx3no")
 mesh = SubResource("PlaneMesh_sht57")
 
 [node name="Player" parent="." instance=ExtResource("2_jgbfq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.0153, 0.893367, -2.0454)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.855409, 0.144793, 0.366999)

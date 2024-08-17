@@ -49,6 +49,11 @@ func registerItem(item: BoardItem, coordX: int, coordY: int):
 	boardTable.setItem(item, coordX, coordY);
 	connectListeners(item);
 
+func setSize(size: Vector2):
+	boardTable.sizeX = size.x;
+	boardTable.sizeY = size.y;
+	boardTable.redraw();
+
 func _ready() -> void:
 	connectListeners(boardTable)
 
