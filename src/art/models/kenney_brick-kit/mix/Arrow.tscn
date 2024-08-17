@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://jc4we5xeqy3r"]
+
+[ext_resource type="PackedScene" uid="uid://cmrxp3xj63xku" path="res://art/models/kenney_brick-kit/inherited/none_lq_brick_slope_1x_2.tscn" id="1_kqjhs"]
+[ext_resource type="PackedScene" uid="uid://r5lqqoatvm0j" path="res://art/models/kenney_brick-kit/inherited/none_lq_brick_1x_2.tscn" id="2_a8rfj"]
+
+[node name="Arrow" type="Node3D"]
+transform = Transform3D(4, 0, 0, 0, 0.5, 0, 0, 0, 4, 0, 0, 0)
+
+[node name="none-lq-brick-slope-1x24" parent="." instance=ExtResource("1_kqjhs")]
+transform = Transform3D(1.245, 0, 0, 0, -5.44207e-08, 1.245, 0, -1.245, -5.44207e-08, -0.0523226, 0.0498967, -0.118313)
+
+[node name="none-lq-brick-slope-1x25" parent="." instance=ExtResource("1_kqjhs")]
+transform = Transform3D(-1.245, -1.8799e-07, 8.21729e-15, 0, -5.44207e-08, -1.245, 1.8799e-07, -1.245, 5.44207e-08, 0.0506437, 0.0498967, -0.118313)
+
+[node name="none-lq-brick-1x24" parent="." instance=ExtResource("2_a8rfj")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, -0.0396042)
+
+[node name="none-lq-brick-1x25" parent="." instance=ExtResource("2_a8rfj")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0.11628)

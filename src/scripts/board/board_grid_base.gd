@@ -81,9 +81,10 @@ func onTileMouseUnHover(tile: BoardFloorTile):
 func onItemPickedUp(item: BoardItem):
 	item_picked_up.emit(item);
 
-func getItemChilds() ->  Array[BoardItem]:
+func getItemChilds() -> Array[BoardItem]:
 	var ret: Array[BoardItem] = [];
 	for item in itemsRoot.get_children():
 		if item is BoardItem:
 			ret.append(item)
 	return ret;
+	

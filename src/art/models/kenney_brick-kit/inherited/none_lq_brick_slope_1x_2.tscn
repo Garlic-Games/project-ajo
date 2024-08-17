@@ -1,0 +1,41 @@
+[gd_scene load_steps=5 format=4 uid="uid://cmrxp3xj63xku"]
+
+[ext_resource type="PackedScene" uid="uid://y8lcuw0ruanb" path="res://art/models/kenney_brick-kit/none-lq-brick-slope-1x2.glb" id="1_ci4p7"]
+[ext_resource type="Material" uid="uid://cp8m5a3rpv87i" path="res://art/materials/arrow.tres" id="2_r8sw5"]
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_ptcu6"]
+_surfaces = [{
+"aabb": AABB(-0.0795, 0, -0.0395, 0.159, 0.096, 0.079),
+"format": 34359742465,
+"index_count": 48,
+"index_data": PackedByteArray("AgAAAAEAAQADAAIABAADAAEAAQAFAAQABQAGAAQABwAAAAIAAgAIAAcACAAJAAcACAAEAAYABgAJAAgAAgADAAQABAAIAAIABwAFAAEAAQAAAAcABgAFAAcABwAJAAYA"),
+"name": "colormap",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 10,
+"vertex_data": PackedByteArray("5dCiPQAAAADAyiE95dCiPQAAAADAyiG95dCivQAAAADAyiE95dCivQAAAADAyiG95dCivW4SgzzAyiG95dCiPaabxD3AyiG9AAAAgKabxD3AyiG95dCiPaabxD3AyiE95dCivW4SgzzAyiE9AAAAgKabxD3AyiE9")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_d77cl"]
+resource_name = "none-lq-brick-slope-1x2_none-lq-brick-slope-1x2"
+_surfaces = [{
+"aabb": AABB(-0.0795, 0, -0.0395, 0.159, 0.096, 0.079),
+"attribute_data": PackedByteArray("AAAYP5qZeT8AABg/mpl5PwAAGD+amXk/AAAYP5qZeT8AABg/mpl5PwAAGD+amXk/AAAYPxERcT8AABg/ZmZGPwAAGD9mZkY/AAAYP5qZeT8AABg/mpl5PwAAGD9mZkY/AAAYPxERcT8AABg/ZmZGPwAAGD8REXE/AAAYP2ZmRj8AABg/ERFxPwAAGD9mZkY/AAAYP5qZeT8AABg/ERFxPwAAGD+amXk/AAAYPxERcT8AABg/ZmZGPwAAGD+amXk/AAAYP2ZmRj8AABg/mpl5PwAAGD9mZkY/AAAYP2ZmRj8AABg/ZmZGPwAAGD9mZkY/"),
+"format": 34359742487,
+"index_count": 48,
+"index_data": PackedByteArray("AgAAAAEAAQADAAIABgAEAAUABQAHAAYABwAIAAYACwAJAAoACgAMAAsADAANAAsAEAAOAA8ADwARABAAFAASABMAEwAVABQAGAAWABcAFwAZABgAHAAaABsAGwAdABwA"),
+"material": ExtResource("2_r8sw5"),
+"name": "colormap",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 30,
+"vertex_data": PackedByteArray("5dCiPQAAAADAyiE95dCiPQAAAADAyiG95dCivQAAAADAyiE95dCivQAAAADAyiG95dCivQAAAADAyiG95dCiPQAAAADAyiG95dCivW4SgzzAyiG95dCiPaabxD3AyiG9AAAAgKabxD3AyiG95dCiPQAAAADAyiE95dCivQAAAADAyiE95dCiPaabxD3AyiE95dCivW4SgzzAyiE9AAAAgKabxD3AyiE95dCivW4SgzzAyiG9AAAAgKabxD3AyiG95dCivW4SgzzAyiE9AAAAgKabxD3AyiE95dCivQAAAADAyiG95dCivW4SgzzAyiG95dCivQAAAADAyiE95dCivW4SgzzAyiE95dCiPaabxD3AyiG95dCiPQAAAADAyiG95dCiPaabxD3AyiE95dCiPQAAAADAyiE95dCiPaabxD3AyiG95dCiPaabxD3AyiE9AAAAgKabxD3AyiG9AAAAgKabxD3AyiE9/38AAAAA/7//fwAAAAD/v/9/AAAAAP+//38AAAAA/7//////AAD/v/////8AAP+//////wAA/7//////AAD/v/////8AAP+//3//fwAA/7//f/9/AAD/v/9//38AAP+//3//fwAA/7//f/9/AAD/v8w/y78AAP+/zD/LvwAA/7/MP8u/AAD/v8w/y78AAP+/AAD/fwAA/78AAP9/AAD/vwAA/38AAP+/AAD/fwAA/7////9/AAD/v////38AAP+/////fwAA/7////9/AAD/v/9///8AAP+//3///wAA/7//f///AAD/v/9///8AAP+/")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_ptcu6")
+
+[node name="none-lq-brick-slope-1x22" instance=ExtResource("1_ci4p7")]
+
+[node name="none-lq-brick-slope-1x2" parent="." index="0"]
+mesh = SubResource("ArrayMesh_d77cl")

@@ -2,11 +2,13 @@ class_name BoardItem extends BoardGridBase
 
 signal self_picked_up;
 
+@onready var arrowResource = preload("res://art/models/kenney_brick-kit/mix/Arrow.tscn");
 @export var sizeZ = 1;
 @export var color = 0;
 @export var fixed = false;
 
 var meshInstance: MeshInstance3D;
+var arrowInstance;
 
 var item_id: String = "";
 
@@ -31,6 +33,12 @@ func _ready() -> void:
 	self.connect("mouse_entered", self.onMouseEntered);
 	self.connect("mouse_exited", self.onMouseExited);
 	meshInstance = get_children()[0].get_children()[0];
+	arrowInstance = arrowResource.instantiate();
+	add_child(arrowInstance);
+	arrowInstance.position.x = sizeX/2;
+	arrowInstance.position.z = sizeY/2;
+	arrowInstance.position.y = sizeZ + 0.25;
+	arrowInstance.visible = false;
 	meshInstance.material_override = BoardItemResource.getMaterial(color, BoardItemResource.MaterialType.NORMAL);
 	redraw();
 
@@ -53,8 +61,11 @@ func onEndPickUp():
 
 func setMaterial():
 	if _picked_up:
+		arrowInstance.visible = true;
 		meshInstance.material_override = BoardItemResource.getMaterial(color, BoardItemResource.MaterialType.FOCUS);
 		return;
+	else:
+		arrowInstance.visible = false;
 	if _selected && !fixed:
 		meshInstance.material_override = BoardItemResource.getMaterial(color, BoardItemResource.MaterialType.HOVER);
 	else:

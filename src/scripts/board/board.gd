@@ -1,7 +1,7 @@
 class_name Board extends Node3D
 
 
-signal item_moved(item: BoardItem, coords: Vector3i);
+signal item_moved(item: BoardItem, coords: Vector3i, rotationDeg: Vector3);
 
 
 @onready var boardTable: BoardTable = $BoardTable;
@@ -17,6 +17,8 @@ var camera_position = 0;
 func _process(delta: float) -> void:
 	if item_follow_mouse != null:
 		pickupFollowMouse();
+		if Input.is_action_just_pressed("rotate"):
+			pickupRotate();
 	if edit_mode:
 		var scroll = 0;
 		if Input.is_action_just_released("scroll_down"):
@@ -92,7 +94,7 @@ func emitItemMoved(itemToEmit: BoardItem):
 	var distanceToFloor = Vector3i(0, 0, -1);
 	distanceToFloor = findParentFloor(itemToEmit, distanceToFloor);
 	#print("emitting item_moved ", distanceToFloor);
-	item_moved.emit(itemToEmit, distanceToFloor);
+	item_moved.emit(itemToEmit, distanceToFloor, itemToEmit.global_rotation_degrees);
 	emitForChilds(itemToEmit);
 
 func emitForChilds(itemToEmit: BoardItem):
@@ -100,6 +102,8 @@ func emitForChilds(itemToEmit: BoardItem):
 		emitItemMoved(each);
 
 func findParentFloor(item: BoardGridBase, count: Vector3i):
+	if item == null:
+		return count;
 	if item is BoardGridBase:
 		count = Vector3i(count.x + item.coordX, count.y + item.coordY, count.z);
 	if item is BoardTable:
@@ -113,7 +117,13 @@ func findParentBoard(item: Node3D):
 		return item;
 	return findParentBoard(item.get_parent());
 
-
+func pickupRotate():
+	#var tween = get_tree().create_tween();
+	var newDegrees = item_follow_mouse.global_rotation_degrees.y + 90;
+	#tween.tween_property(item_follow_mouse, "rotation:y", deg_to_rad(newDegrees), 0.6)\
+		#.set_trans(Tween.TRANS_LINEAR);
+	item_follow_mouse.rotation_degrees.y = newDegrees;
+	
 func pickupFollowMouse():
 	var spaceState = get_world_3d().direct_space_state;
 	var mousePos = get_viewport().get_mouse_position();
