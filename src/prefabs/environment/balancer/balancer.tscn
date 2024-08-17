@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://pxw8avkakijr"]
 
-[ext_resource type="Script" path="res://scripts/items/balancer.gd" id="1_3rwlg"]
+[ext_resource type="Script" path="res://scripts/environment/balancer.gd" id="1_3rwlg"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_u4ch6"]
 size = Vector3(2, 0.1, 12)
@@ -17,7 +17,6 @@ size = Vector3(2, 0.1, 12)
 
 [node name="Balancer" type="Node3D"]
 script = ExtResource("1_3rwlg")
-debug_mode = true
 balancer_state = true
 
 [node name="Platform" type="Node3D" parent="."]
