@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://bnik1cfpysh5l"]
+
+[ext_resource type="Script" path="res://scripts/board/board_floor_tile.gd" id="1_ja4sc"]
+[ext_resource type="Material" uid="uid://c5cad0o3xwjkf" path="res://art/materials/standard_tile_material.tres" id="2_4bwfx"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_kh66n"]
+material = ExtResource("2_4bwfx")
+size = Vector2(1, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_pvwi0"]
+size = Vector3(1, 0.01, 1)
+
+[node name="GridFloorTile" type="StaticBody3D"]
+script = ExtResource("1_ja4sc")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0.5)
+mesh = SubResource("PlaneMesh_kh66n")
+skeleton = NodePath("")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, -0.005, 0.5)
+shape = SubResource("BoxShape3D_pvwi0")

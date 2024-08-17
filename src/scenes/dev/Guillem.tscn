@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://drncbdu81681f"]
+
+[ext_resource type="PackedScene" uid="uid://w5ywl86725vk" path="res://prefabs/board/board.tscn" id="1_3fuwi"]
+
+[sub_resource type="Environment" id="Environment_w4nfk"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_w4nfk")
+
+[node name="Board" parent="." instance=ExtResource("1_3fuwi")]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 5, 0)
