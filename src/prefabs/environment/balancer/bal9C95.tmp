@@ -1,0 +1,85 @@
+[gd_scene load_steps=10 format=3 uid="uid://pxw8avkakijr"]
+
+[ext_resource type="Script" path="res://scripts/items/balancer.gd" id="1_3rwlg"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_u4ch6"]
+size = Vector3(1, 0.1, 4)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3hgwg"]
+size = Vector3(1, 0.1, 4)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_t40gm"]
+size = Vector3(1, 0.1, 4)
+
+[sub_resource type="PrismMesh" id="PrismMesh_yyjx8"]
+size = Vector3(0.5, 0.5, 0.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3oodg"]
+size = Vector3(0.5, 0.25, 0.5)
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_mgbbo"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_a8330"]
+sky_material = SubResource("ProceduralSkyMaterial_mgbbo")
+
+[sub_resource type="Environment" id="Environment_jv7fq"]
+background_mode = 2
+sky = SubResource("Sky_a8330")
+tonemap_mode = 2
+
+[node name="Balancer" type="Node3D"]
+script = ExtResource("1_3rwlg")
+debug_mode = true
+balancer_state = null
+max_rotation_degrees = null
+platform_length = null
+platform_sensitivity = null
+gravity = null
+platform_offset = 8.26
+
+[node name="Pivot" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.55, 0)
+
+[node name="Platform" type="Node3D" parent="."]
+
+[node name="Mesh" type="StaticBody3D" parent="Platform"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.55, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Platform/Mesh"]
+mesh = SubResource("BoxMesh_u4ch6")
+skeleton = NodePath("../../../..")
+
+[node name="MeshCollider" type="CollisionShape3D" parent="Platform/Mesh"]
+shape = SubResource("BoxShape3D_3hgwg")
+
+[node name="PlayerDetector" type="Area3D" parent="Platform"]
+
+[node name="DetectorCollider" type="CollisionShape3D" parent="Platform/PlayerDetector"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.65, 0)
+shape = SubResource("BoxShape3D_t40gm")
+
+[node name="Support" type="StaticBody3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Support"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0.25, 0)
+mesh = SubResource("PrismMesh_yyjx8")
+skeleton = NodePath("../../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Support"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+shape = SubResource("BoxShape3D_3oodg")
+disabled = true
+
+[node name="Debug" type="Node3D" parent="."]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Debug"]
+environment = SubResource("Environment_jv7fq")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Debug"]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Camera3D" type="Camera3D" parent="Debug"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 3.87716, 0.36894, 0)
