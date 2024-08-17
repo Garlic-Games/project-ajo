@@ -1,8 +1,10 @@
 class_name BoardTable extends Node3D
 
+signal item_picked_up(item: BoardItem);
 
 @onready var tableTileRoot: Node3D = $BaseTableRoot;
 @onready var gridTileRoot: Node3D = $BaseGridRoot;
+@onready var baseItemsRoot: Node3D = $BaseItemsRoot;
 
 
 @export var boardSizeX: int = 16 : 
@@ -27,7 +29,7 @@ var size2x2: PackedScene = preload("res://prefabs/board/floors/round_lq_plate_2x
 var size4x4: PackedScene = preload("res://prefabs/board/floors/round_lq_plate_4x4.tscn");
 var size4x8: PackedScene = preload("res://prefabs/board/floors/round_lq_plate_4x8.tscn");
 
-var space = [];
+var items: Array[BoardItem] = [];
 var activeTile : BoardFloorTile = null;
 
 func _ready() -> void:
@@ -39,7 +41,13 @@ func _process(delta: float) -> void:
 			print(activeTile)
 	pass;
 
-	
+func setItem(item: BoardItem, positionX, positionY):
+	baseItemsRoot.add_child(item);
+	item.position.x = positionX;
+	item.position.z = positionY;
+	item.position.y = 0.25;
+	var callable = func():  self.onItemPickedUp(item);
+	item.connectPickupJustOnce(callable);
 
 func redraw() -> void:
 	print("redrawing", boardSizeY, boardSizeX)
@@ -77,6 +85,9 @@ func spawn_grid() -> void:
 			tile.connect("mouse_entered", func(): 
 				self.onTileMouseHover(tile);
 				);
+			tile.connect("mouse_exited", func(): 
+				self.onTileMouseUnHover(tile);
+				);
 
 
 func do_spawn_floor_tile(
@@ -95,3 +106,12 @@ func do_spawn_floor_tile(
 
 func onTileMouseHover(tile: BoardFloorTile):
 	activeTile = tile;
+	
+func onTileMouseUnHover(tile: BoardFloorTile):
+	if activeTile == tile:
+		activeTile = null;
+	
+
+func onItemPickedUp(item: BoardItem):
+	item_picked_up.emit(item);
+	

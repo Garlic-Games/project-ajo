@@ -8,3 +8,5 @@ script = ExtResource("1_gfsvf")
 [node name="BaseTableRoot" type="Node3D" parent="."]
 
 [node name="BaseGridRoot" type="Node3D" parent="."]
+
+[node name="BaseItemsRoot" type="Node3D" parent="."]

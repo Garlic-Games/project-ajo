@@ -1,7 +1,6 @@
-[gd_scene load_steps=6 format=4 uid="uid://tsmt5ang068u"]
+[gd_scene load_steps=5 format=4 uid="uid://tsmt5ang068u"]
 
 [ext_resource type="PackedScene" uid="uid://66y5h26xx6wj" path="res://art/models/kenney_brick-kit/round-lq-brick-2x2.glb" id="1_vso0d"]
-[ext_resource type="Script" path="res://scripts/board/board_item.gd" id="2_xrkjw"]
 [ext_resource type="Material" uid="uid://dpph78wvd2v04" path="res://art/materials/brick_material_1.tres" id="3_ag8jd"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_4ej73"]
@@ -38,8 +37,6 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_4ej73")
 
 [node name="round-lq-brick-2x2" instance=ExtResource("1_vso0d")]
-script = ExtResource("2_xrkjw")
-itemShape = 2
 
 [node name="round-lq-brick-2x2" parent="." index="0"]
 transform = Transform3D(12.6, 0, 0, 0, 12.6, 0, 0, 0, 12.6, 0, 0, 0)
