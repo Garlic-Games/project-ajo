@@ -7,16 +7,15 @@ signal item_moved(item: BoardItem, coords: Vector3i);
 @onready var boardTable: BoardTable = $BoardTable;
 @onready var boardCamera: Camera3D = $EditCamera;
 
-
 #Default true for debug
-var edit_mode: bool = true; 
+var edit_mode: bool = true;
 var item_follow_mouse: BoardItem = null;
 
 func _process(delta: float) -> void:
 	if item_follow_mouse != null:
 		pickupFollowMouse();
 
-func changeState(newState: bool): 
+func changeState(newState: bool):
 	edit_mode = newState;
 	boardCamera.current = edit_mode;
 	if edit_mode:
@@ -34,15 +33,15 @@ func _ready() -> void:
 
 func connectListeners(target):
 	target.connect("item_picked_up", tableItemPickedUp);
-	target.connect("tile_clicked", func(tile): 
+	target.connect("tile_clicked", func(tile):
 		self.tableTileClicked(tile, target);
 		);
-	
+
 
 func tableItemPickedUp(item: BoardItem):
 	item.onStartPickUp();
 	item_follow_mouse = item;
-	
+
 func tableTileClicked(tile: BoardFloorTile, base: BoardGridBase):
 	if item_follow_mouse != null:
 		if (item_follow_mouse.sizeX + tile.coordX)  > base.sizeX:

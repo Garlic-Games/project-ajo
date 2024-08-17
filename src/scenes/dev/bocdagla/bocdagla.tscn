@@ -27,4 +27,3 @@ transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -
 shadow_enabled = true
 
 [node name="Player2" parent="." instance=ExtResource("1_eb2hb")]
-collision_layer = 2

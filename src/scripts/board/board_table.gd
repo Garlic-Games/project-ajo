@@ -15,7 +15,7 @@ var items: Array[BoardItem] = [];
 func _ready() -> void:
 	super._ready();
 	redraw();
-	
+
 
 func redraw() -> void:
 	#print("redrawing", sizeY, sizeX)
@@ -23,7 +23,7 @@ func redraw() -> void:
 	spawn_grid();
 	position.x = -sizeX/2;
 	position.z = -sizeY/2;
-	
+
 func clean() -> void:
 	for item in tableTileRoot.get_children():
 		remove_child(item);
@@ -40,4 +40,3 @@ func spawn_floor() -> void:
 	for ny in unitsY4:
 		for nx in unitsX4:
 			do_spawn_floor_tile(tableTileRoot, size4x4, nx*4, ny*4, -0.1);
-	

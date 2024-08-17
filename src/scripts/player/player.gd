@@ -5,8 +5,12 @@ const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 @export var mouse_sensitivity: float = 1;
 @onready var camera: Camera3D = $Camera3D;
+@onready var ray_cast_3d: RayCast3D = $Camera3D/RayCast3D
 
 var wind_velocity: Vector3 = Vector3.ZERO;
+
+var _is_editing_scenario: bool = false;
+var _last_activator: BoardActivator;
 
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -16,6 +20,9 @@ func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 
+
+	if _is_editing_scenario:
+		return;
 	# Handle jump.
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
@@ -34,7 +41,7 @@ func _physics_process(delta: float) -> void:
 	if(wind_velocity):
 		velocity.x += wind_velocity.x;
 		velocity.z += wind_velocity.z;
-		
+
 	move_and_slide()
 
 # Called when the node enters the scene tree for the first time.
@@ -49,3 +56,11 @@ func set_wind_velocity(wind_velocity: Vector3):
 
 func set_jump_velocity(jumper_velocity: float):
 	self.velocity.y += jumper_velocity;
+
+func handle_interact(active: bool):
+	if !active:
+		_is_editing_scenario = false;
+		camera.current = true;
+	else:
+		_is_editing_scenario = true;
+		camera.current = false;
