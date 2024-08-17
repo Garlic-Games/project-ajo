@@ -8,7 +8,7 @@ var coordY = 0;
 var hover_material: StandardMaterial3D = preload("res://art/materials/hover_tile_material.tres");
 var normal_material: StandardMaterial3D = preload("res://art/materials/hover_tile_material.tres");
 
-
+var floorParent: BoardGridBase;
 
 func _ready() -> void:
 	self.connect("mouse_entered", self.onMouseEntered);

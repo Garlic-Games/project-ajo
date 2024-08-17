@@ -39,11 +39,14 @@ func spawn_grid() -> void:
 				self.onTileMouseUnHover(tile);
 				);
 
-func setItem(item: BoardItem, positionX, positionY):
+func reparentItem(item: BoardItem):
 	var parent = item.get_parent();
 	if parent:
 		parent.remove_child(item);
 	itemsRoot.add_child(item);
+
+func setItem(item: BoardItem, positionX, positionY):
+	reparentItem(item);
 	item.position.x = positionX;
 	item.position.z = positionY;
 	item.position.y = tileOffsetY;
@@ -52,7 +55,7 @@ func setItem(item: BoardItem, positionX, positionY):
 	
 func do_spawn_floor_tile(
 	parent: Node3D,
-	tile: PackedScene, 
+	tile: PackedScene,
 	offsetX: int, 
 	offsetZ: int, 
 	offsetY: float) -> Node3D:
@@ -62,6 +65,8 @@ func do_spawn_floor_tile(
 	instance.position.x = offsetX;
 	instance.position.z = offsetZ;
 	instance.position.y = offsetY;
+	if instance is BoardFloorTile:
+		instance.floorParent = self;
 	return instance;
 
 func onTileMouseHover(tile: BoardFloorTile):

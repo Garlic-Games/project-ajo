@@ -5,23 +5,45 @@ signal item_moved(item: BoardItem, coords: Vector3i);
 
 
 @onready var boardTable: BoardTable = $BoardTable;
-@onready var boardCamera: Camera3D = $EditCamera;
+@onready var boardCamera: Camera3D = $CameraPivot/EditCamera;
+@onready var cameraPivot: Node3D = $CameraPivot;
 
 #Default true for debug
-var edit_mode: bool = true;
+var edit_mode: bool = false;
 var item_follow_mouse: BoardItem = null;
+var rotation_step = 90;
+var camera_position = 0;
 
 func _process(delta: float) -> void:
 	if item_follow_mouse != null:
 		pickupFollowMouse();
-
+	if edit_mode:
+		var scroll = 0;
+		if Input.is_action_just_released("scroll_down"):
+			scroll = -1;
+		if Input.is_action_just_released("scroll_up"):
+			scroll = 1;
+		
+		if scroll != 0:
+			camera_position += scroll * rotation_step;
+			position_camera();
+		
 func changeState(newState: bool):
 	edit_mode = newState;
 	boardCamera.current = edit_mode;
 	if edit_mode:
 		Input.mouse_mode = Input.MOUSE_MODE_CONFINED;
+		camera_position = 0;
+		cameraPivot.rotation.y = 0;
 	else:
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED;
+
+func position_camera():
+	print("Camera degrees", camera_position);
+	var tween = get_tree().create_tween();
+	tween.tween_property(cameraPivot, "rotation:y", deg_to_rad(camera_position), 0.6)\
+		.set_trans(Tween.TRANS_LINEAR);
+
 
 func registerItem(item: BoardItem, coordX: int, coordY: int):
 	boardTable.setItem(item, coordX, coordY);
@@ -91,8 +113,9 @@ func pickupFollowMouse():
 	query.exclude = [item_follow_mouse];
 	var result = spaceState.intersect_ray(query);
 	if result && result.collider is BoardFloorTile && result.collider && result.collider.global_position:
-		var rayPos = result.collider.global_position;
+		var floorTile = result.collider as BoardFloorTile;
 		var itemSize = item_follow_mouse.getSize();
-		item_follow_mouse.global_position.x = rayPos.x + itemSize.x/2;
-		item_follow_mouse.global_position.z = rayPos.z + itemSize.y/2;
-		item_follow_mouse.global_position.y = rayPos.y + 1.2;
+		floorTile.floorParent.reparentItem(item_follow_mouse);
+		item_follow_mouse.position.x = floorTile.coordX;
+		item_follow_mouse.position.z = floorTile.coordY;
+		item_follow_mouse.position.y = result.collider.position.y + 1.2;
