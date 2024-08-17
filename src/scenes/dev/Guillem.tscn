@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://drncbdu81681f"]
+[gd_scene load_steps=7 format=3 uid="uid://drncbdu81681f"]
 
 [ext_resource type="PackedScene" uid="uid://dgybognntfby0" path="res://prefabs/board/board.tscn" id="1_3fuwi"]
+[ext_resource type="Script" path="res://scripts/scenes/dev/guillem.gd" id="1_bwlpy"]
 [ext_resource type="PackedScene" uid="uid://cr6b74d4fygcy" path="res://prefabs/gameplay/player/player.tscn" id="2_jgbfq"]
 
 [sub_resource type="Environment" id="Environment_w4nfk"]
@@ -12,6 +13,7 @@ size = Vector3(50, 0.1, 50)
 size = Vector2(50, 50)
 
 [node name="Node3D" type="Node3D"]
+script = ExtResource("1_bwlpy")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_w4nfk")
