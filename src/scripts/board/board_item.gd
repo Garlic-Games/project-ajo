@@ -2,10 +2,14 @@ class_name BoardItem extends BoardGridBase
 
 signal self_picked_up;
 
+enum FacingDirection {NORTH = 0, EAST = 90, SOUTH = 180, WEST = 270}
+
 @onready var arrowResource = preload("res://art/models/kenney_brick-kit/mix/Arrow.tscn");
 @export var sizeZ = 1;
 @export var color = 0;
 @export var fixed = false;
+
+var facingDirection = FacingDirection.NORTH;
 
 var meshInstance: MeshInstance3D;
 var arrowInstance;
@@ -35,8 +39,8 @@ func _ready() -> void:
 	meshInstance = get_children()[0].get_children()[0];
 	arrowInstance = arrowResource.instantiate();
 	add_child(arrowInstance);
-	arrowInstance.position.x = sizeX/2;
-	arrowInstance.position.z = sizeY/2;
+	arrowInstance.position.x = -0.5 + sizeX/2;
+	arrowInstance.position.z = -0.5 + sizeY/2;
 	arrowInstance.position.y = sizeZ + 0.25;
 	arrowInstance.visible = false;
 	meshInstance.material_override = BoardItemResource.getMaterial(color, BoardItemResource.MaterialType.NORMAL);
@@ -81,3 +85,9 @@ func connectPickupJustOnce(call: Callable):
 
 func getSize():
 	return Vector2(sizeX, sizeZ);
+
+func rotateFacingDirection():
+	if facingDirection == 270:
+		facingDirection = 0;
+	else:
+		facingDirection += 90;

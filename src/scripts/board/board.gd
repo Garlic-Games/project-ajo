@@ -13,6 +13,7 @@ var edit_mode: bool = false;
 var item_follow_mouse: BoardItem = null;
 var rotation_step = 90;
 var camera_position = 0;
+var activeTween: Tween = null;
 
 func _process(delta: float) -> void:
 	if item_follow_mouse != null:
@@ -118,12 +119,27 @@ func findParentBoard(item: Node3D):
 	return findParentBoard(item.get_parent());
 
 func pickupRotate():
-	#var tween = get_tree().create_tween();
-	var newDegrees = item_follow_mouse.global_rotation_degrees.y + 90;
-	#tween.tween_property(item_follow_mouse, "rotation:y", deg_to_rad(newDegrees), 0.6)\
-		#.set_trans(Tween.TRANS_LINEAR);
-	item_follow_mouse.rotation_degrees.y = newDegrees;
+	var beforeFD = item_follow_mouse.facingDirection;
+	item_follow_mouse.rotateFacingDirection();
 	
+	var newFD = item_follow_mouse.facingDirection;
+	print(newFD);
+	if beforeFD == 270:
+		var resetTween = get_tree().create_tween();
+		resetTween.tween_property(item_follow_mouse, "rotation:y", deg_to_rad(-90), 0);
+		resetTween.tween_callback(func(): rotateTween(newFD));
+	else:
+		rotateTween(newFD)
+
+
+func rotateTween(newFD):
+	if activeTween != null:
+		activeTween.stop();
+	activeTween = get_tree().create_tween();
+	activeTween.tween_property(item_follow_mouse, "rotation:y", deg_to_rad(newFD), 0.2)\
+		.set_trans(Tween.TRANS_LINEAR);
+	activeTween.tween_callback(func(): activeTween = null);
+
 func pickupFollowMouse():
 	var spaceState = get_world_3d().direct_space_state;
 	var mousePos = get_viewport().get_mouse_position();

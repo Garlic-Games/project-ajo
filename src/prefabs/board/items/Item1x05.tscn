@@ -11,10 +11,10 @@ script = ExtResource("1_m5x4c")
 conConstructOver = false
 
 [node name="none-lq-plate-1x1" parent="." instance=ExtResource("2_y1kvv")]
-transform = Transform3D(1, 0, 0, 0, 1.125, 0, 0, 0, 1, 0.5, 0, 0.5)
+transform = Transform3D(1, 0, 0, 0, 1.125, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.25, 0.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
 shape = SubResource("BoxShape3D_trx6q")
 
 [node name="GridRoot" type="Node3D" parent="."]

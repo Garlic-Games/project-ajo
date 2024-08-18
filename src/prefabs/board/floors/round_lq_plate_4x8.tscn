@@ -43,4 +43,5 @@ script = ExtResource("2_yp587")
 shape = 3
 
 [node name="round-lq-plate-4x8" parent="." index="0"]
+transform = Transform3D(12.6, 0, 0, 0, 12.6, 0, 0, 0, 12.6, 3.5, 0, 1.5)
 mesh = SubResource("ArrayMesh_vidom")
