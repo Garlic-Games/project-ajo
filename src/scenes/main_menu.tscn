@@ -1,15 +1,50 @@
-[gd_scene load_steps=7 format=3 uid="uid://c0kysbw474wqn"]
+[gd_scene load_steps=12 format=3 uid="uid://c0kysbw474wqn"]
 
 [ext_resource type="Script" path="res://scripts/main_menu/main_menu.gd" id="1_7w5a6"]
+[ext_resource type="PackedScene" uid="uid://c64ftsbvvugjk" path="res://scenes/menu_loop_scene.tscn" id="2_edvs8"]
 [ext_resource type="PackedScene" uid="uid://bms34wbd0mko4" path="res://prefabs/menu/settings_menu.tscn" id="2_eli5e"]
-[ext_resource type="AudioStream" uid="uid://dny66k8gw1dwu" path="res://art/music/main_menu/Intro options screen .mp3" id="3_hng3u"]
 [ext_resource type="PackedScene" uid="uid://crxdwuvlnrsuk" path="res://prefabs/menu/credits.tscn" id="3_juipk"]
 [ext_resource type="PackedScene" uid="uid://dk0dddmpl201" path="res://prefabs/stream_utilities/button_group_sound_when_signal.tscn" id="4_nwlex"]
+[ext_resource type="AudioStream" uid="uid://d3dr7sm4te000" path="res://art/music/main_menu/EscapeFromTheUnknown/escape-from-the-unknown_rage-sound.mp3" id="4_we5uw"]
 [ext_resource type="PackedScene" uid="uid://dcxkowmduxb5y" path="res://prefabs/menu/loading_panel.tscn" id="7_y4405"]
+
+[sub_resource type="Curve" id="Curve_haqvw"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_36up6"]
+curve = SubResource("Curve_haqvw")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_vrmxl"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(1920, 1080, 1)
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+direction = Vector3(-1, 1, 0)
+spread = 20.0
+initial_velocity_min = 10.0
+initial_velocity_max = 40.0
+gravity = Vector3(0, 0, 0)
+scale_min = 3.0
+scale_max = 5.0
+scale_curve = SubResource("CurveTexture_36up6")
+color = Color(0.713726, 1, 1, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kdk2e"]
 
 [node name="MainMenu" type="CanvasLayer"]
 script = ExtResource("1_7w5a6")
 gameplay_scene = "res://scenes/gameplay.tscn"
+
+[node name="MenuLoopScene" parent="." instance=ExtResource("2_edvs8")]
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+position = Vector2(365, 207)
+amount = 500
+process_material = SubResource("ParticleProcessMaterial_vrmxl")
+lifetime = 5.0
+speed_scale = 32.2
+randomness = 0.52
 
 [node name="MainContainer" type="PanelContainer" parent="."]
 anchors_preset = 15
@@ -17,6 +52,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_kdk2e")
 
 [node name="MainMargin" type="MarginContainer" parent="MainContainer"]
 layout_mode = 2
@@ -31,7 +67,9 @@ layout_mode = 2
 [node name="Label" type="Label" parent="MainContainer/MainMargin/Buttons"]
 layout_mode = 2
 theme_type_variation = &"HeaderLarge"
-text = "Godot folder template"
+theme_override_font_sizes/font_size = 75
+text = "
+UNBRICKE'D"
 horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
@@ -65,7 +103,7 @@ unique_name_in_owner = true
 visible = false
 
 [node name="MainMenuMusic" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_hng3u")
+stream = ExtResource("4_we5uw")
 volume_db = -10.0
 autoplay = true
 bus = &"Music"

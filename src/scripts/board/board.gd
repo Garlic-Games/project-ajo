@@ -3,6 +3,9 @@ class_name Board extends Node3D
 
 signal item_moved(item: BoardItem, coords: Vector3i, rotationDeg: Vector3);
 
+@export var pickupSfx: SFXRandomPlayer = null;
+@export var dropSfx: SFXRandomPlayer = null;
+
 
 @onready var boardTable: BoardTable = $BoardTable;
 @onready var boardCamera: BoardCamera = $CameraPivot/SpringArm/EditCamera;
@@ -66,6 +69,7 @@ func setBlockedPositions(positions: Array[Vector2i]):
 
 func tableItemPickedUp(item: BoardItem):
 	if !item.fixed && item_follow_mouse == null:
+		_itemPickedFeedBack();
 		item.onStartPickUp();
 		item_follow_mouse = item;
 
@@ -81,6 +85,7 @@ func tableTileClicked(tile: BoardFloorTile):
 		base.setItem(item_follow_mouse, tile.coordX, tile.coordY);
 		emitItemMoved(item_follow_mouse)
 		item_follow_mouse = null;
+		_itemMovedFeedBack();
 	else:
 		if tile.floorParent is BoardItem:
 			tile.onMouseExited();
@@ -134,24 +139,15 @@ func emitItemMoved(itemToEmit: BoardItem):
 func emitForChilds(itemToEmit: BoardItem):
 	for each in itemToEmit.getItemChilds():
 		emitItemMoved(each);
-
-#TODO: This can be refactored with itemParent references
+		
 func findParentFloor(item: BoardGridBase, count: Vector3i):
-	if item == null:
-		return count;
-	if item is BoardGridBase:
-		count = Vector3i(count.x + item.coordX, count.y + item.coordY, count.z);
+	count.x = count.x + item.coordX;
+	count.y = count.y + item.coordY;
 	if item is BoardTable:
 		return count;
-	return findParentFloor(findParentBoard(item.get_parent()), Vector3i(count.x, count.y, count.z +1));
+	count.z = count.z +1;
+	return findParentFloor(item.itemParent, count);
 
-#TODO: This can be refactored with itemParent references
-func findParentBoard(item: Node3D):
-	if item == null:
-		return null;
-	if item is BoardGridBase:
-		return item;
-	return findParentBoard(item.get_parent());
 
 func pickupRotate(item: BoardItem):
 	var beforeFD = item.facingDirection;
@@ -196,3 +192,14 @@ func pickupFollowMouse(item: BoardItem):
 		item.position.y = result.collider.position.y + 1.2;
 	#else:
 		#print(result);
+
+func _itemMovedFeedBack():
+	if dropSfx:
+		dropSfx.reproduce();
+	
+func _itemPickedFeedBack():
+	if pickupSfx:
+		pickupSfx.reproduce();
+	
+	
+	

@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://bscpjj085kqkf"]
+
+[ext_resource type="PackedScene" uid="uid://ckmt4l4xsyst1" path="res://art/models/kenney_brick-kit/round-lq-plate-4x4.glb" id="1_jbf1p"]
+[ext_resource type="ArrayMesh" uid="uid://dv00uort1icn6" path="res://art/models/kenney_brick-kit/inherited/cinema_round_plate_mesh.tres" id="2_uui5l"]
+
+[node name="round-lq-plate-4x42" instance=ExtResource("1_jbf1p")]
+
+[node name="round-lq-plate-4x4" parent="." index="0"]
+transform = Transform3D(3.155, 0, 0, 0, 3.155, 0, 0, 0, 3.155, 0.5, 0, 0.5)
+mesh = ExtResource("2_uui5l")

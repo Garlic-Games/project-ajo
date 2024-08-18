@@ -5,6 +5,10 @@ extends CharacterBody3D
 @export var jump_velocity = 10;
 @export var mouse_sensitivity: float = 1;
 @onready var camera: Camera3D = $Camera3D;
+@export var stepsSfx: SFXRandomPlayer = null;
+@export var climbSfx: SFXRandomPlayer = null;
+@export var jumpSfx: SFXRandomPlayer = null;
+
 
 var wind_velocity: Vector3 = Vector3.ZERO;
 
@@ -15,6 +19,7 @@ var is_locked: bool = false;
 
 var _is_editing_scenario: bool = false;
 var _last_activator: BoardActivator;
+var wasOnFloor = false;
 
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED;
@@ -30,6 +35,7 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("jump"):
 		if is_on_floor():
 			velocity.y = jump_velocity;
+			_jumpFeedBack();
 
 		is_climbing = false;
 		velocity += global_transform.basis.z.normalized() * 23.0;
@@ -46,6 +52,8 @@ func _physics_process(delta: float) -> void:
 		velocity = Vector3.ZERO;
 		if input_dir:
 			velocity.y = -input_dir.y * speed;
+			if climbSfx:
+				climbSfx.reproduce();
 	else:
 		if direction:
 			var real_speed = speed;
@@ -53,6 +61,10 @@ func _physics_process(delta: float) -> void:
 				real_speed = real_speed/2;
 			velocity.x = direction.x * real_speed;
 			velocity.z = direction.z * real_speed;
+			if stepsSfx:
+				if is_on_floor():
+					_walkFeedBack();
+
 		else:
 			velocity.x = move_toward(velocity.x, 0, speed);
 			velocity.z = move_toward(velocity.z, 0, speed);
@@ -64,6 +76,13 @@ func _physics_process(delta: float) -> void:
 		elif is_leaving_wind_area:
 			velocity.x -= wind_velocity.x;
 			velocity.z -= wind_velocity.z;
+	if stepsSfx:
+		if is_on_floor():
+			if wasOnFloor == false:
+				_landFeedBack();
+			wasOnFloor = true;
+		else:
+			wasOnFloor = false;
 
 	move_and_slide();
 
@@ -93,6 +112,19 @@ func set_climbing_mode(active: bool):
 
 func handle_interact(active: bool):
 	_is_editing_scenario = active;
+
+func _walkFeedBack():
+	#TODO: Particles on floor?
+	if stepsSfx:
+		stepsSfx.reproduce();
+
+func _landFeedBack():
+	if stepsSfx:
+		stepsSfx.reproduceAll(0.03)
+
+func _jumpFeedBack():
+	if jumpSfx:
+		jumpSfx.reproduceAll(0.03)
 
 func lock(locked: bool):
 	is_locked = locked;
