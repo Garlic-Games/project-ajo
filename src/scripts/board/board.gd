@@ -18,6 +18,14 @@ var camera_position = 0;
 var activeTween: Tween = null;
 
 func _process(delta: float) -> void:
+	var events = BoardInputEvents.new();
+	for key in items_dictionary:
+		items_dictionary[key].processInput(events);
+	boardTable.processInput(events);
+	#if events.ItemsClicked.size() > 0 || events.TilesClicked.size() > 0:
+		#print(events.ItemsClicked, events.TilesClicked);
+		
+	
 	if item_follow_mouse != null:
 		pickupFollowMouse(item_follow_mouse);
 		if Input.is_action_just_pressed("rotate"):
@@ -31,6 +39,12 @@ func _process(delta: float) -> void:
 		if scroll != 0:
 			camera_position += scroll * rotation_step;
 			position_camera();
+	if events.ItemsClicked.size() > 0:
+		tableItemPickedUp(events.ItemsClicked[0]);
+	else:
+		if events.TilesClicked.size() > 0:
+			var tile = events.TilesClicked[0];
+			tableTileClicked(tile);
 
 func changeState(newState: bool):
 	edit_mode = newState;
@@ -69,9 +83,7 @@ func connectListeners(target):
 	target.connect("item_picked_up", func(item):
 		tableItemPickedUp(item);
 		);
-	target.connect("tile_clicked", func(tile):
-		tableTileClicked(tile, target);
-		);
+
 
 
 func tableItemPickedUp(item: BoardItem):
@@ -79,7 +91,8 @@ func tableItemPickedUp(item: BoardItem):
 		item.onStartPickUp();
 		item_follow_mouse = item;
 
-func tableTileClicked(tile: BoardFloorTile, base: BoardGridBase):
+func tableTileClicked(tile: BoardFloorTile):
+	var base: BoardGridBase = tile.itemParent;
 	if item_follow_mouse != null:
 		if !fitsInSpace(item_follow_mouse, tile, base):
 			#print("No cabe!")
@@ -144,6 +157,7 @@ func emitForChilds(itemToEmit: BoardItem):
 	for each in itemToEmit.getItemChilds():
 		emitItemMoved(each);
 
+#TODO: This can be refactored with itemParent references
 func findParentFloor(item: BoardGridBase, count: Vector3i):
 	if item == null:
 		return count;
@@ -153,6 +167,7 @@ func findParentFloor(item: BoardGridBase, count: Vector3i):
 		return count;
 	return findParentFloor(findParentBoard(item.get_parent()), Vector3i(count.x, count.y, count.z +1));
 
+#TODO: This can be refactored with itemParent references
 func findParentBoard(item: Node3D):
 	if item == null:
 		return null;
@@ -165,7 +180,7 @@ func pickupRotate(item: BoardItem):
 	item.rotateFacingDirection();
 
 	var newFD = item.facingDirection;
-	print(newFD);
+	#print(newFD);
 	if beforeFD == 270:
 		var resetTween = get_tree().create_tween();
 		resetTween.tween_property(item, "rotation:y", deg_to_rad(-90), 0);
@@ -194,7 +209,8 @@ func pickupFollowMouse(item: BoardItem):
 	if result && result.collider is BoardFloorTile && result.collider && result.collider.global_position:
 		var floorTile = result.collider as BoardFloorTile;
 		var itemSize = item.getSize();
-		floorTile.floorParent.reparentItem(item);
+		if item.itemParent != floorTile.floorParent:
+			floorTile.floorParent.reparentItem(item);
 		item.position.x = floorTile.coordX;
 		item.position.z = floorTile.coordY;
 		item.position.y = result.collider.position.y + 1.2;

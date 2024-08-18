@@ -3,6 +3,7 @@ class_name BoardFloorTile extends StaticBody3D
 @onready var meshInstance: MeshInstance3D = $MeshInstance3D;
 @onready var labelCoords: Label3D = $Label3D;
 
+var itemParent: BoardGridBase;
 var coordX = 0:
 	set(val):
 		coordX = val;

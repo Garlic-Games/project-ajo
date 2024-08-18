@@ -1,7 +1,5 @@
 class_name BoardItem extends BoardGridBase
 
-signal self_picked_up;
-
 enum FacingDirection {NORTH = 0, EAST = 90, SOUTH = 180, WEST = 270}
 
 @onready var arrowResource = preload("res://art/models/kenney_brick-kit/mix/Arrow.tscn");
@@ -14,7 +12,7 @@ var facingDirection = FacingDirection.NORTH;
 var meshInstance: MeshInstance3D;
 var arrowInstance;
 
-var item_id: String = "";
+var item_id = null;
 
 var _selected = false;
 var _picked_up = false;
@@ -22,11 +20,11 @@ var _lastConnection = null;
 
 var positionOnPickup: Vector3;
 
-func _process(delta: float) -> void:
-	super._process(delta);
+func processInput(events: BoardInputEvents) -> void:
+	super.processInput(events);
 	if(Input.is_action_just_released("primary_click")):
 		if _selected:
-			self_picked_up.emit();
+			events.ItemsClicked.append(self);
 
 func redraw() -> void:
 	spawn_grid();
@@ -81,13 +79,6 @@ func setMaterial():
 	else:
 		meshInstance.material_override = BoardItemResource.getMaterial(color, BoardItemResource.MaterialType.NORMAL);
 
-
-
-func connectPickupJustOnce(call: Callable):
-	if _lastConnection != null:
-		disconnect("self_picked_up", _lastConnection);
-	_lastConnection = call;
-	connect("self_picked_up", _lastConnection);
 
 func getSize():
 	return Vector2(sizeX, sizeZ);

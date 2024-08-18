@@ -1,7 +1,6 @@
 class_name BoardGridBase extends Node3D
 
 signal item_picked_up(item: BoardItem);
-signal tile_clicked(item: BoardFloorTile);
 
 var grid1x1: PackedScene = preload("res://prefabs/board/floors/grid_floor_tile.tscn");
 var gridRoot: Node3D;
@@ -17,10 +16,11 @@ var itemParent: BoardGridBase;
 var coordX = 0;
 var coordY = 0;
 
-func _process(delta: float) -> void:
+func processInput(events: BoardInputEvents) -> void:
 	if(Input.is_action_just_released("primary_click")):
+		#print(activeTile);
 		if(activeTile != null):
-			tile_clicked.emit(activeTile);
+			events.TilesClicked.append(activeTile);
 
 func _ready() -> void:
 	gridRoot = find_child("GridRoot");
@@ -34,6 +34,7 @@ func spawn_grid() -> void:
 			var tile: BoardFloorTile = do_spawn_floor_tile(gridRoot, grid1x1, nx, ny, tileOffsetY);
 			tile.coordX = nx;
 			tile.coordY = ny;
+			tile.itemParent = self;
 			tile.connect("mouse_entered", func():
 				self.onTileMouseHover(tile);
 				);
@@ -43,9 +44,9 @@ func spawn_grid() -> void:
 
 func reparentItem(item: BoardItem):
 	var parent = item.get_parent();
-	if parent:
-		parent.remove_child(item);
 	if(self != item):
+		if parent:
+			parent.remove_child(item);
 		itemsRoot.add_child(item);
 		item.itemParent = self;
 
@@ -54,8 +55,8 @@ func setItem(item: BoardItem, positionX, positionY):
 	item.position.x = positionX;
 	item.position.z = positionY;
 	item.position.y = tileOffsetY;
-	var callable = func():  self.onItemPickedUp(item);
-	item.connectPickupJustOnce(callable);
+	#var callable = func():  self.onItemPickedUp(item);
+	#item.connectPickupJustOnce(callable);
 
 func do_spawn_floor_tile(
 	parent: Node3D,
@@ -75,10 +76,12 @@ func do_spawn_floor_tile(
 
 func onTileMouseHover(tile: BoardFloorTile):
 	activeTile = tile;
+	#print("hover", activeTile);
 
 func onTileMouseUnHover(tile: BoardFloorTile):
 	if activeTile == tile:
 		activeTile = null;
+	#print("unhover", activeTile);
 
 func onItemPickedUp(item: BoardItem):
 	item_picked_up.emit(item);
