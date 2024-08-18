@@ -121,7 +121,7 @@ func findParentBoard(item: Node3D):
 func pickupRotate():
 	var beforeFD = item_follow_mouse.facingDirection;
 	item_follow_mouse.rotateFacingDirection();
-	
+
 	var newFD = item_follow_mouse.facingDirection;
 	print(newFD);
 	if beforeFD == 270:

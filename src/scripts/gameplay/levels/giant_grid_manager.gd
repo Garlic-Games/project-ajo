@@ -22,11 +22,12 @@ func _ready() -> void:
 		board.board_activator.board.item_moved.connect(_children_moved);
 	_readjust_positions();
 
-func _children_moved(item: BoardItem, coords: Vector3i):
+func _children_moved(item: BoardItem, coords: Vector3i, rotationDeg: Vector3):
 	var piece = pieces.get(item.item_id) as GridItem;
 	if not piece:
 		return;
 	piece.grid_position = Vector3i(coords.y, coords.z, coords.x);
+	piece.rotation_degrees = rotationDeg;
 
 func _register_children():
 	for item in get_children():

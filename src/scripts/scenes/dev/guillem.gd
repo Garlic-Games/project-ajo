@@ -22,7 +22,7 @@ func _ready() -> void:
 	item4.color = 1;
 	item4.fixed = true;
 	board.registerItem(item4, 4, 4);
-	
+
 	board.setSize(Vector2(7,9));
 
 

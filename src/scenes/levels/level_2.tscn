@@ -1,45 +1,44 @@
-[gd_scene load_steps=9 format=3 uid="uid://dp547w2bc05v3"]
+[gd_scene load_steps=10 format=3 uid="uid://dp547w2bc05v3"]
 
+[ext_resource type="Script" path="res://scripts/gameplay/levels/level.gd" id="1_70553"]
+[ext_resource type="Script" path="res://scripts/gameplay/levels/giant_grid_manager.gd" id="1_kf8gq"]
 [ext_resource type="PackedScene" uid="uid://untq4yp2wlic" path="res://prefabs/gameplay/victory_spot/victory_spot.tscn" id="1_sh057"]
-[ext_resource type="PackedScene" uid="uid://dgybognntfby0" path="res://prefabs/board/board.tscn" id="2_x62qj"]
+[ext_resource type="PackedScene" uid="uid://dwbiq5eaw4g43" path="res://prefabs/gameplay/grid_items/1_by_1_grid_item.tscn" id="2_yyybx"]
+[ext_resource type="PackedScene" uid="uid://kbqk1xp6hnb1" path="res://prefabs/gameplay/grid_items/board_grid_item.tscn" id="3_vvnro"]
+[ext_resource type="PackedScene" uid="uid://dn0ac0ylyqffq" path="res://prefabs/gameplay/grid_items/2_by_1_grid_item.tscn" id="4_g3pkm"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6ecjw"]
-albedo_color = Color(0, 0.803922, 0.34902, 1)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_17ejp"]
+albedo_color = Color(0.647059, 0.239216, 0.764706, 1)
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_huvfm"]
-material = SubResource("StandardMaterial3D_6ecjw")
-size = Vector2(20, 20)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b25bj"]
+albedo_color = Color(0.647059, 0.239216, 0.764706, 1)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_iqno8"]
-size = Vector3(20, 0.1, 20)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hb34p"]
+albedo_color = Color(0.647059, 0.239216, 0.764706, 1)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_88qwf"]
-albedo_color = Color(0.188235, 1, 0.764706, 1)
+[node name="Level2" type="Node3D"]
+script = ExtResource("1_70553")
+level_index = 1
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qp53n"]
-albedo_color = Color(0.188235, 1, 0.764706, 1)
+[node name="Grid" type="Node3D" parent="." node_paths=PackedStringArray("board")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4, 0)
+script = ExtResource("1_kf8gq")
+board = NodePath("BoardGridItem")
+grid_size = Vector2i(4, 4)
+cell_size = 2.0
+offset = Vector3(-1.5, 0.5, 1.5)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4sfs4"]
-albedo_color = Color(0.188235, 1, 0.764706, 1)
+[node name="1by1GridItem" parent="Grid" instance=ExtResource("2_yyybx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 2.5, 2.5)
+grid_position = Vector3i(3, 0, 1)
+is_inmovible = false
 
-[node name="Level2" type="StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10)
+[node name="BoardGridItem" parent="Grid" instance=ExtResource("3_vvnro")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0, 7.5)
+grid_position = Vector3i(1, 0, 0)
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
-mesh = SubResource("PlaneMesh_huvfm")
-skeleton = NodePath("../..")
-
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, 0)
-shape = SubResource("BoxShape3D_iqno8")
-
-[node name="VictorySpot" parent="." instance=ExtResource("1_sh057")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.03053, 3.99253, -9.50937)
-next_level_index = 2
-following_level_index = -1
-
-[node name="Board" parent="." instance=ExtResource("2_x62qj")]
-transform = Transform3D(0.125, 0, 0, 0, 0.125, 0, 0, 0, 0.125, -0.339856, 0.0787516, 2.51846)
+[node name="2by1GridItem" parent="Grid" instance=ExtResource("4_g3pkm")]
+is_inmovible = false
 
 [node name="Ground" type="Node3D" parent="."]
 
@@ -47,33 +46,27 @@ transform = Transform3D(0.125, 0, 0, 0, 0.125, 0, 0, 0, 0.125, -0.339856, 0.0787
 use_collision = true
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Ground/CSGCombiner3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
-size = Vector3(20, 10, 20)
-material = SubResource("StandardMaterial3D_88qwf")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 18, 0)
+size = Vector3(22, 48, 22)
+material = SubResource("StandardMaterial3D_17ejp")
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="Ground/CSGCombiner3D/CSGBox3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.03535, 0)
 operation = 2
-size = Vector3(18, 10, 18)
-material = SubResource("StandardMaterial3D_qp53n")
+size = Vector3(20, 46, 20)
+material = SubResource("StandardMaterial3D_b25bj")
 
-[node name="CSGBox3D" type="CSGBox3D" parent="Ground/CSGCombiner3D/CSGBox3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, -3, 9.14667)
-operation = 2
-size = Vector3(4, 4, 4)
-material = SubResource("StandardMaterial3D_4sfs4")
-
-[node name="CSGBox3D3" type="CSGBox3D" parent="Ground/CSGCombiner3D/CSGBox3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1, -8.07589)
+[node name="CSGBox3D3" type="CSGBox3D" parent="Ground/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, -1.63612, 9.924)
 operation = 2
 size = Vector3(4, 4, 4)
-material = SubResource("StandardMaterial3D_4sfs4")
+material = SubResource("StandardMaterial3D_hb34p")
 
-[node name="Items" type="Node3D" parent="."]
-
-[node name="CSGBox3D" type="CSGBox3D" parent="Items"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 2, 2)
+[node name="CSGBox3D4" type="CSGBox3D" parent="Ground/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 10.3639, -10.076)
+operation = 2
 size = Vector3(4, 4, 4)
+material = SubResource("StandardMaterial3D_hb34p")
 
-[node name="CSGBox3D2" type="CSGBox3D" parent="Items"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 1, 2)
-size = Vector3(4, 2, 4)
+[node name="VictorySpot" parent="Ground/CSGCombiner3D/CSGBox3D4" instance=ExtResource("1_sh057")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, -1)
