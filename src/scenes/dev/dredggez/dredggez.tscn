@@ -61,6 +61,8 @@ wind_velocity = 8.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.74177, 0.868377, 11.9695)
 collision_layer = 2
 script = ExtResource("2_3al6c")
+speed = null
+jump_velocity = null
 mouse_sensitivity = 0.5
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Scenario/Player"]

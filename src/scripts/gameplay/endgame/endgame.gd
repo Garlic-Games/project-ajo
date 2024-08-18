@@ -7,8 +7,10 @@ extends Node
 @onready var last_sight: Node3D = $CameraWaypoints/CameraPoint2;
 @onready var falling_blocks: Node3D = $Player/FallingBlocks;
 @onready var light: SpotLight3D = $Light/AnimSpotLight;
-@onready var label_subtitles : Label = $TwoD/Subtitles;
-@onready var fade_rectangle : ColorRect = $TwoD/Black;
+@onready var label_subtitles: Label = $TwoD/Subtitles;
+@onready var you_died: Label = $TwoD/YouDied;
+@onready var fade_rectangle: ColorRect = $TwoD/Black;
+@onready var music: AudioStreamPlayer = $Music;
 
 var animation_started : bool = false;
 
@@ -16,7 +18,7 @@ func _ready() -> void:
 	the_b0ss_area.body_entered.connect(func(entity: Node3D): the_b0ss_is_talking_now());
 	
 	label_subtitles.text = "";
-	
+	you_died.visible = false;
 	var tween_fade: Tween = get_tree().create_tween();
 	tween_fade.tween_property(fade_rectangle, "color:a", 0.0, 2);
 
@@ -43,15 +45,27 @@ func the_b0ss_is_talking_now():
 	tween_speech.tween_property(label_subtitles, "text", "Unfortunately, you have become useless to me.", 2.4);
 	tween_speech.tween_interval(2.0);
 	tween_speech.tween_property(label_subtitles, "text", "", 0.0);
-	tween_speech.tween_property(label_subtitles, "text", "Get bricked.", 0.6);
+	tween_speech.tween_property(label_subtitles, "text", "Get UNBRICKE'D™.", 0.6);
 	tween_speech.tween_interval(3.0);
 	tween_speech.tween_property(label_subtitles, "text", "", 0.0);
 	tween_speech.tween_callback(block_mayhem);
 	tween_speech.tween_property(player.camera, "global_transform", up_camera_transform, 3.0).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN_OUT);
 	tween_speech.tween_property(light, "spot_angle", 180, 3.0).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN_OUT);
 
-	tween_speech.is_queued_for_deletion();
-
 func block_mayhem():
 	var tween: Tween = get_tree().create_tween();
-	tween.tween_property(falling_blocks, "position", Vector3(0.0, -1.4, 0.0), 8.0).set_trans(Tween.TRANS_QUART);
+	tween.tween_property(falling_blocks, "position", Vector3(0.0, -1.4, 0.0), 6.0).set_trans(Tween.TRANS_QUART).set_ease(Tween.EASE_IN);
+	tween.tween_interval(2.0);
+	tween.tween_callback(func(): you_died.visible = true);
+	tween.tween_interval(2.5);
+	tween.tween_callback(fade_music);
+	tween.tween_property(fade_rectangle, "color:a", 1.0, 2);
+	tween.tween_interval(2.5);
+	tween.tween_callback(go_to_main_menu);
+
+func fade_music():
+	var tween: Tween = get_tree().create_tween();
+	tween.tween_property(music, "volume_db", -30.0, 2.5);
+
+func go_to_main_menu():
+	SceneLoader.load_scene("scenes/main_menu.tscn")
