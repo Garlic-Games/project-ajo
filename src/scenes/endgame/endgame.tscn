@@ -1,0 +1,180 @@
+[gd_scene load_steps=12 format=3 uid="uid://b8k2ylk55snfd"]
+
+[ext_resource type="PackedScene" uid="uid://c6m66r5vllrb1" path="res://prefabs/entities/cool_garlic.tscn" id="1_ixh83"]
+[ext_resource type="Script" path="res://scripts/gameplay/endgame/endgame.gd" id="1_uhj7v"]
+[ext_resource type="Script" path="res://scripts/player/player.gd" id="1_yk65c"]
+[ext_resource type="Theme" uid="uid://dajx1ty4mxj6b" path="res://art/themes/default.tres" id="4_4h1gl"]
+[ext_resource type="PackedScene" uid="uid://bc5oo47djpux4" path="res://prefabs/environment/blocks/falling_blocks.tscn" id="5_cpmtf"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_yqlhc"]
+height = 57.208
+radius = 32.9934
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_fwhfg"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0des8"]
+albedo_color = Color(0.647059, 0.239216, 0.764706, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_bdr34"]
+size = Vector3(60, 0.2, 40)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qcx7b"]
+albedo_color = Color(0.223103, 0.223103, 0.223103, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_q3781"]
+size = Vector3(80, 1, 80)
+
+[node name="Endgame" type="Node3D"]
+script = ExtResource("1_uhj7v")
+
+[node name="CameraWaypoints" type="Node" parent="."]
+
+[node name="CameraPoint1" type="Node3D" parent="CameraWaypoints"]
+transform = Transform3D(-8.74228e-09, 0, -0.2, 0, 0.2, 0, 0.2, 0, -8.74228e-09, 20.9, 1.15094, 0)
+
+[node name="CameraPoint2" type="Node3D" parent="CameraWaypoints"]
+transform = Transform3D(-8.74228e-09, 0, -0.2, 0, 0.2, 0, 0.2, 0, -8.74228e-09, 20.9, 58.2205, 0)
+
+[node name="TheB0ss" parent="." node_paths=PackedStringArray("player") instance=ExtResource("1_ixh83")]
+transform = Transform3D(-8.74228e-09, 0, -0.2, 0, 0.2, 0, 0.2, 0, -8.74228e-09, 20.9, 0, 0)
+player = NodePath("../Player")
+
+[node name="Area3D" type="Area3D" parent="TheB0ss"]
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TheB0ss/Area3D"]
+shape = SubResource("CylinderShape3D_yqlhc")
+
+[node name="Player" type="CharacterBody3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 8.617, 0, 0)
+collision_layer = 2
+script = ExtResource("1_yk65c")
+mouse_sensitivity = 0.5
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_fwhfg")
+
+[node name="Camera3D" type="Camera3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
+current = true
+
+[node name="FallingBlocks" parent="Player" instance=ExtResource("5_cpmtf")]
+transform = Transform3D(-8.79902e-08, 0, 2.01298, 0, 2.01298, 0, -2.01298, 0, -8.79902e-08, 0, 61.764, 0)
+
+[node name="Scenario" type="Node3D" parent="."]
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="Scenario"]
+use_collision = true
+
+[node name="Room" type="CSGCylinder3D" parent="Scenario/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.9106, 30, 0)
+radius = 15.0
+height = 60.0
+sides = 32
+cone = true
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="Scenario/CSGCombiner3D/Room"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
+operation = 2
+radius = 14.0
+height = 59.0
+sides = 32
+cone = true
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Scenario/CSGCombiner3D/Room/CSGCylinder3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.7095, 19.2747, 0)
+operation = 2
+size = Vector3(15, 3.5, 3)
+material = SubResource("StandardMaterial3D_0des8")
+
+[node name="Floor" type="StaticBody3D" parent="Scenario"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.1331, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Scenario/Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.65, -0.1, 0)
+mesh = SubResource("BoxMesh_bdr34")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_qcx7b")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Scenario/Floor"]
+shape = SubResource("BoxShape3D_q3781")
+
+[node name="Light" type="Node" parent="."]
+
+[node name="AnimSpotLight" type="SpotLight3D" parent="Light"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 20.9, 9.71599, 0)
+light_color = Color(0.474729, 0.655792, 0.449203, 1)
+light_energy = 1000.0
+light_specular = 1.954
+spot_range = 116.718
+spot_angle = 4.43283
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Light"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 20.9, 33.6917, 0)
+light_color = Color(0.474729, 0.655792, 0.449203, 1)
+light_energy = 170.0
+light_specular = 1.954
+spot_range = 54.5233
+spot_angle = 5.92103
+
+[node name="SpotLight3D3" type="SpotLight3D" parent="Light"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 20.9, 33.6917, 0)
+light_color = Color(0.474729, 0.655792, 0.449203, 1)
+light_energy = 100.0
+light_size = 0.362
+light_specular = 0.422
+spot_range = 30.7789
+spot_angle = 21.3323
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Light"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.9, 0, 0)
+light_color = Color(0.474729, 0.655792, 0.449203, 1)
+
+[node name="TwoD" type="Node" parent="."]
+
+[node name="Black" type="ColorRect" parent="TwoD"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="BlackBarTop" type="ColorRect" parent="TwoD"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -576.0
+offset_right = 576.0
+offset_bottom = 113.0
+grow_horizontal = 2
+color = Color(0, 0, 0, 1)
+
+[node name="BlackBarBot" type="ColorRect" parent="TwoD"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -576.0
+offset_top = -113.0
+offset_right = 576.0
+grow_horizontal = 2
+grow_vertical = 0
+color = Color(0, 0, 0, 1)
+
+[node name="Subtitles" type="Label" parent="TwoD"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -35.5
+offset_top = 226.0
+offset_right = 35.5
+offset_bottom = 249.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_4h1gl")
+text = "fdssdfsdf"

@@ -15,6 +15,7 @@ var wind_velocity: Vector3 = Vector3.ZERO;
 var is_climbing: bool = false;
 var is_first_ladder_step: bool = false;
 var is_leaving_wind_area: bool = false;
+var is_locked: bool = false;
 
 var _is_editing_scenario: bool = false;
 var _last_activator: BoardActivator;
@@ -28,7 +29,7 @@ func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity += get_gravity() * delta;
 
-	if _is_editing_scenario:
+	if _is_editing_scenario or is_locked:
 		return;
 	# Handle jump.
 	if Input.is_action_just_pressed("jump"):
@@ -89,6 +90,9 @@ func _physics_process(delta: float) -> void:
 
 var pause: bool
 func _input(event):
+	if is_locked:
+		return;
+		
 	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 		rotate_y(-event.relative.x * (mouse_sensitivity / 100));
 		camera.rotate_x(-event.relative.y * mouse_sensitivity / 100);
@@ -121,3 +125,6 @@ func _landFeedBack():
 func _jumpFeedBack():
 	if jumpSfx:
 		jumpSfx.reproduceAll(0.03)
+
+func lock(locked: bool):
+	is_locked = locked;
