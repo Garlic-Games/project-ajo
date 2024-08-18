@@ -22,8 +22,8 @@ func _process(delta: float) -> void:
 	boardTable.processInput(events);
 	#if events.ItemsClicked.size() > 0 || events.TilesClicked.size() > 0:
 		#print(events.ItemsClicked, events.TilesClicked);
-		
-	
+
+
 	if item_follow_mouse != null:
 		pickupFollowMouse(item_follow_mouse);
 		if Input.is_action_just_pressed("rotate"):

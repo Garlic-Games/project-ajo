@@ -49,6 +49,7 @@ grid_offset = Vector3(-2, 0.5, 2)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 10)
 grid_position = Vector3i(1, 0, 0)
 grid_offset = Vector3(-2, 0.5, 2)
+can_construct_over = true
 
 [node name="2by1GridItem" parent="Grid" instance=ExtResource("5_2msfj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 5, 10)

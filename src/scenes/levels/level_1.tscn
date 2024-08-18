@@ -27,6 +27,7 @@ offset = Vector3(-1.5, 0.5, 1.5)
 [node name="BoardGridItem" parent="Grid" instance=ExtResource("4_xlnda")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0, 7.5)
 grid_position = Vector3i(1, 0, 0)
+can_construct_over = true
 
 [node name="VictorySpot" parent="Grid" instance=ExtResource("4_3uvml")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0, -7.5)
