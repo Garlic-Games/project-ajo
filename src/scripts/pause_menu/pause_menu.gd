@@ -3,9 +3,12 @@ extends CanvasLayer;
 
 signal opened;
 signal closed;
+signal restart;
 @onready var settings_menu: Settings = %SettingsMenu;
 @onready var exit_game_confirm_menu: ConfirmMenu = %ExitGameConfirmMenu;
 @onready var main_menu_confirm_menu: ConfirmMenu = %MainMenuConfirmMenu ;
+@onready var restart_confirm_menu: ConfirmMenu = %RestartConfirmMenu
+
 @export_file("*.tscn") var main_menu_scene: String;
 
 
@@ -31,6 +34,9 @@ func close() -> void:
 func open_settings() -> void:
 	settings_menu.open();
 
+func open_restart_confirmation() -> void:
+	restart_confirm_menu.open();
+
 func open_exit_confirmation() -> void:
 	exit_game_confirm_menu.open();
 
@@ -48,3 +54,9 @@ func choose_main_menu(choice: bool) -> void:
 		SceneLoader.load_scene(main_menu_scene);
 	else:
 		main_menu_confirm_menu.close();
+
+func choose_restart_level(choice: bool) -> void:
+	if choice:
+		get_tree().reload_current_scene();
+	else:
+		restart_confirm_menu.close();

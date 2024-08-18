@@ -1,9 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://pyex1a4t0sk4"]
+[gd_scene load_steps=8 format=3 uid="uid://pyex1a4t0sk4"]
 
-[ext_resource type="PackedScene" uid="uid://untq4yp2wlic" path="res://prefabs/gameplay/victory_spot/victory_spot.tscn" id="1_g8t73"]
 [ext_resource type="Script" path="res://scripts/gameplay/levels/giant_grid_manager.gd" id="1_rt68t"]
 [ext_resource type="Script" path="res://scripts/gameplay/levels/level.gd" id="1_y5kkn"]
 [ext_resource type="PackedScene" uid="uid://dwbiq5eaw4g43" path="res://prefabs/gameplay/grid_items/1_by_1_grid_item.tscn" id="2_r1gae"]
+[ext_resource type="PackedScene" uid="uid://bmloi8ebayxya" path="res://prefabs/gameplay/victory_spot/victory_spot1x2.tscn" id="4_3uvml"]
 [ext_resource type="PackedScene" uid="uid://kbqk1xp6hnb1" path="res://prefabs/gameplay/grid_items/board_grid_item.tscn" id="4_xlnda"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xpwf2"]
@@ -12,35 +12,32 @@ albedo_color = Color(0.647059, 0.239216, 0.764706, 1)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0x7dc"]
 albedo_color = Color(0.647059, 0.239216, 0.764706, 1)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h30ep"]
-albedo_color = Color(0.647059, 0.239216, 0.764706, 1)
-
-[node name="Level1" type="Node3D"]
+[node name="Level1" type="Node3D" node_paths=PackedStringArray("spawn_point")]
 script = ExtResource("1_y5kkn")
+spawn_point = NodePath("SpawnPoint")
 
 [node name="Grid" type="Node3D" parent="." node_paths=PackedStringArray("boards")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4, 0)
 script = ExtResource("1_rt68t")
-boards = [NodePath("BoardGridItem"), NodePath("BoardGridItem2")]
+boards = [NodePath("BoardGridItem"), null]
 grid_size = Vector2i(4, 4)
 cell_size = 2.0
 offset = Vector3(-1.5, 0.5, 1.5)
-
-[node name="1by1GridItem" parent="Grid" instance=ExtResource("2_r1gae")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 2.5, -7.5)
-grid_position = Vector3i(2, 0, 3)
-
-[node name="1by1GridItem2" parent="Grid" instance=ExtResource("2_r1gae")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 2.5, -7.5)
-grid_position = Vector3i(3, 0, 3)
 
 [node name="BoardGridItem" parent="Grid" instance=ExtResource("4_xlnda")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0, 7.5)
 grid_position = Vector3i(1, 0, 0)
 
-[node name="BoardGridItem2" parent="Grid" instance=ExtResource("4_xlnda")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0, 7.5)
-grid_position = Vector3i(2, 0, 0)
+[node name="VictorySpot" parent="Grid" instance=ExtResource("4_3uvml")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0, -7.5)
+grid_position = Vector3i(2, 0, 3)
+offset = Vector3(0, -0.5, 0)
+grid_offset = Vector3(-1.5, 0.5, 1.5)
+unit_size = Vector3(5, 5, 5)
+
+[node name="1by1GridItem" parent="Grid" instance=ExtResource("2_r1gae")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, 2.5, -7.5)
+grid_position = Vector3i(0, 0, 3)
 
 [node name="Ground" type="Node3D" parent="."]
 
@@ -58,13 +55,5 @@ operation = 2
 size = Vector3(20, 46, 20)
 material = SubResource("StandardMaterial3D_0x7dc")
 
-[node name="CSGBox3D3" type="CSGBox3D" parent="Ground/CSGCombiner3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, -1.63612, -9.076)
-operation = 2
-size = Vector3(4, 4, 4)
-material = SubResource("StandardMaterial3D_h30ep")
-
-[node name="VictorySpot" parent="Ground/CSGCombiner3D/CSGBox3D3" instance=ExtResource("1_g8t73")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.6973, -1.59658)
-
-[connection signal="body_entered" from="Ground/CSGCombiner3D/CSGBox3D3/VictorySpot" to="." method="_victory_door_entered"]
+[node name="SpawnPoint" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, -3, 9.28299)

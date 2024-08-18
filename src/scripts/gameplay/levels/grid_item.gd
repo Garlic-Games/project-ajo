@@ -26,13 +26,15 @@ extends Node3D;
 		_reposition();
 @export_category("item behaviour")
 @export var is_inmovible: bool;
+@export var can_construct_over: bool = true;
 @export var prefab: PackedScene;
 
 var loaded_item: BoardItem:
 	get:
-		var _loaded_item = prefab.instantiate();
+		var _loaded_item = prefab.instantiate() as BoardItem;
 		_loaded_item.item_id = name;
 		_loaded_item.fixed = is_inmovible;
+		_loaded_item.conConstructOver = can_construct_over;
 		return _loaded_item;
 
 func _reposition():

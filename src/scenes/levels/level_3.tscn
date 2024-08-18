@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://dmf7aay0itrda"]
 
-[ext_resource type="PackedScene" uid="uid://untq4yp2wlic" path="res://prefabs/gameplay/victory_spot/victory_spot.tscn" id="1_crohj"]
+[ext_resource type="PackedScene" uid="uid://untq4yp2wlic" path="res://prefabs/gameplay/victory_spot/victory_spot1x1.tscn" id="1_crohj"]
 [ext_resource type="Script" path="res://scripts/gameplay/levels/giant_grid_manager.gd" id="1_lbms3"]
 [ext_resource type="Script" path="res://scripts/gameplay/levels/level.gd" id="1_ryje1"]
 [ext_resource type="PackedScene" uid="uid://dwbiq5eaw4g43" path="res://prefabs/gameplay/grid_items/1_by_1_grid_item.tscn" id="2_sh8nc"]
@@ -19,10 +19,10 @@ albedo_color = Color(0.647059, 0.239216, 0.764706, 1)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vcan6"]
 albedo_color = Color(0.647059, 0.239216, 0.764706, 1)
 
-[node name="Level3" type="Node3D"]
+[node name="Level3" type="Node3D" node_paths=PackedStringArray("spawn_point")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -20)
 script = ExtResource("1_ryje1")
-level_index = 2
+spawn_point = NodePath("SpawnPoint")
 
 [node name="Grid" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4, 0)
@@ -46,10 +46,12 @@ grid_position = Vector3i(1, 0, 0)
 [node name="2by1GridItem" parent="Grid" instance=ExtResource("4_hhm6u")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, 5, -7.5)
 grid_position = Vector3i(0, 0, 3)
+can_construct_over = true
 
 [node name="2by1GridItem2" parent="Grid" instance=ExtResource("4_hhm6u")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, 5, 2.5)
 grid_position = Vector3i(0, 0, 1)
+can_construct_over = true
 
 [node name="Ground" type="Node3D" parent="."]
 
@@ -81,3 +83,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 10.3639, 10.924)
 operation = 2
 size = Vector3(4, 4, 4)
 material = SubResource("StandardMaterial3D_vcan6")
+
+[node name="SpawnPoint" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, -3, 9.28299)
