@@ -2,20 +2,24 @@ class_name LevelSpawner;
 extends Marker3D
 
 @export_range(0, 2) var level_index: int;
-@export var player_spawn_position: Node3D;
-@export var next_spawn: LevelSpawner;
 @export var despawn: LevelSpawner;
+@export var is_last_level: bool;
+@onready var player: Player = %Player
 
 var level: Level;
 
+signal level_ended(level_index: int);
+signal last_level_ended;
+
 func _on_level_ended():
-	if next_spawn:
-		next_spawn.instantiate_level();
+	level_ended.emit(level_index);
 	if despawn:
 		despawn.destroy_level();
+	if is_last_level:
+		last_level_ended.emit();
 
 func spawn_player(player: Player):
-	player.global_position = player_spawn_position.global_position;
+	level.spawn_player(player);
 
 func instantiate_level():
 	if level:
@@ -25,6 +29,6 @@ func instantiate_level():
 	add_child.call_deferred(level);
 
 func destroy_level():
-	if level:
+	if level != null && !level.is_queued_for_deletion():
 		level.queue_free();
 		remove_child.call_deferred(level);

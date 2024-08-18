@@ -2,6 +2,8 @@
 class_name  GiantGridManager;
 extends Node3D
 
+signal victory;
+
 @export var boards: Array[BoardGridItem];
 @export var grid_size: Vector2i;
 @export var cell_size: float;
@@ -52,6 +54,8 @@ func _register_children():
 	for item in get_children():
 		if item is BoardGridItem:
 			boards.append(item);
+		if item is VictoryGridItem:
+			item.connect("victory", _victory_reached)
 	for item in get_children():
 		var gi = item as GridItem;
 		pieces.get_or_add(item.name, item);
@@ -64,3 +68,6 @@ func _readjust_positions():
 	for item in get_children():
 		var gi = item as GridItem;
 		gi.grid_offset = offset;
+
+func _victory_reached():
+	victory.emit();

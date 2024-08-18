@@ -6,18 +6,7 @@
 
 [node name="PauseMenu" type="CanvasLayer"]
 script = ExtResource("1_8nakt")
-
-[node name="SettingsMenu" parent="." instance=ExtResource("2_hbhjv")]
-unique_name_in_owner = true
-visible = false
-
-[node name="ExitGameConfirmMenu" parent="." instance=ExtResource("3_eexx2")]
-unique_name_in_owner = true
-visible = false
-
-[node name="MainMenuConfirmMenu" parent="." instance=ExtResource("3_eexx2")]
-unique_name_in_owner = true
-visible = false
+main_menu_scene = "res://scenes/main_menu.tscn"
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 anchors_preset = -1
@@ -50,6 +39,10 @@ layout_mode = 2
 layout_mode = 2
 text = "Resume"
 
+[node name="RestartLevel" type="Button" parent="PanelContainer/MainPausePadding/SettingsLayout" groups=["MenuButtons"]]
+layout_mode = 2
+text = "Restart Level"
+
 [node name="Settings" type="Button" parent="PanelContainer/MainPausePadding/SettingsLayout" groups=["MenuButtons"]]
 layout_mode = 2
 text = "Settings"
@@ -66,9 +59,27 @@ text = "Main Menu"
 layout_mode = 2
 text = "Exit Game"
 
-[connection signal="selection" from="ExitGameConfirmMenu" to="." method="choose_exit_game"]
-[connection signal="selection" from="MainMenuConfirmMenu" to="." method="choose_main_menu"]
+[node name="SettingsMenu" parent="." instance=ExtResource("2_hbhjv")]
+unique_name_in_owner = true
+visible = false
+
+[node name="ExitGameConfirmMenu" parent="." instance=ExtResource("3_eexx2")]
+unique_name_in_owner = true
+visible = false
+
+[node name="RestartConfirmMenu" parent="." instance=ExtResource("3_eexx2")]
+unique_name_in_owner = true
+visible = false
+
+[node name="MainMenuConfirmMenu" parent="." instance=ExtResource("3_eexx2")]
+unique_name_in_owner = true
+visible = false
+
 [connection signal="pressed" from="PanelContainer/MainPausePadding/SettingsLayout/Resume" to="." method="close"]
+[connection signal="pressed" from="PanelContainer/MainPausePadding/SettingsLayout/RestartLevel" to="." method="open_restart_confirmation"]
 [connection signal="pressed" from="PanelContainer/MainPausePadding/SettingsLayout/Settings" to="." method="open_settings"]
 [connection signal="pressed" from="PanelContainer/MainPausePadding/SettingsLayout/MainMenu" to="." method="open_main_confirmation"]
 [connection signal="pressed" from="PanelContainer/MainPausePadding/SettingsLayout/ExitGame" to="." method="open_exit_confirmation"]
+[connection signal="selection" from="ExitGameConfirmMenu" to="." method="choose_exit_game"]
+[connection signal="selection" from="RestartConfirmMenu" to="." method="choose_restart_level"]
+[connection signal="selection" from="MainMenuConfirmMenu" to="." method="choose_main_menu"]

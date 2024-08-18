@@ -10,6 +10,7 @@ spawners = [NodePath("Level1SpawnPoint"), NodePath("Level2SpawnPoint2"), NodePat
 player = NodePath("Player")
 
 [node name="Player" parent="." instance=ExtResource("2_tqfn8")]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1075, -1.75532, 6.76804)
 speed = 6.0
 
@@ -19,14 +20,9 @@ transform = Transform3D(1, 0, 0, 0, 0.654991, 0.755636, 0, -0.755636, 0.654991, 
 [node name="DirectionalLight3D2" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.779108, -0.620539, -0.0890012, 0, -0.141973, 0.989871, -0.626889, 0.771216, 0.110612, 0, 0, 0)
 
-[node name="Level1SpawnPoint" type="Marker3D" parent="." node_paths=PackedStringArray("player_spawn_position", "next_spawn")]
+[node name="Level1SpawnPoint" type="Marker3D" parent="."]
 gizmo_extents = 10.0
 script = ExtResource("5_2r7yw")
-player_spawn_position = NodePath("Marker3D")
-next_spawn = NodePath("../Level3SpawnPoint3")
-
-[node name="Marker3D" type="Marker3D" parent="Level1SpawnPoint"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.59339, -2.89692, 7.76885)
 
 [node name="Level2SpawnPoint2" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -22)

@@ -63,6 +63,8 @@ func _physics_process(delta: float) -> void:
 	move_and_slide();
 
 # Called when the node enters the scene tree for the first time.
+
+var pause: bool
 func _input(event):
 	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 		rotate_y(-event.relative.x * (mouse_sensitivity / 100));
