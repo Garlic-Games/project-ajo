@@ -55,8 +55,6 @@ grid_position = Vector3i(2, 0, 2)
 offset = Vector3(0, -0.5, 0)
 grid_offset = Vector3(-1.5, 0.5, 1.5)
 unit_size = Vector3(5, 5, 5)
-is_inmovible = true
-can_construct_over = false
 
 [node name="Ground" type="Node3D" parent="."]
 

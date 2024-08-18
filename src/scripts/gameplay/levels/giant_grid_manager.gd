@@ -11,9 +11,9 @@ signal victory;
 @export var boards: Array[BoardGridItem];
 @export var grid_size: Vector2i;
 @export var cell_size: float;
+@export var blocked_positions: Array[Vector2i]
 
 var pieces: Dictionary = {};
-
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	if Engine.is_editor_hint():
@@ -21,6 +21,7 @@ func _ready() -> void:
 	_register_children();
 	if not boards.is_empty():
 		for board in boards:
+			board.board_activator.board.setBlockedPositions(blocked_positions);
 			board.board_activator.board.setSize(grid_size);
 			board.board_activator.board.item_moved.connect(func (item: BoardItem, coords: Vector3i, rotationDeg: Vector3): _children_moved(board.board_activator.board, item, coords, rotationDeg));
 	_readjust_positions();
