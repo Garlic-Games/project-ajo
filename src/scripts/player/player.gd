@@ -10,6 +10,7 @@ var wind_velocity: Vector3 = Vector3.ZERO;
 
 var is_climbing: bool = false;
 var is_first_ladder_step: bool = false;
+var is_leaving_wind_area: bool = false;
 
 var _is_editing_scenario: bool = false;
 var _last_activator: BoardActivator;
@@ -59,6 +60,9 @@ func _physics_process(delta: float) -> void:
 			velocity.x += wind_velocity.x;
 			velocity.y = 0.0;
 			velocity.z += wind_velocity.z;
+		elif is_leaving_wind_area:
+			velocity.x -= wind_velocity.x;
+			velocity.z -= wind_velocity.z;
 
 	move_and_slide();
 
@@ -73,6 +77,7 @@ func _input(event):
 
 func set_wind_velocity(wind_velocity: Vector3):
 	self.wind_velocity = wind_velocity;
+	self.is_leaving_wind_area = true;
 
 func set_jump_velocity(jumper_velocity: float):
 	self.velocity.y += jumper_velocity;
