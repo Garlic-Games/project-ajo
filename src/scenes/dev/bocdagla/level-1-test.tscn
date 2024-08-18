@@ -77,3 +77,20 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -22)
 gizmo_extents = 10.0
 script = ExtResource("5_2r7yw")
 level_index = 9
+
+[node name="EndgameLayer" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="PanelContainer" type="PanelContainer" parent="EndgameLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="EndgameLayer/PanelContainer"]
+layout_mode = 2
+theme_type_variation = &"HeaderLarge"
+text = "You did the game thingie"
+horizontal_alignment = 1
+vertical_alignment = 1
