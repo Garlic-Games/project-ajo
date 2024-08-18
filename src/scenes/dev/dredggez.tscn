@@ -1,10 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://mptivcsfyvgh"]
+[gd_scene load_steps=14 format=3 uid="uid://mptivcsfyvgh"]
 
 [ext_resource type="PackedScene" uid="uid://tmqb1i1kolfm" path="res://prefabs/environment/fan/fan.tscn" id="1_hgb8w"]
 [ext_resource type="Script" path="res://scripts/player/player.gd" id="2_i440h"]
 [ext_resource type="PackedScene" uid="uid://pxw8avkakijr" path="res://prefabs/environment/balancer/balancer.tscn" id="3_a47pe"]
 [ext_resource type="PackedScene" uid="uid://b8p2pp5apr6r1" path="res://prefabs/environment/jumper/jumper.tscn" id="4_0wsti"]
 [ext_resource type="PackedScene" uid="uid://c6m66r5vllrb1" path="res://prefabs/entities/cool_garlic.tscn" id="5_th380"]
+[ext_resource type="PackedScene" uid="uid://6j3n8c8huu51" path="res://prefabs/environment/ladder/ladder.tscn" id="6_b21jx"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_e0fpa"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -73,37 +74,42 @@ current = true
 [node name="Balancer" parent="." instance=ExtResource("3_a47pe")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.64869, 0.5, 3.24882)
 
-[node name="CoolGarlic" parent="." node_paths=PackedStringArray("player") instance=ExtResource("5_th380")]
-transform = Transform3D(0.624875, 0, 0.780725, 0, 1, 0, -0.780725, 0, 0.624875, -28.7955, 0.374214, -1.02182)
-player = NodePath("../Scenario/Player")
-
-[node name="CoolGarlic2" parent="." node_paths=PackedStringArray("player") instance=ExtResource("5_th380")]
-transform = Transform3D(-0.13017, 0, 0.296972, 0, 0.324248, 0, -0.296972, 0, -0.13017, -26.8325, 0.374214, 19.8851)
-player = NodePath("../Scenario/Player")
-
-[node name="CoolGarlic3" parent="." node_paths=PackedStringArray("player") instance=ExtResource("5_th380")]
-transform = Transform3D(-0.13017, 0, 0.296972, 0, 0.324248, 0, -0.296972, 0, -0.13017, -26.8325, 0.374214, 32.312)
-player = NodePath("../Scenario/Player")
-
-[node name="CoolGarlic4" parent="." node_paths=PackedStringArray("player") instance=ExtResource("5_th380")]
-transform = Transform3D(-0.13017, 0, 0.296972, 0, 0.324248, 0, -0.296972, 0, -0.13017, -26.8325, 0.374214, -22.3474)
-player = NodePath("../Scenario/Player")
-
-[node name="CoolGarlic5" parent="." node_paths=PackedStringArray("player") instance=ExtResource("5_th380")]
-transform = Transform3D(-0.13017, 0, 0.296972, 0, 0.324248, 0, -0.296972, 0, -0.13017, 25.8327, 0.374214, -22.3474)
-player = NodePath("../Scenario/Player")
-
-[node name="CoolGarlic6" parent="." node_paths=PackedStringArray("player") instance=ExtResource("5_th380")]
-transform = Transform3D(-0.513489, 0, 1.17148, 0, 1.27908, 0, -1.17148, 0, -0.513489, 25.8327, 0.374214, -5.01836)
-player = NodePath("../Scenario/Player")
-
-[node name="CoolGarlic7" parent="." node_paths=PackedStringArray("player") instance=ExtResource("5_th380")]
-transform = Transform3D(-0.13017, 0, 0.296972, 0, 0.324248, 0, -0.296972, 0, -0.13017, 25.8327, 0.374214, 31.8343)
-player = NodePath("../Scenario/Player")
-
-[node name="CoolGarlic8" parent="." node_paths=PackedStringArray("player") instance=ExtResource("5_th380")]
-transform = Transform3D(-0.13017, 0, 0.296972, 0, 0.324248, 0, -0.296972, 0, -0.13017, 25.8327, 0.374214, 16.5383)
-player = NodePath("../Scenario/Player")
-
 [node name="Jumper" parent="." instance=ExtResource("4_0wsti")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 11.8594, 0.5, 8.69893)
+
+[node name="Ladder" parent="." instance=ExtResource("6_b21jx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.6753, 0.499998, 14.2198)
+
+[node name="Garlics" type="Node" parent="."]
+
+[node name="CoolGarlic" parent="Garlics" node_paths=PackedStringArray("player") instance=ExtResource("5_th380")]
+transform = Transform3D(0.624875, 0, 0.780725, 0, 1, 0, -0.780725, 0, 0.624875, -28.7955, 0.374214, -1.02182)
+player = NodePath("../../Scenario/Player")
+
+[node name="CoolGarlic2" parent="Garlics" node_paths=PackedStringArray("player") instance=ExtResource("5_th380")]
+transform = Transform3D(-0.13017, 0, 0.296972, 0, 0.324248, 0, -0.296972, 0, -0.13017, -26.8325, 0.374214, 19.8851)
+player = NodePath("../../Scenario/Player")
+
+[node name="CoolGarlic3" parent="Garlics" node_paths=PackedStringArray("player") instance=ExtResource("5_th380")]
+transform = Transform3D(-0.13017, 0, 0.296972, 0, 0.324248, 0, -0.296972, 0, -0.13017, -26.8325, 0.374214, 32.312)
+player = NodePath("../../Scenario/Player")
+
+[node name="CoolGarlic4" parent="Garlics" node_paths=PackedStringArray("player") instance=ExtResource("5_th380")]
+transform = Transform3D(-0.13017, 0, 0.296972, 0, 0.324248, 0, -0.296972, 0, -0.13017, -26.8325, 0.374214, -22.3474)
+player = NodePath("../../Scenario/Player")
+
+[node name="CoolGarlic5" parent="Garlics" node_paths=PackedStringArray("player") instance=ExtResource("5_th380")]
+transform = Transform3D(-0.13017, 0, 0.296972, 0, 0.324248, 0, -0.296972, 0, -0.13017, 25.8327, 0.374214, -22.3474)
+player = NodePath("../../Scenario/Player")
+
+[node name="CoolGarlic6" parent="Garlics" node_paths=PackedStringArray("player") instance=ExtResource("5_th380")]
+transform = Transform3D(-0.513489, 0, 1.17148, 0, 1.27908, 0, -1.17148, 0, -0.513489, 25.8327, 0.374214, -5.01836)
+player = NodePath("../../Scenario/Player")
+
+[node name="CoolGarlic7" parent="Garlics" node_paths=PackedStringArray("player") instance=ExtResource("5_th380")]
+transform = Transform3D(-0.13017, 0, 0.296972, 0, 0.324248, 0, -0.296972, 0, -0.13017, 25.8327, 0.374214, 31.8343)
+player = NodePath("../../Scenario/Player")
+
+[node name="CoolGarlic8" parent="Garlics" node_paths=PackedStringArray("player") instance=ExtResource("5_th380")]
+transform = Transform3D(-0.13017, 0, 0.296972, 0, 0.324248, 0, -0.296972, 0, -0.13017, 25.8327, 0.374214, 16.5383)
+player = NodePath("../../Scenario/Player")

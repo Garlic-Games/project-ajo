@@ -105,6 +105,7 @@ size = Vector3(2, 0.307495, 2)
 [node name="Jumper" type="Node3D"]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
 script = ExtResource("1_8cqva")
+debug_mode = null
 jump_velocity = 15.0
 
 [node name="Mesh" type="StaticBody3D" parent="."]
