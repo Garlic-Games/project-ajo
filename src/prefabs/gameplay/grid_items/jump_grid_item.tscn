@@ -14,3 +14,4 @@ unit_size = Vector3(5, 5, 5)
 prefab = ExtResource("2_i5fnb")
 
 [node name="Jumper" parent="." instance=ExtResource("3_arqhu")]
+jump_velocity = 18.0

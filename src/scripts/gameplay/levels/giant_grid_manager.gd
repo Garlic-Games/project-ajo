@@ -4,13 +4,13 @@ extends Node3D
 
 signal victory;
 
-@export var boards: Array[BoardGridItem];
-@export var grid_size: Vector2i;
-@export var cell_size: float;
 @export var offset: Vector3:
 	set(val):
 		offset = val;
 		_readjust_positions();
+@export var boards: Array[BoardGridItem];
+@export var grid_size: Vector2i;
+@export var cell_size: float;
 
 var pieces: Dictionary = {};
 
@@ -56,17 +56,27 @@ func _register_children():
 			boards.append(item);
 		if item is VictoryGridItem:
 			item.connect("victory", _victory_reached)
+
 	for item in get_children():
 		var gi = item as GridItem;
+		if not gi:
+			continue;
 		pieces.get_or_add(item.name, item);
 		if not boards.is_empty():
 			for board in boards:
 				if board.board_activator.board:
-					board.board_activator.board.registerItem(gi.loaded_item, gi.grid_position.z, gi.grid_position.x);
+					var small_piece = gi.loaded_item;
+					if gi.can_construct_over:
+						small_piece.color = 1;
+					if gi.is_inmovible:
+						small_piece.color = 2;
+					board.board_activator.board.registerItem(small_piece, gi.grid_position.z, gi.grid_position.x);
 
 func _readjust_positions():
 	for item in get_children():
 		var gi = item as GridItem;
+		if not gi:
+			continue;
 		gi.grid_offset = offset;
 
 func _victory_reached():
