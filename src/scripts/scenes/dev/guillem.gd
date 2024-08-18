@@ -27,9 +27,9 @@ func _ready() -> void:
 	item5.color = 1;
 	board.registerItem(item5, 1, 1);
 
-	board.setSize(Vector2(7,9));
 	var blockedPositions: Array[Vector2i] = [Vector2i(1,1)];
 	board.setBlockedPositions(blockedPositions);
+	board.setSize(Vector2(7,9));
 
 
 func _process(delta: float) -> void:

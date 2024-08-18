@@ -67,7 +67,6 @@ func connectListeners(target):
 
 func setBlockedPositions(positions: Array[Vector2i]):
 	boardTable.blockedCoords = positions;
-	boardTable.redraw();
 
 
 func tableItemPickedUp(item: BoardItem):

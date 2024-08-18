@@ -36,7 +36,6 @@ func spawn_grid() -> void:
 		for nx in sizeX:
 			#print("Spawning grid on", nx, ny)
 			if _isCoordBlocked(nx, ny):
-				print("Position %n %n blocked" % [nx, ny])
 				continue;
 			var tile: BoardFloorTile = do_spawn_floor_tile(gridRoot, grid1x1, nx, ny, tileOffsetY);
 			tile.coordX = nx;
