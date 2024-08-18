@@ -67,9 +67,11 @@ func _register_children():
 			for board in boards:
 				if board.board_activator.board:
 					var small_piece = gi.loaded_item;
-					if gi.can_construct_over:
+					if not gi.is_controlled_by(board):
+						small_piece.fixed = true;
+					if small_piece.conConstructOver:
 						small_piece.color = 1;
-					if gi.is_inmovible:
+					if small_piece.fixed:
 						small_piece.color = 2;
 					board.board_activator.board.registerItem(small_piece, gi.grid_position.z, gi.grid_position.x);
 

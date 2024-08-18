@@ -24,7 +24,6 @@ script = ExtResource("1_lbms3")
 offset = Vector3(-1.5, 0.5, 1.5)
 grid_size = Vector2i(4, 4)
 cell_size = 2.0
-blocked_positions = null
 
 [node name="1by1GridItem2" parent="Grid" instance=ExtResource("2_sh8nc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, 2.5, 2.5)
@@ -44,8 +43,6 @@ grid_position = Vector3i(2, 0, 2)
 offset = Vector3(0, -0.5, 0)
 grid_offset = Vector3(-1.5, 0.5, 1.5)
 unit_size = Vector3(5, 5, 5)
-is_inmovible = true
-can_construct_over = false
 
 [node name="Ground" type="Node3D" parent="."]
 

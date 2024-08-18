@@ -25,6 +25,7 @@ extends Node3D;
 		unit_size = val;
 		_reposition();
 @export_category("item behaviour")
+@export var controlled_by: BoardGridItem;
 @export var is_inmovible: bool;
 @export var can_construct_over: bool = true;
 @export var prefab: PackedScene;
@@ -39,3 +40,8 @@ var loaded_item: BoardItem:
 
 func _reposition():
 	position = Vector3(grid_position.x, grid_position.y, -grid_position.z) * unit_size + Vector3(offset) * unit_size + Vector3(grid_offset) * unit_size;
+
+func is_controlled_by(board: BoardGridItem) -> bool:
+	if not controlled_by:
+		return true;
+	return board.name == controlled_by.name;
