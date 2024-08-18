@@ -1,0 +1,41 @@
+[gd_scene load_steps=5 format=4 uid="uid://r5lqqoatvm0j"]
+
+[ext_resource type="PackedScene" uid="uid://xd7huuug7ebu" path="res://art/models/kenney_brick-kit/none-lq-brick-1x2.glb" id="1_pyq5q"]
+[ext_resource type="Material" uid="uid://cp8m5a3rpv87i" path="res://art/materials/arrow.tres" id="2_0arfv"]
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_ch3ec"]
+_surfaces = [{
+"aabb": AABB(-0.0795, 0, -0.0395, 0.159, 0.096, 0.079),
+"format": 34359742465,
+"index_count": 36,
+"index_data": PackedByteArray("AgAAAAEAAQADAAIABgAEAAUABQAHAAYAAgADAAYABgAHAAIABQAAAAIAAgAHAAUABgADAAEAAQAEAAYABQAEAAEAAQAAAAUA"),
+"name": "colormap",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 8,
+"vertex_data": PackedByteArray("5dCiPaabxD3AyiG95dCiPQAAAADAyiG95dCiPaabxD3AyiE95dCiPQAAAADAyiE95dCivQAAAADAyiG95dCivaabxD3AyiG95dCivQAAAADAyiE95dCivaabxD3AyiE9")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_xvgnm"]
+resource_name = "none-lq-brick-1x2_none-lq-brick-1x2"
+_surfaces = [{
+"aabb": AABB(-0.0795, 0, -0.0395, 0.159, 0.096, 0.079),
+"attribute_data": PackedByteArray("AAAYP2ZmRj8AABg/mpl5PwAAGD9mZkY/AAAYP5qZeT8AABg/mpl5PwAAGD9mZkY/AAAYP5qZeT8AABg/ZmZGPwAAGD+amXk/AAAYP5qZeT8AABg/ZmZGPwAAGD9mZkY/AAAYP2ZmRj8AABg/ZmZGPwAAGD9mZkY/AAAYP2ZmRj8AABg/mpl5PwAAGD+amXk/AAAYP5qZeT8AABg/mpl5PwAAGD+amXk/AAAYP5qZeT8AABg/ZmZGPwAAGD9mZkY/"),
+"format": 34359742487,
+"index_count": 36,
+"index_data": PackedByteArray("AgAAAAEAAQADAAIABgAEAAUABQAHAAYACgAIAAkACQALAAoADgAMAA0ADQAPAA4AEgAQABEAEQATABIAFgAUABUAFQAXABYA"),
+"material": ExtResource("2_0arfv"),
+"name": "colormap",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 24,
+"vertex_data": PackedByteArray("5dCiPaabxD3AyiG95dCiPQAAAADAyiG95dCiPaabxD3AyiE95dCiPQAAAADAyiE95dCivQAAAADAyiG95dCivaabxD3AyiG95dCivQAAAADAyiE95dCivaabxD3AyiE95dCiPQAAAADAyiE95dCivQAAAADAyiE95dCiPaabxD3AyiE95dCivaabxD3AyiE95dCiPaabxD3AyiG95dCiPaabxD3AyiE95dCivaabxD3AyiG95dCivaabxD3AyiE95dCiPQAAAADAyiE95dCiPQAAAADAyiG95dCivQAAAADAyiE95dCivQAAAADAyiG95dCivQAAAADAyiG95dCiPQAAAADAyiG95dCivaabxD3AyiG95dCiPaabxD3AyiG9////fwAA/7////9/AAD/v////38AAP+/////fwAA/78AAP9/AAD/vwAA/38AAP+/AAD/fwAA/78AAP9/AAD/v/9//38AAP+//3//fwAA/7//f/9/AAD/v/9//38AAP+//3///wAA/7//f///AAD/v/9///8AAP+//3///wAA/7//fwAAAAD/v/9/AAAAAP+//38AAAAA/7//fwAAAAD/v/////8AAP+//////wAA/7//////AAD/v/////8AAP+/")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_ch3ec")
+
+[node name="none-lq-brick-1x22" instance=ExtResource("1_pyq5q")]
+
+[node name="none-lq-brick-1x2" parent="." index="0"]
+mesh = SubResource("ArrayMesh_xvgnm")
