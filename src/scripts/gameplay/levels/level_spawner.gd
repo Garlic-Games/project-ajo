@@ -1,8 +1,7 @@
 class_name LevelSpawner;
 extends Marker3D
 
-@export_range(0, 2) var level_index: int;
-@export var despawn: LevelSpawner;
+@export_range(0, 9) var level_index: int;
 @export var is_last_level: bool;
 @onready var player: Player = %Player
 
@@ -13,8 +12,7 @@ signal last_level_ended;
 
 func _on_level_ended():
 	level_ended.emit(level_index);
-	if despawn:
-		despawn.destroy_level();
+	destroy_level();
 	if is_last_level:
 		last_level_ended.emit();
 

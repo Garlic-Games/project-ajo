@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://jgjmqb1lvaw8"]
+[gd_scene load_steps=12 format=3 uid="uid://jgjmqb1lvaw8"]
 
 [ext_resource type="Script" path="res://scripts/gameplay/levels/level.gd" id="1_aquji"]
 [ext_resource type="Script" path="res://scripts/gameplay/levels/giant_grid_manager.gd" id="2_04gbp"]
@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://dwbiq5eaw4g43" path="res://prefabs/gameplay/grid_items/1_by_1_grid_item.tscn" id="4_y8hn4"]
 [ext_resource type="PackedScene" uid="uid://kbqk1xp6hnb1" path="res://prefabs/gameplay/grid_items/board_grid_item.tscn" id="5_n4o7s"]
 [ext_resource type="PackedScene" uid="uid://bmloi8ebayxya" path="res://prefabs/gameplay/victory_spot/victory_spot1x2.tscn" id="6_vp2ga"]
-[ext_resource type="PackedScene" uid="uid://cr6b74d4fygcy" path="res://prefabs/gameplay/player/player.tscn" id="7_xftpu"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_457cy"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -29,7 +28,7 @@ size = Vector3(27.5, 1, 49.5)
 [node name="Level7" type="Node3D" node_paths=PackedStringArray("spawn_point")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -20)
 script = ExtResource("1_aquji")
-spawn_point = NodePath("Grid/SpawnPoint")
+spawn_point = NodePath("SpawnPoint")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_u166e")
@@ -45,21 +44,6 @@ blocked_positions = Array[Vector2i]([Vector2i(8, 3), Vector2i(7, 3), Vector2i(7,
 [node name="Jumper" parent="Grid" instance=ExtResource("3_nrv4a")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, 10)
 grid_position = Vector3i(0, 0, 0)
-grid_offset = Vector3(-2, 0.5, 2)
-
-[node name="Jumper2" parent="Grid" instance=ExtResource("3_nrv4a")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 0)
-grid_position = Vector3i(4, 0, 2)
-grid_offset = Vector3(-2, 0.5, 2)
-
-[node name="Jumper3" parent="Grid" instance=ExtResource("3_nrv4a")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 0)
-grid_position = Vector3i(3, 0, 2)
-grid_offset = Vector3(-2, 0.5, 2)
-
-[node name="Jumper4" parent="Grid" instance=ExtResource("3_nrv4a")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -10)
-grid_position = Vector3i(3, 0, 4)
 grid_offset = Vector3(-2, 0.5, 2)
 
 [node name="1by1GridItem" parent="Grid" instance=ExtResource("4_y8hn4")]
@@ -92,15 +76,27 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10)
 grid_position = Vector3i(2, 0, 0)
 grid_offset = Vector3(-2, 0.5, 2)
 
-[node name="SpawnPoint" type="Marker3D" parent="Grid"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0649633, 1.31605, 12.283)
-
 [node name="VictorySpot" parent="Grid" instance=ExtResource("6_vp2ga")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, -30)
 grid_position = Vector3i(4, 0, 8)
 offset = Vector3(0, -0.5, 0)
 grid_offset = Vector3(-2, 0.5, 2)
 unit_size = Vector3(5, 5, 5)
+
+[node name="Jumper2" parent="Grid" instance=ExtResource("3_nrv4a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 0)
+grid_position = Vector3i(4, 0, 2)
+grid_offset = Vector3(-2, 0.5, 2)
+
+[node name="Jumper3" parent="Grid" instance=ExtResource("3_nrv4a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 0)
+grid_position = Vector3i(3, 0, 2)
+grid_offset = Vector3(-2, 0.5, 2)
+
+[node name="Jumper4" parent="Grid" instance=ExtResource("3_nrv4a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -10)
+grid_position = Vector3i(3, 0, 4)
+grid_offset = Vector3(-2, 0.5, 2)
 
 [node name="Ground" type="Node3D" parent="."]
 
@@ -114,5 +110,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Ground/StaticBody3D"]
 shape = SubResource("BoxShape3D_sgk06")
 
-[node name="Player" parent="." instance=ExtResource("7_xftpu")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 22.5968)
+[node name="SpawnPoint" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0649633, 1.31605, 12.283)
