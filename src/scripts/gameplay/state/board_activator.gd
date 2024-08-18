@@ -16,3 +16,7 @@ func _input(event: InputEvent) -> void:
 		if player:
 			player.handle_interact(!board.edit_mode);
 			board.changeState(!board.edit_mode);
+
+func move_player(position: Vector3):
+	if player:
+		player.global_position = position

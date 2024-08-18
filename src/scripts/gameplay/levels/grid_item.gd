@@ -30,6 +30,8 @@ extends Node3D;
 @export var can_construct_over: bool = true;
 @export var prefab: PackedScene;
 
+signal position_change(new_position: Vector3)
+
 var loaded_item: BoardItem:
 	get:
 		var _loaded_item = prefab.instantiate() as BoardItem;
@@ -40,6 +42,7 @@ var loaded_item: BoardItem:
 
 func _reposition():
 	position = Vector3(grid_position.x, grid_position.y, -grid_position.z) * unit_size + Vector3(offset) * unit_size + Vector3(grid_offset) * unit_size;
+	position_change.emit(global_position);
 
 func is_controlled_by(board: BoardGridItem) -> bool:
 	if not controlled_by:
