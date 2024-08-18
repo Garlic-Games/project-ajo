@@ -8,6 +8,7 @@ signal restart;
 @onready var exit_game_confirm_menu: ConfirmMenu = %ExitGameConfirmMenu;
 @onready var main_menu_confirm_menu: ConfirmMenu = %MainMenuConfirmMenu ;
 @onready var restart_confirm_menu: ConfirmMenu = %RestartConfirmMenu
+@onready var recapture_mouse_button = $PanelContainer/MainPausePadding/SettingsLayout/RecaptureMouse;
 
 @export_file("*.tscn") var main_menu_scene: String;
 
@@ -25,6 +26,7 @@ func toogle() -> bool:
 
 func open() -> void:
 	opened.emit();
+	recapture_mouse_button.visible = OS.has_feature("web");
 	show();
 
 func close() -> void:
@@ -42,6 +44,11 @@ func open_exit_confirmation() -> void:
 
 func open_main_confirmation() -> void:
 	main_menu_confirm_menu.open();
+
+func recapture_mouse() -> void:
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE;
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED;
+	close();
 
 func choose_exit_game(choice: bool) -> void:
 	if choice:

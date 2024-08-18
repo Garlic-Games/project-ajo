@@ -14,9 +14,9 @@ script = ExtResource("1_gfsvf")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
 
 [node name="SpringArm" type="SpringArm3D" parent="CameraPivot"]
-transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 0.819152, 0.573576, 0, -0.573576, 0.819152, 0, 0, 0)
 shape = SubResource("SeparationRayShape3D_27emd")
-spring_length = 8.0
+spring_length = 9.5
 
 [node name="EditCamera" type="Camera3D" parent="CameraPivot/SpringArm"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 0)

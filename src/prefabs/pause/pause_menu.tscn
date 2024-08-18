@@ -47,6 +47,10 @@ text = "Restart Level"
 layout_mode = 2
 text = "Settings"
 
+[node name="RecaptureMouse" type="Button" parent="PanelContainer/MainPausePadding/SettingsLayout" groups=["MenuButtons"]]
+layout_mode = 2
+text = "Recapture mouse"
+
 [node name="Fill" type="Control" parent="PanelContainer/MainPausePadding/SettingsLayout"]
 layout_mode = 2
 size_flags_vertical = 3
@@ -78,6 +82,7 @@ visible = false
 [connection signal="pressed" from="PanelContainer/MainPausePadding/SettingsLayout/Resume" to="." method="close"]
 [connection signal="pressed" from="PanelContainer/MainPausePadding/SettingsLayout/RestartLevel" to="." method="open_restart_confirmation"]
 [connection signal="pressed" from="PanelContainer/MainPausePadding/SettingsLayout/Settings" to="." method="open_settings"]
+[connection signal="pressed" from="PanelContainer/MainPausePadding/SettingsLayout/RecaptureMouse" to="." method="recapture_mouse"]
 [connection signal="pressed" from="PanelContainer/MainPausePadding/SettingsLayout/MainMenu" to="." method="open_main_confirmation"]
 [connection signal="pressed" from="PanelContainer/MainPausePadding/SettingsLayout/ExitGame" to="." method="open_exit_confirmation"]
 [connection signal="selection" from="ExitGameConfirmMenu" to="." method="choose_exit_game"]

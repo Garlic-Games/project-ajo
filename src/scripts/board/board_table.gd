@@ -6,9 +6,7 @@ class_name BoardTable extends BoardGridBase
 
 
 var size1x1: PackedScene = preload("res://prefabs/board/floors/round_lq_plate_1x1.tscn");
-var size2x2: PackedScene = preload("res://prefabs/board/floors/round_lq_plate_2x2.tscn");
-var size4x4: PackedScene = preload("res://prefabs/board/floors/round_lq_plate_4x4.tscn");
-var size4x8: PackedScene = preload("res://prefabs/board/floors/round_lq_plate_4x8.tscn");
+var sizeNone1x1: PackedScene = preload("res://prefabs/board/floors/none_lq_plate_1x1.tscn");
 
 
 func _ready() -> void:
@@ -33,18 +31,9 @@ func clean() -> void:
 		item.queue_free();
 
 func spawn_floor() -> void:
-	var unitsY4 = floor(sizeY / 4);
-	var restY4 = sizeY % 4;
-	var unitsX4 = floor(sizeX / 4);
-	var restX4 = sizeX % 4;
-	for ny in unitsY4:
-		for nx in unitsX4:
-			do_spawn_floor_tile(tableTileRoot, size4x4, nx*4, ny*4, -0.1);
-	var nyOccupied = unitsY4*4;
-	var nxOccupied = unitsX4*4;
-	#print(unitsY4, " - ", restY4, " - ", unitsX4, " - ", restX4);
-	#print(nyOccupied, " - ", nxOccupied);
 	for ny in sizeY:
 		for nx in sizeX:
-			if ny >= nyOccupied || nx >= nxOccupied:
-				do_spawn_floor_tile(tableTileRoot, size1x1, nx, ny, -0.1);
+			var tile = size1x1;
+			if _isCoordBlocked(nx, ny):
+				tile = sizeNone1x1;
+			do_spawn_floor_tile(tableTileRoot, tile, nx, ny, -0.1);

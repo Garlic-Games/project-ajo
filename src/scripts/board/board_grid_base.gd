@@ -12,6 +12,7 @@ var itemParent: BoardGridBase;
 @export var sizeY: int = 1;
 @export var tileOffsetY = 0.5;
 @export var conConstructOver = true;
+@export var blockedCoords: Array[Vector2i] = [];
 
 var coordX = 0;
 var coordY = 0;
@@ -34,6 +35,9 @@ func spawn_grid() -> void:
 	for ny in sizeY:
 		for nx in sizeX:
 			#print("Spawning grid on", nx, ny)
+			if _isCoordBlocked(nx, ny):
+				print("Position %n %n blocked" % [nx, ny])
+				continue;
 			var tile: BoardFloorTile = do_spawn_floor_tile(gridRoot, grid1x1, nx, ny, tileOffsetY);
 			tile.coordX = nx;
 			tile.coordY = ny;
@@ -96,3 +100,9 @@ func getItemChilds() -> Array[BoardItem]:
 		if item is BoardItem:
 			ret.append(item)
 	return ret;
+
+func _isCoordBlocked(nx: int, ny: int) -> bool :
+	for item in blockedCoords:
+		if item.x == nx && item.y == ny:
+			return true;
+	return false;
