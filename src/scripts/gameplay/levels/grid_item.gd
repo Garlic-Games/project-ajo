@@ -2,6 +2,7 @@
 class_name GridItem;
 extends Node3D;
 
+@export_category("Grid information")
 @export var grid_position: Vector3i:
 	set(val):
 		grid_position = val;
@@ -22,13 +23,16 @@ extends Node3D;
 	set(val):
 		unit_size = val;
 		_reposition();
-
+@export_category("item behaviour")
+@export var is_inmovible: bool;
 @export var prefab: PackedScene;
+
 var loaded_item: BoardItem:
 	get:
 		if not loaded_item:
 			loaded_item = prefab.instantiate();
 		loaded_item.item_id = name;
+		loaded_item.fixed = is_inmovible;
 		return loaded_item;
 
 func _reposition():

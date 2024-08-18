@@ -87,4 +87,3 @@ func getItemChilds() -> Array[BoardItem]:
 		if item is BoardItem:
 			ret.append(item)
 	return ret;
-	

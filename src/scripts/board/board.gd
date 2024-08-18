@@ -123,7 +123,7 @@ func pickupRotate():
 	#tween.tween_property(item_follow_mouse, "rotation:y", deg_to_rad(newDegrees), 0.6)\
 		#.set_trans(Tween.TRANS_LINEAR);
 	item_follow_mouse.rotation_degrees.y = newDegrees;
-	
+
 func pickupFollowMouse():
 	var spaceState = get_world_3d().direct_space_state;
 	var mousePos = get_viewport().get_mouse_position();

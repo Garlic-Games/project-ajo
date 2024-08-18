@@ -41,36 +41,43 @@ offset = Vector3(-2, 0.5, 2)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 2.5, 10)
 grid_position = Vector3i(0, 0, 0)
 grid_offset = Vector3(-2, 0.5, 2)
+is_inmovible = null
 
 [node name="1by1GridItem2" parent="Grid" instance=ExtResource("3_wpmmx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 2.5, 0)
 grid_position = Vector3i(0, 0, 2)
 grid_offset = Vector3(-2, 0.5, 2)
+is_inmovible = null
 
 [node name="BoardGridItem" parent="Grid" instance=ExtResource("4_vb77i")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 10)
 grid_position = Vector3i(1, 0, 0)
 grid_offset = Vector3(-2, 0.5, 2)
+is_inmovible = null
 
 [node name="2by1GridItem" parent="Grid" instance=ExtResource("5_2msfj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 5, 10)
 grid_position = Vector3i(3, 0, 0)
 grid_offset = Vector3(-2, 0.5, 2)
+is_inmovible = null
 
 [node name="2by1GridItem3" parent="Grid" instance=ExtResource("5_2msfj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 5, 10)
 grid_position = Vector3i(4, 0, 0)
 grid_offset = Vector3(-2, 0.5, 2)
+is_inmovible = null
 
 [node name="2by1GridItem2" parent="Grid" instance=ExtResource("5_2msfj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 10)
 grid_position = Vector3i(2, 0, 0)
 grid_offset = Vector3(-2, 0.5, 2)
+is_inmovible = null
 
 [node name="2by1GridItem4" parent="Grid" instance=ExtResource("5_2msfj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 5, 5)
 grid_position = Vector3i(4, 0, 1)
 grid_offset = Vector3(-2, 0.5, 2)
+is_inmovible = null
 
 [node name="Hole" type="CSGBox3D" parent="Grid"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 2.5, -5)
@@ -80,6 +87,7 @@ script = ExtResource("6_e0lhd")
 grid_position = Vector3i(0, 0, 3)
 grid_offset = Vector3(-2, 0.5, 2)
 unit_size = Vector3(5, 5, 5)
+is_inmovible = null
 
 [node name="Ground" type="Node3D" parent="."]
 

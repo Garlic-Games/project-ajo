@@ -28,7 +28,7 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("jump"):
 		if is_on_floor():
 			velocity.y = jump_velocity;
-		
+
 		is_climbing = false;
 		velocity += global_transform.basis.z.normalized() * 23.0;
 
@@ -36,11 +36,11 @@ func _physics_process(delta: float) -> void:
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var input_dir := Input.get_vector("left", "right", "up", "down");
 	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized();
-	
+
 	if is_climbing and (not is_on_floor() or is_first_ladder_step):
 		if not is_on_floor():
 			is_first_ladder_step = false;
-			
+
 		velocity = Vector3.ZERO;
 		if input_dir:
 			velocity.y = -input_dir.y * speed;
