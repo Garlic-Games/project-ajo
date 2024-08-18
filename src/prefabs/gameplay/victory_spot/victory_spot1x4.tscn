@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://bmp7u4nb1668c"]
+
+[ext_resource type="Script" path="res://scripts/gameplay/state/victory_spot.gd" id="1_xgrj2"]
+[ext_resource type="PackedScene" uid="uid://y12idskl2w16" path="res://prefabs/board/items/Item1x1.tscn" id="2_s7lra"]
+[ext_resource type="PackedScene" uid="uid://ckmamauxwqkcw" path="res://art/models/kenney_platformer-kit/flag.glb" id="3_p3ooc"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yshpk"]
+size = Vector3(5, 5, 5)
+
+[node name="VictorySpot" type="Area3D"]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_xgrj2")
+is_inmovible = true
+can_construct_over = false
+prefab = ExtResource("2_s7lra")
+
+[node name="VictoryRange" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 20, 0)
+shape = SubResource("BoxShape3D_yshpk")
+
+[node name="flag2" parent="." instance=ExtResource("3_p3ooc")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 20, 0)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 0)
+use_collision = true
+size = Vector3(5, 20, 5)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

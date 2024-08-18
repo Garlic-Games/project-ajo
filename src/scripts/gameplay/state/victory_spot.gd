@@ -4,7 +4,8 @@ extends GridItem
 
 signal victory;
 var player: Player;
-var used: bool;
+var used: bool = false;
+
 func _on_body_entered(body: Node3D) -> void:
 	player = body as Player;
 

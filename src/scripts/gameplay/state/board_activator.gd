@@ -50,3 +50,7 @@ func end_transition(edit_mode: bool):
 		player.camera.current = true; 
 		player.handle_interact(edit_mode);
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED;
+
+func move_player(position: Vector3):
+	if player:
+		player.global_position = position;

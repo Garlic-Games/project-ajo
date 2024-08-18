@@ -4,16 +4,16 @@ extends Node3D
 
 signal victory;
 
-@export var boards: Array[BoardGridItem];
-@export var grid_size: Vector2i;
-@export var cell_size: float;
 @export var offset: Vector3:
 	set(val):
 		offset = val;
 		_readjust_positions();
+@export var boards: Array[BoardGridItem];
+@export var grid_size: Vector2i;
+@export var cell_size: float;
+@export var blocked_positions: Array[Vector2i]
 
 var pieces: Dictionary = {};
-
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	if Engine.is_editor_hint():
@@ -21,6 +21,7 @@ func _ready() -> void:
 	_register_children();
 	if not boards.is_empty():
 		for board in boards:
+			board.board_activator.board.setBlockedPositions(blocked_positions);
 			board.board_activator.board.setSize(grid_size);
 			board.board_activator.board.item_moved.connect(func (item: BoardItem, coords: Vector3i, rotationDeg: Vector3): _children_moved(board.board_activator.board, item, coords, rotationDeg));
 	_readjust_positions();
@@ -56,17 +57,29 @@ func _register_children():
 			boards.append(item);
 		if item is VictoryGridItem:
 			item.connect("victory", _victory_reached)
+
 	for item in get_children():
 		var gi = item as GridItem;
+		if not gi:
+			continue;
 		pieces.get_or_add(item.name, item);
 		if not boards.is_empty():
 			for board in boards:
 				if board.board_activator.board:
-					board.board_activator.board.registerItem(gi.loaded_item, gi.grid_position.z, gi.grid_position.x);
+					var small_piece = gi.loaded_item;
+					if not gi.is_controlled_by(board):
+						small_piece.fixed = true;
+					if small_piece.conConstructOver:
+						small_piece.color = 1;
+					if small_piece.fixed:
+						small_piece.color = 2;
+					board.board_activator.board.registerItem(small_piece, gi.grid_position.z, gi.grid_position.x);
 
 func _readjust_positions():
 	for item in get_children():
 		var gi = item as GridItem;
+		if not gi:
+			continue;
 		gi.grid_offset = offset;
 
 func _victory_reached():

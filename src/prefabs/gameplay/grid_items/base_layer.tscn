@@ -1,0 +1,94 @@
+[gd_scene load_steps=2 format=3 uid="uid://cyj6e6dbp5ewv"]
+
+[ext_resource type="PackedScene" uid="uid://dwbiq5eaw4g43" path="res://prefabs/gameplay/grid_items/1_by_1_grid_item.tscn" id="1_5fofv"]
+
+[node name="base_layer" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0690694, -0.0214043, 0.0589809)
+
+[node name="0x0" parent="." instance=ExtResource("1_5fofv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, 2.5, 7.5)
+grid_position = Vector3i(0, 0, 0)
+is_inmovible = true
+
+[node name="0x1" parent="." instance=ExtResource("1_5fofv")]
+is_inmovible = true
+can_construct_over = false
+
+[node name="0x2" parent="." instance=ExtResource("1_5fofv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 2.5, 7.5)
+grid_position = Vector3i(2, 0, 0)
+is_inmovible = true
+can_construct_over = false
+
+[node name="0x3" parent="." instance=ExtResource("1_5fofv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 2.5, 7.5)
+grid_position = Vector3i(3, 0, 0)
+is_inmovible = true
+can_construct_over = false
+
+[node name="1x0" parent="." node_paths=PackedStringArray("parent_item") instance=ExtResource("1_5fofv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, 2.5, 2.5)
+grid_position = Vector3i(0, 0, 1)
+is_inmovible = true
+parent_item = NodePath("../2x0")
+
+[node name="1x1" parent="." instance=ExtResource("1_5fofv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 2.5, 2.5)
+grid_position = Vector3i(1, 0, 1)
+is_inmovible = true
+can_construct_over = false
+
+[node name="1x2" parent="." instance=ExtResource("1_5fofv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 2.5, 2.5)
+grid_position = Vector3i(2, 0, 1)
+is_inmovible = true
+
+[node name="1x3" parent="." instance=ExtResource("1_5fofv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 2.5, 2.5)
+grid_position = Vector3i(3, 0, 1)
+is_inmovible = true
+can_construct_over = false
+
+[node name="2x0" parent="." instance=ExtResource("1_5fofv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, 2.5, -2.5)
+grid_position = Vector3i(0, 0, 2)
+is_inmovible = true
+
+[node name="2x1" parent="." instance=ExtResource("1_5fofv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 2.5, -2.5)
+grid_position = Vector3i(1, 0, 2)
+is_inmovible = true
+can_construct_over = false
+
+[node name="2x2" parent="." instance=ExtResource("1_5fofv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 2.5, -2.5)
+grid_position = Vector3i(2, 0, 2)
+is_inmovible = true
+
+[node name="2x3" parent="." instance=ExtResource("1_5fofv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 2.5, -2.5)
+grid_position = Vector3i(3, 0, 2)
+is_inmovible = true
+can_construct_over = false
+
+[node name="3x0" parent="." instance=ExtResource("1_5fofv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, 2.5, -7.5)
+grid_position = Vector3i(0, 0, 3)
+is_inmovible = true
+
+[node name="3x1" parent="." instance=ExtResource("1_5fofv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 2.5, -7.5)
+grid_position = Vector3i(1, 0, 3)
+is_inmovible = true
+can_construct_over = false
+
+[node name="3x2" parent="." instance=ExtResource("1_5fofv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 2.5, -7.5)
+grid_position = Vector3i(2, 0, 3)
+is_inmovible = true
+
+[node name="3x3" parent="." instance=ExtResource("1_5fofv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 2.5, -7.5)
+grid_position = Vector3i(3, 0, 3)
+is_inmovible = true
+can_construct_over = false

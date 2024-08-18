@@ -6,7 +6,7 @@
 
 [node name="Level-1-test" type="Node3D" node_paths=PackedStringArray("spawners", "player")]
 script = ExtResource("1_t7h8u")
-spawners = [NodePath("Level1SpawnPoint"), NodePath("Level2SpawnPoint2"), NodePath("Level3SpawnPoint3")]
+spawners = [NodePath("Level1SpawnPoint"), NodePath("Level2SpawnPoint2"), NodePath("Level3SpawnPoint3"), NodePath("Level3SpawnPoint4"), NodePath("Level3SpawnPoint5"), NodePath("Level3SpawnPoint6"), NodePath("Level3SpawnPoint7"), NodePath("Level3SpawnPoint8"), NodePath("Level3SpawnPoint8"), NodePath("Level3SpawnPoint9"), NodePath("Level3SpawnPoint10")]
 player = NodePath("Player")
 
 [node name="Player" parent="." instance=ExtResource("2_tqfn8")]
@@ -30,9 +30,67 @@ gizmo_extents = 10.0
 script = ExtResource("5_2r7yw")
 level_index = 1
 
-[node name="Level3SpawnPoint3" type="Marker3D" parent="." node_paths=PackedStringArray("despawn")]
+[node name="Level3SpawnPoint3" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -22)
 gizmo_extents = 10.0
 script = ExtResource("5_2r7yw")
 level_index = 2
-despawn = NodePath("../Level1SpawnPoint")
+
+[node name="Level3SpawnPoint4" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -22)
+gizmo_extents = 10.0
+script = ExtResource("5_2r7yw")
+level_index = 3
+
+[node name="Level3SpawnPoint5" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -45)
+gizmo_extents = 10.0
+script = ExtResource("5_2r7yw")
+level_index = 4
+
+[node name="Level3SpawnPoint6" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -22)
+gizmo_extents = 10.0
+script = ExtResource("5_2r7yw")
+level_index = 5
+
+[node name="Level3SpawnPoint7" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -22)
+gizmo_extents = 10.0
+script = ExtResource("5_2r7yw")
+level_index = 6
+
+[node name="Level3SpawnPoint8" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -22)
+gizmo_extents = 10.0
+script = ExtResource("5_2r7yw")
+level_index = 7
+
+[node name="Level3SpawnPoint9" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -22)
+gizmo_extents = 10.0
+script = ExtResource("5_2r7yw")
+level_index = 8
+
+[node name="Level3SpawnPoint10" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -22)
+gizmo_extents = 10.0
+script = ExtResource("5_2r7yw")
+level_index = 9
+
+[node name="EndgameLayer" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="PanelContainer" type="PanelContainer" parent="EndgameLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="EndgameLayer/PanelContainer"]
+layout_mode = 2
+theme_type_variation = &"HeaderLarge"
+text = "You did the game thingie"
+horizontal_alignment = 1
+vertical_alignment = 1

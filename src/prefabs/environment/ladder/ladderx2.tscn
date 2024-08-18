@@ -1,0 +1,295 @@
+[gd_scene load_steps=10 format=4 uid="uid://b4cg3iqhg4mqo"]
+
+[ext_resource type="Script" path="res://scripts/environment/ladder.gd" id="1_o8bdv"]
+[ext_resource type="Material" uid="uid://caiwm22vwf5ri" path="res://art/materials/item_metal.tres" id="2_ukbjr"]
+[ext_resource type="Texture2D" uid="uid://b0dsobpsm2w5r" path="res://art/models/kenney_brick-kit/Textures/colormap.png" id="3_4iacf"]
+[ext_resource type="Material" uid="uid://dlufqteaihhfh" path="res://art/materials/item_plastic.tres" id="4_c6grj"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_d0ava"]
+size = Vector3(1, 10, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fhdla"]
+resource_name = "colormap"
+cull_mode = 2
+albedo_texture = ExtResource("3_4iacf")
+texture_filter = 2
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_13hgh"]
+_surfaces = [{
+"aabb": AABB(-0.03975, 0, -0.03975, 0.0795, 0.114, 0.0795),
+"format": 34359742465,
+"index_count": 246,
+"index_data": PackedByteArray("AgAAAAEAAQADAAIAAQAEAAMABAAFAAMABAAGAAUABgAHAAUACgAIAAkACQALAAoACQAMAAsADAANAAsADAAOAA0ADgAPAA0ADQAQABEAEgAQAA0AEQALAA0ADQAPABIACwARABMAEwAKAAsACAAKABMAEwAUAAgAFQASAA8ADwAOABUAFQAOAAwADAAWABUACQAIABQAFgAMAAkAFAAXAAkACQAXABYAEgAYABkAGgAYABIAEAASABkAGgASABUAEQAQABkAEQAZABsAEwARABsAEwAbABwAHQAaABUAHQAVABYAHQAWABcAHgAdABcAFAATABwAHgAXABQAHAAfABQAFAAfAB4AHwAcAAEAAQAcABsAAQAAAB8AGwAEAAEAHgAfAAAAAAACAB4AHgACAAMAAwAdAB4ABAAbABkAGQAGAAQABwAGABkAGQAYAAcAHQADAAUABQAHABgABQAaAB0AGAAaAAUAIgAgACEAIQAjACIAIQAkACMAJAAlACMAJAAmACUAJgAnACUAKAAmACQAJwAmACgAJAApACgAKAAqACcAKQAkACEAIQArACkALAArACEAIQAgACwAJQAnACoAKgAtACUAJQAtAC4ALgAjACUALwAsACAAIwAuAC8AIAAiAC8ALwAiACMA"),
+"lods": [0.0170512, PackedByteArray("AQADAAIAAQAEAAMABAAFAAMABAAGAAUACQAMAAsACwASABMACwAMABIACQALABMAEwAUAAkACQAUABUAFQAMAAkAFQASAAwAEgAYABkAGgAYABIAEwASABkAGgASABUAEwAZABwAHQAaABUAFAATABwAHQAVABQAHAAfABQAHgAdABQAFAAfAB4AHwAcAAEAAQAcABkAGQAEAAEAGQAGAAQABQAGABgAGQAYAAYAHgAfAAEAAQACAB4AHgACAAMAGAAaAAUABQAaAB0AHQADAAUAAwAdAB4AIQAkACMAJAApACgAKQAkACEAIQArACkALAArACEAKAAqACQAIwAkACoAKgAtACMAIQAjAC8ALwAsACEAIwAtAC4AIwAuAC8A"), 0.0432459, PackedByteArray("CwASABMADAATABIACwAMABIADAALABMAEgAYABkAHgAYABIAEwASABkAHgASABMAEwAZABwAHAAeABMAHgAcAAMAAwAcABkAGQAYAAMAAwAYAB4AJAApACgAJAArACkAKAAqACQAIwAkACoAKgAtACMAJAAjAC8ALwAsACQALAArACQAIwAtAC4AIwAuAC8A")],
+"name": "colormap",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 48,
+"vertex_data": PackedByteArray("5dAiPaabxD0AAAAAsUHmPKabxD2xQeY8sUHmPKabxD2xQea8AAAAgKabxD3l0CK9AAAAgKabxD3l0CI9sUHmvKabxD2xQea8sUHmvKabxD2xQeY85dAivaabxD0AAAAAYvbsPAAAAAAAAAAAyI6nPAAAAADIjqe8yI6nPAAAAADIjqc8AAAAgAAAAABi9uw8AAAAgAAAAABi9uy8yI6nvAAAAADIjqc8yI6nvAAAAADIjqe8YvbsvAAAAAAAAAAAyI6nvG4SgzzIjqc8AAAAgG4Sgzxi9uw8YvbsvG4SgzwAAAAAyI6nPG4SgzzIjqc8YvbsPG4SgzwAAAAAyI6nvG4SgzzIjqe8AAAAgG4Sgzxi9uy8yI6nPG4SgzzIjqe85dAivW4SgzwAAAAAsUHmvG4SgzyxQeY8sUHmvG4SgzyxQea8AAAAgG4Sgzzl0CI9sUHmPG4SgzyxQeY8AAAAgG4Sgzzl0CK9sUHmPG4SgzyxQea85dAiPW4SgzwAAAAAg8DKPNV46T1uEgO6tiqRPNV46T1G7YY8tiqRPNV46T1sHo+8pptEOtV46T05tMi8pptEOtV46T0Tg8A8/OCEvNV46T1sHo+8/OCEvNV46T1G7YY8yXa+vNV46T1uEgO6/OCEvKabxD1G7YY8pptEOqabxD0Tg8A8yXa+vKabxD1uEgO6tiqRPKabxD1G7YY8g8DKPKabxD1uEgO6/OCEvKabxD1sHo+8pptEOqabxD05tMi8tiqRPKabxD1sHo+8")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_hdn5x"]
+resource_name = "round-lq-brick-1x1-round_round-lq-brick-1x1-round"
+_surfaces = [{
+"aabb": AABB(-0.03975, 0, -0.03975, 0.0795, 0.114, 0.0795),
+"attribute_data": PackedByteArray("AAAYP2ZmRj8AABg/ZmZGPwAAGD9mZkY/AAAYP2ZmRj8AABg/ZmZGPwAAGD9mZkY/AAAYP2ZmRj8AABg/ZmZGPwAAGD+amXk/AAAYP5qZeT8AABg/mpl5PwAAGD+amXk/AAAYP5qZeT8AABg/mpl5PwAAGD+amXk/AAAYP5qZeT8AABg/ERFxPwAAGD8REXE/AAAYP5qZeT8AABg/ERFxPwAAGD+amXk/AAAYP5qZeT8AABg/ERFxPwAAGD+amXk/AAAYP5qZeT8AABg/ERFxPwAAGD8REXE/AAAYP5qZeT8AABg/mpl5PwAAGD8REXE/AAAYP5qZeT8AABg/ERFxPwAAGD8REXE/AAAYPxERcT8AABg/ERFxPwAAGD8REXE/AAAYPxERcT8AABg/ERFxPwAAGD8REXE/AAAYPxERcT8AABg/ERFxPwAAGD8REXE/AAAYPxERcT8AABg/ERFxPwAAGD8REXE/AAAYPxERcT8AABg/ERFxPwAAGD8REXE/AAAYPxERcT8AABg/ZmZGPwAAGD8REXE/AAAYPxERcT8AABg/ZmZGPwAAGD9mZkY/AAAYPxERcT8AABg/ZmZGPwAAGD9mZkY/AAAYPxERcT8AABg/ERFxPwAAGD9mZkY/AAAYP2ZmRj8AABg/ERFxPwAAGD9mZkY/AAAYPxERcT8AABg/ZmZGPwAAGD9mZkY/AAAYP2ZmRj8AABg/ZmZGPwAAGD9mZkY/AAAYP2ZmRj8AABg/ZmZGPwAAGD9mZkY/AAAYP2ZmRj8AABg/ZmZGPwAAGD+amXk/AAAYP2ZmRj8AABg/mpl5PwAAGD+amXk/AAAYP2ZmRj8AABg/mpl5PwAAGD+amXk/AAAYP2ZmRj8AABg/ZmZGPwAAGD+amXk/AAAYP5qZeT8AABg/ZmZGPwAAGD+amXk/AAAYP2ZmRj8AABg/ERFxPwAAGD+amXk/AAAYPxERcT8AABg/mpl5PwAAGD8REXE/AAAYPxERcT8AABg/ERFxPwAAGD9mZkY/AAAYP2ZmRj8AABg/ERFxPwAAGD8REXE/AAAYP2ZmRj8AABg/mpl5PwAAGD+amXk/AAAYP5qZeT8AABg/mpl5PwAAGD+amXk/AAAYP2ZmRj8AABg/mpl5PwAAGD8REXE/AAAYPxERcT8AABg/mpl5PwAAGD8REXE/AAAYPxERcT8AABg/ERFxPwAAGD+amXk/AAAYP5qZeT8AABg/mpl5PwAAGD+amXk/AAAYPxERcT8AABg/ZmZGPwAAGD9mZkY/AAAYPxERcT8AABg/ZmZGPwAAGD8REXE/AAAYPxERcT8AABg/ZmZGPwAAGD9mZkY/AAAYPxERcT8AABg/ERFxPwAAGD9mZkY/AAAYPxERcT8AABg/ZmZGPwAAGD9mZkY/AAAYP5qZeT8AABg/mpl5PwAAGD9mZkY/AAAYP5qZeT8AABg/mpl5PwAAGD9mZkY/AAAYP5qZeT8="),
+"format": 34359742487,
+"index_count": 246,
+"index_data": PackedByteArray("AgAAAAEAAQADAAIAAQAEAAMABAAFAAMABAAGAAUABgAHAAUACgAIAAkACQALAAoACQAMAAsADAANAAsADAAOAA0ADgAPAA0AEgAQABEAEwAQABIAEQAUABIAEgAVABMAFAARABYAFgAXABQAGAAXABYAFgAZABgAGgATABUAFQAbABoAGgAbABwAHAAdABoAHgAYABkAHQAcAB4AGQAfAB4AHgAfAB0AIgAgACEAIwAgACIAJAAiACEAIwAiACUAJgAkACEAJgAhACcAKAAmACcAKAAnACkAKgAjACUAKgAlACsAKgArACwALQAqACwALgAoACkALQAsAC4AKQAvAC4ALgAvAC0AMgAwADEAMQAwADMAMQA0ADIAMwA1ADEANgAyADQANAA3ADYANgA3ADgAOAA5ADYANQAzADoAOgA7ADUAPAA7ADoAOgA9ADwAOQA4AD4APgA8AD0APgA/ADkAPQA/AD4AQgBAAEEAQQBDAEIAQQBEAEMARABFAEMARABGAEUARgBHAEUASgBIAEkASwBIAEoASQBMAEoASgBNAEsATABJAE4ATgBPAEwAUABPAE4ATgBRAFAAUgBLAE0ATQBTAFIAUgBTAFQAVABVAFIAVgBQAFEAVQBUAFYAUQBXAFYAVgBXAFUA"),
+"lods": [0.0170512, PackedByteArray("AQADAAIAAQAEAAMABAAFAAMABAAGAAUACQAMAAsAFAATABYAbQBxAGsAcwBtAG4AbwAZAHQAHgAZABoAGgAcAB4AcABsAHIAIgAgACEAIwAgACIAKAAiACEAIwAiACUAKAAhACkAKgAjACUALgAoACkAKgAlAC4AKQAvAC4ALQAqAC4ALgAvAC0AeAB1AHYAdgB1AH8AfwB5AHYAfwCAAHkAggCAAIEAOgCBAIAAegB4AHcAdwB8AHoAegB8AH0AgQA/AD4APgA/AH4AfgB9AD4AfQB+AHsAQQBEAEMASQBMAEoATABJAE4ATgBPAEwAUABPAE4AhACFAIMAiQCDAIUAhQCIAIkAhgCJAIoAigCHAIYAVQBTAFQAVQBUAFYA"), 0.0432459, PackedByteArray("FAATABYAHAAWABMAWQBbAFgAWwBZAFoAIgAgACEALQAgACIAKAAiACEALQAiACgAKAAhACkAKQAtACgAXQBcADgAOAAwADoAYQA9AF8AYABiAF4ASQBMAEoASQBPAEwAZABlAGMAaQBjAGUAZQBoAGkAYwBpAGoAagBnAGMAZwBmAGMAVQBTAFQAVQBUAFYA")],
+"material": SubResource("StandardMaterial3D_fhdla"),
+"name": "colormap",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 139,
+"vertex_data": PackedByteArray("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AAD/v/9//38AAP+//z//fwAA/78AAP9/AAD/v/9//38AAP+/AAD/fwAA/7//v/9/AAD/v/+//38AAP+/////fwAA/7////9/AAD/vwAA/78AAP+/AAD/vwAA/7//////AAD/v/////8AAP+/////vwAA/7////+/AAD/v/9/AAAAAP+//38AAAAA/7//fwAAAAD/v/9/AAAAAP+//38AAAAA/7//fwAAAAD/v/9/AAAAAP+//38AAAAA/7//fwAAAAD/v/9/AAAAAP+//38AAAAA/7//fwAAAAD/v/9/AAAAAP+//38AAAAA/7//fwAAAAD/v/9/AAAAAP+//7//fwAA/7//v/9/AAD/v////38AAP+//3//fwAA/7////9/AAD/v/9//38AAP+/////vwAA/7////+/AAD/v/////8AAP+//////wAA/7//P/9/AAD/v/8//38AAP+/AAD/fwAA/78AAP9/AAD/vwAA/78AAP+/AAD/vwAA/7//f///AAD/v/9///8AAP+//3///wAA/7//f///AAD/v/9///8AAP+//3///wAA/7//f///AAD/v/9///8AAP+//z//fwAA/7//f/9/AAD/v/8//38AAP+/AAD/fwAA/7//f/9/AAD/vwAA/38AAP+//7//fwAA/7//v/9/AAD/v////38AAP+/////fwAA/78AAP+/AAD/vwAA/78AAP+//////wAA/7//////AAD/v////78AAP+/////vwAA/7//fwAAAAD/v26CEwQAAP+/tqWFPgAA/7+Dg8QFAAD/v///GoMAAP+///91mgAA/78AAMTkAAD/v+0N/38AAP+/AAAX4AAA/79aFP9/AAD/vwAAetYAAP+//3///wAA/7//f///AAD/v/9///8AAP+//3///wAA/7//f///AAD/v/9///8AAP+//3///wAA/7//f///AAD/vxRqvBcAAP+/AABbrwAA/79miowVAAD/v2uxc1kAAP+/Peb/fwAA/78AAHXAAAD/v0J/zAAAAP+/AAChywAA/7/rj10cAAD/v///mIcAAP+/RLv/fwAA/7+Rrv9/AAD/v///GYgAAP+/pO3/fwAA/78oZf9/AAD/v///5LAAAP+///+p4QAA/7///yq5AAD/v///pu0AAP+/AABR8AAA/7/CZv9/AAD/v9Ix/38AAP+/BAH/fwAA/78AABiXAAD/v/9///8AAP+//3///wAA/7//f///AAD/v/9///8AAP+//3///wAA/7//f///AAD/v/9///8AAP+//3///wAA/78=")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_13hgh")
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_hhm2f"]
+height = 10.0
+radius = 0.25
+
+[node name="Ladder" type="Node3D"]
+script = ExtResource("1_o8bdv")
+
+[node name="LadderArea" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LadderArea"]
+shape = SubResource("BoxShape3D_d0ava")
+
+[node name="Mesh" type="Node3D" parent="."]
+
+[node name="round-lq-brick-1x1-round15" type="Node3D" parent="Mesh"]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0.00898361, 0)
+
+[node name="round-lq-brick-1x1-round" type="MeshInstance3D" parent="Mesh/round-lq-brick-1x1-round15"]
+material_override = ExtResource("2_ukbjr")
+mesh = SubResource("ArrayMesh_hdn5x")
+skeleton = NodePath("")
+
+[node name="round-lq-brick-1x1-round2" type="Node3D" parent="Mesh"]
+transform = Transform3D(3.5, 0, 0, 0, 3.5, 0, 0, 0, 3.5, 0, 0.399252, 0)
+
+[node name="round-lq-brick-1x1-round" type="MeshInstance3D" parent="Mesh/round-lq-brick-1x1-round2"]
+material_override = ExtResource("4_c6grj")
+mesh = SubResource("ArrayMesh_hdn5x")
+skeleton = NodePath("")
+
+[node name="round-lq-brick-1x1-round3" type="Node3D" parent="Mesh"]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0.716632, 0)
+
+[node name="round-lq-brick-1x1-round" type="MeshInstance3D" parent="Mesh/round-lq-brick-1x1-round3"]
+material_override = ExtResource("2_ukbjr")
+mesh = SubResource("ArrayMesh_hdn5x")
+skeleton = NodePath("")
+
+[node name="round-lq-brick-1x1-round4" type="Node3D" parent="Mesh"]
+transform = Transform3D(3.5, 0, 0, 0, 3.5, 0, 0, 0, 3.5, 0, 1.09043, 0)
+
+[node name="round-lq-brick-1x1-round" type="MeshInstance3D" parent="Mesh/round-lq-brick-1x1-round4"]
+material_override = ExtResource("4_c6grj")
+mesh = SubResource("ArrayMesh_hdn5x")
+skeleton = NodePath("")
+
+[node name="round-lq-brick-1x1-round5" type="Node3D" parent="Mesh"]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 1.40785, 0)
+
+[node name="round-lq-brick-1x1-round" type="MeshInstance3D" parent="Mesh/round-lq-brick-1x1-round5"]
+material_override = ExtResource("2_ukbjr")
+mesh = SubResource("ArrayMesh_hdn5x")
+skeleton = NodePath("")
+
+[node name="round-lq-brick-1x1-round6" type="Node3D" parent="Mesh"]
+transform = Transform3D(3.5, 0, 0, 0, 3.5, 0, 0, 0, 3.5, 0, 1.78399, 0)
+
+[node name="round-lq-brick-1x1-round" type="MeshInstance3D" parent="Mesh/round-lq-brick-1x1-round6"]
+material_override = ExtResource("4_c6grj")
+mesh = SubResource("ArrayMesh_hdn5x")
+skeleton = NodePath("")
+
+[node name="round-lq-brick-1x1-round7" type="Node3D" parent="Mesh"]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 2.10375, 0)
+
+[node name="round-lq-brick-1x1-round" type="MeshInstance3D" parent="Mesh/round-lq-brick-1x1-round7"]
+material_override = ExtResource("2_ukbjr")
+mesh = SubResource("ArrayMesh_hdn5x")
+skeleton = NodePath("")
+
+[node name="round-lq-brick-1x1-round8" type="Node3D" parent="Mesh"]
+transform = Transform3D(3.5, 0, 0, 0, 3.5, 0, 0, 0, 3.5, 0, 2.47655, 0)
+
+[node name="round-lq-brick-1x1-round" type="MeshInstance3D" parent="Mesh/round-lq-brick-1x1-round8"]
+material_override = ExtResource("4_c6grj")
+mesh = SubResource("ArrayMesh_hdn5x")
+skeleton = NodePath("")
+
+[node name="round-lq-brick-1x1-round9" type="Node3D" parent="Mesh"]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 2.80732, 0)
+
+[node name="round-lq-brick-1x1-round" type="MeshInstance3D" parent="Mesh/round-lq-brick-1x1-round9"]
+material_override = ExtResource("2_ukbjr")
+mesh = SubResource("ArrayMesh_hdn5x")
+skeleton = NodePath("")
+
+[node name="round-lq-brick-1x1-round10" type="Node3D" parent="Mesh"]
+transform = Transform3D(3.5, 0, 0, 0, 3.5, 0, 0, 0, 3.5, 0, 3.18193, 0)
+
+[node name="round-lq-brick-1x1-round" type="MeshInstance3D" parent="Mesh/round-lq-brick-1x1-round10"]
+material_override = ExtResource("4_c6grj")
+mesh = SubResource("ArrayMesh_hdn5x")
+skeleton = NodePath("")
+
+[node name="round-lq-brick-1x1-round11" type="Node3D" parent="Mesh"]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 3.52634, 0)
+
+[node name="round-lq-brick-1x1-round" type="MeshInstance3D" parent="Mesh/round-lq-brick-1x1-round11"]
+material_override = ExtResource("2_ukbjr")
+mesh = SubResource("ArrayMesh_hdn5x")
+skeleton = NodePath("")
+
+[node name="round-lq-brick-1x1-round12" type="Node3D" parent="Mesh"]
+transform = Transform3D(3.5, 0, 0, 0, 3.5, 0, 0, 0, 3.5, 0, 3.92879, 0)
+
+[node name="round-lq-brick-1x1-round" type="MeshInstance3D" parent="Mesh/round-lq-brick-1x1-round12"]
+material_override = ExtResource("4_c6grj")
+mesh = SubResource("ArrayMesh_hdn5x")
+skeleton = NodePath("")
+
+[node name="round-lq-brick-1x1-round13" type="Node3D" parent="Mesh"]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 4.25843, 0)
+
+[node name="round-lq-brick-1x1-round" type="MeshInstance3D" parent="Mesh/round-lq-brick-1x1-round13"]
+material_override = ExtResource("2_ukbjr")
+mesh = SubResource("ArrayMesh_hdn5x")
+skeleton = NodePath("")
+
+[node name="round-lq-brick-1x1-round14" type="Node3D" parent="Mesh"]
+transform = Transform3D(3.5, 0, 0, 0, 3.5, 0, 0, 0, 3.5, 0, 4.64997, 0)
+
+[node name="round-lq-brick-1x1-round" type="MeshInstance3D" parent="Mesh/round-lq-brick-1x1-round14"]
+material_override = ExtResource("4_c6grj")
+mesh = SubResource("ArrayMesh_hdn5x")
+skeleton = NodePath("")
+
+[node name="round-lq-brick-1x1-round16" type="Node3D" parent="Mesh"]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 4.97352, 0)
+
+[node name="round-lq-brick-1x1-round" type="MeshInstance3D" parent="Mesh/round-lq-brick-1x1-round16"]
+material_override = ExtResource("2_ukbjr")
+mesh = SubResource("ArrayMesh_hdn5x")
+skeleton = NodePath("")
+
+[node name="round-lq-brick-1x1-round17" type="Node3D" parent="Mesh"]
+transform = Transform3D(3.5, 0, 0, 0, 3.5, 0, 0, 0, 3.5, 0, 5.36379, 0)
+
+[node name="round-lq-brick-1x1-round" type="MeshInstance3D" parent="Mesh/round-lq-brick-1x1-round17"]
+material_override = ExtResource("4_c6grj")
+mesh = SubResource("ArrayMesh_hdn5x")
+skeleton = NodePath("")
+
+[node name="round-lq-brick-1x1-round18" type="Node3D" parent="Mesh"]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 5.68117, 0)
+
+[node name="round-lq-brick-1x1-round" type="MeshInstance3D" parent="Mesh/round-lq-brick-1x1-round18"]
+material_override = ExtResource("2_ukbjr")
+mesh = SubResource("ArrayMesh_hdn5x")
+skeleton = NodePath("")
+
+[node name="round-lq-brick-1x1-round19" type="Node3D" parent="Mesh"]
+transform = Transform3D(3.5, 0, 0, 0, 3.5, 0, 0, 0, 3.5, 0, 6.05497, 0)
+
+[node name="round-lq-brick-1x1-round" type="MeshInstance3D" parent="Mesh/round-lq-brick-1x1-round19"]
+material_override = ExtResource("4_c6grj")
+mesh = SubResource("ArrayMesh_hdn5x")
+skeleton = NodePath("")
+
+[node name="round-lq-brick-1x1-round20" type="Node3D" parent="Mesh"]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 6.37239, 0)
+
+[node name="round-lq-brick-1x1-round" type="MeshInstance3D" parent="Mesh/round-lq-brick-1x1-round20"]
+material_override = ExtResource("2_ukbjr")
+mesh = SubResource("ArrayMesh_hdn5x")
+skeleton = NodePath("")
+
+[node name="round-lq-brick-1x1-round21" type="Node3D" parent="Mesh"]
+transform = Transform3D(3.5, 0, 0, 0, 3.5, 0, 0, 0, 3.5, 0, 6.74853, 0)
+
+[node name="round-lq-brick-1x1-round" type="MeshInstance3D" parent="Mesh/round-lq-brick-1x1-round21"]
+material_override = ExtResource("4_c6grj")
+mesh = SubResource("ArrayMesh_hdn5x")
+skeleton = NodePath("")
+
+[node name="round-lq-brick-1x1-round22" type="Node3D" parent="Mesh"]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 7.06829, 0)
+
+[node name="round-lq-brick-1x1-round" type="MeshInstance3D" parent="Mesh/round-lq-brick-1x1-round22"]
+material_override = ExtResource("2_ukbjr")
+mesh = SubResource("ArrayMesh_hdn5x")
+skeleton = NodePath("")
+
+[node name="round-lq-brick-1x1-round23" type="Node3D" parent="Mesh"]
+transform = Transform3D(3.5, 0, 0, 0, 3.5, 0, 0, 0, 3.5, 0, 7.44109, 0)
+
+[node name="round-lq-brick-1x1-round" type="MeshInstance3D" parent="Mesh/round-lq-brick-1x1-round23"]
+material_override = ExtResource("4_c6grj")
+mesh = SubResource("ArrayMesh_hdn5x")
+skeleton = NodePath("")
+
+[node name="round-lq-brick-1x1-round24" type="Node3D" parent="Mesh"]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 7.77186, 0)
+
+[node name="round-lq-brick-1x1-round" type="MeshInstance3D" parent="Mesh/round-lq-brick-1x1-round24"]
+material_override = ExtResource("2_ukbjr")
+mesh = SubResource("ArrayMesh_hdn5x")
+skeleton = NodePath("")
+
+[node name="round-lq-brick-1x1-round25" type="Node3D" parent="Mesh"]
+transform = Transform3D(3.5, 0, 0, 0, 3.5, 0, 0, 0, 3.5, 0, 8.14647, 0)
+
+[node name="round-lq-brick-1x1-round" type="MeshInstance3D" parent="Mesh/round-lq-brick-1x1-round25"]
+material_override = ExtResource("4_c6grj")
+mesh = SubResource("ArrayMesh_hdn5x")
+skeleton = NodePath("")
+
+[node name="round-lq-brick-1x1-round26" type="Node3D" parent="Mesh"]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 8.49088, 0)
+
+[node name="round-lq-brick-1x1-round" type="MeshInstance3D" parent="Mesh/round-lq-brick-1x1-round26"]
+material_override = ExtResource("2_ukbjr")
+mesh = SubResource("ArrayMesh_hdn5x")
+skeleton = NodePath("")
+
+[node name="round-lq-brick-1x1-round27" type="Node3D" parent="Mesh"]
+transform = Transform3D(3.5, 0, 0, 0, 3.5, 0, 0, 0, 3.5, 0, 8.89333, 0)
+
+[node name="round-lq-brick-1x1-round" type="MeshInstance3D" parent="Mesh/round-lq-brick-1x1-round27"]
+material_override = ExtResource("4_c6grj")
+mesh = SubResource("ArrayMesh_hdn5x")
+skeleton = NodePath("")
+
+[node name="round-lq-brick-1x1-round28" type="Node3D" parent="Mesh"]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 9.22297, 0)
+
+[node name="round-lq-brick-1x1-round" type="MeshInstance3D" parent="Mesh/round-lq-brick-1x1-round28"]
+material_override = ExtResource("2_ukbjr")
+mesh = SubResource("ArrayMesh_hdn5x")
+skeleton = NodePath("")
+
+[node name="round-lq-brick-1x1-round29" type="Node3D" parent="Mesh"]
+transform = Transform3D(3.5, 0, 0, 0, 3.5, 0, 0, 0, 3.5, 0, 9.61451, 0)
+
+[node name="round-lq-brick-1x1-round" type="MeshInstance3D" parent="Mesh/round-lq-brick-1x1-round29"]
+material_override = ExtResource("4_c6grj")
+mesh = SubResource("ArrayMesh_hdn5x")
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("CylinderShape3D_hhm2f")

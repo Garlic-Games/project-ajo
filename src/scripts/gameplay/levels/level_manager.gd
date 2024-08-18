@@ -2,8 +2,10 @@ extends Node3D
 
 @export var spawners: Array[LevelSpawner];
 @export var player: Player;
+@onready var endgame_layer: CanvasLayer = $EndgameLayer
 
 func _ready() -> void:
+	endgame_layer.hide();
 	for child in get_children():
 		if child is LevelSpawner:
 			child.connect("level_ended", _next_level);
@@ -11,7 +13,10 @@ func _ready() -> void:
 	call_deferred("_spawn_player");
 
 func _next_level(curr_level_index: int):
-	GameManager.next_level();
+	if not GameManager.next_level():
+		endgame_layer.show();
+		return;
+
 	spawners[GameManager.current_level].instantiate_level();
 	_spawn_player();
 
