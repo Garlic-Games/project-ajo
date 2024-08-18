@@ -42,7 +42,8 @@ var loaded_item: BoardItem:
 
 func _reposition():
 	position = Vector3(grid_position.x, grid_position.y, -grid_position.z) * unit_size + Vector3(offset) * unit_size + Vector3(grid_offset) * unit_size;
-	position_change.emit(global_position);
+	if is_inside_tree():
+		position_change.emit(global_position);
 
 func is_controlled_by(board: BoardGridItem) -> bool:
 	if not controlled_by:

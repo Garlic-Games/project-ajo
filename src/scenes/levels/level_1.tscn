@@ -27,16 +27,10 @@ cell_size = 2.0
 [node name="BoardGridItem" parent="Grid" instance=ExtResource("4_xlnda")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0, 7.5)
 grid_position = Vector3i(1, 0, 0)
-is_inmovible = false
 
-[node name="BoardGridItem2" parent="Grid" instance=ExtResource("4_xlnda")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0, 7.5)
-grid_position = Vector3i(2, 0, 0)
-
-[node name="1by1GridItem" parent="Grid" node_paths=PackedStringArray("controlled_by") instance=ExtResource("2_r1gae")]
+[node name="1by1GridItem" parent="Grid" instance=ExtResource("2_r1gae")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 2.5, -2.5)
 grid_position = Vector3i(2, 0, 2)
-controlled_by = NodePath("../BoardGridItem")
 
 [node name="VictorySpot2" parent="Grid" instance=ExtResource("5_elv6w")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 0, -7.5)
