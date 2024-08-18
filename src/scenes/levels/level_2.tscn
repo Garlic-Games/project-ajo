@@ -20,10 +20,9 @@ albedo_color = Color(0.647059, 0.239216, 0.764706, 1)
 script = ExtResource("1_70553")
 level_index = 1
 
-[node name="Grid" type="Node3D" parent="." node_paths=PackedStringArray("board")]
+[node name="Grid" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4, 0)
 script = ExtResource("1_kf8gq")
-board = NodePath("BoardGridItem")
 grid_size = Vector2i(4, 4)
 cell_size = 2.0
 offset = Vector3(-1.5, 0.5, 1.5)
@@ -31,14 +30,12 @@ offset = Vector3(-1.5, 0.5, 1.5)
 [node name="1by1GridItem" parent="Grid" instance=ExtResource("2_yyybx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 2.5, 2.5)
 grid_position = Vector3i(3, 0, 1)
-is_inmovible = false
 
 [node name="BoardGridItem" parent="Grid" instance=ExtResource("3_vvnro")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0, 7.5)
 grid_position = Vector3i(1, 0, 0)
 
 [node name="2by1GridItem" parent="Grid" instance=ExtResource("4_g3pkm")]
-is_inmovible = false
 
 [node name="Ground" type="Node3D" parent="."]
 

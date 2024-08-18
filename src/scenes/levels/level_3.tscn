@@ -24,10 +24,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -20)
 script = ExtResource("1_ryje1")
 level_index = 2
 
-[node name="Grid" type="Node3D" parent="." node_paths=PackedStringArray("board")]
+[node name="Grid" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4, 0)
 script = ExtResource("1_lbms3")
-board = NodePath("BoardGridItem")
 grid_size = Vector2i(4, 4)
 cell_size = 2.0
 offset = Vector3(-1.5, 0.5, 1.5)
@@ -35,27 +34,22 @@ offset = Vector3(-1.5, 0.5, 1.5)
 [node name="1by1GridItem" parent="Grid" instance=ExtResource("2_sh8nc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 2.5, 2.5)
 grid_position = Vector3i(3, 0, 1)
-is_inmovible = null
 
 [node name="1by1GridItem2" parent="Grid" instance=ExtResource("2_sh8nc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 2.5, -7.5)
 grid_position = Vector3i(3, 0, 3)
-is_inmovible = null
 
 [node name="BoardGridItem" parent="Grid" instance=ExtResource("3_xd6qd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0, 7.5)
 grid_position = Vector3i(1, 0, 0)
-is_inmovible = null
 
 [node name="2by1GridItem" parent="Grid" instance=ExtResource("4_hhm6u")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, 5, -7.5)
 grid_position = Vector3i(0, 0, 3)
-is_inmovible = null
 
 [node name="2by1GridItem2" parent="Grid" instance=ExtResource("4_hhm6u")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, 5, 2.5)
 grid_position = Vector3i(0, 0, 1)
-is_inmovible = null
 
 [node name="Ground" type="Node3D" parent="."]
 
