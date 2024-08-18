@@ -16,6 +16,6 @@ func _ready() -> void:
 
 func onMouseEntered():
 	meshInstance.material_override = hover_material;
-	
+
 func onMouseExited():
 	meshInstance.material_override = null;
