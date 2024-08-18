@@ -5,7 +5,7 @@ signal item_moved(item: BoardItem, coords: Vector3i, rotationDeg: Vector3);
 
 
 @onready var boardTable: BoardTable = $BoardTable;
-@onready var boardCamera: Camera3D = $CameraPivot/EditCamera;
+@onready var boardCamera: BoardCamera = $CameraPivot/SpringArm/EditCamera;
 @onready var cameraPivot: Node3D = $CameraPivot;
 
 var items_dictionary: Dictionary = {};
@@ -13,8 +13,6 @@ var items_dictionary: Dictionary = {};
 #Default true for debug
 var edit_mode: bool = false;
 var item_follow_mouse: BoardItem = null;
-var rotation_step = 90;
-var camera_position = 0;
 var activeTween: Tween = null;
 
 func _process(delta: float) -> void:
@@ -30,16 +28,7 @@ func _process(delta: float) -> void:
 		pickupFollowMouse(item_follow_mouse);
 		if Input.is_action_just_pressed("rotate"):
 			pickupRotate(item_follow_mouse);
-	if edit_mode:
-		var scroll = 0;
-		if Input.is_action_just_released("scroll_down"):
-			scroll = -1;
-		if Input.is_action_just_released("scroll_up"):
-			scroll = 1;
-		if scroll != 0:
-			camera_position += scroll * rotation_step;
-			position_camera();
-	if events.ItemsClicked.size() > 0:
+	if events.ItemsClicked.size() > 0 && item_follow_mouse == null:
 		tableItemPickedUp(events.ItemsClicked[0]);
 	else:
 		if events.TilesClicked.size() > 0:
@@ -48,19 +37,11 @@ func _process(delta: float) -> void:
 
 func changeState(newState: bool):
 	edit_mode = newState;
-	boardCamera.current = edit_mode;
+	boardCamera.changeState(newState);
 	if edit_mode:
 		Input.mouse_mode = Input.MOUSE_MODE_CONFINED;
-		camera_position = 0;
-		cameraPivot.rotation.y = 0;
 	else:
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED;
-
-func position_camera():
-	#print("Camera degrees", camera_position);
-	var tween = get_tree().create_tween();
-	tween.tween_property(cameraPivot, "rotation:y", deg_to_rad(camera_position), 0.6)\
-		.set_trans(Tween.TRANS_LINEAR);
 
 
 func registerItem(item: BoardItem, coordX: int, coordY: int):
@@ -203,8 +184,10 @@ func pickupFollowMouse(item: BoardItem):
 	var rayOrigin = boardCamera.project_ray_origin(mousePos)
 	var rayEnd = rayOrigin + boardCamera.project_ray_normal(mousePos) * 2000
 	var query = PhysicsRayQueryParameters3D.create(rayOrigin, rayEnd);
-	query.exclude = [item];
-	query.collision_mask = 1;
+	var exclusions = [item];
+	exclusions.append_array(item.floorTiles);
+	query.exclude = exclusions;
+	query.collision_mask = 32;
 	var result = spaceState.intersect_ray(query);
 	if result && result.collider is BoardFloorTile && result.collider && result.collider.global_position:
 		var floorTile = result.collider as BoardFloorTile;

@@ -51,20 +51,26 @@ func _ready() -> void:
 	redraw();
 
 func onMouseEntered():
+	if _picked_up:
+		return;
 	_selected = true;
 	setMaterial();
 
 func onMouseExited():
+	if _picked_up:
+		return;
 	_selected = false;
 	setMaterial();
 
 func onStartPickUp():
 	_picked_up = true;
+	gridRoot.visible = false;
 	positionOnPickup = Vector3(global_position);
 	setMaterial();
 
 func onEndPickUp():
 	_picked_up = false;
+	gridRoot.visible = true;
 	setMaterial();
 
 func setMaterial():

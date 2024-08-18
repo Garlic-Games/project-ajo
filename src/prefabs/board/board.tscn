@@ -1,16 +1,26 @@
-[gd_scene load_steps=4 format=3 uid="uid://dgybognntfby0"]
+[gd_scene load_steps=6 format=3 uid="uid://dgybognntfby0"]
 
 [ext_resource type="Script" path="res://scripts/board/board.gd" id="1_gfsvf"]
 [ext_resource type="PackedScene" uid="uid://w5ywl86725vk" path="res://prefabs/board/board_table.tscn" id="1_jmc6w"]
+[ext_resource type="Script" path="res://scripts/board/board_camera.gd" id="2_0hsxb"]
 [ext_resource type="PackedScene" uid="uid://tsmt5ang068u" path="res://art/models/kenney_brick-kit/inherited/round_lq_brick_2x2.tscn" id="2_mgntt"]
+
+[sub_resource type="SeparationRayShape3D" id="SeparationRayShape3D_27emd"]
 
 [node name="Board" type="Node3D"]
 script = ExtResource("1_gfsvf")
 
 [node name="CameraPivot" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
 
-[node name="EditCamera" type="Camera3D" parent="CameraPivot"]
-transform = Transform3D(-3.78552e-08, 0.5, -0.866025, 2.18557e-08, 0.866025, 0.5, 1, 1.95399e-14, -4.37114e-08, -15, 15, 0)
+[node name="SpringArm" type="SpringArm3D" parent="CameraPivot"]
+transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 0, 0)
+shape = SubResource("SeparationRayShape3D_27emd")
+spring_length = 8.0
+
+[node name="EditCamera" type="Camera3D" parent="CameraPivot/SpringArm"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 0)
+script = ExtResource("2_0hsxb")
 
 [node name="BoardTable" parent="." instance=ExtResource("1_jmc6w")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.5, 0)

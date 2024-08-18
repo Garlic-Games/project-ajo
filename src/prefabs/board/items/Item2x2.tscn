@@ -7,6 +7,7 @@
 size = Vector3(2, 1, 2)
 
 [node name="Item2x2" type="StaticBody3D"]
+collision_layer = 16
 script = ExtResource("1_o63ak")
 sizeX = 2
 sizeY = 2

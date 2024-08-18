@@ -6,6 +6,7 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_trx6q"]
 
 [node name="Item1x1" type="StaticBody3D"]
+collision_layer = 16
 script = ExtResource("1_rrmhn")
 
 [node name="round-lq-brick-1x12" parent="." instance=ExtResource("2_5uivu")]

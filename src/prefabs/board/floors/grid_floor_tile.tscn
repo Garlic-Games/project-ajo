@@ -11,6 +11,7 @@ size = Vector2(1, 1)
 size = Vector3(1, 0.01, 1)
 
 [node name="GridFloorTile" type="StaticBody3D"]
+collision_layer = 32
 script = ExtResource("1_ja4sc")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]

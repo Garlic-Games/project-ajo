@@ -15,6 +15,7 @@ var itemParent: BoardGridBase;
 
 var coordX = 0;
 var coordY = 0;
+var floorTiles: Array[BoardFloorTile] = [];
 
 func processInput(events: BoardInputEvents) -> void:
 	if(Input.is_action_just_released("primary_click")):
@@ -27,6 +28,8 @@ func _ready() -> void:
 	itemsRoot = find_child("ItemsRoot");
 
 func spawn_grid() -> void:
+	if !conConstructOver:
+		return;
 	#print("Spawn grid", boardSizeX, boardSizeY, size);
 	for ny in sizeY:
 		for nx in sizeX:
@@ -41,6 +44,7 @@ func spawn_grid() -> void:
 			tile.connect("mouse_exited", func():
 				self.onTileMouseUnHover(tile);
 				);
+			floorTiles.append(tile);
 
 func reparentItem(item: BoardItem):
 	var parent = item.get_parent();
