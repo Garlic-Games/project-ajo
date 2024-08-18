@@ -7,6 +7,7 @@ var grid1x1: PackedScene = preload("res://prefabs/board/floors/grid_floor_tile.t
 var gridRoot: Node3D;
 var itemsRoot: Node3D;
 var activeTile : BoardFloorTile = null;
+var itemParent: BoardGridBase;
 
 @export var sizeX: int = 1;
 @export var sizeY: int = 1;
@@ -46,6 +47,7 @@ func reparentItem(item: BoardItem):
 		parent.remove_child(item);
 	if(self != item):
 		itemsRoot.add_child(item);
+		item.itemParent = self;
 
 func setItem(item: BoardItem, positionX, positionY):
 	reparentItem(item);

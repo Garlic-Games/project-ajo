@@ -8,6 +8,8 @@ signal item_moved(item: BoardItem, coords: Vector3i, rotationDeg: Vector3);
 @onready var boardCamera: Camera3D = $CameraPivot/EditCamera;
 @onready var cameraPivot: Node3D = $CameraPivot;
 
+var items_dictionary: Dictionary = {};
+
 #Default true for debug
 var edit_mode: bool = false;
 var item_follow_mouse: BoardItem = null;
@@ -41,7 +43,7 @@ func changeState(newState: bool):
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED;
 
 func position_camera():
-	print("Camera degrees", camera_position);
+	#print("Camera degrees", camera_position);
 	var tween = get_tree().create_tween();
 	tween.tween_property(cameraPivot, "rotation:y", deg_to_rad(camera_position), 0.6)\
 		.set_trans(Tween.TRANS_LINEAR);
@@ -49,6 +51,9 @@ func position_camera():
 
 func registerItem(item: BoardItem, coordX: int, coordY: int):
 	boardTable.setItem(item, coordX, coordY);
+	if item.item_id == null:
+		item.item_id = item.name;
+	items_dictionary[item.item_id] = item;
 	connectListeners(item);
 
 func setSize(size: Vector2):
@@ -74,12 +79,9 @@ func tableItemPickedUp(item: BoardItem):
 
 func tableTileClicked(tile: BoardFloorTile, base: BoardGridBase):
 	if item_follow_mouse != null:
-		if (item_follow_mouse.sizeX + tile.coordX)  > base.sizeX:
-			#print("No cabe por X")
-			return
-		if (item_follow_mouse.sizeY + tile.coordY)  > base.sizeY:
-			#print("No cabe por Y")
-			return
+		if !fitsInSpace(item_follow_mouse, tile, base):
+			print("No cabe!")
+			return;
 		item_follow_mouse.coordX = tile.coordX;
 		item_follow_mouse.coordY = tile.coordY;
 		item_follow_mouse.onEndPickUp();
@@ -90,6 +92,42 @@ func tableTileClicked(tile: BoardFloorTile, base: BoardGridBase):
 		if tile.floorParent is BoardItem:
 			tile.onMouseExited();
 			tableItemPickedUp(tile.floorParent);
+
+func fitsInSpace(item: BoardItem, tile: BoardFloorTile, base: BoardGridBase):
+	var coordX = tile.coordX;
+	var coordY = tile.coordY;
+	var face: BoardItem.FacingDirection = item.facingDirection;
+	var item_start_x;
+	var item_end_x;
+	var item_start_y;
+	var item_end_y;
+	match face:
+		BoardItem.FacingDirection.NORTH:
+			item_start_x = tile.coordX;
+			item_end_x = tile.coordX + item.sizeX;
+			item_start_y = tile.coordY;
+			item_end_y = tile.coordY + item.sizeY;
+		BoardItem.FacingDirection.SOUTH:
+			item_start_x = tile.coordX;
+			item_end_x = tile.coordX + item.sizeX;
+			item_start_y = tile.coordY;
+			item_end_y = tile.coordY - item.sizeY;
+		BoardItem.FacingDirection.EAST:
+			item_start_x = tile.coordX;
+			item_end_x = tile.coordX + item.sizeY;
+			item_start_y = tile.coordY;
+			item_end_y = tile.coordY - item.sizeX;
+		BoardItem.FacingDirection.WEST:
+			item_start_x = tile.coordX - item.sizeX;
+			item_end_x = tile.coordX;
+			item_start_y = tile.coordY;
+			item_end_y = tile.coordY - item.sizeY;
+	print(item_start_x, " - ", item_end_x, " - ", item_start_y, " - ", item_start_y)
+	if item_start_x < 0 || item_start_y < 0:
+		return false;
+	if item_end_x > base.sizeX || item_end_y > base.sizeY:
+		return false;
+	return true;
 
 func emitItemMoved(itemToEmit: BoardItem):
 	var distanceToFloor = Vector3i(0, 0, -1);
