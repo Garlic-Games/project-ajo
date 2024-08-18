@@ -1,4 +1,5 @@
-extends Node
+class_name CoolGarlic
+extends Node3D
 
 @export var player: Node3D = null;
 

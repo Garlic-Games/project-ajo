@@ -1,0 +1,115 @@
+[gd_scene load_steps=14 format=3 uid="uid://mptivcsfyvgh"]
+
+[ext_resource type="PackedScene" uid="uid://tmqb1i1kolfm" path="res://prefabs/environment/fan/fan.tscn" id="1_ln8bh"]
+[ext_resource type="Script" path="res://scripts/player/player.gd" id="2_3al6c"]
+[ext_resource type="PackedScene" uid="uid://pxw8avkakijr" path="res://prefabs/environment/balancer/balancer.tscn" id="3_76ni3"]
+[ext_resource type="PackedScene" uid="uid://b8p2pp5apr6r1" path="res://prefabs/environment/jumper/jumper.tscn" id="4_bxvxh"]
+[ext_resource type="PackedScene" uid="uid://6j3n8c8huu51" path="res://prefabs/environment/ladder/ladder.tscn" id="5_vflkw"]
+[ext_resource type="PackedScene" uid="uid://c6m66r5vllrb1" path="res://prefabs/entities/cool_garlic.tscn" id="6_i8nqf"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_e0fpa"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_a8330"]
+sky_material = SubResource("ProceduralSkyMaterial_e0fpa")
+
+[sub_resource type="Environment" id="Environment_i7554"]
+background_mode = 2
+sky = SubResource("Sky_a8330")
+tonemap_mode = 2
+
+[sub_resource type="BoxMesh" id="BoxMesh_tway3"]
+size = Vector3(80, 1, 80)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_asvfe"]
+albedo_color = Color(0.223103, 0.223103, 0.223103, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_t5k7m"]
+size = Vector3(80, 1, 80)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ecujn"]
+
+[node name="Dredggez" type="Node3D"]
+
+[node name="Environment" type="Node" parent="."]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Environment"]
+environment = SubResource("Environment_i7554")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Environment"]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Scenario" type="Node" parent="."]
+
+[node name="Floor" type="StaticBody3D" parent="Scenario"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Scenario/Floor"]
+mesh = SubResource("BoxMesh_tway3")
+skeleton = NodePath("../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_asvfe")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Scenario/Floor"]
+shape = SubResource("BoxShape3D_t5k7m")
+
+[node name="Fan" parent="Scenario" instance=ExtResource("1_ln8bh")]
+transform = Transform3D(2.62, 0, 0, 0, 2.62, 0, 0, 0, 2.62, 0, 4.171, -15.214)
+wind_velocity = 8.0
+
+[node name="Player" type="CharacterBody3D" parent="Scenario"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.74177, 0.868377, 11.9695)
+collision_layer = 2
+script = ExtResource("2_3al6c")
+mouse_sensitivity = 0.5
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Scenario/Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_ecujn")
+
+[node name="Camera3D" type="Camera3D" parent="Scenario/Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
+current = true
+
+[node name="Balancer" parent="." instance=ExtResource("3_76ni3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.64869, 0.5, 3.24882)
+
+[node name="Jumper" parent="." instance=ExtResource("4_bxvxh")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 11.8594, 0.5, 8.69893)
+
+[node name="Ladder" parent="." instance=ExtResource("5_vflkw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.6753, 0.499998, 14.2198)
+
+[node name="Garlics" type="Node" parent="."]
+
+[node name="CoolGarlic" parent="Garlics" node_paths=PackedStringArray("player") instance=ExtResource("6_i8nqf")]
+transform = Transform3D(0.624875, 0, 0.780725, 0, 1, 0, -0.780725, 0, 0.624875, -28.7955, 0.374214, -1.02182)
+player = NodePath("../../Scenario/Player")
+
+[node name="CoolGarlic2" parent="Garlics" node_paths=PackedStringArray("player") instance=ExtResource("6_i8nqf")]
+transform = Transform3D(-0.13017, 0, 0.296972, 0, 0.324248, 0, -0.296972, 0, -0.13017, -26.8325, 0.374214, 19.8851)
+player = NodePath("../../Scenario/Player")
+
+[node name="CoolGarlic3" parent="Garlics" node_paths=PackedStringArray("player") instance=ExtResource("6_i8nqf")]
+transform = Transform3D(-0.13017, 0, 0.296972, 0, 0.324248, 0, -0.296972, 0, -0.13017, -26.8325, 0.374214, 32.312)
+player = NodePath("../../Scenario/Player")
+
+[node name="CoolGarlic4" parent="Garlics" node_paths=PackedStringArray("player") instance=ExtResource("6_i8nqf")]
+transform = Transform3D(-0.13017, 0, 0.296972, 0, 0.324248, 0, -0.296972, 0, -0.13017, -26.8325, 0.374214, -22.3474)
+player = NodePath("../../Scenario/Player")
+
+[node name="CoolGarlic5" parent="Garlics" node_paths=PackedStringArray("player") instance=ExtResource("6_i8nqf")]
+transform = Transform3D(-0.13017, 0, 0.296972, 0, 0.324248, 0, -0.296972, 0, -0.13017, 25.8327, 0.374214, -22.3474)
+player = NodePath("../../Scenario/Player")
+
+[node name="CoolGarlic6" parent="Garlics" node_paths=PackedStringArray("player") instance=ExtResource("6_i8nqf")]
+transform = Transform3D(-0.513489, 0, 1.17148, 0, 1.27908, 0, -1.17148, 0, -0.513489, 25.8327, 0.374214, -5.01836)
+player = NodePath("../../Scenario/Player")
+
+[node name="CoolGarlic7" parent="Garlics" node_paths=PackedStringArray("player") instance=ExtResource("6_i8nqf")]
+transform = Transform3D(-0.13017, 0, 0.296972, 0, 0.324248, 0, -0.296972, 0, -0.13017, 25.8327, 0.374214, 31.8343)
+player = NodePath("../../Scenario/Player")
+
+[node name="CoolGarlic8" parent="Garlics" node_paths=PackedStringArray("player") instance=ExtResource("6_i8nqf")]
+transform = Transform3D(-0.13017, 0, 0.296972, 0, 0.324248, 0, -0.296972, 0, -0.13017, 25.8327, 0.374214, 16.5383)
+player = NodePath("../../Scenario/Player")
