@@ -31,5 +31,7 @@ shape = SubResource("BoxShape3D_1vrml")
 [node name="Board" parent="BoardActivator" instance=ExtResource("4_yhwl2")]
 transform = Transform3D(-5.46392e-09, 0, 0.125, 0, 0.125, 0, -0.125, 0, -5.46392e-09, 0, 0, 0)
 
+[node name="TransitionCamera" type="Camera3D" parent="BoardActivator"]
+
 [connection signal="body_entered" from="BoardActivator" to="BoardActivator" method="_on_body_entered"]
 [connection signal="body_exited" from="BoardActivator" to="BoardActivator" method="_on_body_exited"]

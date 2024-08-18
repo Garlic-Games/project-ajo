@@ -1,9 +1,11 @@
 class_name BoardActivator;
 extends Area3D
 
+@onready var transition_camera: Camera3D = $TransitionCamera;
 @export var board: Board;
 
 var player: Player;
+var is_transition_happening: bool = false;
 
 func _on_body_entered(body: Node3D) -> void:
 	player = body as Player;
@@ -12,7 +14,39 @@ func _on_body_exited(body: Node3D) -> void:
 	player = null;
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_released("interact"):
+	if event.is_action_released("interact") and not is_transition_happening:
 		if player:
-			player.handle_interact(!board.edit_mode);
-			board.changeState(!board.edit_mode);
+			var edit_mode = !board.edit_mode;
+			var target_camera_transform: Transform3D;
+			var tween: Tween = get_tree().create_tween();
+
+			transition_camera.current = true;
+			is_transition_happening = true;
+
+			if edit_mode:
+				player.handle_interact(edit_mode);
+
+				Input.mouse_mode = Input.MOUSE_MODE_CONFINED;
+				target_camera_transform = board.boardCamera.global_transform;
+				transition_camera.global_transform = player.camera.global_transform;
+			else:
+				board.changeState(edit_mode)
+
+				target_camera_transform = player.camera.global_transform;
+				transition_camera.global_transform = board.boardCamera.global_transform;
+
+			tween.tween_property(transition_camera, "global_transform", target_camera_transform, sin(PI / 2.0)) \
+				 .set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN_OUT);
+			
+			tween.tween_callback(func(): end_transition(edit_mode));
+
+func end_transition(edit_mode: bool):
+	is_transition_happening = false;
+
+	if edit_mode:
+		board.boardCamera.current = true;
+		board.changeState(edit_mode)
+	else:
+		player.camera.current = true; 
+		player.handle_interact(edit_mode);
+		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED;

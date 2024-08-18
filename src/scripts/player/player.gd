@@ -83,9 +83,4 @@ func set_climbing_mode(active: bool):
 		self.is_first_ladder_step = true;
 
 func handle_interact(active: bool):
-	if !active:
-		_is_editing_scenario = false;
-		camera.current = true;
-	else:
-		_is_editing_scenario = true;
-		camera.current = false;
+	_is_editing_scenario = active;

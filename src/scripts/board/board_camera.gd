@@ -11,7 +11,6 @@ var camera_position = 0;
 
 func changeState(newState: bool):
 	edit_mode = newState;
-	current = edit_mode;
 	if edit_mode:
 		camera_position = 0;
 		cameraPivot.rotation.y = 0;

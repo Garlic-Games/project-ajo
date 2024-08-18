@@ -38,11 +38,6 @@ func _process(delta: float) -> void:
 func changeState(newState: bool):
 	edit_mode = newState;
 	boardCamera.changeState(newState);
-	if edit_mode:
-		Input.mouse_mode = Input.MOUSE_MODE_CONFINED;
-	else:
-		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED;
-
 
 func registerItem(item: BoardItem, coordX: int, coordY: int):
 	boardTable.setItem(item, coordX, coordY);
