@@ -139,24 +139,15 @@ func emitItemMoved(itemToEmit: BoardItem):
 func emitForChilds(itemToEmit: BoardItem):
 	for each in itemToEmit.getItemChilds():
 		emitItemMoved(each);
-
-#TODO: This can be refactored with itemParent references
+		
 func findParentFloor(item: BoardGridBase, count: Vector3i):
-	if item == null:
-		return count;
-	if item is BoardGridBase:
-		count = Vector3i(count.x + item.coordX, count.y + item.coordY, count.z);
+	count.x = count.x + item.coordX;
+	count.y = count.y + item.coordY;
 	if item is BoardTable:
 		return count;
-	return findParentFloor(findParentBoard(item.get_parent()), Vector3i(count.x, count.y, count.z +1));
+	count.z = count.z +1;
+	return findParentFloor(item.itemParent, count);
 
-#TODO: This can be refactored with itemParent references
-func findParentBoard(item: Node3D):
-	if item == null:
-		return null;
-	if item is BoardGridBase:
-		return item;
-	return findParentBoard(item.get_parent());
 
 func pickupRotate(item: BoardItem):
 	var beforeFD = item.facingDirection;
