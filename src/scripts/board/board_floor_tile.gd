@@ -1,10 +1,17 @@
 class_name BoardFloorTile extends StaticBody3D
 
 @onready var meshInstance: MeshInstance3D = $MeshInstance3D;
+@onready var labelCoords: Label3D = $Label3D;
 
-var coordX = 0;
-var coordY = 0;
-
+var coordX = 0:
+	set(val):
+		coordX = val;
+		_redrawLabel();
+var coordY = 0:
+	set(val):
+		coordY = val;
+		_redrawLabel();
+		
 var hover_material: StandardMaterial3D = preload("res://art/materials/hover_tile_material.tres");
 var normal_material: StandardMaterial3D = preload("res://art/materials/hover_tile_material.tres");
 
@@ -19,3 +26,6 @@ func onMouseEntered():
 	
 func onMouseExited():
 	meshInstance.material_override = null;
+
+func _redrawLabel():
+	labelCoords.text = str(coordX) + "-" + str(coordY);

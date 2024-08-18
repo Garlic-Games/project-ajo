@@ -7,6 +7,7 @@ var boardstate = false;
 func _ready() -> void:
 	var brik2x2 = preload("res://prefabs/board/items/Item2x2.tscn");
 	var brik1x1 = preload("res://prefabs/board/items/Item1x1.tscn");
+	var brik1x2 = preload("res://prefabs/board/items/Item1x2.tscn");
 	var flat1x1 = preload("res://prefabs/board/items/Item1x05.tscn");
 	var item = brik2x2.instantiate();
 	item.color = 0;
@@ -22,6 +23,9 @@ func _ready() -> void:
 	item4.color = 1;
 	item4.fixed = true;
 	board.registerItem(item4, 4, 4);
+	var item5 = brik1x2.instantiate();
+	item5.color = 1;
+	board.registerItem(item5, 1, 1);
 
 	board.setSize(Vector2(7,9));
 

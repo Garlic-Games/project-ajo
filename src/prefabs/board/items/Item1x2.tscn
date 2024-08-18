@@ -4,17 +4,17 @@
 [ext_resource type="PackedScene" uid="uid://bwyfnmxeimf50" path="res://art/models/kenney_brick-kit/inherited/round_lq_brick_1x2.tscn" id="2_ag6ro"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7oukg"]
-size = Vector3(2, 1, 1)
+size = Vector3(1, 1, 2)
 
 [node name="Item1x2" type="StaticBody3D"]
 script = ExtResource("1_ba0u6")
-sizeX = 2
+sizeY = 2
 
 [node name="round-lq-brick-1x2" parent="." instance=ExtResource("2_ag6ro")]
-transform = Transform3D(1, 0, 0, 0, 0.81, 0, 0, 0, 1, 0.5, 0, 0)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 0.81, 0, -1, 0, -4.37114e-08, 0, 0, 0.5)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0.5)
 shape = SubResource("BoxShape3D_7oukg")
 
 [node name="GridRoot" type="Node3D" parent="."]

@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=4 uid="uid://x8e11rw7fpjj"]
 
 [ext_resource type="PackedScene" uid="uid://31pgr1k3ju4m" path="res://art/models/kenney_brick-kit/round-lq-plate-4x8.glb" id="1_45pga"]
-[ext_resource type="Material" uid="uid://dpph78wvd2v04" path="res://art/materials/brick_material_1.tres" id="2_w0mo1"]
+[ext_resource type="Material" uid="uid://bmrnp0qch6o78" path="res://art/materials/brick_material_1.tres" id="2_w0mo1"]
 [ext_resource type="Script" path="res://scripts/board/board_floor.gd" id="2_yp587"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_p1a0p"]
