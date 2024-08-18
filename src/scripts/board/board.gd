@@ -3,6 +3,9 @@ class_name Board extends Node3D
 
 signal item_moved(item: BoardItem, coords: Vector3i, rotationDeg: Vector3);
 
+@export var pickupSfx: SFXRandomPlayer = null;
+@export var dropSfx: SFXRandomPlayer = null;
+
 
 @onready var boardTable: BoardTable = $BoardTable;
 @onready var boardCamera: BoardCamera = $CameraPivot/SpringArm/EditCamera;
@@ -66,6 +69,7 @@ func setBlockedPositions(positions: Array[Vector2i]):
 
 func tableItemPickedUp(item: BoardItem):
 	if !item.fixed && item_follow_mouse == null:
+		_itemPickedFeedBack();
 		item.onStartPickUp();
 		item_follow_mouse = item;
 
@@ -81,6 +85,7 @@ func tableTileClicked(tile: BoardFloorTile):
 		base.setItem(item_follow_mouse, tile.coordX, tile.coordY);
 		emitItemMoved(item_follow_mouse)
 		item_follow_mouse = null;
+		_itemMovedFeedBack();
 	else:
 		if tile.floorParent is BoardItem:
 			tile.onMouseExited();
@@ -196,3 +201,14 @@ func pickupFollowMouse(item: BoardItem):
 		item.position.y = result.collider.position.y + 1.2;
 	#else:
 		#print(result);
+
+func _itemMovedFeedBack():
+	if dropSfx:
+		dropSfx.reproduce();
+	
+func _itemPickedFeedBack():
+	if pickupSfx:
+		pickupSfx.reproduce();
+	
+	
+	

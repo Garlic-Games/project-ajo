@@ -1,15 +1,24 @@
-[gd_scene load_steps=3 format=3 uid="uid://cr6b74d4fygcy"]
+[gd_scene load_steps=9 format=3 uid="uid://cr6b74d4fygcy"]
 
 [ext_resource type="Script" path="res://scripts/player/player.gd" id="1_h8ujk"]
+[ext_resource type="Script" path="res://scripts/music/sfx_random_player.gd" id="2_a3n5b"]
+[ext_resource type="AudioStream" uid="uid://bpq4uo316vn56" path="res://art/sfx/player/step1.wav" id="3_7omyn"]
+[ext_resource type="AudioStream" uid="uid://dogtfi6o8jl75" path="res://art/sfx/player/step2.wav" id="4_5yvmo"]
+[ext_resource type="AudioStream" uid="uid://ba046oq2luvky" path="res://art/sfx/kenney_rpg_audio/handleCoins.ogg" id="5_ltsyx"]
+[ext_resource type="AudioStream" uid="uid://c6fal8flw4uct" path="res://art/sfx/kenney_rpg_audio/handleCoins2.ogg" id="6_cfyom"]
+[ext_resource type="AudioStream" uid="uid://l77ws82ddnfb" path="res://art/sfx/kenney_casino_audio/custom/card-slide-1b.ogg" id="7_u04c8"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ecujn"]
 
-[node name="Player" type="CharacterBody3D"]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("stepsSfx", "climbSfx", "jumpSfx")]
 collision_layer = 2
 input_ray_pickable = false
 script = ExtResource("1_h8ujk")
 jump_velocity = 12
 mouse_sensitivity = 0.5
+stepsSfx = NodePath("SFX/StepPlayer")
+climbSfx = NodePath("SFX/ClimbPlayer")
+jumpSfx = NodePath("SFX/JumpPlayer")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -18,3 +27,34 @@ shape = SubResource("CapsuleShape3D_ecujn")
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
 current = true
+
+[node name="SFX" type="Node3D" parent="."]
+
+[node name="StepPlayer" type="Node3D" parent="SFX"]
+script = ExtResource("2_a3n5b")
+
+[node name="Step1" type="AudioStreamPlayer3D" parent="SFX/StepPlayer"]
+stream = ExtResource("3_7omyn")
+bus = &"SFX"
+
+[node name="Step2" type="AudioStreamPlayer3D" parent="SFX/StepPlayer"]
+stream = ExtResource("4_5yvmo")
+bus = &"SFX"
+
+[node name="ClimbPlayer" type="Node3D" parent="SFX"]
+script = ExtResource("2_a3n5b")
+
+[node name="Climb1" type="AudioStreamPlayer3D" parent="SFX/ClimbPlayer"]
+stream = ExtResource("5_ltsyx")
+bus = &"SFX"
+
+[node name="Climb2" type="AudioStreamPlayer3D" parent="SFX/ClimbPlayer"]
+stream = ExtResource("6_cfyom")
+bus = &"SFX"
+
+[node name="JumpPlayer" type="Node3D" parent="SFX"]
+script = ExtResource("2_a3n5b")
+
+[node name="Jump1" type="AudioStreamPlayer3D" parent="SFX/JumpPlayer"]
+stream = ExtResource("7_u04c8")
+bus = &"SFX"
