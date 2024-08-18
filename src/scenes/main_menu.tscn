@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://c0kysbw474wqn"]
+[gd_scene load_steps=10 format=3 uid="uid://c0kysbw474wqn"]
 
 [ext_resource type="Script" path="res://scripts/main_menu/main_menu.gd" id="1_7w5a6"]
 [ext_resource type="PackedScene" path="res://scenes/menu_loop_scene.tscn" id="2_edvs8"]
@@ -8,27 +8,7 @@
 [ext_resource type="AudioStream" uid="uid://d3dr7sm4te000" path="res://art/music/main_menu/EscapeFromTheUnknown/escape-from-the-unknown_rage-sound.mp3" id="4_we5uw"]
 [ext_resource type="PackedScene" uid="uid://dcxkowmduxb5y" path="res://prefabs/menu/loading_panel.tscn" id="7_y4405"]
 
-[sub_resource type="Curve" id="Curve_haqvw"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_36up6"]
-curve = SubResource("Curve_haqvw")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_vrmxl"]
-particle_flag_disable_z = true
-emission_shape_scale = Vector3(1920, 1080, 1)
-emission_shape = 3
-emission_box_extents = Vector3(1, 1, 1)
-direction = Vector3(-1, 1, 0)
-spread = 20.0
-initial_velocity_min = 10.0
-initial_velocity_max = 40.0
-gravity = Vector3(0, 0, 0)
-scale_min = 3.0
-scale_max = 5.0
-scale_curve = SubResource("CurveTexture_36up6")
-color = Color(0.713726, 1, 1, 1)
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xllwh"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kdk2e"]
 
@@ -36,15 +16,29 @@ color = Color(0.713726, 1, 1, 1)
 script = ExtResource("1_7w5a6")
 gameplay_scene = "res://scenes/gameplay.tscn"
 
-[node name="MenuLoopScene" parent="." instance=ExtResource("2_edvs8")]
+[node name="PanelContainer" type="PanelContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_xllwh")
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
-position = Vector2(365, 207)
-amount = 500
-process_material = SubResource("ParticleProcessMaterial_vrmxl")
-lifetime = 5.0
-speed_scale = 32.2
-randomness = 0.52
+[node name="SubViewportContainer" type="SubViewportContainer" parent="PanelContainer"]
+clip_contents = true
+layout_mode = 2
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="PanelContainer/SubViewportContainer"]
+handle_input_locally = false
+mesh_lod_threshold = 0.0
+size = Vector2i(1152, 648)
+size_2d_override_stretch = true
+render_target_update_mode = 4
+
+[node name="MenuLoopScene" parent="PanelContainer/SubViewportContainer/SubViewport" instance=ExtResource("2_edvs8")]
 
 [node name="MainContainer" type="PanelContainer" parent="."]
 anchors_preset = 15
