@@ -17,7 +17,6 @@ tonemap_mode = 2
 
 [node name="Bocdagla" type="Node3D"]
 script = ExtResource("1_6xe84")
-following_level_index = 2
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_elqo0")

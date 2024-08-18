@@ -70,8 +70,8 @@ func setMaterial():
 		meshInstance.material_override = BoardItemResource.getMaterial(color, BoardItemResource.MaterialType.HOVER);
 	else:
 		meshInstance.material_override = BoardItemResource.getMaterial(color, BoardItemResource.MaterialType.NORMAL);
-	
-		
+
+
 
 func connectPickupJustOnce(call: Callable):
 	if _lastConnection != null:

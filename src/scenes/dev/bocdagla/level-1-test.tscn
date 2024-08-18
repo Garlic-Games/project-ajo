@@ -1,11 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://dbddthaq6y1x8"]
+[gd_scene load_steps=4 format=3 uid="uid://dbddthaq6y1x8"]
 
-[ext_resource type="PackedScene" uid="uid://pyex1a4t0sk4" path="res://scenes/levels/level_1.tscn" id="1_pbdrk"]
+[ext_resource type="Script" path="res://scripts/gameplay/levels/level_manager.gd" id="1_t7h8u"]
 [ext_resource type="PackedScene" uid="uid://cr6b74d4fygcy" path="res://prefabs/gameplay/player/player.tscn" id="2_tqfn8"]
+[ext_resource type="Script" path="res://scripts/gameplay/levels/level_spawner.gd" id="5_2r7yw"]
 
-[node name="Level-1-test" type="Node3D"]
-
-[node name="Level1" parent="." instance=ExtResource("1_pbdrk")]
+[node name="Level-1-test" type="Node3D" node_paths=PackedStringArray("spawners", "player")]
+script = ExtResource("1_t7h8u")
+spawners = [NodePath("Level1SpawnPoint"), NodePath("Level2SpawnPoint2"), NodePath("Level3SpawnPoint3")]
+player = NodePath("Player")
 
 [node name="Player" parent="." instance=ExtResource("2_tqfn8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1075, -1.75532, 6.76804)
@@ -16,3 +18,25 @@ transform = Transform3D(1, 0, 0, 0, 0.654991, 0.755636, 0, -0.755636, 0.654991, 
 
 [node name="DirectionalLight3D2" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.779108, -0.620539, -0.0890012, 0, -0.141973, 0.989871, -0.626889, 0.771216, 0.110612, 0, 0, 0)
+
+[node name="Level1SpawnPoint" type="Marker3D" parent="." node_paths=PackedStringArray("player_spawn_position", "next_spawn")]
+gizmo_extents = 10.0
+script = ExtResource("5_2r7yw")
+player_spawn_position = NodePath("Marker3D")
+next_spawn = NodePath("../Level3SpawnPoint3")
+
+[node name="Marker3D" type="Marker3D" parent="Level1SpawnPoint"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.59339, -2.89692, 7.76885)
+
+[node name="Level2SpawnPoint2" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -22)
+gizmo_extents = 10.0
+script = ExtResource("5_2r7yw")
+level_index = 1
+
+[node name="Level3SpawnPoint3" type="Marker3D" parent="." node_paths=PackedStringArray("despawn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -22)
+gizmo_extents = 10.0
+script = ExtResource("5_2r7yw")
+level_index = 2
+despawn = NodePath("../Level1SpawnPoint")
