@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dmf7aay0itrda"]
+[gd_scene load_steps=8 format=3 uid="uid://dmf7aay0itrda"]
 
 [ext_resource type="Script" path="res://scripts/gameplay/levels/giant_grid_manager.gd" id="1_lbms3"]
 [ext_resource type="Script" path="res://scripts/gameplay/levels/level.gd" id="1_ryje1"]
@@ -6,12 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://kbqk1xp6hnb1" path="res://prefabs/gameplay/grid_items/board_grid_item.tscn" id="3_xd6qd"]
 [ext_resource type="PackedScene" uid="uid://dn0ac0ylyqffq" path="res://prefabs/gameplay/grid_items/2_by_1_grid_item.tscn" id="4_hhm6u"]
 [ext_resource type="PackedScene" uid="uid://d1abmg6xm71ht" path="res://prefabs/gameplay/victory_spot/victory_spot1x3.tscn" id="6_oju8t"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kso8i"]
-albedo_color = Color(0.647059, 0.239216, 0.764706, 1)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ojlc7"]
-albedo_color = Color(0.647059, 0.239216, 0.764706, 1)
+[ext_resource type="Material" uid="uid://cgepabmgprihw" path="res://art/materials/cubes/cube_glow.tres" id="7_puaib"]
 
 [node name="Level3" type="Node3D" node_paths=PackedStringArray("spawn_point")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -20)
@@ -44,21 +39,15 @@ offset = Vector3(0, -0.5, 0)
 grid_offset = Vector3(-1.5, 0.5, 1.5)
 unit_size = Vector3(5, 5, 5)
 
+[node name="SpawnPoint" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, -1.63119, 7.28299)
+
 [node name="Ground" type="Node3D" parent="."]
 
 [node name="CSGCombiner3D" type="CSGCombiner3D" parent="Ground"]
 use_collision = true
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Ground/CSGCombiner3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 18, 0)
-size = Vector3(22, 48, 22)
-material = SubResource("StandardMaterial3D_kso8i")
-
-[node name="CSGBox3D2" type="CSGBox3D" parent="Ground/CSGCombiner3D/CSGBox3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.03535, 0)
-operation = 2
-size = Vector3(20, 46, 20)
-material = SubResource("StandardMaterial3D_ojlc7")
-
-[node name="SpawnPoint" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, -2.29883, 9.28299)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5.00504, 0)
+size = Vector3(22, 1.98993, 22)
+material = ExtResource("7_puaib")

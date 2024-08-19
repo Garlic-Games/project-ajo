@@ -1,0 +1,12 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://cgepabmgprihw"]
+
+[ext_resource type="Texture2D" uid="uid://cnsf5hl7l01d" path="res://art/textures/icon2.png" id="1_8l7td"]
+
+[resource]
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("1_8l7td")
+metallic = 1.0
+metallic_specular = 1.0
+metallic_texture_channel = 1
+roughness = 0.85
+backlight = Color(0.95158, 0.95158, 0.95158, 1)

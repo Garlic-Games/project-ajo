@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://jgjmqb1lvaw8"]
+[gd_scene load_steps=11 format=3 uid="uid://jgjmqb1lvaw8"]
 
 [ext_resource type="Script" path="res://scripts/gameplay/levels/level.gd" id="1_aquji"]
 [ext_resource type="Script" path="res://scripts/gameplay/levels/giant_grid_manager.gd" id="2_04gbp"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dwbiq5eaw4g43" path="res://prefabs/gameplay/grid_items/1_by_1_grid_item.tscn" id="4_y8hn4"]
 [ext_resource type="PackedScene" uid="uid://kbqk1xp6hnb1" path="res://prefabs/gameplay/grid_items/board_grid_item.tscn" id="5_n4o7s"]
 [ext_resource type="PackedScene" uid="uid://bmloi8ebayxya" path="res://prefabs/gameplay/victory_spot/victory_spot1x2.tscn" id="6_vp2ga"]
+[ext_resource type="Material" uid="uid://cgepabmgprihw" path="res://art/materials/cubes/cube_glow.tres" id="7_rir8e"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_457cy"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -18,12 +19,6 @@ sky_material = SubResource("ProceduralSkyMaterial_457cy")
 background_mode = 2
 sky = SubResource("Sky_faooy")
 tonemap_mode = 2
-
-[sub_resource type="BoxMesh" id="BoxMesh_411o6"]
-size = Vector3(27.5, 1, 49.5)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_sgk06"]
-size = Vector3(27.5, 1, 49.5)
 
 [node name="Level7" type="Node3D" node_paths=PackedStringArray("spawn_point")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -20)
@@ -98,17 +93,16 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -10)
 grid_position = Vector3i(3, 0, 4)
 grid_offset = Vector3(-2, 0.5, 2)
 
-[node name="Ground" type="Node3D" parent="."]
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
-mesh = SubResource("BoxMesh_411o6")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="Ground"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground/StaticBody3D"]
-shape = SubResource("BoxShape3D_sgk06")
-
 [node name="SpawnPoint" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0649633, 1.31605, 12.283)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0649633, 1.31605, 22.283)
+
+[node name="Ground2" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="Ground2"]
+use_collision = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Ground2/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5.00504, 0)
+size = Vector3(27.5, 1.99, 49.5)
+material = ExtResource("7_rir8e")

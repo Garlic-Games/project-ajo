@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://b4ex878eoop0u"]
+[gd_scene load_steps=11 format=3 uid="uid://b4ex878eoop0u"]
 
 [ext_resource type="Script" path="res://scripts/gameplay/levels/level.gd" id="1_e3lm5"]
 [ext_resource type="Script" path="res://scripts/gameplay/levels/giant_grid_manager.gd" id="2_ppd3p"]
@@ -9,12 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://bbve1y6ixxrg0" path="res://prefabs/gameplay/victory_spot/victory_spot1x8.tscn" id="7_26ldw"]
 [ext_resource type="PackedScene" uid="uid://b7ttitq0bbrxj" path="res://prefabs/gameplay/grid_items/fan_grid_item.tscn" id="8_koxok"]
 [ext_resource type="PackedScene" uid="uid://d28aknjmuon0v" path="res://prefabs/gameplay/grid_items/ladder_2_by_1_grid_item.tscn" id="9_nxyae"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_411o6"]
-size = Vector3(27.5, 1, 49.5)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_sgk06"]
-size = Vector3(27.5, 1, 49.5)
+[ext_resource type="Material" uid="uid://cgepabmgprihw" path="res://art/materials/cubes/cube_glow.tres" id="10_5ryrf"]
 
 [node name="Level7" type="Node3D" node_paths=PackedStringArray("spawn_point")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -20)
@@ -75,17 +70,16 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 5, 10)
 grid_position = Vector3i(0, 0, 0)
 grid_offset = Vector3(-2, 0.5, 2)
 
-[node name="Ground" type="Node3D" parent="."]
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
-mesh = SubResource("BoxMesh_411o6")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="Ground"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground/StaticBody3D"]
-shape = SubResource("BoxShape3D_sgk06")
-
 [node name="SpawnPoint" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0649633, 1.31605, 23.283)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0649633, 3.31605, 19.283)
+
+[node name="Ground2" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="Ground2"]
+use_collision = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Ground2/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5.00504, 0)
+size = Vector3(27.5, 1.99, 49.5)
+material = ExtResource("10_5ryrf")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://pyex1a4t0sk4"]
+[gd_scene load_steps=8 format=3 uid="uid://pyex1a4t0sk4"]
 
 [ext_resource type="Script" path="res://scripts/gameplay/levels/giant_grid_manager.gd" id="1_rt68t"]
 [ext_resource type="Script" path="res://scripts/gameplay/levels/level.gd" id="1_y5kkn"]
@@ -6,12 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://kbqk1xp6hnb1" path="res://prefabs/gameplay/grid_items/board_grid_item.tscn" id="4_xlnda"]
 [ext_resource type="PackedScene" uid="uid://d1abmg6xm71ht" path="res://prefabs/gameplay/victory_spot/victory_spot1x3.tscn" id="5_elv6w"]
 [ext_resource type="PackedScene" uid="uid://dn0ac0ylyqffq" path="res://prefabs/gameplay/grid_items/2_by_1_grid_item.tscn" id="6_d6blo"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xpwf2"]
-albedo_color = Color(0.647059, 0.239216, 0.764706, 1)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0x7dc"]
-albedo_color = Color(0.647059, 0.239216, 0.764706, 1)
+[ext_resource type="Material" uid="uid://cgepabmgprihw" path="res://art/materials/cubes/cube_glow.tres" id="7_c51gh"]
 
 [node name="Level1" type="Node3D" node_paths=PackedStringArray("spawn_point")]
 script = ExtResource("1_y5kkn")
@@ -49,15 +44,9 @@ grid_position = Vector3i(3, 0, 2)
 use_collision = true
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Ground/CSGCombiner3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 18, 0)
-size = Vector3(22, 48, 22)
-material = SubResource("StandardMaterial3D_xpwf2")
-
-[node name="CSGBox3D2" type="CSGBox3D" parent="Ground/CSGCombiner3D/CSGBox3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.03535, 0)
-operation = 2
-size = Vector3(20, 46, 20)
-material = SubResource("StandardMaterial3D_0x7dc")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5.00504, 0)
+size = Vector3(22, 1.98993, 22)
+material = ExtResource("7_c51gh")
 
 [node name="SpawnPoint" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, -3, 9.28299)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, -3, 8.28299)
