@@ -16,7 +16,6 @@ var item_id = null;
 
 var _selected = false;
 var _picked_up = false;
-var _lastConnection = null;
 
 var positionOnPickup: Vector3;
 
@@ -43,8 +42,8 @@ func _ready() -> void:
 		offsetX = -0.5;
 	if sizeY > 1:
 		offsetY = -0.5;
-	arrowInstance.position.x = sizeX/2 + offsetX;
-	arrowInstance.position.z = sizeY/2 + offsetY;
+	arrowInstance.position.x = sizeX/2.0 + offsetX;
+	arrowInstance.position.z = sizeY/2.0 + offsetY;
 	arrowInstance.position.y = sizeZ + 0.25;
 	arrowInstance.visible = false;
 	meshInstance.material_override = BoardItemResource.getMaterial(color, BoardItemResource.MaterialType.NORMAL);
@@ -90,7 +89,7 @@ func getSize():
 	return Vector2(sizeX, sizeZ);
 
 func rotateFacingDirection():
-	if facingDirection == 270:
-		facingDirection = 0;
+	if facingDirection == FacingDirection.WEST:
+		facingDirection = FacingDirection.NORTH;
 	else:
 		facingDirection += 90;

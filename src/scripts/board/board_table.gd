@@ -19,8 +19,8 @@ func redraw() -> void:
 	clean();
 	spawn_floor();
 	spawn_grid();
-	position.x = -sizeX/2;
-	position.z = -sizeY/2;
+	position.x = -sizeX/2.0;
+	position.z = -sizeY/2.0;
 
 func clean() -> void:
 	for item in tableTileRoot.get_children():

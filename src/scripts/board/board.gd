@@ -18,7 +18,7 @@ var edit_mode: bool = false;
 var item_follow_mouse: BoardItem = null;
 var activeTween: Tween = null;
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	var events = BoardInputEvents.new();
 	for key in items_dictionary:
 		items_dictionary[key].processInput(events);
@@ -49,7 +49,7 @@ func registerItem(item: BoardItem, coordX: int, coordY: int):
 	items_dictionary[item.item_id] = item;
 	connectListeners(item);
 
-func setSize(size: Vector2):
+func setSize(size: Vector2i):
 	boardTable.sizeX = size.x;
 	boardTable.sizeY = size.y;
 	boardTable.redraw();
@@ -184,7 +184,6 @@ func pickupFollowMouse(item: BoardItem):
 	var result = spaceState.intersect_ray(query);
 	if result && result.collider is BoardFloorTile && result.collider && result.collider.global_position:
 		var floorTile = result.collider as BoardFloorTile;
-		var itemSize = item.getSize();
 		if item.itemParent != floorTile.floorParent:
 			floorTile.floorParent.reparentItem(item);
 		item.position.x = floorTile.coordX;

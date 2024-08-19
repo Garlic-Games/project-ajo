@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=4 uid="uid://tsmt5ang068u"]
 
 [ext_resource type="PackedScene" uid="uid://66y5h26xx6wj" path="res://art/models/kenney_brick-kit/round-lq-brick-2x2.glb" id="1_vso0d"]
-[ext_resource type="Material" uid="uid://dpph78wvd2v04" path="res://art/materials/brick_material_1.tres" id="3_ag8jd"]
+[ext_resource type="Material" uid="uid://bmrnp0qch6o78" path="res://art/materials/brick_material_1.tres" id="3_ag8jd"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_4ej73"]
 _surfaces = [{
