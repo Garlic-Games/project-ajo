@@ -94,7 +94,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -30)
 grid_position = Vector3i(3, 0, 8)
 grid_offset = Vector3(-2, 0, 2)
 unit_size = Vector3(5, 5, 5)
-height = 5
 
 [node name="TwistGrid" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.12618, 24.8193, -24.6919)

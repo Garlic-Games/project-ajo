@@ -156,3 +156,6 @@ func notifyEnteredTableZone(entered: bool):
 	
 func notifyEnteredLvlEndZone(entered: bool): 
 	hud.inEndArea = entered;
+	
+func notifyEnteredTwistZone(entered: bool): 
+	hud.inTwistArea = entered;

@@ -62,7 +62,7 @@ metadata/_editor_floor_ = Vector3(0, 2, 0)
 [node name="PathPoints" type="Node3D" parent="."]
 
 [node name="1" type="Node3D" parent="PathPoints"]
-transform = Transform3D(-0.765719, 0, 0.643175, 0, 1, 0, -0.643175, 0, -0.765719, -8.12166, 4.19565, 2.65322)
+transform = Transform3D(-0.765719, 0, 0.643175, 0, 1, 0, -0.643175, 0, -0.765719, -8.8443, 4.19565, 2.65769)
 
 [node name="Arrow" parent="PathPoints/1" instance=ExtResource("4_wbtff")]
 
