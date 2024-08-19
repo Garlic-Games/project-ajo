@@ -1,16 +1,24 @@
-[gd_scene load_steps=4 format=3 uid="uid://dwbiq5eaw4g43"]
+[gd_scene load_steps=5 format=3 uid="uid://dwbiq5eaw4g43"]
 
 [ext_resource type="Script" path="res://scripts/gameplay/levels/grid_item.gd" id="1_dfv00"]
 [ext_resource type="Material" uid="uid://cgepabmgprihw" path="res://art/materials/cubes/cube_glow.tres" id="1_uhx5o"]
-[ext_resource type="PackedScene" uid="uid://y12idskl2w16" path="res://prefabs/board/items/Item1x1.tscn" id="2_wpiwq"]
+[ext_resource type="PackedScene" uid="uid://y12idskl2w16" path="res://prefabs/board/items/Item1x1.tscn" id="2_wqoj1"]
+[ext_resource type="PackedScene" uid="uid://bpvlbmu6x7pnq" path="res://art/models/kenney_platformer-kit/crate.glb" id="4_kmetl"]
 
-[node name="1by1GridItem" type="CSGBox3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 2.5, 7.5)
+[node name="Node3D" type="Node3D" node_paths=PackedStringArray("toon_shape", "data_shape")]
+script = ExtResource("1_dfv00")
+is_toon = true
+toon_shape = NodePath("crate2")
+data_shape = NodePath("1by1GridItem")
+unit_size = Vector3(5, 5, 5)
+prefab = ExtResource("2_wqoj1")
+
+[node name="1by1GridItem" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
+visible = false
 material_override = ExtResource("1_uhx5o")
 use_collision = true
 size = Vector3(5, 5, 5)
-script = ExtResource("1_dfv00")
-grid_position = Vector3i(1, 0, 0)
-grid_offset = Vector3(-1.5, 0.5, 1.5)
-unit_size = Vector3(5, 5, 5)
-prefab = ExtResource("2_wpiwq")
+
+[node name="crate2" parent="." instance=ExtResource("4_kmetl")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)

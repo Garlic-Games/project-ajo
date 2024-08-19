@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://ca2o5pe2gkogc"]
+[gd_scene load_steps=11 format=3 uid="uid://ca2o5pe2gkogc"]
 
 [ext_resource type="Script" path="res://scripts/gameplay/levels/level.gd" id="1_ay0js"]
 [ext_resource type="Script" path="res://scripts/gameplay/levels/giant_grid_manager.gd" id="2_aws5r"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://d28aknjmuon0v" path="res://prefabs/gameplay/grid_items/ladder_2_by_1_grid_item.tscn" id="7_37uuo"]
 [ext_resource type="PackedScene" uid="uid://bmloi8ebayxya" path="res://prefabs/gameplay/victory_spot/victory_spot1x2.tscn" id="8_u3gwp"]
 [ext_resource type="Material" uid="uid://cgepabmgprihw" path="res://art/materials/cubes/cube_glow.tres" id="9_x0ikh"]
+[ext_resource type="Environment" uid="uid://c2ysr3uf731rp" path="res://art/backgrounds/env_virtual.tres" id="10_sslgf"]
 
 [node name="Level7" type="Node3D" node_paths=PackedStringArray("spawn_point")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -20)
@@ -17,52 +18,53 @@ spawn_point = NodePath("SpawnPoint")
 
 [node name="Grid" type="Node3D" parent="."]
 script = ExtResource("2_aws5r")
-offset = Vector3(-2, 0.5, 2)
+offset = Vector3(-2, 0, 2)
 grid_size = Vector2i(5, 5)
 cell_size = 2.0
 blocked_positions = Array[Vector2i]([Vector2i(3, 4), Vector2i(4, 3), Vector2i(3, 3)])
 
 [node name="2by1GridItem" parent="Grid" instance=ExtResource("5_wuoyk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 5, 5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, 5)
 grid_position = Vector3i(0, 0, 1)
-grid_offset = Vector3(-2, 0.5, 2)
+grid_offset = Vector3(-2, 0, 2)
 
 [node name="2by1GridItem3" parent="Grid" instance=ExtResource("5_wuoyk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 5, 5)
-grid_position = Vector3i(1, 0, 1)
-grid_offset = Vector3(-2, 0.5, 2)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 5)
+is_toon = false
+grid_position = Vector3i(4, 0, 1)
+grid_offset = Vector3(-2, 0, 2)
 
 [node name="1by1GridItem" parent="Grid" instance=ExtResource("3_pnkja")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 2.5, 10)
-grid_offset = Vector3(-2, 0.5, 2)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 10)
+grid_position = Vector3i(1, 0, 0)
+grid_offset = Vector3(-2, 0, 2)
 
 [node name="1by1GridItem2" parent="Grid" instance=ExtResource("3_pnkja")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 2.5, 10)
-grid_position = Vector3i(0, 0, 0)
-grid_offset = Vector3(-2, 0.5, 2)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, 15)
+is_toon = false
+grid_position = Vector3i(0, 0, -1)
+grid_offset = Vector3(-2, 0, 2)
 
 [node name="Fan" parent="Grid" instance=ExtResource("5_jta1c")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 1.25, -5)
-grid_offset = Vector3(-2, 0.5, 2)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, -5)
+offset = Vector3(0, 0, 0)
+grid_offset = Vector3(-2, 0, 2)
 
 [node name="BoardGridItem" parent="Grid" instance=ExtResource("4_ttb3s")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10)
 grid_position = Vector3i(2, 0, 0)
-grid_offset = Vector3(-2, 0.5, 2)
+grid_offset = Vector3(-2, 0, 2)
 
 [node name="2by1GridItem2" parent="Grid" instance=ExtResource("7_37uuo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 5, 0)
-grid_offset = Vector3(-2, 0.5, 2)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, 10)
+grid_offset = Vector3(-2, 0, 2)
 
 [node name="VictorySpot" parent="Grid" instance=ExtResource("8_u3gwp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, -10)
+is_toon = false
 grid_position = Vector3i(4, 0, 4)
-offset = Vector3(0, -0.5, 0)
-grid_offset = Vector3(-2, 0.5, 2)
+grid_offset = Vector3(-2, 0, 2)
 unit_size = Vector3(5, 5, 5)
-
-[node name="SpawnPoint" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0649633, 2.31605, 12.283)
 
 [node name="Ground2" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
@@ -74,3 +76,14 @@ use_collision = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5.00504, 0)
 size = Vector3(27.5, 1.99, 49.5)
 material = ExtResource("9_x0ikh")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource("10_sslgf")
+
+[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.779108, -0.620539, -0.0890014, 0, -0.141973, 0.989871, -0.626889, 0.771216, 0.110612, -0.00525284, 5.24748, 0.0130939)
+light_angular_distance = 90.0
+sky_mode = 1
+
+[node name="SpawnPoint" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.93504, 19.316, 12.283)

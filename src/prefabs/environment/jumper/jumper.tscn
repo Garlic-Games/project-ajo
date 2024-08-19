@@ -9,6 +9,7 @@
 transparency = 1
 blend_mode = 1
 albedo_color = Color(0.00392157, 0.12549, 1, 0.494118)
+roughness = 0.0
 emission = Color(0, 0.164706, 1, 1)
 emission_energy_multiplier = 1.45
 
@@ -23,6 +24,7 @@ size = Vector3(2.23207, 0.343, 2.21498)
 resource_name = "colormap"
 cull_mode = 2
 albedo_texture = ExtResource("2_yt3gg")
+roughness = 0.0
 texture_filter = 2
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_xuc5l"]
@@ -63,6 +65,8 @@ shadow_mesh = SubResource("ArrayMesh_xuc5l")
 resource_name = "colormap"
 cull_mode = 2
 albedo_texture = ExtResource("2_yt3gg")
+metallic_specular = 1.0
+roughness = 0.0
 texture_filter = 2
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_ogfrg"]
