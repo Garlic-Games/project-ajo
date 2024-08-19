@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://ca2o5pe2gkogc"]
+[gd_scene load_steps=12 format=3 uid="uid://ca2o5pe2gkogc"]
 
 [ext_resource type="Script" path="res://scripts/gameplay/levels/level.gd" id="1_ay0js"]
 [ext_resource type="Script" path="res://scripts/gameplay/levels/giant_grid_manager.gd" id="2_aws5r"]
@@ -10,6 +10,9 @@
 [ext_resource type="PackedScene" uid="uid://bmloi8ebayxya" path="res://prefabs/gameplay/victory_spot/victory_spot1x2.tscn" id="8_u3gwp"]
 [ext_resource type="Material" uid="uid://cgepabmgprihw" path="res://art/materials/cubes/cube_glow.tres" id="9_x0ikh"]
 [ext_resource type="Environment" uid="uid://c2ysr3uf731rp" path="res://art/backgrounds/env_virtual.tres" id="10_sslgf"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_gkuyb"]
+size = Vector3(200, 10, 200)
 
 [node name="Level9" type="Node3D" node_paths=PackedStringArray("spawn_point")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -20)
@@ -87,3 +90,10 @@ sky_mode = 1
 
 [node name="SpawnPoint" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.93504, 19.316, 12.283)
+
+[node name="VoidArea" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -150, 0)
+collision_mask = 2
+
+[node name="VoidCollider" type="CollisionShape3D" parent="VoidArea"]
+shape = SubResource("BoxShape3D_gkuyb")

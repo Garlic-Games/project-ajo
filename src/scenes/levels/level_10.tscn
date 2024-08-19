@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://b4ex878eoop0u"]
+[gd_scene load_steps=12 format=3 uid="uid://b4ex878eoop0u"]
 
 [ext_resource type="Script" path="res://scripts/gameplay/levels/level.gd" id="1_e3lm5"]
 [ext_resource type="Script" path="res://scripts/gameplay/levels/giant_grid_manager.gd" id="2_ppd3p"]
@@ -10,6 +10,9 @@
 [ext_resource type="PackedScene" uid="uid://d28aknjmuon0v" path="res://prefabs/gameplay/grid_items/ladder_2_by_1_grid_item.tscn" id="9_nxyae"]
 [ext_resource type="Material" uid="uid://cgepabmgprihw" path="res://art/materials/cubes/cube_glow.tres" id="10_5ryrf"]
 [ext_resource type="Environment" uid="uid://c2ysr3uf731rp" path="res://art/backgrounds/env_virtual.tres" id="10_np5ya"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xceus"]
+size = Vector3(200, 10, 200)
 
 [node name="Level10" type="Node3D" node_paths=PackedStringArray("spawn_point")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -20)
@@ -91,3 +94,10 @@ environment = ExtResource("10_np5ya")
 transform = Transform3D(-0.779108, -0.620539, -0.0890014, 0, -0.141973, 0.989871, -0.626889, 0.771216, 0.110612, -0.00525284, 5.24748, 0.0130939)
 light_angular_distance = 90.0
 sky_mode = 1
+
+[node name="VoidArea" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -150, 0)
+collision_mask = 2
+
+[node name="VoidCollider" type="CollisionShape3D" parent="VoidArea"]
+shape = SubResource("BoxShape3D_xceus")

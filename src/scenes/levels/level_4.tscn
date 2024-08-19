@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dsaenifftk68w"]
+[gd_scene load_steps=14 format=3 uid="uid://dsaenifftk68w"]
 
 [ext_resource type="Script" path="res://scripts/gameplay/levels/level.gd" id="1_d6vi2"]
 [ext_resource type="Script" path="res://scripts/gameplay/levels/giant_grid_manager.gd" id="2_1dqgi"]
@@ -20,6 +20,9 @@ sky_material = SubResource("PanoramaSkyMaterial_npxs5")
 background_mode = 2
 sky = SubResource("Sky_or1je")
 sky_rotation = Vector3(3.14159, 0, 0)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_iyb7e"]
+size = Vector3(200, 10, 200)
 
 [node name="Level3" type="Node3D" node_paths=PackedStringArray("spawn_point")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -20)
@@ -93,3 +96,10 @@ environment = SubResource("Environment_djiwo")
 transform = Transform3D(-0.779108, -0.620539, -0.0890014, 0, -0.141973, 0.989871, -0.626889, 0.771216, 0.110612, -0.00525284, 5.24748, 0.0130939)
 light_angular_distance = 90.0
 sky_mode = 1
+
+[node name="VoidArea" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -150, 0)
+collision_mask = 2
+
+[node name="VoidCollider" type="CollisionShape3D" parent="VoidArea"]
+shape = SubResource("BoxShape3D_iyb7e")

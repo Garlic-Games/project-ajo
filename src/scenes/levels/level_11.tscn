@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dwqluvw4xhonu"]
+[gd_scene load_steps=11 format=3 uid="uid://dwqluvw4xhonu"]
 
 [ext_resource type="Script" path="res://scripts/gameplay/levels/level.gd" id="1_hrd16"]
 [ext_resource type="Script" path="res://scripts/gameplay/levels/giant_grid_manager.gd" id="2_hvnm7"]
@@ -9,6 +9,9 @@
 [ext_resource type="PackedScene" uid="uid://b7ttitq0bbrxj" path="res://prefabs/gameplay/grid_items/fan_grid_item.tscn" id="8_n2l8a"]
 [ext_resource type="PackedScene" uid="uid://untq4yp2wlic" path="res://prefabs/gameplay/victory_spot/victory_spot1x1.tscn" id="8_u2vcn"]
 [ext_resource type="Environment" uid="uid://c2ysr3uf731rp" path="res://art/backgrounds/env_virtual.tres" id="10_bxodc"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_mbg4g"]
+size = Vector3(200, 10, 200)
 
 [node name="Level11" type="Node3D" node_paths=PackedStringArray("spawn_point")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -20)
@@ -132,3 +135,10 @@ use_collision = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.25, -5.00504, 17.8235)
 size = Vector3(38, 2, 15)
 material = ExtResource("4_3hu2x")
+
+[node name="VoidArea" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -150, 0)
+collision_mask = 2
+
+[node name="VoidCollider" type="CollisionShape3D" parent="VoidArea"]
+shape = SubResource("BoxShape3D_mbg4g")
