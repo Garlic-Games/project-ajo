@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://dkwr5uy86j7l3"]
 
 [ext_resource type="Script" path="res://scripts/gameplay/levels/level_manager.gd" id="1_6xe84"]
-[ext_resource type="PackedScene" uid="uid://cr6b74d4fygcy" path="res://prefabs/gameplay/player/player.tscn" id="1_eb2hb"]
+[ext_resource type="PackedScene" uid="uid://cr6b74d4fygcy" path="res://art/backgrounds/player.tscn" id="1_eb2hb"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_154dv"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)

@@ -1,0 +1,54 @@
+[gd_scene load_steps=8 format=3 uid="uid://c650u6cb1h6ot"]
+
+[ext_resource type="Script" path="res://scripts/gameplay/state/plot_twist_trigger.gd" id="1_1namw"]
+[ext_resource type="PackedScene" uid="uid://y12idskl2w16" path="res://prefabs/board/items/Item1x1.tscn" id="2_pwmwj"]
+[ext_resource type="Material" uid="uid://cgepabmgprihw" path="res://art/materials/cubes/cube_glow.tres" id="4_cwqqm"]
+[ext_resource type="PackedScene" uid="uid://bkjo61woy7krt" path="res://art/models/kenney_platformer-kit/crate-item.glb" id="5_sitxs"]
+[ext_resource type="PackedScene" uid="uid://2x8c7poherji" path="res://art/models/kenney_platformer-kit/coin-gold.glb" id="6_68pkg"]
+[ext_resource type="PackedScene" uid="uid://dk6b05sx5dyk3" path="res://art/models/kenney_platformer-kit/crate-item-strong.glb" id="6_ndyos"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yshpk"]
+size = Vector3(5, 5, 5)
+
+[node name="PlotTwist" type="Area3D" node_paths=PackedStringArray("toon_shape", "data_shape")]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_1namw")
+toon_shape = NodePath("Node3D")
+data_shape = NodePath("CSGBox3D")
+is_inmovible = true
+can_construct_over = false
+prefab = ExtResource("2_pwmwj")
+
+[node name="VictoryRange" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 27.5, 0)
+shape = SubResource("BoxShape3D_yshpk")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 12.5, 0)
+visible = false
+material_override = ExtResource("4_cwqqm")
+use_collision = true
+size = Vector3(5, 25, 5)
+
+[node name="Node3D" type="Node3D" parent="."]
+
+[node name="crate-item2" parent="Node3D" instance=ExtResource("5_sitxs")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 5.5, 0)
+
+[node name="crate-item3" parent="Node3D" instance=ExtResource("5_sitxs")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 15.5, 0)
+
+[node name="crate-item-strong2" parent="Node3D" instance=ExtResource("6_ndyos")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
+
+[node name="crate-item-strong4" parent="Node3D" instance=ExtResource("6_ndyos")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 20, 0)
+
+[node name="crate-item-strong3" parent="Node3D" instance=ExtResource("6_ndyos")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 10, 0)
+
+[node name="coin-gold2" parent="." instance=ExtResource("6_68pkg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 26, 0)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

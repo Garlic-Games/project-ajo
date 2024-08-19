@@ -1,8 +1,9 @@
 @tool
-class_name PlotTwistTrigger
+class_name VictoryGridItem
 extends GridItem
+@onready var coin_gold_2: Node3D = $"coin-gold2"
 
-signal plot_twist;
+signal victory;
 var player: Player;
 var used: bool = false;
 
@@ -15,5 +16,8 @@ func _on_body_exited(_body: Node3D) -> void:
 func _input(event: InputEvent) -> void:
 	if event.is_action_released("interact"):
 		if player and not used:
+			player.quick_glitch(0.2)
 			used = true;
-			plot_twist.emit();
+			is_toon = false;
+			coin_gold_2.hide();
+			victory.emit();
