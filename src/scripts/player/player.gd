@@ -104,8 +104,8 @@ func _input(event):
 		camera.rotate_x(-event.relative.y * mouse_sensitivity / 100);
 		camera.rotation.x = clampf(camera.rotation.x, -deg_to_rad(70), deg_to_rad(70));
 
-func set_wind_velocity(wind_velocity: Vector3):
-	self.wind_velocity = wind_velocity;
+func set_wind_velocity(_wind_velocity: Vector3):
+	self.wind_velocity = _wind_velocity;
 	self.is_leaving_wind_area = true;
 
 func set_jump_velocity(jumper_velocity: float):

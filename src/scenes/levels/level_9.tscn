@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://ca2o5pe2gkogc"]
+[gd_scene load_steps=12 format=3 uid="uid://ca2o5pe2gkogc"]
 
 [ext_resource type="Script" path="res://scripts/gameplay/levels/level.gd" id="1_ay0js"]
 [ext_resource type="Script" path="res://scripts/gameplay/levels/giant_grid_manager.gd" id="2_aws5r"]
@@ -10,6 +10,9 @@
 [ext_resource type="PackedScene" uid="uid://bmloi8ebayxya" path="res://prefabs/gameplay/victory_spot/victory_spot1x2.tscn" id="8_u3gwp"]
 [ext_resource type="Material" uid="uid://cgepabmgprihw" path="res://art/materials/cubes/cube_glow.tres" id="9_x0ikh"]
 [ext_resource type="Environment" uid="uid://c2ysr3uf731rp" path="res://art/backgrounds/env_virtual.tres" id="10_sslgf"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_gkuyb"]
+size = Vector3(200, 10, 200)
 
 [node name="Level9" type="Node3D" node_paths=PackedStringArray("spawn_point")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -20)
@@ -40,9 +43,9 @@ grid_position = Vector3i(1, 0, 0)
 grid_offset = Vector3(-2, 0, 2)
 
 [node name="1by1GridItem2" parent="Grid" instance=ExtResource("3_pnkja")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, 15)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 10)
 is_toon = false
-grid_position = Vector3i(0, 0, -1)
+grid_position = Vector3i(4, 0, 0)
 grid_offset = Vector3(-2, 0, 2)
 
 [node name="Fan" parent="Grid" instance=ExtResource("5_jta1c")]
@@ -81,9 +84,16 @@ material = ExtResource("9_x0ikh")
 environment = ExtResource("10_sslgf")
 
 [node name="DirectionalLight3D2" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.779108, -0.620539, -0.0890014, 0, -0.141973, 0.989871, -0.626889, 0.771216, 0.110612, -0.00525284, 5.24748, 0.0130939)
+transform = Transform3D(-0.74261, -0.634414, 0.21459, 0.000654384, 0.319728, 0.947509, -0.669724, 0.70377, -0.237018, -0.00525284, 5.24748, 0.0130939)
+light_color = Color(0.449323, 0.698095, 0.510883, 1)
 light_angular_distance = 90.0
-sky_mode = 1
 
 [node name="SpawnPoint" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.93504, 19.316, 12.283)
+
+[node name="VoidArea" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -150, 0)
+collision_mask = 2
+
+[node name="VoidCollider" type="CollisionShape3D" parent="VoidArea"]
+shape = SubResource("BoxShape3D_gkuyb")
