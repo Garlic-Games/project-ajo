@@ -1,5 +1,5 @@
 extends Node
-@onready var plot_twist: VictoryGridItem = $"../Grid/PlotTwist"
+@onready var plot_twist: PlotTwistTrigger = $"../Grid/PlotTwist"
 const ENV_VIRTUAL = preload("res://art/backgrounds/env_virtual.tres")
 @onready var world_environment: WorldEnvironment = $"../WorldEnvironment"
 @onready var grid: GiantGridManager = $"../Grid"
