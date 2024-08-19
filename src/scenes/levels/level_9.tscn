@@ -11,7 +11,7 @@
 [ext_resource type="Material" uid="uid://cgepabmgprihw" path="res://art/materials/cubes/cube_glow.tres" id="9_x0ikh"]
 [ext_resource type="Environment" uid="uid://c2ysr3uf731rp" path="res://art/backgrounds/env_virtual.tres" id="10_sslgf"]
 
-[node name="Level7" type="Node3D" node_paths=PackedStringArray("spawn_point")]
+[node name="Level9" type="Node3D" node_paths=PackedStringArray("spawn_point")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -20)
 script = ExtResource("1_ay0js")
 spawn_point = NodePath("SpawnPoint")
