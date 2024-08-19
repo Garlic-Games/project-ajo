@@ -119,6 +119,7 @@ func set_climbing_mode(active: bool):
 
 func handle_interact(active: bool):
 	_is_editing_scenario = active;
+	hud.editingBoard = active;
 
 func _walkFeedBack():
 	#TODO: Particles on floor?
@@ -151,7 +152,7 @@ func stop_glitch():
 	glitch.material.set_shader_parameter("doeet", false);
 
 func notifyEnteredTableZone(entered: bool): 
-	hud.setTableLvisibility(entered);
+	hud.inTableArea = entered;
 	
 func notifyEnteredLvlEndZone(entered: bool): 
-	hud.setEndLevelVisibility(entered);
+	hud.inEndArea = entered;
