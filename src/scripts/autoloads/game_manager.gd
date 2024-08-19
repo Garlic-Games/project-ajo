@@ -10,6 +10,7 @@ const LEVEL_7 = preload("res://scenes/levels/level_7.tscn")
 const LEVEL_8 = preload("res://scenes/levels/level_8.tscn")
 const LEVEL_9 = preload("res://scenes/levels/level_9.tscn")
 const LEVEL_10 = preload("res://scenes/levels/level_10.tscn")
+const LEVEL_11 = preload("res://scenes/levels/level_11.tscn")
 
 var levels: Array[PackedScene] = [
 	LEVEL_1,
@@ -22,6 +23,7 @@ var levels: Array[PackedScene] = [
 	LEVEL_8,
 	LEVEL_9,
 	LEVEL_10,
+	LEVEL_11
 ];
 
 var current_level: int = 0;

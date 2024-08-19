@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cfu78l07ipmbs" path="res://art/models/kenney_platformer-kit/crate-strong.glb" id="3_1wdnu"]
 [ext_resource type="PackedScene" uid="uid://b4cg3iqhg4mqo" path="res://prefabs/environment/ladder/ladderx2.tscn" id="3_5wdmo"]
 
-[node name="GridItem" type="Node3D" node_paths=PackedStringArray("toon_shape", "data_shape")]
+[node name="Scalable" type="Node3D" node_paths=PackedStringArray("toon_shape", "data_shape")]
 script = ExtResource("1_27vkh")
 toon_shape = NodePath("crate-strong2")
 data_shape = NodePath("2by1GridItem")
