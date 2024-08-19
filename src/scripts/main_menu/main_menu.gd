@@ -19,4 +19,4 @@ func open_credits() -> void:
 	credits.open();
 
 func close_game() -> void:
-	get_tree().quit();
+	GameManager.exit_game();

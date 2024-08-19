@@ -52,7 +52,7 @@ func recapture_mouse() -> void:
 
 func choose_exit_game(choice: bool) -> void:
 	if choice:
-		get_tree().quit();
+		GameManager.exit_game();
 	else:
 		exit_game_confirm_menu.close();
 

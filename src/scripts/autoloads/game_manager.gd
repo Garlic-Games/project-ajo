@@ -36,3 +36,10 @@ func next_level():
 		return false;
 
 	return true;
+
+func exit_game():
+	if OS.has_feature("web"):
+		var js_history = JavaScriptBridge.get_interface("history");
+		js_history.back();
+	else:
+		get_tree().quit();
