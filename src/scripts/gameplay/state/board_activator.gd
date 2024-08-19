@@ -31,7 +31,7 @@ func _input(event: InputEvent) -> void:
 			if edit_mode:
 				player.handle_interact(edit_mode);
 
-				Input.mouse_mode = Input.MOUSE_MODE_CONFINED;
+				Input.mouse_mode = Input.MOUSE_MODE_VISIBLE;
 				target_camera_transform = board.boardCamera.global_transform;
 				transition_camera.global_transform = player.camera.global_transform;
 			else:

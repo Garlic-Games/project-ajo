@@ -16,7 +16,7 @@ func _unpause_game():
 
 
 func _pause_game():
-	Input.mouse_mode = Input.MOUSE_MODE_CONFINED;
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE;
 	get_tree().paused = true
 
 
