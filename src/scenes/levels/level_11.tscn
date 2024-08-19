@@ -26,6 +26,7 @@ environment = ExtResource("10_bxodc")
 
 [node name="DirectionalLight3D2" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.779108, -0.620539, -0.0890014, 0, -0.141973, 0.989871, -0.626889, 0.771216, 0.110612, -0.00525284, 5.24748, 0.0130939)
+light_color = Color(0.449323, 0.698095, 0.510883, 1)
 light_angular_distance = 90.0
 sky_mode = 1
 
