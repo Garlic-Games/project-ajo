@@ -10,6 +10,7 @@ func _ready():
 	assert(gameplay_scene != "", "A gameplay scene resource must be provided to main menu")
 
 func start_game() -> void:
+	GameManager.current_level = 0;
 	SceneLoader.load_scene(gameplay_scene);
 	
 func continue_game() -> void:

@@ -31,12 +31,13 @@ var max_level_reached: int;
 
 func next_level():
 	current_level += 1;
-	save_game();
 	if current_level > max_level_reached:
 		max_level_reached = current_level;
 
 	if levels.size() <= current_level:
 		return false;
+	else:
+		save_game(current_level);
 
 	return true;
 
@@ -47,9 +48,9 @@ func exit_game():
 	else:
 		get_tree().quit();
 
-func save_game():
+func save_game(level: int):
 	var save_file = FileAccess.open("user://savegame.save", FileAccess.WRITE);
-	var node_data = {"level": current_level};
+	var node_data = {"level": level};
 	save_file.store_line(JSON.stringify(node_data))
 	
 func load_game():

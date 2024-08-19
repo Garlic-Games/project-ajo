@@ -38,14 +38,9 @@ func _ready() -> void:
 	meshInstance = meshScene.get_children()[0];
 	arrowInstance = arrowResource.instantiate();
 	add_child(arrowInstance);
-	var offsetX = 0;
-	var offsetY = 0;
-	if sizeX > 1:
-		offsetX = -0.5;
-	if sizeY > 1:
-		offsetY = -0.5;
-	arrowInstance.position.x = sizeX/2.0 + offsetX;
-	arrowInstance.position.z = sizeY/2.0 + offsetY;
+
+	arrowInstance.position.x = sizeX -1;
+	arrowInstance.position.z = sizeY -1;
 	arrowInstance.position.y = sizeZ + 0.25;
 	arrowInstance.visible = false;
 	meshInstance.material_override = BoardItemResource.getMaterial(color, BoardItemResource.MaterialType.NORMAL);
