@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://cb8bb87x2obla"]
+
+[resource]
+resource_name = "colormap"
+cull_mode = 2
+albedo_color = Color(0.639216, 0.623529, 0.423529, 1)
+uv1_offset = Vector3(3.245, -1.02, 0)
+uv1_triplanar_sharpness = 0.0213444
+texture_filter = 2

@@ -1,25 +1,60 @@
-[gd_resource type="MeshLibrary" load_steps=4 format=3 uid="uid://t7oyqw8f63nh"]
+[gd_resource type="MeshLibrary" load_steps=9 format=3 uid="uid://t7oyqw8f63nh"]
 
 [ext_resource type="ArrayMesh" uid="uid://ckq4ofal6raqc" path="res://prefabs/mesh_libraries/menu_loop/plate1x1-green.tres" id="1_6eogg"]
 [ext_resource type="ArrayMesh" uid="uid://bb8eq2vn7mjch" path="res://prefabs/mesh_libraries/menu_loop/brick1x1-green.tres" id="2_xlghy"]
 [ext_resource type="ArrayMesh" uid="uid://dxyhfkhl7es4i" path="res://prefabs/mesh_libraries/menu_loop/brick1x1-orange.tres" id="3_jy84h"]
+[ext_resource type="ArrayMesh" uid="uid://codi3gi1el548" path="res://prefabs/mesh_libraries/menu_loop/plate1x1-biege.tres" id="4_tcr02"]
+[ext_resource type="ArrayMesh" uid="uid://n0xrvv8nvchw" path="res://prefabs/mesh_libraries/menu_loop/plate1x1-blue.tres" id="5_ctng8"]
+[ext_resource type="ArrayMesh" uid="uid://p01580cvlydh" path="res://prefabs/mesh_libraries/menu_loop/brick1x1-biege.tres" id="6_13svf"]
+[ext_resource type="ArrayMesh" uid="uid://bkf0gie48gano" path="res://prefabs/mesh_libraries/menu_loop/brick1x1-blue.tres" id="7_84ill"]
+[ext_resource type="ArrayMesh" uid="uid://bfb60rifcpj46" path="res://prefabs/mesh_libraries/menu_loop/brick1x1-brown.tres" id="8_nkf2v"]
 
 [resource]
-item/0/name = ""
+item/0/name = "slab-green"
 item/0/mesh = ExtResource("1_6eogg")
-item/0/mesh_transform = Transform3D(25.24, 0, 0, 0, 25.24, 0, 0, 0, 25.24, 0, 1.175, 0)
+item/0/mesh_transform = Transform3D(25.24, 0, 0, 0, 7.263, 0, 0, 0, 25.24, 0, 1.77, 0)
 item/0/shapes = []
 item/0/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/0/navigation_layers = 1
-item/1/name = ""
+item/1/name = "birck-gren"
 item/1/mesh = ExtResource("2_xlghy")
-item/1/mesh_transform = Transform3D(25.24, 0, 0, 0, 25.24, 0, 0, 0, 25.24, 0, 0, 0)
+item/1/mesh_transform = Transform3D(25.24, 0, 0, 0, 20.755, 0, 0, 0, 25.24, 0, 0, 0)
 item/1/shapes = []
 item/1/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/1/navigation_layers = 1
-item/2/name = ""
+item/2/name = "brick-orange"
 item/2/mesh = ExtResource("3_jy84h")
-item/2/mesh_transform = Transform3D(25.24, 0, 0, 0, 25.24, 0, 0, 0, 25.24, 0, 0, 0)
+item/2/mesh_transform = Transform3D(25.24, 0, 0, 0, 20.755, 0, 0, 0, 25.24, 0, 0, 0)
 item/2/shapes = []
 item/2/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/2/navigation_layers = 1
+item/3/name = "slab-biege"
+item/3/mesh = ExtResource("4_tcr02")
+item/3/mesh_transform = Transform3D(25.24, 0, 0, 0, 7.263, 0, 0, 0, 25.24, 0, 1.77, 0)
+item/3/shapes = []
+item/3/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/3/navigation_layers = 1
+item/4/name = "slab-blue"
+item/4/mesh = ExtResource("5_ctng8")
+item/4/mesh_transform = Transform3D(25.24, 0, 0, 0, 7.263, 0, 0, 0, 25.24, 0, 1.77, 0)
+item/4/shapes = []
+item/4/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/4/navigation_layers = 1
+item/5/name = "birck-biege"
+item/5/mesh = ExtResource("6_13svf")
+item/5/mesh_transform = Transform3D(25.24, 0, 0, 0, 20.755, 0, 0, 0, 25.24, 0, 0, 0)
+item/5/shapes = []
+item/5/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/5/navigation_layers = 1
+item/6/name = "brick-blue"
+item/6/mesh = ExtResource("7_84ill")
+item/6/mesh_transform = Transform3D(25.24, 0, 0, 0, 20.755, 0, 0, 0, 25.24, 0, 0, 0)
+item/6/shapes = []
+item/6/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/6/navigation_layers = 1
+item/7/name = "brick-brown"
+item/7/mesh = ExtResource("8_nkf2v")
+item/7/mesh_transform = Transform3D(25.24, 0, 0, 0, 20.755, 0, 0, 0, 25.24, 0, 0, 0)
+item/7/shapes = []
+item/7/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/7/navigation_layers = 1
