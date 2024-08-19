@@ -62,6 +62,8 @@ func setItem(item: BoardItem, positionX, positionY):
 	item.position.x = positionX;
 	item.position.z = positionY;
 	item.position.y = tileOffsetY;
+	item.coordX = positionX;
+	item.coordY = positionY;
 	#var callable = func():  self.onItemPickedUp(item);
 	#item.connectPickupJustOnce(callable);
 
