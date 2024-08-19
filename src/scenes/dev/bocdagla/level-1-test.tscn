@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://dbddthaq6y1x8"]
 
 [ext_resource type="Script" path="res://scripts/gameplay/levels/level_manager.gd" id="1_t7h8u"]
-[ext_resource type="PackedScene" uid="uid://cr6b74d4fygcy" path="res://prefabs/gameplay/player/player.tscn" id="2_tqfn8"]
+[ext_resource type="PackedScene" uid="uid://cr6b74d4fygcy" path="res://art/backgrounds/player.tscn" id="2_tqfn8"]
 [ext_resource type="Script" path="res://scripts/gameplay/levels/level_spawner.gd" id="5_2r7yw"]
 
 [node name="Level-1-test" type="Node3D" node_paths=PackedStringArray("spawners", "player")]

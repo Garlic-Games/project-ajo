@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://dgybognntfby0" path="res://prefabs/board/board.tscn" id="1_3fuwi"]
 [ext_resource type="Script" path="res://scripts/scenes/dev/guillem.gd" id="1_bwlpy"]
-[ext_resource type="PackedScene" uid="uid://cr6b74d4fygcy" path="res://prefabs/gameplay/player/player.tscn" id="2_jgbfq"]
+[ext_resource type="PackedScene" uid="uid://cr6b74d4fygcy" path="res://art/backgrounds/player.tscn" id="2_jgbfq"]
 
 [sub_resource type="Environment" id="Environment_w4nfk"]
 
