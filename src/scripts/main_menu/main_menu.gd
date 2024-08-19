@@ -6,6 +6,7 @@ extends CanvasLayer;
 @export_file("*.tscn") var gameplay_scene: String;
 
 func _ready():
+	Input.mouse_mode = Input.MOUSE_MODE_CONFINED;
 	assert(gameplay_scene != "", "A gameplay scene resource must be provided to main menu")
 
 func start_game() -> void:
