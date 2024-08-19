@@ -1,12 +1,14 @@
-[gd_scene load_steps=11 format=3 uid="uid://c0kysbw474wqn"]
+[gd_scene load_steps=13 format=3 uid="uid://c0kysbw474wqn"]
 
 [ext_resource type="Script" path="res://scripts/main_menu/main_menu.gd" id="1_7w5a6"]
 [ext_resource type="PackedScene" uid="uid://c64ftsbvvugjk" path="res://scenes/menu_loop_scene.tscn" id="2_edvs8"]
 [ext_resource type="PackedScene" uid="uid://bms34wbd0mko4" path="res://prefabs/menu/settings_menu.tscn" id="2_eli5e"]
 [ext_resource type="PackedScene" uid="uid://crxdwuvlnrsuk" path="res://prefabs/menu/credits.tscn" id="3_juipk"]
 [ext_resource type="Theme" uid="uid://dajx1ty4mxj6b" path="res://art/themes/default.tres" id="3_uay8a"]
+[ext_resource type="StyleBox" uid="uid://behflbpklds4e" path="res://art/themes/button_hover_plus-margin.tres" id="4_8eey1"]
 [ext_resource type="PackedScene" uid="uid://dk0dddmpl201" path="res://prefabs/stream_utilities/button_group_sound_when_signal.tscn" id="4_nwlex"]
 [ext_resource type="AudioStream" uid="uid://f74ccem6sel8" path="res://art/music/chosic/dark-knight.mp3" id="5_c2x2x"]
+[ext_resource type="StyleBox" uid="uid://cvfx46m08b1l4" path="res://art/themes/button_pressed_plus-margin.tres" id="5_tk4bu"]
 [ext_resource type="PackedScene" uid="uid://dcxkowmduxb5y" path="res://prefabs/menu/loading_panel.tscn" id="7_y4405"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xllwh"]
@@ -51,7 +53,8 @@ theme_override_styles/panel = SubResource("StyleBoxEmpty_kdk2e")
 
 [node name="MainMargin" type="MarginContainer" parent="MainContainer"]
 layout_mode = 2
-theme_override_constants/margin_left = 10
+size_flags_horizontal = 0
+theme_override_constants/margin_left = 60
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
@@ -63,32 +66,51 @@ layout_mode = 2
 layout_mode = 2
 theme = ExtResource("3_uay8a")
 theme_type_variation = &"HeaderLarge"
-theme_override_font_sizes/font_size = 75
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 90
 text = "
 UNBRICKE'D"
-horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
 
 [node name="Spacer" type="Control" parent="MainContainer/MainMargin/Buttons"]
 layout_mode = 2
-size_flags_vertical = 3
+size_flags_vertical = 4
 
-[node name="Play" type="Button" parent="MainContainer/MainMargin/Buttons" groups=["MenuButtons"]]
+[node name="ContinueGame" type="Button" parent="MainContainer/MainMargin/Buttons" groups=["MenuButtons"]]
 layout_mode = 2
-text = "Play"
+theme_override_styles/hover = ExtResource("4_8eey1")
+theme_override_styles/pressed = ExtResource("5_tk4bu")
+text = "CONTINUE GAME"
+alignment = 0
+
+[node name="NewGame" type="Button" parent="MainContainer/MainMargin/Buttons" groups=["MenuButtons"]]
+layout_mode = 2
+theme_override_styles/hover = ExtResource("4_8eey1")
+theme_override_styles/pressed = ExtResource("5_tk4bu")
+text = "NEW GAME"
+alignment = 0
 
 [node name="Settings" type="Button" parent="MainContainer/MainMargin/Buttons" groups=["MenuButtons"]]
 layout_mode = 2
-text = "Settings"
+theme_override_styles/hover = ExtResource("4_8eey1")
+theme_override_styles/pressed = ExtResource("5_tk4bu")
+text = "OPTIONS"
+alignment = 0
 
 [node name="Credits" type="Button" parent="MainContainer/MainMargin/Buttons" groups=["MenuButtons"]]
 layout_mode = 2
+theme_override_styles/hover = ExtResource("4_8eey1")
+theme_override_styles/pressed = ExtResource("5_tk4bu")
 text = "Credits"
+alignment = 0
 
 [node name="Exit" type="Button" parent="MainContainer/MainMargin/Buttons" groups=["MenuButtons"]]
 layout_mode = 2
+theme_override_styles/hover = ExtResource("4_8eey1")
+theme_override_styles/pressed = ExtResource("5_tk4bu")
 text = "Exit"
+alignment = 0
 
 [node name="Credits" parent="." instance=ExtResource("3_juipk")]
 unique_name_in_owner = true
@@ -114,7 +136,8 @@ signal_name = "mouse_entered"
 unique_name_in_owner = true
 visible = false
 
-[connection signal="pressed" from="MainContainer/MainMargin/Buttons/Play" to="." method="start_game"]
+[connection signal="pressed" from="MainContainer/MainMargin/Buttons/ContinueGame" to="." method="start_game"]
+[connection signal="pressed" from="MainContainer/MainMargin/Buttons/NewGame" to="." method="start_game"]
 [connection signal="pressed" from="MainContainer/MainMargin/Buttons/Settings" to="." method="open_settings"]
 [connection signal="pressed" from="MainContainer/MainMargin/Buttons/Credits" to="." method="open_credits"]
 [connection signal="pressed" from="MainContainer/MainMargin/Buttons/Exit" to="." method="close_game"]
