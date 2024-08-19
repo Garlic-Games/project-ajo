@@ -26,7 +26,7 @@ var levels: Array[PackedScene] = [
 	LEVEL_11
 ];
 
-var current_level: int = 0;
+var current_level: int = 10;
 var max_level_reached: int;
 
 func next_level():

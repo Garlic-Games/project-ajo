@@ -6,8 +6,9 @@
 
 [node name="Level-1-test" type="Node3D" node_paths=PackedStringArray("spawners", "player")]
 script = ExtResource("1_t7h8u")
-spawners = [NodePath("Level1SpawnPoint"), NodePath("Level2SpawnPoint2"), NodePath("Level3SpawnPoint3"), NodePath("Level3SpawnPoint4"), NodePath("Level3SpawnPoint5"), NodePath("Level3SpawnPoint6"), NodePath("Level3SpawnPoint7"), NodePath("Level3SpawnPoint8"), NodePath("Level3SpawnPoint8"), NodePath("Level3SpawnPoint9"), NodePath("Level3SpawnPoint10"), NodePath("Level3SpawnPoint11")]
+spawners = [NodePath("Level1SpawnPoint"), NodePath("Level2SpawnPoint2"), NodePath("Level3SpawnPoint3"), NodePath("Level3SpawnPoint4"), NodePath("Level3SpawnPoint5"), NodePath("Level3SpawnPoint6"), NodePath("Level3SpawnPoint7"), NodePath("Level3SpawnPoint8"), NodePath("Level3SpawnPoint9"), NodePath("Level3SpawnPoint10"), NodePath("Level3SpawnPoint11")]
 player = NodePath("Player")
+endgame_scene = "res://scenes/endgame/endgame.tscn"
 
 [node name="Player" parent="." instance=ExtResource("2_tqfn8")]
 unique_name_in_owner = true

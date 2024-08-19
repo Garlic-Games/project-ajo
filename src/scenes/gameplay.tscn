@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://cohpydgbvkuna"]
+[gd_scene load_steps=6 format=3 uid="uid://cohpydgbvkuna"]
 
 [ext_resource type="PackedScene" uid="uid://bdh0gh5dw180o" path="res://prefabs/pause/pause_menu.tscn" id="1_khjpo"]
 [ext_resource type="Script" path="res://scripts/input/meta_gameplay_input.gd" id="2_leaqq"]
 [ext_resource type="PackedScene" uid="uid://dk0dddmpl201" path="res://prefabs/stream_utilities/button_group_sound_when_signal.tscn" id="3_a7qdk"]
 [ext_resource type="PackedScene" uid="uid://dbddthaq6y1x8" path="res://scenes/dev/bocdagla/level-1-test.tscn" id="4_4nf2a"]
+[ext_resource type="PackedScene" uid="uid://dcxkowmduxb5y" path="res://prefabs/menu/loading_panel.tscn" id="5_w55g0"]
 
 [node name="Gameplay" type="Node3D"]
 
@@ -22,3 +23,6 @@ button_group_name = "MenuButtons"
 signal_name = "mouse_entered"
 
 [node name="Level-1-test" parent="." instance=ExtResource("4_4nf2a")]
+
+[node name="LoadingPanel" parent="." instance=ExtResource("5_w55g0")]
+unique_name_in_owner = true

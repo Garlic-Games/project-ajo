@@ -2,6 +2,7 @@ extends Node3D
 
 @export var spawners: Array[LevelSpawner];
 @export var player: Player;
+@export_file("*.tscn") var endgame_scene: String;
 @onready var endgame_layer: CanvasLayer = $EndgameLayer
 
 func _ready() -> void:
@@ -14,7 +15,7 @@ func _ready() -> void:
 
 func _next_level(curr_level_index: int):
 	if not GameManager.next_level():
-		endgame_layer.show();
+		SceneLoader.load_scene(endgame_scene)
 		return;
 
 	spawners[GameManager.current_level].instantiate_level();

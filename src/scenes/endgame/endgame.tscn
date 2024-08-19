@@ -1,16 +1,31 @@
-[gd_scene load_steps=13 format=4 uid="uid://b8k2ylk55snfd"]
+[gd_scene load_steps=17 format=4 uid="uid://b8k2ylk55snfd"]
 
 [ext_resource type="PackedScene" uid="uid://c6m66r5vllrb1" path="res://prefabs/entities/cool_garlic.tscn" id="1_ixh83"]
 [ext_resource type="Script" path="res://scripts/gameplay/endgame/endgame.gd" id="1_uhj7v"]
 [ext_resource type="Script" path="res://scripts/player/player.gd" id="1_yk65c"]
 [ext_resource type="Theme" uid="uid://dajx1ty4mxj6b" path="res://art/themes/default.tres" id="4_4h1gl"]
 [ext_resource type="PackedScene" uid="uid://bc5oo47djpux4" path="res://prefabs/environment/blocks/falling_blocks.tscn" id="5_cpmtf"]
+[ext_resource type="Shader" path="res://art/shaders/glitch.gdshader" id="5_j3dbc"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_yqlhc"]
 height = 57.208
 radius = 32.9934
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_fwhfg"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_l3qjx"]
+shader = ExtResource("5_j3dbc")
+shader_parameter/shake_power = 0.03
+shader_parameter/shake_rate = 0.2
+shader_parameter/shake_speed = 5.0
+shader_parameter/shake_block_size = 30.5
+shader_parameter/shake_color_rate = 0.01
+shader_parameter/doeet = false
+
+[sub_resource type="Gradient" id="Gradient_yust8"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_22jsg"]
+gradient = SubResource("Gradient_yust8")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0des8"]
 albedo_color = Color(0.647059, 0.239216, 0.764706, 1)
@@ -64,6 +79,28 @@ current = true
 
 [node name="FallingBlocks" parent="Player" instance=ExtResource("5_cpmtf")]
 transform = Transform3D(-8.79902e-08, 0, 2.01298, 0, 2.01298, 0, -2.01298, 0, -8.79902e-08, 0, 61.764, 0)
+
+[node name="PlayerUI" type="CanvasLayer" parent="Player"]
+
+[node name="Control" type="Control" parent="Player/PlayerUI"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Glitch" type="TextureRect" parent="Player/PlayerUI/Control"]
+material = SubResource("ShaderMaterial_l3qjx")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = SubResource("GradientTexture2D_22jsg")
 
 [node name="Scenario" type="Node3D" parent="."]
 

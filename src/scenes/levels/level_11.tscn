@@ -15,118 +15,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -20)
 script = ExtResource("1_hrd16")
 spawn_point = NodePath("SpawnPoint")
 
-[node name="StartZone" type="Node3D" parent="."]
-
-[node name="Grid_start" type="Node3D" parent="StartZone"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 11)
-script = ExtResource("2_hvnm7")
-offset = Vector3(-2, 0, 2)
-grid_size = Vector2i(5, 6)
-cell_size = 2.0
-blocked_positions = Array[Vector2i]([Vector2i(4, 0), Vector2i(4, 1), Vector2i(4, 2), Vector2i(4, 3), Vector2i(4, 4), Vector2i(4, 5), Vector2i(3, 0), Vector2i(3, 1), Vector2i(3, 2), Vector2i(3, 3), Vector2i(3, 4), Vector2i(3, 5)])
-
-[node name="BoardGridItem" parent="StartZone/Grid_start" instance=ExtResource("4_cclgr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 0)
-grid_position = Vector3i(3, 0, 2)
-grid_offset = Vector3(-2, 0, 2)
-
-[node name="Fan" parent="StartZone/Grid_start" instance=ExtResource("8_n2l8a")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 1.25, 10)
-grid_position = Vector3i(1, 0, 0)
-grid_offset = Vector3(-2, 0, 2)
-
-[node name="Jumper" parent="StartZone/Grid_start" instance=ExtResource("6_cuind")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 10)
-grid_position = Vector3i(4, 0, 0)
-grid_offset = Vector3(-2, 0, 2)
-
-[node name="Node3D" parent="StartZone/Grid_start" instance=ExtResource("3_7ukg6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, 10)
-grid_offset = Vector3(-2, 0, 2)
-
-[node name="Node3D2" parent="StartZone/Grid_start" instance=ExtResource("3_7ukg6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 10)
-is_toon = false
-grid_position = Vector3i(3, 0, 0)
-grid_offset = Vector3(-2, 0, 2)
-
-[node name="Ground2" type="Node3D" parent="StartZone"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
-
-[node name="CSGCombiner3D" type="CSGCombiner3D" parent="StartZone/Ground2"]
-use_collision = true
-
-[node name="CSGBox3D" type="CSGBox3D" parent="StartZone/Ground2/CSGCombiner3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.25, -5.00504, 8.82349)
-size = Vector3(38, 2, 33)
-material = ExtResource("4_3hu2x")
-
-[node name="MidZone" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9, -33)
-
-[node name="Grid_mid" type="Node3D" parent="MidZone"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 11)
-script = ExtResource("2_hvnm7")
-offset = Vector3(-2, 0, 2)
-grid_size = Vector2i(12, 9)
-cell_size = 2.0
-
-[node name="BoardGridItem" parent="MidZone/Grid_mid" instance=ExtResource("4_cclgr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 10)
-grid_position = Vector3i(3, 0, 0)
-grid_offset = Vector3(-2, 0, 2)
-
-[node name="Node3D3" parent="MidZone/Grid_mid" instance=ExtResource("3_7ukg6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10)
-grid_position = Vector3i(2, 0, 0)
-grid_offset = Vector3(-2, 0, 2)
-
-[node name="Node3D5" parent="MidZone/Grid_mid" instance=ExtResource("3_7ukg6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, -5, -20)
-is_toon = false
-grid_position = Vector3i(4, -1, 6)
-grid_offset = Vector3(-2, 0, 2)
-is_inmovible = true
-can_construct_over = false
-
-[node name="Node3D6" parent="MidZone/Grid_mid" node_paths=PackedStringArray("controlled_by") instance=ExtResource("3_7ukg6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, -20)
-is_toon = false
-grid_position = Vector3i(0, 0, 6)
-grid_offset = Vector3(-2, 0, 2)
-controlled_by = NodePath("../finalBoard")
-can_construct_over = false
-
-[node name="Fan" parent="MidZone/Grid_mid" node_paths=PackedStringArray("controlled_by") instance=ExtResource("8_n2l8a")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 1.25, 10)
-grid_position = Vector3i(1, 0, 0)
-grid_offset = Vector3(-2, 0, 2)
-controlled_by = NodePath("../BoardGridItem")
-
-[node name="finalBoard" parent="MidZone/Grid_mid" instance=ExtResource("4_cclgr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, -20)
-grid_position = Vector3i(4, 0, 6)
-grid_offset = Vector3(-2, 0, 2)
-is_inmovible = false
-
-[node name="VictorySpot" parent="MidZone/Grid_mid" instance=ExtResource("8_u2vcn")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -35)
-is_toon = false
-grid_position = Vector3i(2, 0, 9)
-grid_offset = Vector3(-2, 0, 2)
-unit_size = Vector3(5, 5, 5)
-
-[node name="Ground2" type="Node3D" parent="MidZone"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
-
-[node name="CSGCombiner3D" type="CSGCombiner3D" parent="MidZone/Ground2"]
-use_collision = true
-
-[node name="CSGBox3D" type="CSGBox3D" parent="MidZone/Ground2/CSGCombiner3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.25, -5.00504, 17.8235)
-size = Vector3(38, 2, 15)
-material = ExtResource("4_3hu2x")
-
 [node name="SpawnPoint" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.93504, 16.316, 10.283)
 
@@ -137,3 +25,110 @@ environment = ExtResource("10_bxodc")
 transform = Transform3D(-0.779108, -0.620539, -0.0890014, 0, -0.141973, 0.989871, -0.626889, 0.771216, 0.110612, -0.00525284, 5.24748, 0.0130939)
 light_angular_distance = 90.0
 sky_mode = 1
+
+[node name="Grid_start" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 11)
+script = ExtResource("2_hvnm7")
+offset = Vector3(-2, 0, 2)
+grid_size = Vector2i(5, 6)
+cell_size = 2.0
+blocked_positions = Array[Vector2i]([Vector2i(4, 0), Vector2i(4, 1), Vector2i(4, 2), Vector2i(4, 3), Vector2i(4, 4), Vector2i(4, 5), Vector2i(3, 0), Vector2i(3, 1), Vector2i(3, 2), Vector2i(3, 3), Vector2i(3, 4), Vector2i(3, 5)])
+
+[node name="BoardGridItem" parent="Grid_start" instance=ExtResource("4_cclgr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 0)
+grid_position = Vector3i(3, 0, 2)
+grid_offset = Vector3(-2, 0, 2)
+
+[node name="Fan" parent="Grid_start" instance=ExtResource("8_n2l8a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 1.25, 10)
+grid_position = Vector3i(1, 0, 0)
+grid_offset = Vector3(-2, 0, 2)
+
+[node name="Jumper" parent="Grid_start" instance=ExtResource("6_cuind")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 10)
+grid_position = Vector3i(4, 0, 0)
+grid_offset = Vector3(-2, 0, 2)
+
+[node name="Node3D" parent="Grid_start" instance=ExtResource("3_7ukg6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, 10)
+grid_offset = Vector3(-2, 0, 2)
+
+[node name="Node3D2" parent="Grid_start" instance=ExtResource("3_7ukg6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 10)
+is_toon = false
+grid_position = Vector3i(3, 0, 0)
+grid_offset = Vector3(-2, 0, 2)
+
+[node name="Grid_mid" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9, -22)
+script = ExtResource("2_hvnm7")
+offset = Vector3(-2, 0, 2)
+grid_size = Vector2i(12, 9)
+cell_size = 2.0
+
+[node name="BoardGridItem" parent="Grid_mid" instance=ExtResource("4_cclgr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 10)
+grid_position = Vector3i(3, 0, 0)
+grid_offset = Vector3(-2, 0, 2)
+
+[node name="Node3D3" parent="Grid_mid" instance=ExtResource("3_7ukg6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10)
+grid_position = Vector3i(2, 0, 0)
+grid_offset = Vector3(-2, 0, 2)
+
+[node name="Node3D5" parent="Grid_mid" instance=ExtResource("3_7ukg6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, -5, -20)
+is_toon = false
+grid_position = Vector3i(4, -1, 6)
+grid_offset = Vector3(-2, 0, 2)
+is_inmovible = true
+can_construct_over = false
+
+[node name="Node3D6" parent="Grid_mid" node_paths=PackedStringArray("controlled_by") instance=ExtResource("3_7ukg6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, -20)
+is_toon = false
+grid_position = Vector3i(0, 0, 6)
+grid_offset = Vector3(-2, 0, 2)
+controlled_by = NodePath("../finalBoard")
+can_construct_over = false
+
+[node name="Fan" parent="Grid_mid" node_paths=PackedStringArray("controlled_by") instance=ExtResource("8_n2l8a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 1.25, 10)
+grid_position = Vector3i(1, 0, 0)
+grid_offset = Vector3(-2, 0, 2)
+controlled_by = NodePath("../BoardGridItem")
+
+[node name="finalBoard" parent="Grid_mid" instance=ExtResource("4_cclgr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, -20)
+grid_position = Vector3i(4, 0, 6)
+grid_offset = Vector3(-2, 0, 2)
+is_inmovible = false
+
+[node name="VictorySpot" parent="Grid_mid" instance=ExtResource("8_u2vcn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -35)
+is_toon = false
+grid_position = Vector3i(2, 0, 9)
+grid_offset = Vector3(-2, 0, 2)
+unit_size = Vector3(5, 5, 5)
+
+[node name="Ground2" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="Ground2"]
+use_collision = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Ground2/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.25, -5.00504, 8.82349)
+size = Vector3(38, 2, 33)
+material = ExtResource("4_3hu2x")
+
+[node name="Ground3" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 13, -33)
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="Ground3"]
+use_collision = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Ground3/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.25, -5.00504, 17.8235)
+size = Vector3(38, 2, 15)
+material = ExtResource("4_3hu2x")

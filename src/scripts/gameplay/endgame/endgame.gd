@@ -16,7 +16,7 @@ var animation_started : bool = false;
 
 func _ready() -> void:
 	the_b0ss_area.body_entered.connect(func(entity: Node3D): the_b0ss_is_talking_now());
-	
+
 	label_subtitles.text = "";
 	you_died.visible = false;
 	var tween_fade: Tween = get_tree().create_tween();
@@ -24,13 +24,13 @@ func _ready() -> void:
 
 func the_b0ss_is_talking_now():
 	player.lock(true);
-	
+
 	var initial_camera_transform: Transform3D = player.camera.global_transform;
 	player.camera.look_at(look_at_me.global_position);
 	var b0ss_camera_transform: Transform3D = player.camera.global_transform;
 	player.camera.look_at(last_sight.global_position);
 	var up_camera_transform: Transform3D = player.camera.global_transform;
-	
+
 	player.camera.global_transform = initial_camera_transform;
 
 	var tween_speech: Tween = get_tree().create_tween();
