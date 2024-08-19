@@ -30,8 +30,50 @@ horizontal_alignment = 1
 layout_mode = 2
 size_flags_vertical = 3
 bbcode_enabled = true
-text = "[url=https://sketchfab.com/3d-models/free-skybox-anime-sky-56a60c1d1e8b44eabff138374f996d8f] Paul  [/url]
-"
+text = "[b][font_size=50]THE GARLIC GAMES TEAM [/font_size][/b]
+
+[font_size=30]LEVEL DESIGN [/font_size]
+All | Jordi [url=https://exeon-zaxaon.itch.io/]@exeon-zaxaon[/url]
+Support | Tomeu [url=https://bocdagla.itch.io/]@bocdagla[/url]
+
+[font_size=30]LEVEL DEVELOPMENT [/font_size]
+Support | Jordi [url=https://exeon-zaxaon.itch.io/]@exeon-zaxaon[/url]
+All | Tomeu [url=https://bocdagla.itch.io/]@bocdagla[/url]
+
+[font_size=30]GAME DEVELOPMET [/font_size]
+Texts Jordi @exeon-zaxaon
+Real grid, player, physics, game cycle | Tomeu [url=https://bocdagla.itch.io/]@bocdagla[/url]
+Interactables, entities | Cristian [url=https://nanocirs.itch.io/]@nanocirs[/url]
+SaveGame, board logic, menu | Guillem [url=https://soteck.itch.io/]@soteck[/url]
+
+[font_size=30]GRAPHICS [/font_size]
+Full lvl design, effects | Tomeu [url=https://bocdagla.itch.io/]@bocdagla[/url]
+Lvl design, Detailing, end scene | Cristian [url=https://nanocirs.itch.io/]@nanocirs[/url]
+Start scene | Guillem [url=https://soteck.itch.io/]@soteck[/url]
+
+[font_size=30]INTERFACE [/font_size]
+Skeleton | Tomeu [url=https://bocdagla.itch.io/]@bocdagla[/url]
+Menu styling | Guillem [url=https://soteck.itch.io/]@soteck[/url]
+
+[font_size=30]MUSIC // EFFECTS [/font_size]
+Music selection // SFX | Guillem [url=https://soteck.itch.io/]@soteck[/url]
+
+[b][font_size=50]External assets:[/font_size][/b]
+[font_size=30]Music:[/font_size]
+[url=https://peritune.com/]Bewitched Forest by PeriTune[/url]
+[url=https://creatorchords.com]Chase by Alexander Nakarada[/url]
+[url=https://maxkomusic.com/]Dark Knight by MaxKoMusic[/url]
+[url=https://www.darrencurtismusic.com/]Labyrinth of Lost Dreams by Darren Curtis[/url] 
+[url=https://onsound.eu/]Heroic by Alex-Productions[/url]
+[url=https://incompetech.com/]Sneaky Snitch by Kevin MacLeod[/url]
+
+[font_size=30]3D assets:[/font_size]
+[url=https://www.kenney.nl/assets/brick-kit]Kenney Brick Kit[/url]
+[url=https://www.kenney.nl/assets/platformer-kit]Kenney Platformer Kit[/url]
+
+[font_size=30]Other assets:[/font_size]
+[url=https://sketchfab.com/3d-models/free-skybox-anime-sky-56a50c1d1e8b44eabff138374f996d8f]SkyBox Anime Sky by Paul[/url]
+[url=https://godotshaders.com/shader/glitch-effect-shader-for-godot-engine-4/]Glitch Effect Shader by Yui Kinomoto @arlez80[/url]"
 
 [node name="Close" type="Button" parent="CreditsPadding/Content" groups=["MenuButtons"]]
 layout_mode = 2
