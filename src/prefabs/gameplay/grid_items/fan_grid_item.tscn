@@ -11,6 +11,7 @@ grid_position = Vector3i(0, 0, 3)
 offset = Vector3(0, -0.25, 0)
 grid_offset = Vector3(-1.5, 0.5, 1.5)
 unit_size = Vector3(5, 5, 5)
+can_construct_over = false
 prefab = ExtResource("2_yuvk6")
 
 [node name="Fan" parent="." instance=ExtResource("3_wmxnk")]
