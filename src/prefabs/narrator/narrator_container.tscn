@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=3 uid="uid://dmskeoa6lv66m"]
+
+[ext_resource type="Theme" uid="uid://dajx1ty4mxj6b" path="res://art/themes/default.tres" id="1_qlkb5"]
+[ext_resource type="Script" path="res://scripts/narrator/narrator.gd" id="2_7vd1r"]
+
+[node name="NarratorContainer" type="Node"]
+
+[node name="Subtitles" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -39.0
+offset_top = 223.5
+offset_right = 39.0
+offset_bottom = 251.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_qlkb5")
+text = "fdssdfsdf (PLACEHOLDER)"
+horizontal_alignment = 1
+
+[node name="SpeechOne" type="Node" parent="." node_paths=PackedStringArray("label_subtitles")]
+script = ExtResource("2_7vd1r")
+label_subtitles = NodePath("../Subtitles")
+lines = Array[String](["Kps", "shavales", "ajo molón"])
+
+[node name="SpeechTwo" type="Node" parent="." node_paths=PackedStringArray("label_subtitles")]
+script = ExtResource("2_7vd1r")
+label_subtitles = NodePath("../Subtitles")
+lines = Array[String](["Este es otro speech", "kps", "xddd", "1234134 43"])

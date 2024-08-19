@@ -1,11 +1,14 @@
-[gd_scene load_steps=14 format=3 uid="uid://mptivcsfyvgh"]
+[gd_scene load_steps=17 format=3 uid="uid://mptivcsfyvgh"]
 
+[ext_resource type="Script" path="res://scripts/debug/dredggez.gd" id="1_hdm06"]
 [ext_resource type="PackedScene" uid="uid://tmqb1i1kolfm" path="res://prefabs/environment/fan/fan.tscn" id="1_ln8bh"]
 [ext_resource type="Script" path="res://scripts/player/player.gd" id="2_3al6c"]
 [ext_resource type="PackedScene" uid="uid://pxw8avkakijr" path="res://prefabs/environment/balancer/balancer.tscn" id="3_76ni3"]
 [ext_resource type="PackedScene" uid="uid://b8p2pp5apr6r1" path="res://prefabs/environment/jumper/jumper.tscn" id="4_bxvxh"]
 [ext_resource type="PackedScene" uid="uid://6j3n8c8huu51" path="res://prefabs/environment/ladder/ladder.tscn" id="5_vflkw"]
 [ext_resource type="PackedScene" uid="uid://c6m66r5vllrb1" path="res://prefabs/entities/cool_garlic.tscn" id="6_i8nqf"]
+[ext_resource type="Script" path="res://scripts/narrator/narrator.gd" id="7_cfccb"]
+[ext_resource type="Theme" uid="uid://dajx1ty4mxj6b" path="res://art/themes/default.tres" id="7_sbnn3"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_e0fpa"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -30,7 +33,10 @@ size = Vector3(80, 1, 80)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ecujn"]
 
-[node name="Dredggez" type="Node3D"]
+[node name="Dredggez" type="Node3D" node_paths=PackedStringArray("narrator", "narrator2")]
+script = ExtResource("1_hdm06")
+narrator = NodePath("NarratorContainer/SpeechOne")
+narrator2 = NodePath("NarratorContainer/SpeechTwo")
 
 [node name="Environment" type="Node" parent="."]
 
@@ -61,8 +67,6 @@ wind_velocity = 8.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.74177, 0.868377, 11.9695)
 collision_layer = 2
 script = ExtResource("2_3al6c")
-speed = null
-jump_velocity = null
 mouse_sensitivity = 0.5
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Scenario/Player"]
@@ -115,3 +119,31 @@ player = NodePath("../../Scenario/Player")
 [node name="CoolGarlic8" parent="Garlics" node_paths=PackedStringArray("player") instance=ExtResource("6_i8nqf")]
 transform = Transform3D(-0.13017, 0, 0.296972, 0, 0.324248, 0, -0.296972, 0, -0.13017, 25.8327, 0.374214, 16.5383)
 player = NodePath("../../Scenario/Player")
+
+[node name="NarratorContainer" type="Node" parent="."]
+
+[node name="Subtitles" type="Label" parent="NarratorContainer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -39.0
+offset_top = 223.5
+offset_right = 39.0
+offset_bottom = 251.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("7_sbnn3")
+text = "fdssdfsdf (PLACEHOLDER)"
+horizontal_alignment = 1
+
+[node name="SpeechOne" type="Node" parent="NarratorContainer" node_paths=PackedStringArray("label_subtitles")]
+script = ExtResource("7_cfccb")
+label_subtitles = NodePath("../Subtitles")
+lines = Array[String](["Kps", "shavales", "ajo molón"])
+
+[node name="SpeechTwo" type="Node" parent="NarratorContainer" node_paths=PackedStringArray("label_subtitles")]
+script = ExtResource("7_cfccb")
+label_subtitles = NodePath("../Subtitles")
+lines = Array[String](["Este es otro speech", "kps", "xddd", "1234134 43"])
