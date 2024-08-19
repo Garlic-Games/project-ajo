@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dwqluvw4xhonu"]
+[gd_scene load_steps=12 format=3 uid="uid://dwqluvw4xhonu"]
 
 [ext_resource type="Script" path="res://scripts/gameplay/levels/level.gd" id="1_hrd16"]
 [ext_resource type="Script" path="res://scripts/gameplay/levels/giant_grid_manager.gd" id="2_hvnm7"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://b7ttitq0bbrxj" path="res://prefabs/gameplay/grid_items/fan_grid_item.tscn" id="8_n2l8a"]
 [ext_resource type="PackedScene" uid="uid://untq4yp2wlic" path="res://prefabs/gameplay/victory_spot/victory_spot1x1.tscn" id="8_u2vcn"]
 [ext_resource type="Environment" uid="uid://c2ysr3uf731rp" path="res://art/backgrounds/env_virtual.tres" id="10_bxodc"]
+[ext_resource type="PackedScene" uid="uid://c6m66r5vllrb1" path="res://prefabs/entities/cool_garlic.tscn" id="10_k0fen"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mbg4g"]
 size = Vector3(200, 10, 200)
@@ -143,3 +144,18 @@ collision_mask = 2
 
 [node name="VoidCollider" type="CollisionShape3D" parent="VoidArea"]
 shape = SubResource("BoxShape3D_mbg4g")
+
+[node name="CoolGarlic" parent="." instance=ExtResource("10_k0fen")]
+transform = Transform3D(0.153979, 0, -0.000803547, 0, 0.153981, 0, 0.000803547, 0, 0.153979, -0.0902786, 11.8918, -71.4122)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="CoolGarlic"]
+transform = Transform3D(1, 0, 1.15868e-10, 0, 1, 0, -1.15868e-10, 0, 1, 0, -15.1664, 0)
+light_energy = 1000.0
+light_negative = true
+omni_range = 27.0514
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="CoolGarlic"]
+transform = Transform3D(2.00945, 0, 5.82077e-10, 0, 2.00945, 0, -5.82077e-10, 0, 2.00945, 0.0187454, 45.3134, 19.5274)
+light_energy = 1000.0
+light_negative = true
+omni_range = 27.0514
