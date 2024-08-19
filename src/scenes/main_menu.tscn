@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://c0kysbw474wqn"]
+[gd_scene load_steps=11 format=3 uid="uid://c0kysbw474wqn"]
 
 [ext_resource type="Script" path="res://scripts/main_menu/main_menu.gd" id="1_7w5a6"]
 [ext_resource type="PackedScene" uid="uid://c64ftsbvvugjk" path="res://scenes/menu_loop_scene.tscn" id="2_edvs8"]
 [ext_resource type="PackedScene" uid="uid://bms34wbd0mko4" path="res://prefabs/menu/settings_menu.tscn" id="2_eli5e"]
 [ext_resource type="PackedScene" uid="uid://crxdwuvlnrsuk" path="res://prefabs/menu/credits.tscn" id="3_juipk"]
+[ext_resource type="Theme" uid="uid://dajx1ty4mxj6b" path="res://art/themes/default.tres" id="3_uay8a"]
 [ext_resource type="PackedScene" uid="uid://dk0dddmpl201" path="res://prefabs/stream_utilities/button_group_sound_when_signal.tscn" id="4_nwlex"]
 [ext_resource type="AudioStream" uid="uid://f74ccem6sel8" path="res://art/music/chosic/dark-knight.mp3" id="5_c2x2x"]
 [ext_resource type="PackedScene" uid="uid://dcxkowmduxb5y" path="res://prefabs/menu/loading_panel.tscn" id="7_y4405"]
@@ -60,6 +61,7 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="MainContainer/MainMargin/Buttons"]
 layout_mode = 2
+theme = ExtResource("3_uay8a")
 theme_type_variation = &"HeaderLarge"
 theme_override_font_sizes/font_size = 75
 text = "

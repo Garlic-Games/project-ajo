@@ -1,8 +1,9 @@
-[gd_resource type="Theme" load_steps=7 format=3 uid="uid://dajx1ty4mxj6b"]
+[gd_resource type="Theme" load_steps=8 format=3 uid="uid://dajx1ty4mxj6b"]
 
 [ext_resource type="StyleBox" uid="uid://b5cany2n642yy" path="res://art/themes/button_normal.tres" id="1_2eklx"]
 [ext_resource type="StyleBox" uid="uid://bh1l3ryj3mohu" path="res://art/themes/button_pressed.tres" id="1_n2cdq"]
 [ext_resource type="StyleBox" uid="uid://c6lm28vjjdxr7" path="res://art/themes/button_disabled.tres" id="1_pgeaq"]
+[ext_resource type="FontFile" uid="uid://n5y8565j11cp" path="res://art/fonts/new-amsterdam/NewAmsterdam-Regular.ttf" id="1_prsmg"]
 [ext_resource type="StyleBox" uid="uid://bwhty2ta4d074" path="res://art/themes/button_hover.tres" id="1_u7ofj"]
 [ext_resource type="StyleBox" uid="uid://n2lc84dt7o5q" path="res://art/themes/button_focus.tres" id="2_20nng"]
 
@@ -25,6 +26,7 @@ Button/colors/font_disabled_color = Color(0.414, 0.69, 0.506, 0.45098)
 Button/colors/font_focus_color = Color(0.6, 1, 0.733333, 1)
 Button/colors/font_outline_color = Color(0.084, 0.14, 0.102667, 1)
 Button/constants/outline_size = 2
+Button/fonts/font = ExtResource("1_prsmg")
 Button/styles/disabled = ExtResource("1_pgeaq")
 Button/styles/focus = ExtResource("2_20nng")
 Button/styles/hover = ExtResource("1_u7ofj")
@@ -37,4 +39,5 @@ Label/constants/outline_size = 4
 Label/constants/shadow_offset_x = 0
 Label/constants/shadow_offset_y = 0
 Label/constants/shadow_outline_size = 5
+Label/fonts/font = ExtResource("1_prsmg")
 PanelContainer/styles/panel = SubResource("StyleBoxFlat_8awh7")
