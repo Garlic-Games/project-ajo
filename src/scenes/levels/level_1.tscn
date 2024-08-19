@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://pyex1a4t0sk4"]
+[gd_scene load_steps=13 format=3 uid="uid://pyex1a4t0sk4"]
 
 [ext_resource type="Script" path="res://scripts/gameplay/levels/giant_grid_manager.gd" id="1_rt68t"]
 [ext_resource type="Script" path="res://scripts/gameplay/levels/level.gd" id="1_y5kkn"]
@@ -7,46 +7,73 @@
 [ext_resource type="PackedScene" uid="uid://d1abmg6xm71ht" path="res://prefabs/gameplay/victory_spot/victory_spot1x3.tscn" id="5_elv6w"]
 [ext_resource type="PackedScene" uid="uid://dn0ac0ylyqffq" path="res://prefabs/gameplay/grid_items/2_by_1_grid_item.tscn" id="6_d6blo"]
 [ext_resource type="Material" uid="uid://cgepabmgprihw" path="res://art/materials/cubes/cube_glow.tres" id="7_c51gh"]
+[ext_resource type="PackedScene" uid="uid://dubp3oep1wyg5" path="res://art/models/kenney_platformer-kit/block-grass-large.glb" id="8_q6uv4"]
+[ext_resource type="Texture2D" uid="uid://cxxpvas74xcw4" path="res://art/backgrounds/scene_0.jpg" id="9_gl5nc"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_3c0jk"]
+panorama = ExtResource("9_gl5nc")
+
+[sub_resource type="Sky" id="Sky_or1je"]
+sky_material = SubResource("PanoramaSkyMaterial_3c0jk")
+
+[sub_resource type="Environment" id="Environment_i2s6n"]
+background_mode = 2
+sky = SubResource("Sky_or1je")
+sky_rotation = Vector3(3.14159, 0, 0)
 
 [node name="Level1" type="Node3D" node_paths=PackedStringArray("spawn_point")]
 script = ExtResource("1_y5kkn")
 spawn_point = NodePath("SpawnPoint")
 
 [node name="Grid" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 script = ExtResource("1_rt68t")
-offset = Vector3(-1.5, 0.5, 1.5)
+offset = Vector3(-1.5, 0, 1.5)
 grid_size = Vector2i(4, 4)
 cell_size = 2.0
 
 [node name="BoardGridItem" parent="Grid" instance=ExtResource("4_xlnda")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0, 7.5)
 grid_position = Vector3i(1, 0, 0)
+grid_offset = Vector3(-1.5, 0, 1.5)
 
 [node name="1by1GridItem" parent="Grid" instance=ExtResource("2_r1gae")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 2.5, -2.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0, -2.5)
 grid_position = Vector3i(2, 0, 2)
+grid_offset = Vector3(-1.5, 0, 1.5)
 
 [node name="VictorySpot2" parent="Grid" instance=ExtResource("5_elv6w")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 0, -7.5)
 grid_position = Vector3i(3, 0, 3)
-offset = Vector3(0, -0.5, 0)
-grid_offset = Vector3(-1.5, 0.5, 1.5)
-unit_size = Vector3(5, 5, 5)
+grid_offset = Vector3(-1.5, 0, 1.5)
 
 [node name="2by1GridItem" parent="Grid" instance=ExtResource("6_d6blo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 5, -2.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 0, -2.5)
 grid_position = Vector3i(3, 0, 2)
+grid_offset = Vector3(-1.5, 0, 1.5)
 
 [node name="Ground" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
 
 [node name="CSGCombiner3D" type="CSGCombiner3D" parent="Ground"]
 use_collision = true
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Ground/CSGCombiner3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5.00504, 0)
+visible = false
 size = Vector3(22, 1.98993, 22)
 material = ExtResource("7_c51gh")
 
+[node name="block-grass-large2" parent="Ground" instance=ExtResource("8_q6uv4")]
+transform = Transform3D(12, 0, 0, 0, 12, 0, 0, 0, 12, 0, -16, 0)
+
 [node name="SpawnPoint" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, -3, 8.28299)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.99974, 3.99085, 7.28374)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_i2s6n")
+
+[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.779108, -0.620539, -0.0890014, 0, -0.141973, 0.989871, -0.626889, 0.771216, 0.110612, -0.00525284, 5.24748, 0.0130939)
+light_angular_distance = 90.0
+sky_mode = 1

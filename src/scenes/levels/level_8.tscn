@@ -1,13 +1,26 @@
-[gd_scene load_steps=9 format=3 uid="uid://yjxvw3kgxaip"]
+[gd_scene load_steps=14 format=3 uid="uid://yjxvw3kgxaip"]
 
 [ext_resource type="Script" path="res://scripts/gameplay/levels/level.gd" id="1_fd4vs"]
 [ext_resource type="Script" path="res://scripts/gameplay/levels/giant_grid_manager.gd" id="2_q0066"]
 [ext_resource type="PackedScene" uid="uid://mcc421imw5vv" path="res://prefabs/gameplay/grid_items/jump_grid_item.tscn" id="3_lo0d4"]
 [ext_resource type="PackedScene" uid="uid://dwbiq5eaw4g43" path="res://prefabs/gameplay/grid_items/1_by_1_grid_item.tscn" id="4_es3i2"]
 [ext_resource type="PackedScene" uid="uid://kbqk1xp6hnb1" path="res://prefabs/gameplay/grid_items/board_grid_item.tscn" id="5_6eyp8"]
-[ext_resource type="PackedScene" uid="uid://bbve1y6ixxrg0" path="res://prefabs/gameplay/victory_spot/victory_spot1x8.tscn" id="5_sgx7o"]
 [ext_resource type="PackedScene" uid="uid://dn0ac0ylyqffq" path="res://prefabs/gameplay/grid_items/2_by_1_grid_item.tscn" id="6_83kbd"]
+[ext_resource type="PackedScene" uid="uid://b1vn76l7qqgh5" path="res://prefabs/gameplay/victory_spot/victory_spot1x5.tscn" id="7_qv1xx"]
 [ext_resource type="Material" uid="uid://cgepabmgprihw" path="res://art/materials/cubes/cube_glow.tres" id="8_eft6i"]
+[ext_resource type="PackedScene" uid="uid://dubp3oep1wyg5" path="res://art/models/kenney_platformer-kit/block-grass-large.glb" id="9_5r766"]
+[ext_resource type="Texture2D" uid="uid://cxxpvas74xcw4" path="res://art/backgrounds/scene_0.jpg" id="10_u52jj"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_wtmwl"]
+panorama = ExtResource("10_u52jj")
+
+[sub_resource type="Sky" id="Sky_or1je"]
+sky_material = SubResource("PanoramaSkyMaterial_wtmwl")
+
+[sub_resource type="Environment" id="Environment_du37j"]
+background_mode = 2
+sky = SubResource("Sky_or1je")
+sky_rotation = Vector3(3.14159, 0, 0)
 
 [node name="Level7" type="Node3D" node_paths=PackedStringArray("spawn_point")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -20)
@@ -17,76 +30,87 @@ spawn_point = NodePath("SpawnPoint")
 [node name="Grid" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 11)
 script = ExtResource("2_q0066")
-offset = Vector3(-2, 0.5, 2)
-grid_size = Vector2i(9, 5)
+offset = Vector3(-2, 0, 2)
+grid_size = Vector2i(7, 5)
 cell_size = 2.0
 
 [node name="1by1GridItem" parent="Grid" instance=ExtResource("4_es3i2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 2.5, -20)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, -20)
 grid_position = Vector3i(0, 0, 6)
-grid_offset = Vector3(-2, 0.5, 2)
+grid_offset = Vector3(-2, 0, 2)
 
 [node name="1by1GridItem2" parent="Grid" instance=ExtResource("4_es3i2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 2.5, -5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, -5)
 grid_position = Vector3i(0, 0, 3)
-grid_offset = Vector3(-2, 0.5, 2)
+grid_offset = Vector3(-2, 0, 2)
 
 [node name="1by1GridItem3" parent="Grid" instance=ExtResource("4_es3i2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 2.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, 0)
 grid_position = Vector3i(0, 0, 2)
-grid_offset = Vector3(-2, 0.5, 2)
+grid_offset = Vector3(-2, 0, 2)
 
 [node name="1by1GridItem4" parent="Grid" instance=ExtResource("4_es3i2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 2.5, 5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, 5)
 grid_position = Vector3i(0, 0, 1)
-grid_offset = Vector3(-2, 0.5, 2)
+grid_offset = Vector3(-2, 0, 2)
 
 [node name="1by1GridItem5" parent="Grid" instance=ExtResource("4_es3i2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 2.5, -10)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, -10)
 grid_position = Vector3i(0, 0, 4)
-grid_offset = Vector3(-2, 0.5, 2)
+grid_offset = Vector3(-2, 0, 2)
 
 [node name="BoardGridItem" parent="Grid" instance=ExtResource("5_6eyp8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10)
 grid_position = Vector3i(2, 0, 0)
-grid_offset = Vector3(-2, 0.5, 2)
+grid_offset = Vector3(-2, 0, 2)
 
 [node name="2by1GridItem" parent="Grid" instance=ExtResource("6_83kbd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 5, -15)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, -15)
 grid_position = Vector3i(0, 0, 5)
-grid_offset = Vector3(-2, 0.5, 2)
+grid_offset = Vector3(-2, 0, 2)
 
 [node name="Jumper2" parent="Grid" instance=ExtResource("3_lo0d4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 0)
 grid_position = Vector3i(4, 0, 2)
-grid_offset = Vector3(-2, 0.5, 2)
+grid_offset = Vector3(-2, 0, 2)
 
 [node name="Jumper3" parent="Grid" instance=ExtResource("3_lo0d4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 0)
 grid_position = Vector3i(3, 0, 2)
-grid_offset = Vector3(-2, 0.5, 2)
+grid_offset = Vector3(-2, 0, 2)
 
 [node name="Jumper4" parent="Grid" instance=ExtResource("3_lo0d4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -10)
 grid_position = Vector3i(3, 0, 4)
-grid_offset = Vector3(-2, 0.5, 2)
+grid_offset = Vector3(-2, 0, 2)
 
-[node name="VictorySpot" parent="Grid" instance=ExtResource("5_sgx7o")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, -12.5, -25)
-grid_position = Vector3i(3, 0, 7)
-offset = Vector3(0, -3, 0)
-grid_offset = Vector3(-2, 0.5, 2)
+[node name="VictorySpot" parent="Grid" instance=ExtResource("7_qv1xx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -25)
+grid_position = Vector3i(1, 0, 5)
+unit_size = Vector3(5, 5, 5)
 
 [node name="SpawnPoint" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0649633, 1.31605, 17.283)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0631857, 1.3764, 20.2837)
 
 [node name="Ground2" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
 
 [node name="CSGCombiner3D" type="CSGCombiner3D" parent="Ground2"]
+visible = false
 use_collision = true
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Ground2/CSGCombiner3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5.00504, 0)
 size = Vector3(27.5, 1.99, 49.5)
 material = ExtResource("8_eft6i")
+
+[node name="block-grass-large2" parent="Ground2" instance=ExtResource("9_5r766")]
+transform = Transform3D(14, 0, 0, 0, 12, 0, 0, 0, 25, 0, -16, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_du37j")
+
+[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.779108, -0.620539, -0.0890014, 0, -0.141973, 0.989871, -0.626889, 0.771216, 0.110612, -0.00525284, 5.24748, 0.0130939)
+light_angular_distance = 90.0
+sky_mode = 1

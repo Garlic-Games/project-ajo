@@ -4,6 +4,13 @@ extends Node3D;
 
 @export_category("Grid information")
 @export var current_grid_manager: GiantGridManager;
+@export var is_toon: bool:
+	set(val):
+		is_toon = val;
+		_change_shape();
+
+@export var toon_shape: Node3D;
+@export var data_shape: Node3D;
 @export var grid_position: Vector3i:
 	set(val):
 		grid_position = val;
@@ -19,7 +26,6 @@ extends Node3D;
 	set(val):
 		grid_offset = val;
 		_reposition();
-
 
 @export var unit_size: Vector3:
 	set(val):
@@ -44,6 +50,17 @@ func _reposition():
 	position = Vector3(grid_position.x, grid_position.y, -grid_position.z) * unit_size + Vector3(offset) * unit_size + Vector3(grid_offset) * unit_size;
 	if is_inside_tree():
 		position_change.emit(global_position);
+
+func _change_shape():
+	if is_toon:
+		if toon_shape:
+			data_shape.hide()
+			toon_shape.show()
+	else:
+		if data_shape:
+			toon_shape.hide()
+			data_shape.show()
+
 
 func is_controlled_by(board: BoardGridItem) -> bool:
 	if not controlled_by:

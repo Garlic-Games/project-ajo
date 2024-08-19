@@ -1,16 +1,20 @@
-[gd_scene load_steps=5 format=3 uid="uid://untq4yp2wlic"]
+[gd_scene load_steps=6 format=3 uid="uid://untq4yp2wlic"]
 
 [ext_resource type="Script" path="res://scripts/gameplay/state/victory_spot.gd" id="1_ag4dl"]
 [ext_resource type="PackedScene" uid="uid://ckmamauxwqkcw" path="res://art/models/kenney_platformer-kit/flag.glb" id="2_rvw0v"]
 [ext_resource type="Material" uid="uid://cgepabmgprihw" path="res://art/materials/cubes/cube_glow.tres" id="3_14oae"]
+[ext_resource type="PackedScene" uid="uid://dk6b05sx5dyk3" path="res://art/models/kenney_platformer-kit/crate-item-strong.glb" id="4_at7di"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_yshpk"]
 size = Vector3(5, 5, 5)
 
-[node name="VictorySpot" type="Area3D"]
+[node name="VictorySpot" type="Area3D" node_paths=PackedStringArray("toon_shape", "data_shape")]
 collision_layer = 0
 collision_mask = 2
 script = ExtResource("1_ag4dl")
+is_toon = true
+toon_shape = NodePath("crate-item-strong2")
+data_shape = NodePath("CSGBox3D")
 is_inmovible = true
 can_construct_over = false
 
@@ -23,8 +27,12 @@ transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 5, 0)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
+visible = false
 material_override = ExtResource("3_14oae")
 use_collision = true
 size = Vector3(5, 5, 5)
+
+[node name="crate-item-strong2" parent="." instance=ExtResource("4_at7di")]
+transform = Transform3D(8.5, 0, 0, 0, 10, 0, 0, 0, 8.5, 0, 0, 0)
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
