@@ -139,7 +139,7 @@ func emitItemMoved(itemToEmit: BoardItem):
 func emitForChilds(itemToEmit: BoardItem):
 	for each in itemToEmit.getItemChilds():
 		emitItemMoved(each);
-		
+
 func findParentFloor(item: BoardGridBase, count: Vector3i):
 	count.x = count.x + item.coordX;
 	count.y = count.y + item.coordY;
@@ -195,10 +195,7 @@ func pickupFollowMouse(item: BoardItem):
 func _itemMovedFeedBack():
 	if dropSfx:
 		dropSfx.reproduce();
-	
+
 func _itemPickedFeedBack():
 	if pickupSfx:
 		pickupSfx.reproduce();
-	
-	
-	

@@ -3,6 +3,7 @@ class_name  GiantGridManager;
 extends Node3D
 
 signal victory;
+signal item_moved;
 
 @export var offset: Vector3:
 	set(val):
@@ -62,6 +63,8 @@ func _register_children():
 		var gi = item as GridItem;
 		if not gi:
 			continue;
+		gi.setup(self);
+		gi.position_change.connect(_item_has_moved);
 		pieces.get_or_add(item.name, item);
 		if not boards.is_empty():
 			for board in boards:
@@ -84,3 +87,6 @@ func _readjust_positions():
 
 func _victory_reached():
 	victory.emit();
+
+func _item_has_moved(_new_position: Vector3):
+	item_moved.emit();

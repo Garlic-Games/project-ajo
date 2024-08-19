@@ -2,6 +2,7 @@ class_name BoardActivator;
 extends Area3D
 
 @onready var transition_camera: Camera3D = $TransitionCamera;
+@export var current_grid_manager: GiantGridManager;
 @export var board: Board;
 
 var player: Player;
@@ -9,8 +10,12 @@ var is_transition_happening: bool = false;
 
 func _on_body_entered(body: Node3D) -> void:
 	player = body as Player;
+	if current_grid_manager && player:
+		current_grid_manager.item_moved.connect(player.quick_glitch)
 
-func _on_body_exited(_body: Node3D) -> void:
+func _on_body_exited(body: Node3D) -> void:
+	if current_grid_manager && player:
+		current_grid_manager.item_moved.disconnect(player.quick_glitch)
 	player = null;
 
 func _input(event: InputEvent) -> void:
@@ -37,7 +42,7 @@ func _input(event: InputEvent) -> void:
 
 			tween.tween_property(transition_camera, "global_transform", target_camera_transform, sin(PI / 2.0)) \
 				 .set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN_OUT);
-			
+
 			tween.tween_callback(func(): end_transition(edit_mode));
 
 func end_transition(edit_mode: bool):
@@ -47,7 +52,7 @@ func end_transition(edit_mode: bool):
 		board.boardCamera.current = true;
 		board.changeState(edit_mode)
 	else:
-		player.camera.current = true; 
+		player.camera.current = true;
 		player.handle_interact(edit_mode);
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED;
 

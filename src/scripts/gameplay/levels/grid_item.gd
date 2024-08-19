@@ -3,6 +3,7 @@ class_name GridItem;
 extends Node3D;
 
 @export_category("Grid information")
+@export var current_grid_manager: GiantGridManager;
 @export var grid_position: Vector3i:
 	set(val):
 		grid_position = val;
@@ -29,7 +30,6 @@ extends Node3D;
 @export var is_inmovible: bool;
 @export var can_construct_over: bool = true;
 @export var prefab: PackedScene;
-
 signal position_change(new_position: Vector3)
 
 var loaded_item: BoardItem:
@@ -49,3 +49,6 @@ func is_controlled_by(board: BoardGridItem) -> bool:
 	if not controlled_by:
 		return true;
 	return board.name == controlled_by.name;
+
+func setup(grid_manager: GiantGridManager):
+	current_grid_manager = grid_manager;

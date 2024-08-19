@@ -1,14 +1,20 @@
 class_name Player
 extends CharacterBody3D
 
+@onready var camera: Camera3D = $Camera3D;
+@onready var glitch: TextureRect = $PlayerUI/Control/Glitch
+
 @export var speed = 5.0;
 @export var jump_velocity = 10;
 @export var mouse_sensitivity: float = 1;
-@onready var camera: Camera3D = $Camera3D;
+
+@export var default_gitch_strength: float = 0.03;
+@export var quick_glitch_time: float = 0.2;
+
+@export_group("Sounds")
 @export var stepsSfx: SFXRandomPlayer = null;
 @export var climbSfx: SFXRandomPlayer = null;
 @export var jumpSfx: SFXRandomPlayer = null;
-
 
 var wind_velocity: Vector3 = Vector3.ZERO;
 
@@ -92,7 +98,7 @@ var pause: bool
 func _input(event):
 	if is_locked:
 		return;
-		
+
 	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 		rotate_y(-event.relative.x * (mouse_sensitivity / 100));
 		camera.rotate_x(-event.relative.y * mouse_sensitivity / 100);
@@ -128,3 +134,17 @@ func _jumpFeedBack():
 
 func lock(locked: bool):
 	is_locked = locked;
+
+func quick_glitch(strength: float = default_gitch_strength):
+	do_glitch(strength);
+	var timer = get_tree().create_timer(quick_glitch_time);
+	timer.timeout.connect(stop_glitch);
+
+func do_glitch(strength: float = default_gitch_strength):
+	glitch.material.set_shader_parameter("doeet", true);
+	if strength:
+		glitch.material.set_shader_parameter("shake_power", strength);
+
+
+func stop_glitch():
+	glitch.material.set_shader_parameter("doeet", false);

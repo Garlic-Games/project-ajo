@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cr6b74d4fygcy"]
+[gd_scene load_steps=13 format=3 uid="uid://cr6b74d4fygcy"]
 
 [ext_resource type="Script" path="res://scripts/player/player.gd" id="1_h8ujk"]
 [ext_resource type="Script" path="res://scripts/music/sfx_random_player.gd" id="2_a3n5b"]
@@ -7,8 +7,23 @@
 [ext_resource type="AudioStream" uid="uid://ba046oq2luvky" path="res://art/sfx/kenney_rpg_audio/handleCoins.ogg" id="5_ltsyx"]
 [ext_resource type="AudioStream" uid="uid://c6fal8flw4uct" path="res://art/sfx/kenney_rpg_audio/handleCoins2.ogg" id="6_cfyom"]
 [ext_resource type="AudioStream" uid="uid://l77ws82ddnfb" path="res://art/sfx/kenney_casino_audio/custom/card-slide-1b.ogg" id="7_u04c8"]
+[ext_resource type="Shader" path="res://art/shaders/glitch.gdshader" id="8_2d7ah"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ecujn"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_beykx"]
+shader = ExtResource("8_2d7ah")
+shader_parameter/shake_power = 0.03
+shader_parameter/shake_rate = 0.2
+shader_parameter/shake_speed = 5.0
+shader_parameter/shake_block_size = 30.5
+shader_parameter/shake_color_rate = 0.01
+shader_parameter/doeet = false
+
+[sub_resource type="Gradient" id="Gradient_yust8"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_tm1n2"]
+gradient = SubResource("Gradient_yust8")
 
 [node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("stepsSfx", "climbSfx", "jumpSfx")]
 collision_layer = 2
@@ -58,3 +73,25 @@ script = ExtResource("2_a3n5b")
 [node name="Jump1" type="AudioStreamPlayer3D" parent="SFX/JumpPlayer"]
 stream = ExtResource("7_u04c8")
 bus = &"SFX"
+
+[node name="PlayerUI" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="PlayerUI"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Glitch" type="TextureRect" parent="PlayerUI/Control"]
+material = SubResource("ShaderMaterial_beykx")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = SubResource("GradientTexture2D_tm1n2")

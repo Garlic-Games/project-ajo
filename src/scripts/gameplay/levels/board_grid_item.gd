@@ -5,3 +5,7 @@ extends GridItem;
 
 func _ready() -> void:
 	position_change.connect(board_activator.move_player)
+
+func setup(grid_manager: GiantGridManager):
+	super.setup(grid_manager);
+	board_activator.current_grid_manager = grid_manager;
