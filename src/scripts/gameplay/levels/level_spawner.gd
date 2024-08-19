@@ -1,7 +1,7 @@
 class_name LevelSpawner;
 extends Marker3D
 
-@export_range(0, 9) var level_index: int;
+@export_range(0, 12) var level_index: int;
 @export var is_last_level: bool;
 @onready var player: Player = %Player
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dwqluvw4xhonu"]
+[gd_scene load_steps=10 format=3 uid="uid://dwqluvw4xhonu"]
 
 [ext_resource type="Script" path="res://scripts/gameplay/levels/level.gd" id="1_hrd16"]
 [ext_resource type="Script" path="res://scripts/gameplay/levels/giant_grid_manager.gd" id="2_hvnm7"]
@@ -9,7 +9,6 @@
 [ext_resource type="PackedScene" uid="uid://b7ttitq0bbrxj" path="res://prefabs/gameplay/grid_items/fan_grid_item.tscn" id="8_n2l8a"]
 [ext_resource type="PackedScene" uid="uid://untq4yp2wlic" path="res://prefabs/gameplay/victory_spot/victory_spot1x1.tscn" id="8_u2vcn"]
 [ext_resource type="Environment" uid="uid://c2ysr3uf731rp" path="res://art/backgrounds/env_virtual.tres" id="10_bxodc"]
-[ext_resource type="PackedScene" uid="uid://cr6b74d4fygcy" path="res://prefabs/gameplay/player/player.tscn" id="11_i573m"]
 
 [node name="Level11" type="Node3D" node_paths=PackedStringArray("spawn_point")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -20)
@@ -138,6 +137,3 @@ environment = ExtResource("10_bxodc")
 transform = Transform3D(-0.779108, -0.620539, -0.0890014, 0, -0.141973, 0.989871, -0.626889, 0.771216, 0.110612, -0.00525284, 5.24748, 0.0130939)
 light_angular_distance = 90.0
 sky_mode = 1
-
-[node name="Player" parent="." instance=ExtResource("11_i573m")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 11, -15)
