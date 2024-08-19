@@ -8,8 +8,11 @@ var used: bool = false;
 
 func _on_body_entered(body: Node3D) -> void:
 	player = body as Player;
+	player.notifyEnteredLvlEndZone(true);
 
 func _on_body_exited(_body: Node3D) -> void:
+	if player:
+		player.notifyEnteredLvlEndZone(false);
 	player = null;
 
 func _input(event: InputEvent) -> void:

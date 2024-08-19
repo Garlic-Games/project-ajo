@@ -11,6 +11,10 @@ func _ready():
 
 func start_game() -> void:
 	SceneLoader.load_scene(gameplay_scene);
+	
+func continue_game() -> void:
+	if GameManager.load_game():
+		SceneLoader.load_scene(gameplay_scene);
 
 func open_settings() -> void:
 	settings_menu.open();

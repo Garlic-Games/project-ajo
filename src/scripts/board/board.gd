@@ -76,9 +76,9 @@ func tableItemPickedUp(item: BoardItem):
 func tableTileClicked(tile: BoardFloorTile):
 	var base: BoardGridBase = tile.itemParent;
 	if item_follow_mouse != null:
-		if !fitsInSpace(item_follow_mouse, tile, base):
+		#if !fitsInSpace(item_follow_mouse, tile, base):
 			#print("No cabe!")
-			return;
+			#return;
 		item_follow_mouse.coordX = tile.coordX;
 		item_follow_mouse.coordY = tile.coordY;
 		item_follow_mouse.onEndPickUp();
@@ -93,7 +93,7 @@ func tableTileClicked(tile: BoardFloorTile):
 
 func fitsInSpace(item: BoardItem, tile: BoardFloorTile, base: BoardGridBase):
 	var coordX = tile.coordX;
-	var coordY = tile.coordY;
+	var coordY = tile.coordZ;
 	var sizeX = item.sizeX - 1;
 	var sizeY = item.sizeY - 1;
 	var face: BoardItem.FacingDirection = item.facingDirection;

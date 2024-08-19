@@ -11,10 +11,12 @@ var is_transition_happening: bool = false;
 func _on_body_entered(body: Node3D) -> void:
 	player = body as Player;
 	if current_grid_manager && player:
+		player.notifyEnteredTableZone(true);
 		current_grid_manager.item_moved.connect(player.quick_glitch)
 
 func _on_body_exited(body: Node3D) -> void:
 	if current_grid_manager && player:
+		player.notifyEnteredTableZone(false);
 		current_grid_manager.item_moved.disconnect(player.quick_glitch)
 	player = null;
 

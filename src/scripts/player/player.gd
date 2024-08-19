@@ -3,6 +3,7 @@ extends CharacterBody3D
 
 @onready var camera: Camera3D = $Camera3D;
 @onready var glitch: TextureRect = $PlayerUI/Control/Glitch
+@onready var hud: PlayerHud = $PlayerUI/Container;
 
 @export var speed = 5.0;
 @export var jump_velocity = 10;
@@ -148,3 +149,9 @@ func do_glitch(strength: float = default_gitch_strength):
 
 func stop_glitch():
 	glitch.material.set_shader_parameter("doeet", false);
+
+func notifyEnteredTableZone(entered: bool): 
+	hud.setTableLvisibility(entered);
+	
+func notifyEnteredLvlEndZone(entered: bool): 
+	hud.setEndLevelVisibility(entered);

@@ -8,10 +8,11 @@ var itemsRoot: Node3D;
 var activeTile : BoardFloorTile = null;
 var itemParent: BoardGridBase;
 
+@export var sizeZ: int = 1;
 @export var sizeX: int = 1;
 @export var sizeY: int = 1;
 @export var tileOffsetY = 0.5;
-@export var conConstructOver = true;
+@export var canConstructOver = true;
 @export var blockedCoords: Array[Vector2i] = [];
 
 var coordX = 0;
@@ -29,7 +30,7 @@ func _ready() -> void:
 	itemsRoot = find_child("ItemsRoot");
 
 func spawn_grid() -> void:
-	if !conConstructOver:
+	if !canConstructOver:
 		return;
 	#print("Spawn grid", boardSizeX, boardSizeY, size);
 	for ny in sizeY:
@@ -37,7 +38,7 @@ func spawn_grid() -> void:
 			#print("Spawning grid on", nx, ny)
 			if _isCoordBlocked(nx, ny):
 				continue;
-			var tile: BoardFloorTile = do_spawn_floor_tile(gridRoot, grid1x1, nx, ny, tileOffsetY);
+			var tile: BoardFloorTile = do_spawn_floor_tile(gridRoot, grid1x1, nx, ny, (sizeZ - 1) + tileOffsetY);
 			tile.coordX = nx;
 			tile.coordY = ny;
 			tile.itemParent = self;

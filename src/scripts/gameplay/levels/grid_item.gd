@@ -36,6 +36,7 @@ extends Node3D;
 @export var is_inmovible: bool;
 @export var can_construct_over: bool = true;
 @export var prefab: PackedScene;
+@export var height: int = 1;
 signal position_change(new_position: Vector3)
 
 var loaded_item: BoardItem:
@@ -43,7 +44,8 @@ var loaded_item: BoardItem:
 		var _loaded_item = prefab.instantiate() as BoardItem;
 		_loaded_item.item_id = name;
 		_loaded_item.fixed = is_inmovible;
-		_loaded_item.conConstructOver = can_construct_over;
+		_loaded_item.canConstructOver = can_construct_over;
+		_loaded_item.sizeY = height;
 		return _loaded_item;
 
 func _reposition():

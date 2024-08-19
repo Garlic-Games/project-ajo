@@ -3,11 +3,11 @@
 [ext_resource type="ArrayMesh" uid="uid://ckq4ofal6raqc" path="res://prefabs/mesh_libraries/menu_loop/plate1x1-green.tres" id="1_6eogg"]
 [ext_resource type="ArrayMesh" uid="uid://bb8eq2vn7mjch" path="res://prefabs/mesh_libraries/menu_loop/brick1x1-green.tres" id="2_xlghy"]
 [ext_resource type="ArrayMesh" uid="uid://dxyhfkhl7es4i" path="res://prefabs/mesh_libraries/menu_loop/brick1x1-orange.tres" id="3_jy84h"]
-[ext_resource type="ArrayMesh" uid="uid://codi3gi1el548" path="res://prefabs/mesh_libraries/menu_loop/plate1x1-biege.tres" id="4_tcr02"]
-[ext_resource type="ArrayMesh" uid="uid://n0xrvv8nvchw" path="res://prefabs/mesh_libraries/menu_loop/plate1x1-blue.tres" id="5_ctng8"]
-[ext_resource type="ArrayMesh" uid="uid://p01580cvlydh" path="res://prefabs/mesh_libraries/menu_loop/brick1x1-biege.tres" id="6_13svf"]
+[ext_resource type="ArrayMesh" uid="uid://b15wo2ublda8w" path="res://prefabs/mesh_libraries/menu_loop/plate1x1-biege.tres" id="4_tcr02"]
+[ext_resource type="ArrayMesh" uid="uid://uorkx55gpslk" path="res://prefabs/mesh_libraries/menu_loop/plate1x1-blue.tres" id="5_ctng8"]
+[ext_resource type="ArrayMesh" uid="uid://cnx176aypf234" path="res://prefabs/mesh_libraries/menu_loop/brick1x1-biege.tres" id="6_13svf"]
 [ext_resource type="ArrayMesh" uid="uid://bkf0gie48gano" path="res://prefabs/mesh_libraries/menu_loop/brick1x1-blue.tres" id="7_84ill"]
-[ext_resource type="ArrayMesh" uid="uid://bfb60rifcpj46" path="res://prefabs/mesh_libraries/menu_loop/brick1x1-brown.tres" id="8_nkf2v"]
+[ext_resource type="ArrayMesh" uid="uid://ccby5baxs3may" path="res://prefabs/mesh_libraries/menu_loop/brick1x1-brown.tres" id="8_nkf2v"]
 
 [resource]
 item/0/name = "slab-green"

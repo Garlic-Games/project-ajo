@@ -20,6 +20,7 @@ data_shape = NodePath("CSGBox3D")
 is_inmovible = true
 can_construct_over = false
 prefab = ExtResource("2_s7lra")
+height = 4
 
 [node name="VictoryRange" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 22.5, 0)
@@ -50,3 +51,4 @@ transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
 transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 10, 0)
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

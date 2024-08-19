@@ -3,12 +3,12 @@ class_name BoardItem extends BoardGridBase
 enum FacingDirection {NORTH = 0, EAST = 90, SOUTH = 180, WEST = 270}
 
 @onready var arrowResource = preload("res://art/models/kenney_brick-kit/mix/Arrow.tscn");
-@export var sizeZ = 1;
 @export var color = 0;
 @export var fixed = false;
 
 var facingDirection = FacingDirection.NORTH;
 
+var meshScene: Node3D;
 var meshInstance: MeshInstance3D;
 var arrowInstance;
 
@@ -26,6 +26,7 @@ func processInput(events: BoardInputEvents) -> void:
 			events.ItemsClicked.append(self);
 
 func redraw() -> void:
+	meshScene.scale.y =  meshScene.scale.y * sizeY;
 	spawn_grid();
 
 func _ready() -> void:
@@ -33,7 +34,8 @@ func _ready() -> void:
 	tileOffsetY = 1.1;
 	self.connect("mouse_entered", self.onMouseEntered);
 	self.connect("mouse_exited", self.onMouseExited);
-	meshInstance = get_children()[0].get_children()[0];
+	meshScene = get_children()[0];
+	meshInstance = meshScene.get_children()[0];
 	arrowInstance = arrowResource.instantiate();
 	add_child(arrowInstance);
 	var offsetX = 0;

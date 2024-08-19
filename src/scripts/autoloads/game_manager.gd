@@ -31,6 +31,7 @@ var max_level_reached: int;
 
 func next_level():
 	current_level += 1;
+	save_game();
 	if current_level > max_level_reached:
 		max_level_reached = current_level;
 
@@ -45,3 +46,29 @@ func exit_game():
 		js_history.back();
 	else:
 		get_tree().quit();
+
+func save_game():
+	var save_file = FileAccess.open("user://savegame.save", FileAccess.WRITE);
+	var node_data = {"level": current_level};
+	save_file.store_line(JSON.stringify(node_data))
+	
+func load_game():
+	if not FileAccess.file_exists("user://savegame.save"):
+		return false;
+	var save_file = FileAccess.open("user://savegame.save", FileAccess.READ)
+	while save_file.get_position() < save_file.get_length():
+		var json_string = save_file.get_line()
+
+		# Creates the helper class to interact with JSON
+		var json = JSON.new()
+
+		# Check if there is any error while parsing the JSON string, skip in case of failure
+		var parse_result = json.parse(json_string)
+		if not parse_result == OK:
+			print("JSON Parse Error: ", json.get_error_message(), " in ", json_string, " at line ", json.get_error_line())
+			continue
+		# Get the data from the JSON object
+		var node_data = json.get_data();
+		current_level = node_data["level"];
+		return true;
+	return false;

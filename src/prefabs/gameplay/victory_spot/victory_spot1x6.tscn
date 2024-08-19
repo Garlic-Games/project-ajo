@@ -16,6 +16,7 @@ unit_size = Vector3(5, 5, 5)
 is_inmovible = true
 can_construct_over = false
 prefab = ExtResource("2_x8oka")
+height = 6
 
 [node name="VictoryRange" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 30, 0)
@@ -31,3 +32,4 @@ use_collision = true
 size = Vector3(5, 30, 5)
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

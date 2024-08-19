@@ -38,3 +38,4 @@ size = Vector3(5, 5, 5)
 transform = Transform3D(8.5, 0, 0, 0, 10, 0, 0, 0, 8.5, 0, 0, 0)
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

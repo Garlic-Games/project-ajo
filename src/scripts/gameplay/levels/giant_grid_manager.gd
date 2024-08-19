@@ -72,7 +72,7 @@ func _register_children():
 					var small_piece = gi.loaded_item;
 					if not gi.is_controlled_by(board):
 						small_piece.fixed = true;
-					if small_piece.conConstructOver:
+					if small_piece.canConstructOver:
 						small_piece.color = 1;
 					if small_piece.fixed:
 						small_piece.color = 2;

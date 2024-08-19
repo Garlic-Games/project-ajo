@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cr6b74d4fygcy"]
+[gd_scene load_steps=14 format=3 uid="uid://cr6b74d4fygcy"]
 
 [ext_resource type="Script" path="res://scripts/player/player.gd" id="1_h8ujk"]
 [ext_resource type="Script" path="res://scripts/music/sfx_random_player.gd" id="2_a3n5b"]
@@ -8,6 +8,7 @@
 [ext_resource type="AudioStream" uid="uid://c6fal8flw4uct" path="res://art/sfx/kenney_rpg_audio/handleCoins2.ogg" id="6_cfyom"]
 [ext_resource type="AudioStream" uid="uid://l77ws82ddnfb" path="res://art/sfx/kenney_casino_audio/custom/card-slide-1b.ogg" id="7_u04c8"]
 [ext_resource type="Shader" path="res://art/shaders/glitch.gdshader" id="8_2d7ah"]
+[ext_resource type="PackedScene" uid="uid://b0w2w7bnq5mb2" path="res://prefabs/interface/hud.tscn" id="8_60qjj"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ecujn"]
 
@@ -75,6 +76,8 @@ stream = ExtResource("7_u04c8")
 bus = &"SFX"
 
 [node name="PlayerUI" type="CanvasLayer" parent="."]
+
+[node name="Container" parent="PlayerUI" instance=ExtResource("8_60qjj")]
 
 [node name="Control" type="Control" parent="PlayerUI"]
 layout_mode = 3

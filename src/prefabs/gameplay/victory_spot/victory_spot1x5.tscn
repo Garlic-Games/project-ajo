@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://b1vn76l7qqgh5"]
+[gd_scene load_steps=8 format=3 uid="uid://clt030lwd4dlv"]
 
 [ext_resource type="Script" path="res://scripts/gameplay/state/victory_spot.gd" id="1_hu7wc"]
 [ext_resource type="PackedScene" uid="uid://y12idskl2w16" path="res://prefabs/board/items/Item1x1.tscn" id="2_vpjva"]
@@ -20,6 +20,7 @@ data_shape = NodePath("CSGBox3D")
 is_inmovible = true
 can_construct_over = false
 prefab = ExtResource("2_vpjva")
+height = 5
 
 [node name="VictoryRange" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 27.5, 0)
@@ -53,3 +54,4 @@ transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 20, 0)
 transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 10, 0)
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

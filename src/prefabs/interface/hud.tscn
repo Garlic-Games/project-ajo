@@ -1,0 +1,43 @@
+[gd_scene load_steps=4 format=3 uid="uid://b0w2w7bnq5mb2"]
+
+[ext_resource type="Script" path="res://scripts/interface/hud.gd" id="1_5llis"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_b8pr4"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fdvk6"]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+script = ExtResource("1_5llis")
+
+[node name="Container" type="VBoxContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="HSeparator2" type="HSeparator" parent="Container"]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+theme_override_styles/separator = SubResource("StyleBoxEmpty_b8pr4")
+
+[node name="Table" type="Label" parent="Container"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Press E to use the brick table"
+
+[node name="EndLevel" type="Label" parent="Container"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Press E to enter the next level"
+
+[node name="HSeparator" type="HSeparator" parent="Container"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_vertical = 0
+mouse_filter = 2
+theme_override_styles/separator = SubResource("StyleBoxEmpty_fdvk6")
