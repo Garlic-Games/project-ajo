@@ -7,4 +7,5 @@ extends Node3D
 
 
 func _process(delta: float) -> void:
-	garlic_head.look_at(player.global_position, Vector3.UP, true);
+	if player:
+		garlic_head.look_at(player.global_position, Vector3.UP, true);
