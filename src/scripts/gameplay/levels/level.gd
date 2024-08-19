@@ -11,7 +11,7 @@ signal level_ended;
 
 func _ready() -> void:
 	void_area.body_entered.connect(func(entity: Node3D): on_player_enter_void(entity));
-	
+
 	for child in get_children():
 		if child is GiantGridManager:
 			child.victory.connect(_victory_reached);

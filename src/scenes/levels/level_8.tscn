@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://yjxvw3kgxaip"]
+[gd_scene load_steps=17 format=3 uid="uid://yjxvw3kgxaip"]
 
 [ext_resource type="Script" path="res://scripts/gameplay/levels/level.gd" id="1_fd4vs"]
 [ext_resource type="Script" path="res://scripts/gameplay/levels/giant_grid_manager.gd" id="2_q0066"]
@@ -36,7 +36,7 @@ spawn_point = NodePath("SpawnPoint")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 11)
 script = ExtResource("2_q0066")
 offset = Vector3(-2, 0, 2)
-grid_size = Vector2i(7, 5)
+grid_size = Vector2i(9, 5)
 cell_size = 2.0
 
 [node name="1by1GridItem" parent="Grid" instance=ExtResource("4_es3i2")]
@@ -107,15 +107,20 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -15)
 is_toon = false
 grid_position = Vector3i(0, 0, 3)
 
+[node name="Node3D2" parent="TwistGrid" instance=ExtResource("4_es3i2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -20)
+is_toon = false
+grid_position = Vector3i(0, 0, 4)
+
 [node name="BoardGridItem" parent="TwistGrid" instance=ExtResource("5_6eyp8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 grid_offset = Vector3(0, 0, 0)
 is_inmovible = false
 
 [node name="VictorySpot" parent="TwistGrid" instance=ExtResource("8_sdsvp")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -20)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -25)
 is_toon = false
-grid_position = Vector3i(0, 0, 4)
+grid_position = Vector3i(0, 0, 5)
 unit_size = Vector3(5, 5, 5)
 
 [node name="SpawnPoint" type="Marker3D" parent="."]
@@ -137,7 +142,7 @@ material = ExtResource("8_eft6i")
 transform = Transform3D(14, 0, 0, 0, 12, 0, 0, 0, 25, 0, -16, 0)
 
 [node name="Node3D2" parent="Ground2" instance=ExtResource("4_es3i2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.12618, 15.8193, -24.6919)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.12932, 15.8193, -24.7065)
 script = null
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
