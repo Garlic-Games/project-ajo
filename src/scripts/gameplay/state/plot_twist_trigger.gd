@@ -1,5 +1,5 @@
 @tool
-class_name VictoryGridItem
+class_name PlotTwistTrigger
 extends GridItem
 @onready var coin_gold_2: Node3D = $"coin-gold2"
 

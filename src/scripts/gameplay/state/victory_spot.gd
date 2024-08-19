@@ -1,8 +1,8 @@
 @tool
-class_name PlotTwistTrigger
+class_name VictoryGridItem
 extends GridItem
 
-signal plot_twist;
+signal victory;
 var player: Player;
 var used: bool = false;
 
@@ -16,4 +16,4 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_released("interact"):
 		if player and not used:
 			used = true;
-			plot_twist.emit();
+			victory.emit();

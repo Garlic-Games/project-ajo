@@ -26,3 +26,4 @@ signal_name = "mouse_entered"
 
 [node name="LoadingPanel" parent="." instance=ExtResource("5_w55g0")]
 unique_name_in_owner = true
+process_mode = 3

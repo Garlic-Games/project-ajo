@@ -58,6 +58,7 @@ func choose_exit_game(choice: bool) -> void:
 
 func choose_main_menu(choice: bool) -> void:
 	if choice:
+		get_tree().paused = false;
 		SceneLoader.load_scene(main_menu_scene);
 	else:
 		main_menu_confirm_menu.close();
