@@ -40,7 +40,6 @@ grid_offset = Vector3(-1.5, 0, 1.5)
 [node name="Jumper" parent="Grid" instance=ExtResource("4_0j44q")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, 0, -7.5)
 grid_position = Vector3i(0, 0, 3)
-offset = Vector3(0, 0, 0)
 grid_offset = Vector3(-1.5, 0, 1.5)
 
 [node name="2by1GridItem" parent="Grid" instance=ExtResource("3_niybt")]

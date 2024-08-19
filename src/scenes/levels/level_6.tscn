@@ -35,7 +35,6 @@ cell_size = 2.0
 [node name="Jumper" parent="Grid" instance=ExtResource("4_1f4g2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, 10)
 grid_position = Vector3i(0, 0, 0)
-offset = Vector3(0, 0, 0)
 grid_offset = Vector3(-2, 0, 2)
 
 [node name="1by1GridItem" parent="Grid" instance=ExtResource("5_qvbua")]

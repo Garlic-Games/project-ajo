@@ -21,7 +21,7 @@ background_mode = 2
 sky = SubResource("Sky_or1je")
 sky_rotation = Vector3(3.14159, 0, 0)
 
-[node name="Level7" type="Node3D" node_paths=PackedStringArray("spawn_point")]
+[node name="Level8" type="Node3D" node_paths=PackedStringArray("spawn_point")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -20)
 script = ExtResource("1_aquji")
 spawn_point = NodePath("SpawnPoint")

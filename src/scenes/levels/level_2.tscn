@@ -33,9 +33,7 @@ cell_size = 2.0
 
 [node name="BoardGridItem" parent="Grid" instance=ExtResource("3_vvnro")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0, 7.5)
-is_toon = false
 grid_position = Vector3i(1, 0, 0)
-offset = Vector3(0, 0, 0)
 grid_offset = Vector3(-1.5, 0, 1.5)
 
 [node name="2by1GridItem" parent="Grid" instance=ExtResource("4_g3pkm")]
@@ -72,7 +70,6 @@ use_collision = true
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Ground/CSGCombiner3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5.00504, 0)
-visible = false
 size = Vector3(22, 1.98993, 22)
 material = ExtResource("7_1f0y1")
 
