@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://yjxvw3kgxaip"]
+[gd_scene load_steps=16 format=3 uid="uid://yjxvw3kgxaip"]
 
 [ext_resource type="Script" path="res://scripts/gameplay/levels/level.gd" id="1_fd4vs"]
 [ext_resource type="Script" path="res://scripts/gameplay/levels/giant_grid_manager.gd" id="2_q0066"]
@@ -12,7 +12,6 @@
 [ext_resource type="PackedScene" uid="uid://dubp3oep1wyg5" path="res://art/models/kenney_platformer-kit/block-grass-large.glb" id="9_5r766"]
 [ext_resource type="Texture2D" uid="uid://cxxpvas74xcw4" path="res://art/backgrounds/scene_0.jpg" id="10_u52jj"]
 [ext_resource type="Script" path="res://scripts/gameplay/state/plot_twitst_node.gd" id="11_je3fc"]
-[ext_resource type="PackedScene" uid="uid://cr6b74d4fygcy" path="res://art/backgrounds/player.tscn" id="12_bhgxt"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_wtmwl"]
 panorama = ExtResource("10_u52jj")
@@ -148,6 +147,3 @@ sky_mode = 1
 
 [node name="PlotTwitstNode" type="Node" parent="."]
 script = ExtResource("11_je3fc")
-
-[node name="Player" parent="." instance=ExtResource("12_bhgxt")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.85018, 31.3494, -18.9049)
