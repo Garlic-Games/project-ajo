@@ -25,7 +25,6 @@ offset = Vector3(-2, 0, 2)
 grid_size = Vector2i(5, 5)
 cell_size = 2.0
 blocked_positions = Array[Vector2i]([Vector2i(3, 4), Vector2i(4, 3), Vector2i(3, 3)])
-random_posibility = null
 
 [node name="2by1GridItem" parent="Grid" instance=ExtResource("5_wuoyk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, 5)
@@ -64,7 +63,6 @@ grid_offset = Vector3(-2, 0, 2)
 
 [node name="VictorySpot" parent="Grid" instance=ExtResource("8_u3gwp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, -10)
-glitch_strength = null
 is_toon = false
 grid_position = Vector3i(4, 0, 4)
 grid_offset = Vector3(-2, 0, 2)

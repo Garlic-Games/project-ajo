@@ -51,6 +51,7 @@ grid_offset = Vector3(-1.5, 0, 1.5)
 
 [node name="VictorySpot" parent="Grid" instance=ExtResource("7_qugeg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0, -7.5)
+glitch_strength = 0.03
 grid_position = Vector3i(2, 0, 3)
 grid_offset = Vector3(-1.5, 0, 1.5)
 
@@ -69,8 +70,16 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5.00504, 0)
 size = Vector3(22, 1.98993, 22)
 material = ExtResource("7_88urh")
 
+[node name="CSGBox3D2" type="CSGBox3D" parent="Ground/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5.00504, 30.3358)
+size = Vector3(12, 1.98993, 39)
+material = ExtResource("7_88urh")
+
 [node name="block-grass-large2" parent="Ground" instance=ExtResource("8_0yj3t")]
 transform = Transform3D(12, 0, 0, 0, 12, 0, 0, 0, 12, -0.0482922, -16, -0.0921898)
+
+[node name="block-grass-large3" parent="Ground" instance=ExtResource("8_0yj3t")]
+transform = Transform3D(6, 0, 0, 0, 12, 0, 0, 0, 19.7934, 0, -16, 31)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_0imue")

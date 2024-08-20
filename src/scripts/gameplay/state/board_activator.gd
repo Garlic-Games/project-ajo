@@ -7,6 +7,7 @@ extends Area3D
 
 var player: Player;
 var is_transition_happening: bool = false;
+signal board_accessed;
 
 func _on_body_entered(body: Node3D) -> void:
 	player = body as Player;
@@ -33,6 +34,7 @@ func _input(event: InputEvent) -> void:
 			is_transition_happening = true;
 
 			if edit_mode:
+				board_accessed.emit();
 				player.handle_interact(edit_mode);
 
 				Input.mouse_mode = Input.MOUSE_MODE_VISIBLE;

@@ -65,7 +65,7 @@ func _physics_process(delta: float) -> void:
 		if direction:
 			var real_speed = speed;
 			if not is_on_floor():
-				real_speed = real_speed/2;
+				real_speed = real_speed/3;
 			velocity.x = direction.x * real_speed;
 			velocity.z = direction.z * real_speed;
 			if stepsSfx:

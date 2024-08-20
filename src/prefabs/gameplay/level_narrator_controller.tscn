@@ -1,0 +1,65 @@
+[gd_scene load_steps=7 format=3 uid="uid://bdmgqdrdlvfdl"]
+
+[ext_resource type="Script" path="res://scripts/gameplay/state/level_narrator_controller.gd" id="1_lw2jx"]
+[ext_resource type="Texture2D" uid="uid://cn7spgol2yooo" path="res://art/textures/character_2.png" id="2_c8sdi"]
+[ext_resource type="Theme" uid="uid://dajx1ty4mxj6b" path="res://art/themes/default.tres" id="3_2imh0"]
+[ext_resource type="Script" path="res://scripts/narrator/narrator.gd" id="4_pfv2h"]
+
+[sub_resource type="Gradient" id="Gradient_yvyg6"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0, 0, 0, 0.207843)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_x5fbe"]
+gradient = SubResource("Gradient_yvyg6")
+fill_from = Vector2(0.487179, 0.504274)
+
+[node name="LevelNarratorController" type="Node"]
+script = ExtResource("1_lw2jx")
+
+[node name="NarratorContainer" type="Node" parent="."]
+
+[node name="TextureRect2" type="TextureRect" parent="NarratorContainer"]
+offset_left = 118.0
+offset_top = 527.0
+offset_right = 1041.0
+offset_bottom = 618.0
+texture = SubResource("GradientTexture2D_x5fbe")
+
+[node name="TextureRect" type="TextureRect" parent="NarratorContainer/TextureRect2"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0303359
+anchor_top = 0.153846
+anchor_right = 0.100758
+anchor_bottom = 0.846154
+grow_vertical = 0
+size_flags_vertical = 8
+texture = ExtResource("2_c8sdi")
+expand_mode = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Subtitles" type="Label" parent="NarratorContainer/TextureRect2"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.173348
+anchor_top = 0.142857
+anchor_right = 0.963164
+anchor_bottom = 0.89011
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_2imh0")
+text = "fdssdfsdf (PLACEHOLDER)"
+autowrap_mode = 3
+metadata/_edit_use_anchors_ = true
+
+[node name="SpeechOne" type="Node" parent="NarratorContainer" node_paths=PackedStringArray("background", "label_subtitles")]
+script = ExtResource("4_pfv2h")
+background = NodePath("../TextureRect2")
+label_subtitles = NodePath("../TextureRect2/Subtitles")
+lines = Array[String](["Welcome, Operator. I am C.U.B.E., your Constructive Utility Building Expert, and I will be your guide throughout this taks in Super Garlic World. ", "Your job is to make sure this game runs smoothly without any error."])
+
+[node name="SpeechTwo" type="Node" parent="NarratorContainer" node_paths=PackedStringArray("background", "label_subtitles")]
+script = ExtResource("4_pfv2h")
+background = NodePath("../TextureRect2")
+label_subtitles = NodePath("../TextureRect2/Subtitles")
+lines = Array[String](["This is the memory board, some devs use it to see the memory, state.", "Green pieces mean they are core pieces of the system", "It means you cannot move them"])
