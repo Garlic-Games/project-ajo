@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://b4ex878eoop0u"]
+[gd_scene load_steps=19 format=3 uid="uid://b4ex878eoop0u"]
 
 [ext_resource type="Script" path="res://scripts/gameplay/levels/level.gd" id="1_e3lm5"]
 [ext_resource type="Script" path="res://scripts/gameplay/levels/giant_grid_manager.gd" id="2_ppd3p"]
@@ -11,6 +11,7 @@
 [ext_resource type="Material" uid="uid://cgepabmgprihw" path="res://art/materials/cubes/cube_glow.tres" id="10_5ryrf"]
 [ext_resource type="Environment" uid="uid://c2ysr3uf731rp" path="res://art/backgrounds/env_virtual.tres" id="10_np5ya"]
 [ext_resource type="PackedScene" uid="uid://c6m66r5vllrb1" path="res://prefabs/entities/cool_garlic.tscn" id="11_7lpba"]
+[ext_resource type="Script" path="res://scripts/gameplay/state/level_narrator_controller.gd" id="12_n2jp2"]
 [ext_resource type="Theme" uid="uid://dajx1ty4mxj6b" path="res://art/themes/default.tres" id="12_qj8da"]
 [ext_resource type="Texture2D" uid="uid://efu7ciuiyiym" path="res://art/textures/character_3.png" id="13_vo2tq"]
 [ext_resource type="Script" path="res://scripts/narrator/narrator.gd" id="14_vemvv"]
@@ -18,12 +19,12 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_xceus"]
 size = Vector3(200, 10, 200)
 
-[sub_resource type="Gradient" id="Gradient_0clqf"]
+[sub_resource type="Gradient" id="Gradient_8xiuu"]
 offsets = PackedFloat32Array(0)
 colors = PackedColorArray(0, 0, 0, 0.207843)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_rq3wc"]
-gradient = SubResource("Gradient_0clqf")
+gradient = SubResource("Gradient_8xiuu")
 fill_from = Vector2(0.487179, 0.504274)
 
 [node name="Level10" type="Node3D" node_paths=PackedStringArray("spawn_point")]
@@ -132,16 +133,19 @@ light_energy = 1000.0
 light_negative = true
 omni_range = 27.0514
 
-[node name="NarratorContainer" type="Node" parent="."]
+[node name="LevelNarratorController" type="Node" parent="."]
+script = ExtResource("12_n2jp2")
 
-[node name="TextureRect2" type="TextureRect" parent="NarratorContainer"]
+[node name="NarratorContainer" type="Node" parent="LevelNarratorController"]
+
+[node name="TextureRect2" type="TextureRect" parent="LevelNarratorController/NarratorContainer"]
 offset_left = 118.0
 offset_top = 527.0
 offset_right = 1041.0
 offset_bottom = 618.0
 texture = SubResource("GradientTexture2D_rq3wc")
 
-[node name="Subtitles" type="RichTextLabel" parent="NarratorContainer/TextureRect2"]
+[node name="Subtitles" type="RichTextLabel" parent="LevelNarratorController/NarratorContainer/TextureRect2"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.173348
@@ -155,7 +159,7 @@ bbcode_enabled = true
 text = "fdssdfsdf (PLACEHOLDER)"
 metadata/_edit_use_anchors_ = true
 
-[node name="TextureRect" type="TextureRect" parent="NarratorContainer/TextureRect2"]
+[node name="TextureRect" type="TextureRect" parent="LevelNarratorController/NarratorContainer/TextureRect2"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.0303359
@@ -170,14 +174,14 @@ texture = ExtResource("13_vo2tq")
 expand_mode = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="SpeechOne" type="Node" parent="NarratorContainer" node_paths=PackedStringArray("background", "label_subtitles")]
+[node name="SpeechOne" type="Node" parent="LevelNarratorController/NarratorContainer" node_paths=PackedStringArray("background", "label_subtitles")]
 script = ExtResource("14_vemvv")
 background = NodePath("../TextureRect2")
 label_subtitles = NodePath("../TextureRect2/Subtitles")
 lines = Array[String](["Have you ever realised how easy its to break a game?", "Maybe something along the lines of [color=red]\"double_jump_streength=0\"[/color]  ", "And boom nothing else works", "Lazy devs", "Though they are [b]REALLY[/b] good at making IA"])
 seconds_between_lines = 1.5
 
-[node name="SpeechTwo" type="Node" parent="NarratorContainer" node_paths=PackedStringArray("background", "label_subtitles")]
+[node name="SpeechTwo" type="Node" parent="LevelNarratorController/NarratorContainer" node_paths=PackedStringArray("background", "label_subtitles")]
 script = ExtResource("14_vemvv")
 background = NodePath("../TextureRect2")
 label_subtitles = NodePath("../TextureRect2/Subtitles")

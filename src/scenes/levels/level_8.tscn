@@ -95,11 +95,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 0)
 grid_position = Vector3i(3, 0, 2)
 grid_offset = Vector3(-2, 0, 2)
 
-[node name="Jumper4" parent="Grid" instance=ExtResource("3_lo0d4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -10)
-grid_position = Vector3i(3, 0, 4)
-grid_offset = Vector3(-2, 0, 2)
-
 [node name="PlotTwist" parent="Grid" instance=ExtResource("7_j64iw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -30)
 grid_position = Vector3i(3, 0, 8)
@@ -232,7 +227,7 @@ script = ExtResource("16_52vn7")
 background = NodePath("../TextureRect2")
 label_subtitles = NodePath("../TextureRect2/Subtitles")
 lines = Array[String](["Thanks kid, that feels much better"])
-seconds_between_lines = 1.5
+seconds_between_lines = 2.0
 
 [node name="SpeechTwo" type="Node" parent="LevelNarratorController/NarratorContainer" node_paths=PackedStringArray("background", "label_subtitles")]
 script = ExtResource("16_52vn7")

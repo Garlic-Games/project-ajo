@@ -36,10 +36,10 @@ func the_b0ss_is_talking_now():
 	var tween_speech: Tween = get_tree().create_tween();
 	tween_speech.tween_property(player.camera, "global_transform", b0ss_camera_transform, 1.5).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN_OUT);
 	tween_speech.tween_interval(1.0);
-	tween_speech.tween_property(label_subtitles, "text", "Congratulations, my fellow prisoner.", 1.7);
+	tween_speech.tween_property(label_subtitles, "text", "Congratulations, my good tester.", 1.7);
 	tween_speech.tween_interval(2.0);
 	tween_speech.tween_property(label_subtitles, "text", "", 0.0);
-	tween_speech.tween_property(label_subtitles, "text", "It seems you have proven yourself worthy of my experiment.", 2.9);
+	tween_speech.tween_property(label_subtitles, "text", "It seems you have proven yourself usefull, you have freed me.", 2.9);
 	tween_speech.tween_interval(2.0);
 	tween_speech.tween_property(label_subtitles, "text", "", 0.0);
 	tween_speech.tween_property(label_subtitles, "text", "Unfortunately, you have become useless to me.", 2.4);

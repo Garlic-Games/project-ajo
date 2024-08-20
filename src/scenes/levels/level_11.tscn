@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://dwqluvw4xhonu"]
+[gd_scene load_steps=19 format=3 uid="uid://dwqluvw4xhonu"]
 
 [ext_resource type="Script" path="res://scripts/gameplay/levels/level.gd" id="1_hrd16"]
 [ext_resource type="Script" path="res://scripts/gameplay/levels/giant_grid_manager.gd" id="2_hvnm7"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://dn0ac0ylyqffq" path="res://prefabs/gameplay/grid_items/2_by_1_grid_item.tscn" id="9_sxxct"]
 [ext_resource type="Environment" uid="uid://c2ysr3uf731rp" path="res://art/backgrounds/env_virtual.tres" id="10_bxodc"]
 [ext_resource type="PackedScene" uid="uid://c6m66r5vllrb1" path="res://prefabs/entities/cool_garlic.tscn" id="10_k0fen"]
+[ext_resource type="Script" path="res://scripts/gameplay/state/level_narrator_controller.gd" id="12_rj0fa"]
 [ext_resource type="Theme" uid="uid://dajx1ty4mxj6b" path="res://art/themes/default.tres" id="12_wgofg"]
 [ext_resource type="Texture2D" uid="uid://efu7ciuiyiym" path="res://art/textures/character_3.png" id="13_137sf"]
 [ext_resource type="Script" path="res://scripts/narrator/narrator.gd" id="14_kdsbh"]
@@ -47,7 +48,7 @@ sky_mode = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 11)
 script = ExtResource("2_hvnm7")
 offset = Vector3(-2, 0, 2)
-grid_size = Vector2i(5, 6)
+grid_size = Vector2i(5, 4)
 cell_size = 2.0
 blocked_positions = Array[Vector2i]([Vector2i(4, 0), Vector2i(4, 1), Vector2i(4, 2), Vector2i(4, 3), Vector2i(4, 4), Vector2i(4, 5), Vector2i(3, 0), Vector2i(3, 1), Vector2i(3, 2), Vector2i(3, 3), Vector2i(3, 4), Vector2i(3, 5)])
 random_posibility = 0.8
@@ -138,9 +139,10 @@ grid_offset = Vector3(-2, 0, 2)
 unit_size = Vector3(5, 5, 5)
 
 [node name="GridItem2" parent="Grid_mid" instance=ExtResource("9_sxxct")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0, 5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0, 5)
 is_toon = false
-grid_position = Vector3i(4, 0, -1)
+grid_position = Vector3i(5, 0, 1)
+grid_offset = Vector3(-2, 0, 2)
 is_inmovible = true
 
 [node name="Ground2" type="Node3D" parent="."]
@@ -187,16 +189,19 @@ light_energy = 1000.0
 light_negative = true
 omni_range = 27.0514
 
-[node name="NarratorContainer" type="Node" parent="."]
+[node name="LevelNarratorController" type="Node" parent="."]
+script = ExtResource("12_rj0fa")
 
-[node name="TextureRect2" type="TextureRect" parent="NarratorContainer"]
+[node name="NarratorContainer" type="Node" parent="LevelNarratorController"]
+
+[node name="TextureRect2" type="TextureRect" parent="LevelNarratorController/NarratorContainer"]
 offset_left = 118.0
 offset_top = 527.0
 offset_right = 1041.0
 offset_bottom = 618.0
 texture = SubResource("GradientTexture2D_al83k")
 
-[node name="Subtitles" type="RichTextLabel" parent="NarratorContainer/TextureRect2"]
+[node name="Subtitles" type="RichTextLabel" parent="LevelNarratorController/NarratorContainer/TextureRect2"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.173348
@@ -210,7 +215,7 @@ bbcode_enabled = true
 text = "fdssdfsdf (PLACEHOLDER)"
 metadata/_edit_use_anchors_ = true
 
-[node name="TextureRect" type="TextureRect" parent="NarratorContainer/TextureRect2"]
+[node name="TextureRect" type="TextureRect" parent="LevelNarratorController/NarratorContainer/TextureRect2"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.0303359
@@ -225,14 +230,14 @@ texture = ExtResource("13_137sf")
 expand_mode = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="SpeechOne" type="Node" parent="NarratorContainer" node_paths=PackedStringArray("background", "label_subtitles")]
+[node name="SpeechOne" type="Node" parent="LevelNarratorController/NarratorContainer" node_paths=PackedStringArray("background", "label_subtitles")]
 script = ExtResource("14_kdsbh")
 background = NodePath("../TextureRect2")
 label_subtitles = NodePath("../TextureRect2/Subtitles")
 lines = Array[String](["Look at this mess", "Full of fragmented memory", "Good thing you're almost there"])
 seconds_between_lines = 1.5
 
-[node name="SpeechTwo" type="Node" parent="NarratorContainer" node_paths=PackedStringArray("background", "label_subtitles")]
+[node name="SpeechTwo" type="Node" parent="LevelNarratorController/NarratorContainer" node_paths=PackedStringArray("background", "label_subtitles")]
 script = ExtResource("14_kdsbh")
 background = NodePath("../TextureRect2")
 label_subtitles = NodePath("../TextureRect2/Subtitles")

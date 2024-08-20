@@ -89,11 +89,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 0)
 grid_position = Vector3i(3, 0, 2)
 grid_offset = Vector3(-2, 0, 2)
 
-[node name="Jumper4" parent="Grid" instance=ExtResource("3_nrv4a")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -10)
-grid_position = Vector3i(3, 0, 4)
-grid_offset = Vector3(-2, 0, 2)
-
 [node name="SpawnPoint" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0649633, 3.31605, 21.283)
 

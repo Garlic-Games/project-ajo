@@ -18,12 +18,12 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_gkuyb"]
 size = Vector3(200, 10, 200)
 
-[sub_resource type="Gradient" id="Gradient_28qkw"]
+[sub_resource type="Gradient" id="Gradient_goq7a"]
 offsets = PackedFloat32Array(0)
 colors = PackedColorArray(0, 0, 0, 0.207843)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_cstfw"]
-gradient = SubResource("Gradient_28qkw")
+gradient = SubResource("Gradient_goq7a")
 fill_from = Vector2(0.487179, 0.504274)
 
 [node name="Level9" type="Node3D" node_paths=PackedStringArray("spawn_point")]
@@ -34,35 +34,41 @@ spawn_point = NodePath("SpawnPoint")
 [node name="Grid" type="Node3D" parent="."]
 script = ExtResource("2_aws5r")
 offset = Vector3(-2, 0, 2)
-grid_size = Vector2i(5, 5)
+grid_size = Vector2i(6, 5)
 cell_size = 2.0
-blocked_positions = Array[Vector2i]([Vector2i(3, 4), Vector2i(4, 3), Vector2i(3, 3)])
+blocked_positions = Array[Vector2i]([Vector2i(3, 4), Vector2i(4, 3), Vector2i(3, 3), Vector2i(5, 3)])
 random_posibility = 0.5
 
 [node name="2by1GridItem" parent="Grid" instance=ExtResource("5_wuoyk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, 5)
-grid_position = Vector3i(0, 0, 1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -10)
+is_toon = false
+grid_position = Vector3i(1, 0, 4)
 grid_offset = Vector3(-2, 0, 2)
 
 [node name="2by1GridItem3" parent="Grid" instance=ExtResource("5_wuoyk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, -15)
 is_toon = false
-grid_position = Vector3i(4, 0, 1)
+grid_position = Vector3i(0, 0, 5)
 grid_offset = Vector3(-2, 0, 2)
 
 [node name="1by1GridItem" parent="Grid" instance=ExtResource("3_pnkja")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 10)
-grid_position = Vector3i(1, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, 10)
+grid_offset = Vector3(-2, 0, 2)
+
+[node name="1by1GridItem3" parent="Grid" instance=ExtResource("3_pnkja")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, -10)
+grid_position = Vector3i(0, 0, 4)
 grid_offset = Vector3(-2, 0, 2)
 
 [node name="1by1GridItem2" parent="Grid" instance=ExtResource("3_pnkja")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 10)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -15)
 is_toon = false
-grid_position = Vector3i(4, 0, 0)
+grid_position = Vector3i(1, 0, 5)
 grid_offset = Vector3(-2, 0, 2)
 
 [node name="Fan" parent="Grid" instance=ExtResource("5_jta1c")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 1.25, -5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 1.25, 0)
+grid_position = Vector3i(1, 0, 2)
 grid_offset = Vector3(-2, 0, 2)
 
 [node name="BoardGridItem" parent="Grid" instance=ExtResource("4_ttb3s")]
@@ -71,7 +77,9 @@ grid_position = Vector3i(2, 0, 0)
 grid_offset = Vector3(-2, 0, 2)
 
 [node name="2by1GridItem2" parent="Grid" instance=ExtResource("7_37uuo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, 10)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 10)
+is_toon = true
+grid_position = Vector3i(3, 0, 0)
 grid_offset = Vector3(-2, 0, 2)
 
 [node name="VictorySpot" parent="Grid" instance=ExtResource("8_u3gwp")]
@@ -156,11 +164,14 @@ metadata/_edit_use_anchors_ = true
 script = ExtResource("14_hhas0")
 background = NodePath("../TextureRect2")
 label_subtitles = NodePath("../TextureRect2/Subtitles")
-lines = Array[String](["You have been really helpfull so here's a tip", "Fans push you to the direction they are facing", "Stairs allow you to go up when walked against", "Quite easy right?", "The graphics? Don't worry boy.", "This is thebest way to work, keep at it"])
-seconds_between_lines = 1.5
+lines = Array[String](["You have been really helpfull so here's a tip", "Fans push you to the direction they are facing", "Stairs allow you to go up when walked against", "Quite easy right?", "The fan works best if you jump over it", "The graphics? Don't worry boy.", "This is the best way to work, keep at it"])
+seconds_between_lines = 3.0
 
 [node name="SpeechTwo" type="Node" parent="LevelNarratorController/NarratorContainer" node_paths=PackedStringArray("background", "label_subtitles")]
 script = ExtResource("14_hhas0")
 background = NodePath("../TextureRect2")
 label_subtitles = NodePath("../TextureRect2/Subtitles")
-seconds_between_lines = 1.5
+lines = Array[String](["The stairs are a bit hard to find", "Its one of those [color=orange]orange memory blocks[/color]"])
+seconds_between_lines = 3.0
+
+[connection signal="board_accessed" from="Grid/BoardGridItem" to="LevelNarratorController" method="_on_board_grid_item_board_accessed"]

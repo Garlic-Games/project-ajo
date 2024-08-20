@@ -29,12 +29,12 @@ sky_rotation = Vector3(3.14159, 0, 0)
 [sub_resource type="BoxShape3D" id="BoxShape3D_kdlfk"]
 size = Vector3(200, 10, 200)
 
-[sub_resource type="Gradient" id="Gradient_uh2n8"]
+[sub_resource type="Gradient" id="Gradient_i6unt"]
 offsets = PackedFloat32Array(0)
 colors = PackedColorArray(0, 0, 0, 0.207843)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_s73h7"]
-gradient = SubResource("Gradient_uh2n8")
+gradient = SubResource("Gradient_i6unt")
 fill_from = Vector2(0.487179, 0.504274)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_fwfi0"]
@@ -46,10 +46,10 @@ shader_parameter/shake_block_size = 10.0
 shader_parameter/shake_color_rate = 0.01
 shader_parameter/doeet = true
 
-[sub_resource type="Gradient" id="Gradient_2ys0s"]
+[sub_resource type="Gradient" id="Gradient_ukyq1"]
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_7enr1"]
-gradient = SubResource("Gradient_2ys0s")
+gradient = SubResource("Gradient_ukyq1")
 
 [node name="Level6" type="Node3D" node_paths=PackedStringArray("spawn_point")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -20)
