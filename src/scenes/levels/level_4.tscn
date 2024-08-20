@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://dsaenifftk68w"]
+[gd_scene load_steps=26 format=3 uid="uid://dsaenifftk68w"]
 
 [ext_resource type="Script" path="res://scripts/gameplay/levels/level.gd" id="1_d6vi2"]
 [ext_resource type="Script" path="res://scripts/gameplay/levels/giant_grid_manager.gd" id="2_1dqgi"]
@@ -13,6 +13,12 @@
 [ext_resource type="Texture2D" uid="uid://cn7spgol2yooo" path="res://art/textures/character_2.png" id="11_rt2f4"]
 [ext_resource type="Theme" uid="uid://dajx1ty4mxj6b" path="res://art/themes/default.tres" id="12_g7wyf"]
 [ext_resource type="Script" path="res://scripts/narrator/narrator.gd" id="13_odnyj"]
+[ext_resource type="Script" path="res://scripts/gameplay/levels/spin.gd" id="15_n7tgb"]
+[ext_resource type="PackedScene" uid="uid://dn652yfooiof4" path="res://art/models/kenney_platformer-kit/block-grass-low-hexagon.glb" id="16_vlgpu"]
+[ext_resource type="PackedScene" uid="uid://uh7o6725yqk2" path="res://art/models/kenney_platformer-kit/flowers-tall.glb" id="17_ba2q4"]
+[ext_resource type="PackedScene" uid="uid://b2eut4bbtmulj" path="res://art/models/kenney_platformer-kit/flowers.glb" id="18_ji1me"]
+[ext_resource type="PackedScene" uid="uid://jgprhl5lxtfg" path="res://art/models/kenney_platformer-kit/tree-pine.glb" id="18_swn8x"]
+[ext_resource type="PackedScene" uid="uid://dcvi4wk1beu0q" path="res://art/models/kenney_platformer-kit/stones.glb" id="19_ncihi"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_npxs5"]
 panorama = ExtResource("9_of724")
@@ -169,7 +175,7 @@ metadata/_edit_use_anchors_ = true
 script = ExtResource("13_odnyj")
 background = NodePath("../TextureRect2")
 label_subtitles = NodePath("../TextureRect2/Subtitles")
-lines = Array[String](["Well now we will be testing the dash skill", "Nothing has happened, so far for using the board, so lets use it to advance", "Though remember to report the bugs to the devs"])
+lines = Array[String](["Nothing has happened, so far for using the board, so lets use it to advance", "Though remember to report the bugs to the devs"])
 seconds_between_lines = 1.5
 
 [node name="SpeechTwo" type="Node" parent="LevelNarratorController/NarratorContainer" node_paths=PackedStringArray("background", "label_subtitles")]
@@ -178,5 +184,40 @@ background = NodePath("../TextureRect2")
 label_subtitles = NodePath("../TextureRect2/Subtitles")
 lines = Array[String](["Remember that [color=blue] blue blocks[/color] can be piled toghether.", "You can also add any other block over a blue one."])
 seconds_between_lines = 1.5
+
+[node name="block-grass-low-hexagon3" parent="." instance=ExtResource("16_vlgpu")]
+transform = Transform3D(7.41717, 2.58562, 6.18871, 4.75186, 4.48604, -7.56936, -4.73343, 8.55512, 2.09872, 38.4204, -6.88986, -168.915)
+script = ExtResource("15_n7tgb")
+spinspeed = 40.0
+
+[node name="flowers-tall2" parent="block-grass-low-hexagon3" instance=ExtResource("17_ba2q4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3, 0.4, 0)
+
+[node name="tree-pine2" parent="block-grass-low-hexagon3" instance=ExtResource("18_swn8x")]
+transform = Transform3D(1, 4.54747e-12, 0, 2.09184e-11, 1, 0, -2.98023e-08, 1.81899e-11, 1, -1.28267, 1.00076, -2.38136)
+
+[node name="block-grass-large2" parent="block-grass-low-hexagon3" instance=ExtResource("8_d72cq")]
+transform = Transform3D(1, 4.09273e-12, 0, 2.04636e-11, 1, 0, -2.23517e-08, 1.09139e-11, 1, -1.38262, 0.000797093, -2.77639)
+
+[node name="flowers-tall2" parent="." instance=ExtResource("17_ba2q4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.6683, -0.0100746, 6.97245)
+
+[node name="flowers" parent="." instance=ExtResource("18_ji1me")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.77862, -0.0100746, -2.41125)
+
+[node name="stones2" parent="." instance=ExtResource("19_ncihi")]
+transform = Transform3D(10, 0, 0, 0, 1, 0, 0, 0, 10, -4.80991, 0.0275974, 20.3486)
+
+[node name="stones3" parent="." instance=ExtResource("19_ncihi")]
+transform = Transform3D(10, 0, 0, 0, 1, 0, 0, 0, 10, -7.91544, 0.0275974, 26.3486)
+
+[node name="stones4" parent="." instance=ExtResource("19_ncihi")]
+transform = Transform3D(10, 0, 0, 0, 1, 0, 0, 0, 10, -6.45036, 0.0275974, 30.3486)
+
+[node name="stones5" parent="." instance=ExtResource("19_ncihi")]
+transform = Transform3D(10, 0, 0, 0, 1, 0, 0, 0, 10, -4.61266, 0.0275974, 36.3486)
+
+[node name="stones6" parent="." instance=ExtResource("19_ncihi")]
+transform = Transform3D(10, 0, 0, 0, 1, 0, 0, 0, 10, -6.45036, 0.0275974, 42.3486)
 
 [connection signal="board_accessed" from="Grid/BoardGridItem" to="LevelNarratorController" method="_on_board_grid_item_board_accessed"]

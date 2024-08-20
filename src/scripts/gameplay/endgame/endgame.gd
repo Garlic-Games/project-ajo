@@ -39,7 +39,7 @@ func the_b0ss_is_talking_now():
 	tween_speech.tween_property(label_subtitles, "text", "Congratulations, my good tester.", 1.7);
 	tween_speech.tween_interval(2.0);
 	tween_speech.tween_property(label_subtitles, "text", "", 0.0);
-	tween_speech.tween_property(label_subtitles, "text", "It seems you have proven yourself usefull, you have freed me.", 2.9);
+	tween_speech.tween_property(label_subtitles, "text", "It seems you have proven yourself usefull, youw have freed me.", 2.9);
 	tween_speech.tween_interval(2.0);
 	tween_speech.tween_property(label_subtitles, "text", "", 0.0);
 	tween_speech.tween_property(label_subtitles, "text", "Unfortunately, you have become useless to me.", 2.4);

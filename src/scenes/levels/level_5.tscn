@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://dr1eiig57fdnd"]
+[gd_scene load_steps=26 format=3 uid="uid://dr1eiig57fdnd"]
 
 [ext_resource type="Script" path="res://scripts/gameplay/levels/level.gd" id="1_axdss"]
 [ext_resource type="Script" path="res://scripts/gameplay/levels/giant_grid_manager.gd" id="2_pgw1y"]
@@ -13,6 +13,12 @@
 [ext_resource type="Texture2D" uid="uid://cn7spgol2yooo" path="res://art/textures/character_2.png" id="11_qpgip"]
 [ext_resource type="Theme" uid="uid://dajx1ty4mxj6b" path="res://art/themes/default.tres" id="12_4258y"]
 [ext_resource type="Script" path="res://scripts/narrator/narrator.gd" id="13_g3wwg"]
+[ext_resource type="PackedScene" uid="uid://dn652yfooiof4" path="res://art/models/kenney_platformer-kit/block-grass-low-hexagon.glb" id="14_4jj0a"]
+[ext_resource type="PackedScene" uid="uid://dcvi4wk1beu0q" path="res://art/models/kenney_platformer-kit/stones.glb" id="15_r2tax"]
+[ext_resource type="PackedScene" uid="uid://4myxd45m26mh" path="res://art/models/kenney_platformer-kit/mushrooms.glb" id="16_vtu1j"]
+[ext_resource type="PackedScene" uid="uid://cwjkvdrhvecv3" path="res://art/models/kenney_platformer-kit/arrow.glb" id="17_ddtws"]
+[ext_resource type="PackedScene" uid="uid://ctkxbsgm6ierw" path="res://art/models/kenney_platformer-kit/barrel.glb" id="18_vns1f"]
+[ext_resource type="Script" path="res://scripts/gameplay/levels/vibrate.gd" id="19_241p5"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_gi8nh"]
 panorama = ExtResource("8_h4v2q")
@@ -160,3 +166,56 @@ script = ExtResource("13_g3wwg")
 background = NodePath("../TextureRect2")
 label_subtitles = NodePath("../TextureRect2/Subtitles")
 seconds_between_lines = 1.5
+
+[node name="block-grass-low-hexagon5" parent="." instance=ExtResource("14_4jj0a")]
+transform = Transform3D(-6.64578, 7.47218, 0, -7.47218, -6.64578, 0, 0, 0, 10, -53.9314, 8.49073, -19.7429)
+
+[node name="stones2" parent="block-grass-low-hexagon5" instance=ExtResource("15_r2tax")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+
+[node name="block-grass-low-hexagon6" parent="." instance=ExtResource("14_4jj0a")]
+transform = Transform3D(-6.64578, 7.47218, 0, -7.47218, -6.64578, 0, 0, 0, 10, -59.9126, 1.76576, -24.7429)
+
+[node name="stones2" parent="block-grass-low-hexagon6" instance=ExtResource("15_r2tax")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+
+[node name="block-grass-low-hexagon7" parent="." instance=ExtResource("14_4jj0a")]
+transform = Transform3D(-6.64578, 7.47218, 0, -7.47218, -6.64578, 0, 0, 0, 10, -54.596, 7.74351, -29.7429)
+
+[node name="stones2" parent="block-grass-low-hexagon7" instance=ExtResource("15_r2tax")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+
+[node name="mushrooms2" parent="block-grass-low-hexagon7" instance=ExtResource("16_vtu1j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3, 0.6, 0.6)
+
+[node name="block-grass-low-hexagon3" parent="." instance=ExtResource("14_4jj0a")]
+transform = Transform3D(7.24562, 5.87961, 3.59599, -5.51915, 8.07487, -2.08216, -4.12795, -0.476023, 9.09579, 43.9072, 2.16913, -75.4157)
+
+[node name="arrow3" parent="block-grass-low-hexagon3" instance=ExtResource("17_ddtws")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.402493, 0.389034, 0.00200987)
+script = ExtResource("19_241p5")
+vibr_diration = 0.1
+
+[node name="block-grass-low-hexagon4" parent="." instance=ExtResource("14_4jj0a")]
+transform = Transform3D(7.88186, 5.88404, -1.804, -2.46135, 0.327151, -9.68683, -5.64075, 8.07905, 1.70612, 44.38, 10.102, -80.9402)
+
+[node name="barrel3" parent="block-grass-low-hexagon4" instance=ExtResource("18_vns1f")]
+transform = Transform3D(0.999203, -0.0101707, 0.0385901, 0.00841922, 0.998939, 0.0452771, -0.0390096, -0.0449161, 0.998229, 0.0424239, 0.599999, 0)
+script = ExtResource("19_241p5")
+vibration_strength = 0.1
+vibr_diration = 0.05
+
+[node name="stones2" parent="." instance=ExtResource("15_r2tax")]
+transform = Transform3D(9.81198, 0.193001, 0, -1.93001, 0.981198, 0, 0, 0, 10, -0.3508, 0.0275974, 20.3486)
+
+[node name="stones3" parent="." instance=ExtResource("15_r2tax")]
+transform = Transform3D(9.78379, 0.206819, 0, -2.06819, 0.978379, 0, 0, 0, 10, -3.45633, 0.0275974, 26.3486)
+
+[node name="stones4" parent="." instance=ExtResource("15_r2tax")]
+transform = Transform3D(9.68156, -0.250346, 0, 2.50346, 0.968156, 0, 0, 0, 10, 3.68836, 0.0275974, 30.3486)
+
+[node name="stones5" parent="." instance=ExtResource("15_r2tax")]
+transform = Transform3D(10, 0, 0, 0, 1, 0, 0, 0, 10, 6.64499, 0.0275974, 36.3486)
+
+[node name="stones6" parent="." instance=ExtResource("15_r2tax")]
+transform = Transform3D(9.73359, 0.229285, 0, -2.29285, 0.973359, 0, 0, 0, 10, -4.29131, 0.0275974, 42.3486)
