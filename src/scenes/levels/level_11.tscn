@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dwqluvw4xhonu"]
+[gd_scene load_steps=13 format=3 uid="uid://dwqluvw4xhonu"]
 
 [ext_resource type="Script" path="res://scripts/gameplay/levels/level.gd" id="1_hrd16"]
 [ext_resource type="Script" path="res://scripts/gameplay/levels/giant_grid_manager.gd" id="2_hvnm7"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://mcc421imw5vv" path="res://prefabs/gameplay/grid_items/jump_grid_item.tscn" id="6_cuind"]
 [ext_resource type="PackedScene" uid="uid://b7ttitq0bbrxj" path="res://prefabs/gameplay/grid_items/fan_grid_item.tscn" id="8_n2l8a"]
 [ext_resource type="PackedScene" uid="uid://untq4yp2wlic" path="res://prefabs/gameplay/victory_spot/victory_spot1x1.tscn" id="8_u2vcn"]
+[ext_resource type="PackedScene" uid="uid://dn0ac0ylyqffq" path="res://prefabs/gameplay/grid_items/2_by_1_grid_item.tscn" id="9_sxxct"]
 [ext_resource type="Environment" uid="uid://c2ysr3uf731rp" path="res://art/backgrounds/env_virtual.tres" id="10_bxodc"]
 [ext_resource type="PackedScene" uid="uid://c6m66r5vllrb1" path="res://prefabs/entities/cool_garlic.tscn" id="10_k0fen"]
 
@@ -38,6 +39,7 @@ offset = Vector3(-2, 0, 2)
 grid_size = Vector2i(5, 6)
 cell_size = 2.0
 blocked_positions = Array[Vector2i]([Vector2i(4, 0), Vector2i(4, 1), Vector2i(4, 2), Vector2i(4, 3), Vector2i(4, 4), Vector2i(4, 5), Vector2i(3, 0), Vector2i(3, 1), Vector2i(3, 2), Vector2i(3, 3), Vector2i(3, 4), Vector2i(3, 5)])
+random_posibility = null
 
 [node name="BoardGridItem" parent="Grid_start" instance=ExtResource("4_cclgr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 0)
@@ -58,6 +60,12 @@ grid_offset = Vector3(-2, 0, 2)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, 10)
 grid_offset = Vector3(-2, 0, 2)
 
+[node name="Node3D3" parent="Grid_start" instance=ExtResource("3_7ukg6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0, 10)
+is_toon = false
+grid_position = Vector3i(6, 0, 0)
+grid_offset = Vector3(-2, 0, 2)
+
 [node name="Node3D2" parent="Grid_start" instance=ExtResource("3_7ukg6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 10)
 is_toon = false
@@ -70,6 +78,7 @@ script = ExtResource("2_hvnm7")
 offset = Vector3(-2, 0, 2)
 grid_size = Vector2i(12, 9)
 cell_size = 2.0
+random_posibility = null
 
 [node name="BoardGridItem" parent="Grid_mid" instance=ExtResource("4_cclgr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 10)
@@ -111,10 +120,17 @@ is_inmovible = false
 
 [node name="VictorySpot" parent="Grid_mid" instance=ExtResource("8_u2vcn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -35)
+glitch_strength = null
 is_toon = false
 grid_position = Vector3i(2, 0, 9)
 grid_offset = Vector3(-2, 0, 2)
 unit_size = Vector3(5, 5, 5)
+
+[node name="GridItem2" parent="Grid_mid" instance=ExtResource("9_sxxct")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0, 5)
+is_toon = false
+grid_position = Vector3i(4, 0, -1)
+is_inmovible = true
 
 [node name="Ground2" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)

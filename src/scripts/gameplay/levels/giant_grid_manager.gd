@@ -4,6 +4,7 @@ extends Node3D
 
 signal victory;
 signal item_moved;
+signal item_random_happen;
 
 @export var offset: Vector3:
 	set(val):
@@ -13,6 +14,7 @@ signal item_moved;
 @export var grid_size: Vector2i;
 @export var cell_size: float;
 @export var blocked_positions: Array[Vector2i]
+@export var random_posibility: float = 0.1;
 
 var pieces: Dictionary = {};
 # Called when the node enters the scene tree for the first time.
@@ -38,12 +40,16 @@ func _children_moved(board:Board, item: BoardItem, coords: Vector3i, rotationDeg
 	print(excluded_boards.get_typed_class_name());
 	_sync_boards(excluded_boards, item, coords, rotationDeg);
 
+	if randf() <= random_posibility:
+		piece.is_toon = !piece.is_toon;
+		item_random_happen.emit();
+
 func _sync_boards(board_list: Array, item: BoardItem, coords: Vector3i, rotationDeg: Vector3):
 	for curr_board in board_list:
 		_move_item(curr_board, item, coords, rotationDeg);
 
 func _move_item(curr_board:Board, item: BoardItem, coords: Vector3i, rotationDeg: Vector3):
-	var new_item = curr_board.items_dictionary.get(item.item_id) as BoardItem;
+	var new_item = curr_board.items_dictitem_random_happenionary.get(item.item_id) as BoardItem;
 	if item.itemParent is BoardTable:
 		curr_board.boardTable.setItem(new_item, coords.x, coords.y);
 	else:

@@ -151,11 +151,11 @@ func do_glitch(strength: float = default_gitch_strength):
 func stop_glitch():
 	glitch.material.set_shader_parameter("doeet", false);
 
-func notifyEnteredTableZone(entered: bool): 
+func notifyEnteredTableZone(entered: bool):
 	hud.inTableArea = entered;
-	
-func notifyEnteredLvlEndZone(entered: bool): 
+
+func notifyEnteredLvlEndZone(entered: bool):
 	hud.inEndArea = entered;
-	
-func notifyEnteredTwistZone(entered: bool): 
+
+func notifyEnteredTwistZone(entered: bool):
 	hud.inTwistArea = entered;

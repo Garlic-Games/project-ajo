@@ -9,13 +9,13 @@ var inTableArea: bool = false:
 	set(val):
 		inTableArea = val;
 		_checkVisibility();
-		
+
 var inEndArea: bool = false:
 	set(val):
 		inEndArea = val;
 		_checkVisibility();
 
-		
+
 var inTwistArea: bool = false:
 	set(val):
 		inTwistArea = val;
@@ -25,7 +25,7 @@ var editingBoard: bool = false:
 	set(val):
 		editingBoard = val;
 		_checkVisibility();
-		
+
 func _ready() -> void:
 	_checkVisibility();
 

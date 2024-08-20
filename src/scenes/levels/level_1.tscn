@@ -34,6 +34,7 @@ script = ExtResource("1_rt68t")
 offset = Vector3(-1.5, 0, 1.5)
 grid_size = Vector2i(4, 4)
 cell_size = 2.0
+random_posibility = null
 
 [node name="BoardGridItem" parent="Grid" instance=ExtResource("4_xlnda")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0, 7.5)
@@ -48,6 +49,7 @@ is_inmovible = true
 
 [node name="VictorySpot2" parent="Grid" instance=ExtResource("5_elv6w")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 0, -7.5)
+glitch_strength = null
 grid_position = Vector3i(3, 0, 3)
 grid_offset = Vector3(-1.5, 0, 1.5)
 
