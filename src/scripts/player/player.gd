@@ -43,7 +43,7 @@ func _playMusic(musicSlot: int):
 	music.stop();
 	print("Playing song in slot: ", musicSlot)
 	music.reproduceSingle(GameManager.songMappings[musicSlot]);
-	
+
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.

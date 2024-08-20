@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://ca2o5pe2gkogc"]
+[gd_scene load_steps=18 format=3 uid="uid://ca2o5pe2gkogc"]
 
 [ext_resource type="Script" path="res://scripts/gameplay/levels/level.gd" id="1_ay0js"]
 [ext_resource type="Script" path="res://scripts/gameplay/levels/giant_grid_manager.gd" id="2_aws5r"]
@@ -10,9 +10,21 @@
 [ext_resource type="PackedScene" uid="uid://bmloi8ebayxya" path="res://prefabs/gameplay/victory_spot/victory_spot1x2.tscn" id="8_u3gwp"]
 [ext_resource type="Material" uid="uid://cgepabmgprihw" path="res://art/materials/cubes/cube_glow.tres" id="9_x0ikh"]
 [ext_resource type="Environment" uid="uid://c2ysr3uf731rp" path="res://art/backgrounds/env_virtual.tres" id="10_sslgf"]
+[ext_resource type="Script" path="res://scripts/gameplay/state/level_narrator_controller.gd" id="11_51er6"]
+[ext_resource type="Theme" uid="uid://dajx1ty4mxj6b" path="res://art/themes/default.tres" id="12_qeuxe"]
+[ext_resource type="Texture2D" uid="uid://efu7ciuiyiym" path="res://art/textures/character_3.png" id="13_t37x7"]
+[ext_resource type="Script" path="res://scripts/narrator/narrator.gd" id="14_hhas0"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_gkuyb"]
 size = Vector3(200, 10, 200)
+
+[sub_resource type="Gradient" id="Gradient_28qkw"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0, 0, 0, 0.207843)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_cstfw"]
+gradient = SubResource("Gradient_28qkw")
+fill_from = Vector2(0.487179, 0.504274)
 
 [node name="Level9" type="Node3D" node_paths=PackedStringArray("spawn_point")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -20)
@@ -25,6 +37,7 @@ offset = Vector3(-2, 0, 2)
 grid_size = Vector2i(5, 5)
 cell_size = 2.0
 blocked_positions = Array[Vector2i]([Vector2i(3, 4), Vector2i(4, 3), Vector2i(3, 3)])
+random_posibility = 0.5
 
 [node name="2by1GridItem" parent="Grid" instance=ExtResource("5_wuoyk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, 5)
@@ -63,6 +76,7 @@ grid_offset = Vector3(-2, 0, 2)
 
 [node name="VictorySpot" parent="Grid" instance=ExtResource("8_u3gwp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, -10)
+glitch_strength = 0.2
 is_toon = false
 grid_position = Vector3i(4, 0, 4)
 grid_offset = Vector3(-2, 0, 2)
@@ -96,3 +110,57 @@ collision_mask = 2
 
 [node name="VoidCollider" type="CollisionShape3D" parent="VoidArea"]
 shape = SubResource("BoxShape3D_gkuyb")
+
+[node name="LevelNarratorController" type="Node" parent="."]
+script = ExtResource("11_51er6")
+
+[node name="NarratorContainer" type="Node" parent="LevelNarratorController"]
+
+[node name="TextureRect2" type="TextureRect" parent="LevelNarratorController/NarratorContainer"]
+offset_left = 118.0
+offset_top = 527.0
+offset_right = 1041.0
+offset_bottom = 618.0
+texture = SubResource("GradientTexture2D_cstfw")
+
+[node name="Subtitles" type="RichTextLabel" parent="LevelNarratorController/NarratorContainer/TextureRect2"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.173348
+anchor_top = 0.142857
+anchor_right = 0.963164
+anchor_bottom = 0.89011
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("12_qeuxe")
+bbcode_enabled = true
+text = "fdssdfsdf (PLACEHOLDER)"
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect" type="TextureRect" parent="LevelNarratorController/NarratorContainer/TextureRect2"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0303359
+anchor_top = 0.153846
+anchor_right = 0.100758
+anchor_bottom = 0.846154
+offset_top = 1.43051e-05
+offset_bottom = 1.52588e-05
+grow_vertical = 0
+size_flags_vertical = 8
+texture = ExtResource("13_t37x7")
+expand_mode = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="SpeechOne" type="Node" parent="LevelNarratorController/NarratorContainer" node_paths=PackedStringArray("background", "label_subtitles")]
+script = ExtResource("14_hhas0")
+background = NodePath("../TextureRect2")
+label_subtitles = NodePath("../TextureRect2/Subtitles")
+lines = Array[String](["You have been really helpfull so here's a tip", "Fans push you to the direction they are facing", "Stairs allow you to go up when walked against", "Quite easy right?", "The graphics? Don't worry boy.", "This is thebest way to work, keep at it"])
+seconds_between_lines = 1.5
+
+[node name="SpeechTwo" type="Node" parent="LevelNarratorController/NarratorContainer" node_paths=PackedStringArray("background", "label_subtitles")]
+script = ExtResource("14_hhas0")
+background = NodePath("../TextureRect2")
+label_subtitles = NodePath("../TextureRect2/Subtitles")
+seconds_between_lines = 1.5

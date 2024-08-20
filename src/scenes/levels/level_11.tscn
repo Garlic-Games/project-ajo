@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dwqluvw4xhonu"]
+[gd_scene load_steps=18 format=3 uid="uid://dwqluvw4xhonu"]
 
 [ext_resource type="Script" path="res://scripts/gameplay/levels/level.gd" id="1_hrd16"]
 [ext_resource type="Script" path="res://scripts/gameplay/levels/giant_grid_manager.gd" id="2_hvnm7"]
@@ -11,9 +11,20 @@
 [ext_resource type="PackedScene" uid="uid://dn0ac0ylyqffq" path="res://prefabs/gameplay/grid_items/2_by_1_grid_item.tscn" id="9_sxxct"]
 [ext_resource type="Environment" uid="uid://c2ysr3uf731rp" path="res://art/backgrounds/env_virtual.tres" id="10_bxodc"]
 [ext_resource type="PackedScene" uid="uid://c6m66r5vllrb1" path="res://prefabs/entities/cool_garlic.tscn" id="10_k0fen"]
+[ext_resource type="Theme" uid="uid://dajx1ty4mxj6b" path="res://art/themes/default.tres" id="12_wgofg"]
+[ext_resource type="Texture2D" uid="uid://efu7ciuiyiym" path="res://art/textures/character_3.png" id="13_137sf"]
+[ext_resource type="Script" path="res://scripts/narrator/narrator.gd" id="14_kdsbh"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mbg4g"]
 size = Vector3(200, 10, 200)
+
+[sub_resource type="Gradient" id="Gradient_uh2n8"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0, 0, 0, 0.207843)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_al83k"]
+gradient = SubResource("Gradient_uh2n8")
+fill_from = Vector2(0.487179, 0.504274)
 
 [node name="Level11" type="Node3D" node_paths=PackedStringArray("spawn_point")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -20)
@@ -39,6 +50,7 @@ offset = Vector3(-2, 0, 2)
 grid_size = Vector2i(5, 6)
 cell_size = 2.0
 blocked_positions = Array[Vector2i]([Vector2i(4, 0), Vector2i(4, 1), Vector2i(4, 2), Vector2i(4, 3), Vector2i(4, 4), Vector2i(4, 5), Vector2i(3, 0), Vector2i(3, 1), Vector2i(3, 2), Vector2i(3, 3), Vector2i(3, 4), Vector2i(3, 5)])
+random_posibility = 0.8
 
 [node name="BoardGridItem" parent="Grid_start" instance=ExtResource("4_cclgr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 0)
@@ -77,6 +89,7 @@ script = ExtResource("2_hvnm7")
 offset = Vector3(-2, 0, 2)
 grid_size = Vector2i(12, 9)
 cell_size = 2.0
+random_posibility = 0.8
 
 [node name="BoardGridItem" parent="Grid_mid" instance=ExtResource("4_cclgr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 10)
@@ -118,6 +131,7 @@ is_inmovible = false
 
 [node name="VictorySpot" parent="Grid_mid" instance=ExtResource("8_u2vcn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -35)
+glitch_strength = 0.3
 is_toon = false
 grid_position = Vector3i(2, 0, 9)
 grid_offset = Vector3(-2, 0, 2)
@@ -172,3 +186,54 @@ transform = Transform3D(2.00945, 0, 5.82077e-10, 0, 2.00945, 0, -5.82077e-10, 0,
 light_energy = 1000.0
 light_negative = true
 omni_range = 27.0514
+
+[node name="NarratorContainer" type="Node" parent="."]
+
+[node name="TextureRect2" type="TextureRect" parent="NarratorContainer"]
+offset_left = 118.0
+offset_top = 527.0
+offset_right = 1041.0
+offset_bottom = 618.0
+texture = SubResource("GradientTexture2D_al83k")
+
+[node name="Subtitles" type="RichTextLabel" parent="NarratorContainer/TextureRect2"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.173348
+anchor_top = 0.142857
+anchor_right = 0.963164
+anchor_bottom = 0.89011
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("12_wgofg")
+bbcode_enabled = true
+text = "fdssdfsdf (PLACEHOLDER)"
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect" type="TextureRect" parent="NarratorContainer/TextureRect2"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0303359
+anchor_top = 0.153846
+anchor_right = 0.100758
+anchor_bottom = 0.846154
+offset_top = 1.43051e-05
+offset_bottom = 1.52588e-05
+grow_vertical = 0
+size_flags_vertical = 8
+texture = ExtResource("13_137sf")
+expand_mode = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="SpeechOne" type="Node" parent="NarratorContainer" node_paths=PackedStringArray("background", "label_subtitles")]
+script = ExtResource("14_kdsbh")
+background = NodePath("../TextureRect2")
+label_subtitles = NodePath("../TextureRect2/Subtitles")
+lines = Array[String](["Look at this mess", "Full of fragmented memory", "Good thing you're almost there"])
+seconds_between_lines = 1.5
+
+[node name="SpeechTwo" type="Node" parent="NarratorContainer" node_paths=PackedStringArray("background", "label_subtitles")]
+script = ExtResource("14_kdsbh")
+background = NodePath("../TextureRect2")
+label_subtitles = NodePath("../TextureRect2/Subtitles")
+seconds_between_lines = 1.5

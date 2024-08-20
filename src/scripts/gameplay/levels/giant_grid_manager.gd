@@ -49,7 +49,7 @@ func _sync_boards(board_list: Array, item: BoardItem, coords: Vector3i, rotation
 		_move_item(curr_board, item, coords, rotationDeg);
 
 func _move_item(curr_board:Board, item: BoardItem, coords: Vector3i, rotationDeg: Vector3):
-	var new_item = curr_board.items_dictitem_random_happenionary.get(item.item_id) as BoardItem;
+	var new_item = curr_board.items_dictionary.get(item.item_id) as BoardItem;
 	if item.itemParent is BoardTable:
 		curr_board.boardTable.setItem(new_item, coords.x, coords.y);
 	else:
