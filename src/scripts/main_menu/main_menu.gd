@@ -15,6 +15,7 @@ func start_game() -> void:
 	
 func continue_game() -> void:
 	if GameManager.load_game():
+		print("Loading level: ", GameManager.current_level)
 		SceneLoader.load_scene(gameplay_scene);
 	else:
 		continueGameButton.text = "Error loading game"

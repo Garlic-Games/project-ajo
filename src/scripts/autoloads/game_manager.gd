@@ -26,6 +26,20 @@ var levels: Array[PackedScene] = [
 	LEVEL_11
 ];
 
+var songMappings: Array[int] = [
+	0, #Lvl 1
+	0, #Lvl 2
+	0, #Lvl 3
+	0, #Lvl 4
+	0, #Lvl 5
+	0, #Lvl 6
+	0, #Lvl 7
+	0, #Lvl 8
+	3, #Lvl 9 + 8 plot twist
+	3, #Lvl 10
+	4, #Lvl 11
+];
+
 var current_level: int = 0;
 var max_level_reached: int;
 

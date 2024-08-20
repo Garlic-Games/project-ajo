@@ -22,7 +22,7 @@ func _victory_reached():
 func spawn_player(player: Player):
 	if spawn_point:
 		level_player = player;
-		player.global_position = spawn_point.global_position;
+		player.spawn(spawn_point.global_position);
 	else:
 		print_rich("[color=red]spawn point not set for node %s[/color]" % [name])
 

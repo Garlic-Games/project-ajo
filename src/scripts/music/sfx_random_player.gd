@@ -1,7 +1,7 @@
 class_name SFXRandomPlayer
 extends Node3D
 
-var audioSources: Array[AudioStreamPlayer3D] = [];
+@export var audioSources: Array[AudioStreamPlayer3D] = [];
 @export var uniquePlay: bool = true;
 @export var ordered: bool = false;
 
@@ -9,9 +9,10 @@ var _rng: RandomNumberGenerator = RandomNumberGenerator.new();
 var _lastPlayed = -1;
 
 func _ready() -> void:
-	for child in get_children():
-		if child is AudioStreamPlayer3D:
-			audioSources.append(child)
+	if audioSources.size() < 1:
+		for child in get_children():
+			if child is AudioStreamPlayer3D:
+				audioSources.append(child)
 
 func reproduce() -> void:
 	if uniquePlay && _isAnyPlaying() && audioSources.size() > 0 :
@@ -26,6 +27,14 @@ func reproduce() -> void:
 		audioToPlayIdx = _rng.randi_range(0, arrSize);
 	audioSources[audioToPlayIdx].play();
 	_lastPlayed = audioToPlayIdx
+
+func reproduceSingle(idx: int):
+	print("Reproducing idx:", idx)
+	if uniquePlay && _isAnyPlaying() && audioSources.size() > 0 :
+		return;
+	audioSources[idx].play();
+	_lastPlayed = idx
+	
 
 func reproduceAll(delay: float) -> void:
 	var delayAccumulated = 0;

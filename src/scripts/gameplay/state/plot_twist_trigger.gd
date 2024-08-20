@@ -22,6 +22,7 @@ func _input(event: InputEvent) -> void:
 		if player and not used:
 			player.notifyEnteredTwistZone(false);
 			player.quick_glitch(0.2)
+			player.playPlotTwist();
 			used = true;
 			is_toon = false;
 			coin_gold_2.hide();

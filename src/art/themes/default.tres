@@ -7,12 +7,11 @@
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8awh7"]
 bg_color = Color(0.219501, 0.219501, 0.219501, 1)
-border_width_left = 6
-border_width_top = 6
-border_width_right = 6
-border_width_bottom = 6
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
 border_color = Color(0.593134, 0.593134, 0.593134, 1)
-shadow_size = 10
 
 [resource]
 Button/colors/font_hover_color = Color(0, 0, 0, 1)
