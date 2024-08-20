@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://cr6b74d4fygcy"]
+[gd_scene load_steps=14 format=3 uid="uid://cr6b74d4fygcy"]
 
 [ext_resource type="Script" path="res://scripts/player/player.gd" id="1_h8ujk"]
 [ext_resource type="Script" path="res://scripts/music/sfx_random_player.gd" id="2_a3n5b"]
@@ -7,14 +7,8 @@
 [ext_resource type="AudioStream" uid="uid://ba046oq2luvky" path="res://art/sfx/kenney_rpg_audio/handleCoins.ogg" id="5_ltsyx"]
 [ext_resource type="AudioStream" uid="uid://c6fal8flw4uct" path="res://art/sfx/kenney_rpg_audio/handleCoins2.ogg" id="6_cfyom"]
 [ext_resource type="AudioStream" uid="uid://l77ws82ddnfb" path="res://art/sfx/kenney_casino_audio/custom/card-slide-1b.ogg" id="7_u04c8"]
-[ext_resource type="AudioStream" uid="uid://cgfiiop405ome" path="res://art/music/chosic/bewitched-forest.mp3" id="8_0ksej"]
 [ext_resource type="Shader" path="res://art/shaders/glitch.gdshader" id="8_2d7ah"]
 [ext_resource type="PackedScene" uid="uid://b0w2w7bnq5mb2" path="res://prefabs/interface/hud.tscn" id="8_60qjj"]
-[ext_resource type="AudioStream" uid="uid://tw76kviwbvn6" path="res://art/music/chosic/chase.mp3" id="9_hrln6"]
-[ext_resource type="AudioStream" uid="uid://f74ccem6sel8" path="res://art/music/chosic/dark-knight.mp3" id="10_t2idi"]
-[ext_resource type="AudioStream" uid="uid://by5ky5q3vdo6r" path="res://art/music/chosic/labyrinth-of-lost-dreams.mp3" id="11_u0t83"]
-[ext_resource type="AudioStream" uid="uid://f0wucsmj2v30" path="res://art/music/chosic/legendary-epic-heroic.mp3" id="12_ghxat"]
-[ext_resource type="AudioStream" uid="uid://dcgtplrp4sunv" path="res://art/music/chosic/sneaky-snitch.mp3" id="13_7a7yq"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ecujn"]
 
@@ -32,7 +26,7 @@ shader_parameter/doeet = false
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_tm1n2"]
 gradient = SubResource("Gradient_yust8")
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("stepsSfx", "climbSfx", "jumpSfx", "music")]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("stepsSfx", "climbSfx", "jumpSfx")]
 collision_layer = 2
 input_ray_pickable = false
 script = ExtResource("1_h8ujk")
@@ -41,7 +35,6 @@ mouse_sensitivity = 0.5
 stepsSfx = NodePath("SFX/StepPlayer")
 climbSfx = NodePath("SFX/ClimbPlayer")
 jumpSfx = NodePath("SFX/JumpPlayer")
-music = NodePath("Musics")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -81,40 +74,6 @@ script = ExtResource("2_a3n5b")
 [node name="Jump1" type="AudioStreamPlayer3D" parent="SFX/JumpPlayer"]
 stream = ExtResource("7_u04c8")
 bus = &"SFX"
-
-[node name="Musics" type="Node3D" parent="." node_paths=PackedStringArray("audioSources")]
-script = ExtResource("2_a3n5b")
-audioSources = [NodePath("bewitched-forest"), NodePath("chase"), NodePath("dark-knight"), NodePath("labyrinth-of-lost-dreams"), NodePath("legendary-epic-heroic"), NodePath("sneaky-snitch")]
-
-[node name="bewitched-forest" type="AudioStreamPlayer3D" parent="Musics"]
-stream = ExtResource("8_0ksej")
-volume_db = -20.0
-bus = &"Music"
-
-[node name="chase" type="AudioStreamPlayer3D" parent="Musics"]
-stream = ExtResource("9_hrln6")
-volume_db = -20.0
-bus = &"Music"
-
-[node name="dark-knight" type="AudioStreamPlayer3D" parent="Musics"]
-stream = ExtResource("10_t2idi")
-volume_db = -20.0
-bus = &"Music"
-
-[node name="labyrinth-of-lost-dreams" type="AudioStreamPlayer3D" parent="Musics"]
-stream = ExtResource("11_u0t83")
-volume_db = -20.0
-bus = &"Music"
-
-[node name="legendary-epic-heroic" type="AudioStreamPlayer3D" parent="Musics"]
-stream = ExtResource("12_ghxat")
-volume_db = -20.0
-bus = &"Music"
-
-[node name="sneaky-snitch" type="AudioStreamPlayer3D" parent="Musics"]
-stream = ExtResource("13_7a7yq")
-volume_db = -20.0
-bus = &"Music"
 
 [node name="PlayerUI" type="CanvasLayer" parent="."]
 

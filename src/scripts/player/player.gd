@@ -1,6 +1,8 @@
 class_name Player
 extends CharacterBody3D
 
+signal plot_twisted;
+
 @onready var camera: Camera3D = $Camera3D;
 @onready var glitch: TextureRect = $PlayerUI/Control/Glitch
 @onready var hud: PlayerHud = $PlayerUI/Container;
@@ -16,7 +18,6 @@ extends CharacterBody3D
 @export var stepsSfx: SFXRandomPlayer = null;
 @export var climbSfx: SFXRandomPlayer = null;
 @export var jumpSfx: SFXRandomPlayer = null;
-@export var music: SFXRandomPlayer = null;
 
 var wind_velocity: Vector3 = Vector3.ZERO;
 
@@ -34,16 +35,9 @@ func _ready() -> void:
 
 func spawn(position: Vector3):
 	global_position = position;
-	_playMusic(GameManager.current_level);
-
+	
 func playPlotTwist():
-	_playMusic(GameManager.current_level+1);
-
-func _playMusic(musicSlot: int):
-	music.stop();
-	print("Playing song in slot: ", musicSlot)
-	music.reproduceSingle(GameManager.songMappings[musicSlot]);
-
+	plot_twisted.emit();
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.

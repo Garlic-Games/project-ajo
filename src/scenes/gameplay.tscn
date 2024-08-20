@@ -1,10 +1,17 @@
-[gd_scene load_steps=6 format=3 uid="uid://cohpydgbvkuna"]
+[gd_scene load_steps=13 format=3 uid="uid://cohpydgbvkuna"]
 
 [ext_resource type="PackedScene" uid="uid://bdh0gh5dw180o" path="res://prefabs/pause/pause_menu.tscn" id="1_khjpo"]
 [ext_resource type="Script" path="res://scripts/input/meta_gameplay_input.gd" id="2_leaqq"]
 [ext_resource type="PackedScene" uid="uid://dk0dddmpl201" path="res://prefabs/stream_utilities/button_group_sound_when_signal.tscn" id="3_a7qdk"]
 [ext_resource type="PackedScene" uid="uid://dbddthaq6y1x8" path="res://scenes/dev/bocdagla/level-1-test.tscn" id="4_4nf2a"]
 [ext_resource type="PackedScene" uid="uid://dcxkowmduxb5y" path="res://prefabs/menu/loading_panel.tscn" id="5_w55g0"]
+[ext_resource type="Script" path="res://scripts/music/sfx_random_player.gd" id="6_gdpnb"]
+[ext_resource type="AudioStream" uid="uid://cgfiiop405ome" path="res://art/music/chosic/bewitched-forest.mp3" id="7_6s4p8"]
+[ext_resource type="AudioStream" uid="uid://tw76kviwbvn6" path="res://art/music/chosic/chase.mp3" id="8_a552q"]
+[ext_resource type="AudioStream" uid="uid://f74ccem6sel8" path="res://art/music/chosic/dark-knight.mp3" id="9_kljr8"]
+[ext_resource type="AudioStream" uid="uid://by5ky5q3vdo6r" path="res://art/music/chosic/labyrinth-of-lost-dreams.mp3" id="10_y6b12"]
+[ext_resource type="AudioStream" uid="uid://f0wucsmj2v30" path="res://art/music/chosic/legendary-epic-heroic.mp3" id="11_i6cr6"]
+[ext_resource type="AudioStream" uid="uid://dcgtplrp4sunv" path="res://art/music/chosic/sneaky-snitch.mp3" id="12_m2lq1"]
 
 [node name="Gameplay" type="Node3D"]
 
@@ -22,8 +29,55 @@ process_mode = 2
 button_group_name = "MenuButtons"
 signal_name = "mouse_entered"
 
-[node name="Level-1-test" parent="." instance=ExtResource("4_4nf2a")]
+[node name="Level-1-test" parent="." node_paths=PackedStringArray("music") instance=ExtResource("4_4nf2a")]
+music = NodePath("../Musics")
 
 [node name="LoadingPanel" parent="." instance=ExtResource("5_w55g0")]
 unique_name_in_owner = true
 process_mode = 3
+
+[node name="Musics" type="Node3D" parent="." node_paths=PackedStringArray("audioSources")]
+script = ExtResource("6_gdpnb")
+audioSources = [NodePath("bewitched-forest"), NodePath("chase"), NodePath("dark-knight"), NodePath("labyrinth-of-lost-dreams"), NodePath("legendary-epic-heroic"), NodePath("sneaky-snitch")]
+
+[node name="bewitched-forest" type="AudioStreamPlayer3D" parent="Musics"]
+stream = ExtResource("7_6s4p8")
+attenuation_model = 3
+volume_db = -20.0
+panning_strength = 0.0
+bus = &"Music"
+
+[node name="chase" type="AudioStreamPlayer3D" parent="Musics"]
+stream = ExtResource("8_a552q")
+attenuation_model = 3
+volume_db = -20.0
+panning_strength = 0.0
+bus = &"Music"
+
+[node name="dark-knight" type="AudioStreamPlayer3D" parent="Musics"]
+stream = ExtResource("9_kljr8")
+attenuation_model = 3
+volume_db = -20.0
+panning_strength = 0.0
+bus = &"Music"
+
+[node name="labyrinth-of-lost-dreams" type="AudioStreamPlayer3D" parent="Musics"]
+stream = ExtResource("10_y6b12")
+attenuation_model = 3
+volume_db = -17.0
+panning_strength = 0.0
+bus = &"Music"
+
+[node name="legendary-epic-heroic" type="AudioStreamPlayer3D" parent="Musics"]
+stream = ExtResource("11_i6cr6")
+attenuation_model = 3
+volume_db = -20.0
+panning_strength = 0.0
+bus = &"Music"
+
+[node name="sneaky-snitch" type="AudioStreamPlayer3D" parent="Musics"]
+stream = ExtResource("12_m2lq1")
+attenuation_model = 3
+volume_db = -20.0
+panning_strength = 0.0
+bus = &"Music"

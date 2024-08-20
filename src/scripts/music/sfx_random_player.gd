@@ -35,6 +35,13 @@ func reproduceSingle(idx: int):
 	audioSources[idx].play();
 	_lastPlayed = idx
 	
+func reproduceSingleDifferent(idx: int):
+	print("Reproducing idx:", idx)
+	if _lastPlayed != idx:
+		stop();
+		audioSources[idx].play();
+	_lastPlayed = idx
+	
 
 func reproduceAll(delay: float) -> void:
 	var delayAccumulated = 0;
