@@ -66,7 +66,7 @@ func save_game(level: int):
 	var save_file = FileAccess.open("user://savegame.save", FileAccess.WRITE);
 	var node_data = {"level": level};
 	save_file.store_line(JSON.stringify(node_data))
-	
+
 func load_game():
 	if not FileAccess.file_exists("user://savegame.save"):
 		return false;

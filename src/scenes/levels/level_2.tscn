@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dp547w2bc05v3"]
+[gd_scene load_steps=19 format=3 uid="uid://dp547w2bc05v3"]
 
 [ext_resource type="Script" path="res://scripts/gameplay/levels/level.gd" id="1_70553"]
 [ext_resource type="Script" path="res://scripts/gameplay/levels/giant_grid_manager.gd" id="1_kf8gq"]
@@ -7,7 +7,11 @@
 [ext_resource type="PackedScene" uid="uid://untq4yp2wlic" path="res://prefabs/gameplay/victory_spot/victory_spot1x1.tscn" id="5_jxyxv"]
 [ext_resource type="Material" uid="uid://cgepabmgprihw" path="res://art/materials/cubes/cube_glow.tres" id="7_1f0y1"]
 [ext_resource type="PackedScene" uid="uid://dubp3oep1wyg5" path="res://art/models/kenney_platformer-kit/block-grass-large.glb" id="8_qcqou"]
+[ext_resource type="Script" path="res://scripts/gameplay/state/level_narrator_controller.gd" id="9_fhj43"]
 [ext_resource type="Texture2D" uid="uid://cxxpvas74xcw4" path="res://art/backgrounds/scene_0.jpg" id="9_yml8v"]
+[ext_resource type="Texture2D" uid="uid://cn7spgol2yooo" path="res://art/textures/character_2.png" id="10_jc3up"]
+[ext_resource type="Theme" uid="uid://dajx1ty4mxj6b" path="res://art/themes/default.tres" id="11_ub2lx"]
+[ext_resource type="Script" path="res://scripts/narrator/narrator.gd" id="12_w0i2g"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_wric5"]
 panorama = ExtResource("9_yml8v")
@@ -23,9 +27,17 @@ sky_rotation = Vector3(3.14159, 0, 0)
 [sub_resource type="BoxShape3D" id="BoxShape3D_gspno"]
 size = Vector3(200, 10, 200)
 
+[sub_resource type="Gradient" id="Gradient_1peig"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0, 0, 0, 0.207843)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ip721"]
+gradient = SubResource("Gradient_1peig")
+fill_from = Vector2(0.487179, 0.504274)
+
 [node name="Level2" type="Node3D" node_paths=PackedStringArray("spawn_point")]
 script = ExtResource("1_70553")
-spawn_point = NodePath("SpawnPoint")
+spawn_point = NodePath("SpawnPoint2")
 
 [node name="Grid" type="Node3D" parent="."]
 script = ExtResource("1_kf8gq")
@@ -59,9 +71,6 @@ grid_position = Vector3i(3, 0, 3)
 grid_offset = Vector3(-1.5, 0, 1.5)
 unit_size = Vector3(5, 5, 5)
 
-[node name="SpawnPoint" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 3, 7.28299)
-
 [node name="Ground" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
 
@@ -74,8 +83,16 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5.00504, 0)
 size = Vector3(22, 1.98993, 22)
 material = ExtResource("7_1f0y1")
 
+[node name="CSGBox3D2" type="CSGBox3D" parent="Ground/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5.00504, 30.3358)
+size = Vector3(12, 1.98993, 39)
+material = ExtResource("7_1f0y1")
+
 [node name="block-grass-large2" parent="Ground" instance=ExtResource("8_qcqou")]
 transform = Transform3D(12, 0, 0, 0, 12, 0, 0, 0, 12, -0.0482922, -16, -0.0921898)
+
+[node name="block-grass-large3" parent="Ground" instance=ExtResource("8_qcqou")]
+transform = Transform3D(6, 0, 0, 0, 12, 0, 0, 0, 19.7934, 0, -16, 31)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_n54rh")
@@ -91,3 +108,61 @@ collision_mask = 2
 
 [node name="VoidCollider" type="CollisionShape3D" parent="VoidArea"]
 shape = SubResource("BoxShape3D_gspno")
+
+[node name="SpawnPoint2" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.09929, 3.99085, 43.2837)
+
+[node name="LevelNarratorController" type="Node" parent="."]
+script = ExtResource("9_fhj43")
+
+[node name="NarratorContainer" type="Node" parent="LevelNarratorController"]
+
+[node name="TextureRect2" type="TextureRect" parent="LevelNarratorController/NarratorContainer"]
+offset_left = 118.0
+offset_top = 527.0
+offset_right = 1041.0
+offset_bottom = 618.0
+texture = SubResource("GradientTexture2D_ip721")
+
+[node name="TextureRect" type="TextureRect" parent="LevelNarratorController/NarratorContainer/TextureRect2"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0303359
+anchor_top = 0.153846
+anchor_right = 0.100758
+anchor_bottom = 0.846154
+grow_vertical = 0
+size_flags_vertical = 8
+texture = ExtResource("10_jc3up")
+expand_mode = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Subtitles" type="RichTextLabel" parent="LevelNarratorController/NarratorContainer/TextureRect2"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.173348
+anchor_top = 0.142857
+anchor_right = 0.963164
+anchor_bottom = 0.89011
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("11_ub2lx")
+bbcode_enabled = true
+text = "fdssdfsdf (PLACEHOLDER)"
+metadata/_edit_use_anchors_ = true
+
+[node name="SpeechOne" type="Node" parent="LevelNarratorController/NarratorContainer" node_paths=PackedStringArray("background", "label_subtitles")]
+script = ExtResource("12_w0i2g")
+background = NodePath("../TextureRect2")
+label_subtitles = NodePath("../TextureRect2/Subtitles")
+lines = Array[String](["Congratulations on beating the first level, you're really clever.", "However this one its a bit more dificult as you must use your double jump skill", "Make sure to report any bug you find with the double jump skill"])
+seconds_between_lines = 1.5
+
+[node name="SpeechTwo" type="Node" parent="LevelNarratorController/NarratorContainer" node_paths=PackedStringArray("background", "label_subtitles")]
+script = ExtResource("12_w0i2g")
+background = NodePath("../TextureRect2")
+label_subtitles = NodePath("../TextureRect2/Subtitles")
+lines = Array[String](["I see some [color=orange]orange[/color] cubes you can move arround", "I would preffer you waited for the devs to fix the double jump but you can use the [color=green]memory board[/color] this time", "The  [color=orange]orange memory block[/color] can be moved"])
+seconds_between_lines = 1.5
+
+[connection signal="board_accessed" from="Grid/BoardGridItem" to="LevelNarratorController" method="_on_board_grid_item_board_accessed"]

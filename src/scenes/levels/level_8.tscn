@@ -111,6 +111,8 @@ grid_position = Vector3i(0, 0, 3)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -20)
 is_toon = false
 grid_position = Vector3i(0, 0, 4)
+is_inmovible = true
+can_construct_over = false
 
 [node name="BoardGridItem" parent="TwistGrid" instance=ExtResource("5_6eyp8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
@@ -141,9 +143,12 @@ material = ExtResource("8_eft6i")
 [node name="block-grass-large2" parent="Ground2" instance=ExtResource("9_5r766")]
 transform = Transform3D(14, 0, 0, 0, 12, 0, 0, 0, 25, 0, -16, 0)
 
-[node name="Node3D2" parent="Ground2" instance=ExtResource("4_es3i2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.12932, 15.8193, -24.7065)
-script = null
+[node name="1by1GridItem" type="CSGBox3D" parent="Ground2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.12932, 18.3193, -24.7065)
+visible = false
+material_override = ExtResource("8_eft6i")
+use_collision = true
+size = Vector3(5, 5, 5)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_du37j")

@@ -12,7 +12,7 @@ func _ready():
 func start_game() -> void:
 	GameManager.current_level = 0;
 	SceneLoader.load_scene(gameplay_scene);
-	
+
 func continue_game() -> void:
 	if GameManager.load_game():
 		print("Loading level: ", GameManager.current_level)

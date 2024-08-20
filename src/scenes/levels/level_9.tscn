@@ -49,8 +49,7 @@ grid_position = Vector3i(4, 0, 0)
 grid_offset = Vector3(-2, 0, 2)
 
 [node name="Fan" parent="Grid" instance=ExtResource("5_jta1c")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, -5)
-offset = Vector3(0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 1.25, -5)
 grid_offset = Vector3(-2, 0, 2)
 
 [node name="BoardGridItem" parent="Grid" instance=ExtResource("4_ttb3s")]

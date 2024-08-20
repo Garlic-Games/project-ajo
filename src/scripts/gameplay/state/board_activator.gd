@@ -7,17 +7,20 @@ extends Area3D
 
 var player: Player;
 var is_transition_happening: bool = false;
+signal board_accessed;
 
 func _on_body_entered(body: Node3D) -> void:
 	player = body as Player;
 	if current_grid_manager && player:
 		player.notifyEnteredTableZone(true);
-		current_grid_manager.item_moved.connect(player.quick_glitch)
+		current_grid_manager.item_random_happen.connect(_medium_glitch)
+		current_grid_manager.item_moved.connect(_weak_glitch)
 
 func _on_body_exited(body: Node3D) -> void:
 	if current_grid_manager && player:
 		player.notifyEnteredTableZone(false);
-		current_grid_manager.item_moved.disconnect(player.quick_glitch)
+		current_grid_manager.item_random_happen.disconnect(_medium_glitch)
+		current_grid_manager.item_moved.disconnect(_weak_glitch)
 	player = null;
 
 func _input(event: InputEvent) -> void:
@@ -31,6 +34,7 @@ func _input(event: InputEvent) -> void:
 			is_transition_happening = true;
 
 			if edit_mode:
+				board_accessed.emit();
 				player.handle_interact(edit_mode);
 
 				Input.mouse_mode = Input.MOUSE_MODE_VISIBLE;
@@ -61,3 +65,11 @@ func end_transition(edit_mode: bool):
 func move_player(position: Vector3):
 	if player:
 		player.global_position = position;
+
+func _weak_glitch():
+	if player:
+		player.quick_glitch(0.005);
+
+func _medium_glitch():
+	if player:
+		player.quick_glitch(0.3);
