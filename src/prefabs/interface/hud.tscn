@@ -46,14 +46,14 @@ mouse_filter = 2
 theme_override_styles/separator = SubResource("StyleBoxEmpty_fdvk6")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
 offset_left = 75.0
-offset_top = -211.0
-offset_right = 233.0
-offset_bottom = -75.0
-grow_vertical = 0
+offset_top = -105.0
+offset_right = 243.0
+offset_bottom = 105.0
+grow_vertical = 2
 pivot_offset = Vector2(1, 1)
 
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
