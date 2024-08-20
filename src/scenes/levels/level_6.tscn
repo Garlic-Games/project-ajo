@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://e7c1tab1gair"]
+[gd_scene load_steps=24 format=3 uid="uid://e7c1tab1gair"]
 
 [ext_resource type="Script" path="res://scripts/gameplay/levels/level.gd" id="1_0ljhq"]
 [ext_resource type="Script" path="res://scripts/gameplay/levels/giant_grid_manager.gd" id="2_1qffy"]
@@ -9,6 +9,11 @@
 [ext_resource type="Material" uid="uid://cgepabmgprihw" path="res://art/materials/cubes/cube_glow.tres" id="7_gstn0"]
 [ext_resource type="PackedScene" uid="uid://dubp3oep1wyg5" path="res://art/models/kenney_platformer-kit/block-grass-large.glb" id="8_ldpm5"]
 [ext_resource type="Texture2D" uid="uid://cxxpvas74xcw4" path="res://art/backgrounds/scene_0.jpg" id="9_cdqtd"]
+[ext_resource type="Script" path="res://scripts/gameplay/state/level_narrator_controller.gd" id="10_7hd0k"]
+[ext_resource type="Texture2D" uid="uid://cn7spgol2yooo" path="res://art/textures/character_2.png" id="11_kpayo"]
+[ext_resource type="Theme" uid="uid://dajx1ty4mxj6b" path="res://art/themes/default.tres" id="12_45cwr"]
+[ext_resource type="Script" path="res://scripts/narrator/narrator.gd" id="13_aup2h"]
+[ext_resource type="Shader" path="res://art/shaders/glitch.gdshader" id="13_qt2g8"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_c5ljt"]
 panorama = ExtResource("9_cdqtd")
@@ -24,6 +29,28 @@ sky_rotation = Vector3(3.14159, 0, 0)
 [sub_resource type="BoxShape3D" id="BoxShape3D_kdlfk"]
 size = Vector3(200, 10, 200)
 
+[sub_resource type="Gradient" id="Gradient_uh2n8"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0, 0, 0, 0.207843)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_s73h7"]
+gradient = SubResource("Gradient_uh2n8")
+fill_from = Vector2(0.487179, 0.504274)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fwfi0"]
+shader = ExtResource("13_qt2g8")
+shader_parameter/shake_power = 0.001
+shader_parameter/shake_rate = 0.389
+shader_parameter/shake_speed = 0.5
+shader_parameter/shake_block_size = 10.0
+shader_parameter/shake_color_rate = 0.01
+shader_parameter/doeet = true
+
+[sub_resource type="Gradient" id="Gradient_2ys0s"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_7enr1"]
+gradient = SubResource("Gradient_2ys0s")
+
 [node name="Level6" type="Node3D" node_paths=PackedStringArray("spawn_point")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -20)
 script = ExtResource("1_0ljhq")
@@ -34,6 +61,7 @@ script = ExtResource("2_1qffy")
 offset = Vector3(-2, 0, 2)
 grid_size = Vector2i(5, 5)
 cell_size = 2.0
+random_posibility = 0.13
 
 [node name="Jumper" parent="Grid" instance=ExtResource("4_1f4g2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, 10)
@@ -79,8 +107,16 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5.00504, 0)
 size = Vector3(27.5, 1.99, 27.5)
 material = ExtResource("7_gstn0")
 
+[node name="CSGBox3D2" type="CSGBox3D" parent="Ground2/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5.00504, 30.3358)
+size = Vector3(12, 1.98993, 39)
+material = ExtResource("7_gstn0")
+
 [node name="block-grass-large2" parent="Ground2" instance=ExtResource("8_ldpm5")]
 transform = Transform3D(14, 0, 0, 0, 12, 0, 0, 0, 14, 0, -16, 0)
+
+[node name="block-grass-large3" parent="Ground2" instance=ExtResource("8_ldpm5")]
+transform = Transform3D(6, 0, 0, 0, 12, 0, 0, 0, 19.7934, 0, -16, 31)
 
 [node name="SpawnPoint" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1.67189, 9.283)
@@ -99,3 +135,66 @@ collision_mask = 2
 
 [node name="VoidCollider" type="CollisionShape3D" parent="VoidArea"]
 shape = SubResource("BoxShape3D_kdlfk")
+
+[node name="LevelNarratorController" type="Node" parent="."]
+script = ExtResource("10_7hd0k")
+
+[node name="NarratorContainer" type="Node" parent="LevelNarratorController"]
+
+[node name="TextureRect2" type="TextureRect" parent="LevelNarratorController/NarratorContainer"]
+offset_left = 118.0
+offset_top = 527.0
+offset_right = 1041.0
+offset_bottom = 618.0
+texture = SubResource("GradientTexture2D_s73h7")
+
+[node name="TextureRect" type="TextureRect" parent="LevelNarratorController/NarratorContainer/TextureRect2"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0303359
+anchor_top = 0.153846
+anchor_right = 0.100758
+anchor_bottom = 0.846154
+grow_vertical = 0
+size_flags_vertical = 8
+texture = ExtResource("11_kpayo")
+expand_mode = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Subtitles" type="RichTextLabel" parent="LevelNarratorController/NarratorContainer/TextureRect2"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.173348
+anchor_top = 0.142857
+anchor_right = 0.963164
+anchor_bottom = 0.89011
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("12_45cwr")
+bbcode_enabled = true
+text = "fdssdfsdf (PLACEHOLDER)"
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect2" type="TextureRect" parent="LevelNarratorController/NarratorContainer/TextureRect2"]
+material = SubResource("ShaderMaterial_fwfi0")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = 0.999969
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_7enr1")
+
+[node name="SpeechOne" type="Node" parent="LevelNarratorController/NarratorContainer" node_paths=PackedStringArray("background", "label_subtitles")]
+script = ExtResource("13_aup2h")
+background = NodePath("../TextureRect2")
+label_subtitles = NodePath("../TextureRect2/Subtitles")
+lines = Array[String](["##$%& 1azy d3vs @@#~½", ".........", "keep testing"])
+seconds_between_lines = 1.5
+
+[node name="SpeechTwo" type="Node" parent="LevelNarratorController/NarratorContainer" node_paths=PackedStringArray("background", "label_subtitles")]
+script = ExtResource("13_aup2h")
+background = NodePath("../TextureRect2")
+label_subtitles = NodePath("../TextureRect2/Subtitles")
+seconds_between_lines = 1.5

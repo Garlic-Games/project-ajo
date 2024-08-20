@@ -28,12 +28,12 @@ sky_rotation = Vector3(3.14159, 0, 0)
 [sub_resource type="BoxShape3D" id="BoxShape3D_iyb7e"]
 size = Vector3(200, 10, 200)
 
-[sub_resource type="Gradient" id="Gradient_yvyg6"]
+[sub_resource type="Gradient" id="Gradient_wditg"]
 offsets = PackedFloat32Array(0)
 colors = PackedColorArray(0, 0, 0, 0.207843)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_dfmed"]
-gradient = SubResource("Gradient_yvyg6")
+gradient = SubResource("Gradient_wditg")
 fill_from = Vector2(0.487179, 0.504274)
 
 [node name="Level3" type="Node3D" node_paths=PackedStringArray("spawn_point")]

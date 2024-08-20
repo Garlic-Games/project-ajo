@@ -28,12 +28,12 @@ sky_rotation = Vector3(3.14159, 0, 0)
 [sub_resource type="BoxShape3D" id="BoxShape3D_4o4dj"]
 size = Vector3(200, 10, 200)
 
-[sub_resource type="Gradient" id="Gradient_yvyg6"]
+[sub_resource type="Gradient" id="Gradient_hkckv"]
 offsets = PackedFloat32Array(0)
 colors = PackedColorArray(0, 0, 0, 0.207843)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_eoahq"]
-gradient = SubResource("Gradient_yvyg6")
+gradient = SubResource("Gradient_hkckv")
 fill_from = Vector2(0.487179, 0.504274)
 
 [node name="Level3" type="Node3D" node_paths=PackedStringArray("spawn_point")]
@@ -46,6 +46,7 @@ script = ExtResource("2_pgw1y")
 offset = Vector3(-1.5, 0, 1.5)
 grid_size = Vector2i(4, 4)
 cell_size = 2.0
+random_posibility = 0.4
 
 [node name="BoardGridItem" parent="Grid" instance=ExtResource("5_yswl6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0, 7.5)
@@ -63,7 +64,7 @@ grid_offset = Vector3(-1.5, 0, 1.5)
 
 [node name="VictorySpot" parent="Grid" instance=ExtResource("7_qugeg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0, -7.5)
-glitch_strength = 0.03
+glitch_strength = 0.13
 grid_position = Vector3i(2, 0, 3)
 grid_offset = Vector3(-1.5, 0, 1.5)
 
@@ -151,7 +152,7 @@ metadata/_edit_use_anchors_ = true
 script = ExtResource("13_g3wwg")
 background = NodePath("../TextureRect2")
 label_subtitles = NodePath("../TextureRect2/Subtitles")
-lines = Array[String](["I like thi way of t%&sting _&", "We'$re )a#dvancing really well", "Here we have the jumper, use it wisely"])
+lines = Array[String](["I like thi way of t%&sting _&", "We'$re )a#dvancing really well", "Here we have the jumper, it allows you to jump up to 2 boxes, use it #$·%·## %"])
 seconds_between_lines = 1.5
 
 [node name="SpeechTwo" type="Node" parent="LevelNarratorController/NarratorContainer" node_paths=PackedStringArray("background", "label_subtitles")]

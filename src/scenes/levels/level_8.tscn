@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://yjxvw3kgxaip"]
+[gd_scene load_steps=22 format=3 uid="uid://yjxvw3kgxaip"]
 
 [ext_resource type="Script" path="res://scripts/gameplay/levels/level.gd" id="1_fd4vs"]
 [ext_resource type="Script" path="res://scripts/gameplay/levels/giant_grid_manager.gd" id="2_q0066"]
@@ -12,6 +12,9 @@
 [ext_resource type="PackedScene" uid="uid://dubp3oep1wyg5" path="res://art/models/kenney_platformer-kit/block-grass-large.glb" id="9_5r766"]
 [ext_resource type="Texture2D" uid="uid://cxxpvas74xcw4" path="res://art/backgrounds/scene_0.jpg" id="10_u52jj"]
 [ext_resource type="Script" path="res://scripts/gameplay/state/plot_twitst_node.gd" id="11_je3fc"]
+[ext_resource type="Texture2D" uid="uid://efu7ciuiyiym" path="res://art/textures/character_3.png" id="13_mfrr6"]
+[ext_resource type="Theme" uid="uid://dajx1ty4mxj6b" path="res://art/themes/default.tres" id="14_ircnq"]
+[ext_resource type="Script" path="res://scripts/narrator/narrator.gd" id="16_52vn7"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_wtmwl"]
 panorama = ExtResource("10_u52jj")
@@ -26,6 +29,14 @@ sky_rotation = Vector3(3.14159, 0, 0)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_bs2cp"]
 size = Vector3(200, 10, 200)
+
+[sub_resource type="Gradient" id="Gradient_yvyg6"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0, 0, 0, 0.207843)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_y620q"]
+gradient = SubResource("Gradient_yvyg6")
+fill_from = Vector2(0.487179, 0.504274)
 
 [node name="Level7" type="Node3D" node_paths=PackedStringArray("spawn_point")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -20)
@@ -153,8 +164,9 @@ size = Vector3(5, 5, 5)
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_du37j")
 
-[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="."]
+[node name="greenLight" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.779108, -0.620539, -0.0890014, 0, -0.141973, 0.989871, -0.626889, 0.771216, 0.110612, -0.00525284, 5.24748, 0.0130939)
+visible = false
 light_color = Color(0.449323, 0.698095, 0.510883, 1)
 light_angular_distance = 90.0
 sky_mode = 1
@@ -168,3 +180,62 @@ collision_mask = 2
 
 [node name="VoidCollider" type="CollisionShape3D" parent="VoidArea"]
 shape = SubResource("BoxShape3D_bs2cp")
+
+[node name="WhiteLight" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.779108, -0.620539, -0.0890014, 0, -0.141973, 0.989871, -0.626889, 0.771216, 0.110612, -0.00525284, 5.24748, 0.0130939)
+light_angular_distance = 90.0
+sky_mode = 1
+
+[node name="LevelNarratorController" type="Node" parent="."]
+
+[node name="NarratorContainer" type="Node" parent="LevelNarratorController"]
+
+[node name="TextureRect2" type="TextureRect" parent="LevelNarratorController/NarratorContainer"]
+visible = false
+offset_left = 118.0
+offset_top = 527.0
+offset_right = 1041.0
+offset_bottom = 618.0
+texture = SubResource("GradientTexture2D_y620q")
+
+[node name="TextureRect" type="TextureRect" parent="LevelNarratorController/NarratorContainer/TextureRect2"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0303359
+anchor_top = 0.153846
+anchor_right = 0.100758
+anchor_bottom = 0.846154
+offset_top = 1.43051e-05
+offset_bottom = 1.52588e-05
+grow_vertical = 0
+size_flags_vertical = 8
+texture = ExtResource("13_mfrr6")
+expand_mode = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Subtitles" type="RichTextLabel" parent="LevelNarratorController/NarratorContainer/TextureRect2"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.173348
+anchor_top = 0.142857
+anchor_right = 0.963164
+anchor_bottom = 0.89011
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("14_ircnq")
+bbcode_enabled = true
+text = "fdssdfsdf (PLACEHOLDER)"
+metadata/_edit_use_anchors_ = true
+
+[node name="SpeechOne" type="Node" parent="LevelNarratorController/NarratorContainer" node_paths=PackedStringArray("background", "label_subtitles")]
+script = ExtResource("16_52vn7")
+background = NodePath("../TextureRect2")
+label_subtitles = NodePath("../TextureRect2/Subtitles")
+lines = Array[String](["Thanks kid, that feels much better"])
+seconds_between_lines = 1.5
+
+[node name="SpeechTwo" type="Node" parent="LevelNarratorController/NarratorContainer" node_paths=PackedStringArray("background", "label_subtitles")]
+script = ExtResource("16_52vn7")
+background = NodePath("../TextureRect2")
+label_subtitles = NodePath("../TextureRect2/Subtitles")
+seconds_between_lines = 1.5

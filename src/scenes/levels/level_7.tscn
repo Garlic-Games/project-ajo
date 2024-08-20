@@ -74,6 +74,7 @@ grid_offset = Vector3(-2, 0, 2)
 
 [node name="VictorySpot" parent="Grid" instance=ExtResource("6_vp2ga")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, -30)
+glitch_strength = 0.13
 grid_position = Vector3i(4, 0, 8)
 grid_offset = Vector3(-2, 0, 2)
 unit_size = Vector3(5, 5, 5)
