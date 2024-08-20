@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://pyex1a4t0sk4"]
+[gd_scene load_steps=27 format=3 uid="uid://pyex1a4t0sk4"]
 
 [ext_resource type="Script" path="res://scripts/gameplay/levels/giant_grid_manager.gd" id="1_rt68t"]
 [ext_resource type="Script" path="res://scripts/gameplay/levels/level.gd" id="1_y5kkn"]
@@ -13,6 +13,13 @@
 [ext_resource type="Script" path="res://scripts/gameplay/state/level_narrator_controller.gd" id="10_ekk57"]
 [ext_resource type="Script" path="res://scripts/narrator/narrator.gd" id="11_fkys2"]
 [ext_resource type="Texture2D" uid="uid://cn7spgol2yooo" path="res://art/textures/character_2.png" id="11_ye22a"]
+[ext_resource type="PackedScene" uid="uid://dn652yfooiof4" path="res://art/models/kenney_platformer-kit/block-grass-low-hexagon.glb" id="14_msivn"]
+[ext_resource type="PackedScene" uid="uid://uh7o6725yqk2" path="res://art/models/kenney_platformer-kit/flowers-tall.glb" id="15_2khep"]
+[ext_resource type="PackedScene" uid="uid://jgprhl5lxtfg" path="res://art/models/kenney_platformer-kit/tree-pine.glb" id="16_3v0fy"]
+[ext_resource type="PackedScene" uid="uid://cwjkvdrhvecv3" path="res://art/models/kenney_platformer-kit/arrow.glb" id="17_g0yy4"]
+[ext_resource type="PackedScene" uid="uid://ctkxbsgm6ierw" path="res://art/models/kenney_platformer-kit/barrel.glb" id="18_47vp5"]
+[ext_resource type="PackedScene" uid="uid://dcvi4wk1beu0q" path="res://art/models/kenney_platformer-kit/stones.glb" id="19_1a0wt"]
+[ext_resource type="PackedScene" uid="uid://4myxd45m26mh" path="res://art/models/kenney_platformer-kit/mushrooms.glb" id="20_jvgk6"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_3c0jk"]
 panorama = ExtResource("9_gl5nc")
@@ -163,5 +170,62 @@ background = NodePath("../TextureRect2")
 label_subtitles = NodePath("../TextureRect2/Subtitles")
 lines = Array[String](["This is the memory board, some devs use it to see the memory, state.", "Using it inside of the game may cause issues, be careful when handling it", "Green pieces mean they are core pieces of the system", "It means you cannot move them"])
 seconds_between_lines = 1.5
+
+[node name="block-grass-low-hexagon2" parent="." instance=ExtResource("14_msivn")]
+transform = Transform3D(7.73847, -0.00467563, 6.33372, 0.00623261, 10, -0.000232811, -6.33372, 0.00412772, 7.73847, -56.7064, 4.99774, -62.317)
+
+[node name="flowers-tall2" parent="block-grass-low-hexagon2" instance=ExtResource("15_2khep")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3, 0.4, 0)
+
+[node name="tree-pine2" parent="block-grass-low-hexagon2" instance=ExtResource("16_3v0fy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.6)
+
+[node name="block-grass-low-hexagon3" parent="." instance=ExtResource("14_msivn")]
+transform = Transform3D(7.73847, -0.00467563, 6.33372, 0.00623261, 10, -0.000232811, -6.33372, 0.00412772, 7.73847, -49.262, 5.049, -66.8844)
+
+[node name="arrow2" parent="block-grass-low-hexagon3" instance=ExtResource("17_g0yy4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0111537, 0.389034, 0.00200987)
+
+[node name="block-grass-low-hexagon4" parent="." instance=ExtResource("14_msivn")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 64.2859, -22, -67.7429)
+
+[node name="barrel2" parent="block-grass-low-hexagon4" instance=ExtResource("18_47vp5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
+
+[node name="block-grass-low-hexagon5" parent="." instance=ExtResource("14_msivn")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -50.4245, 6, 30.2571)
+
+[node name="stones2" parent="block-grass-low-hexagon5" instance=ExtResource("19_1a0wt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+
+[node name="block-grass-low-hexagon6" parent="." instance=ExtResource("14_msivn")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -41.4245, 6, 25.2571)
+
+[node name="stones2" parent="block-grass-low-hexagon6" instance=ExtResource("19_1a0wt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+
+[node name="block-grass-low-hexagon7" parent="." instance=ExtResource("14_msivn")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -49.4245, 6, 20.2571)
+
+[node name="stones2" parent="block-grass-low-hexagon7" instance=ExtResource("19_1a0wt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+
+[node name="mushrooms2" parent="block-grass-low-hexagon7" instance=ExtResource("20_jvgk6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3, 0.6, 0.6)
+
+[node name="stones2" parent="." instance=ExtResource("19_1a0wt")]
+transform = Transform3D(10, 0, 0, 0, 1, 0, 0, 0, 10, 1.67092, 1.0276, 20.3486)
+
+[node name="stones3" parent="." instance=ExtResource("19_1a0wt")]
+transform = Transform3D(10, 0, 0, 0, 1, 0, 0, 0, 10, -1.43461, 1.0276, 26.3486)
+
+[node name="stones4" parent="." instance=ExtResource("19_1a0wt")]
+transform = Transform3D(10, 0, 0, 0, 1, 0, 0, 0, 10, 0.0304627, 1.0276, 30.3486)
+
+[node name="stones5" parent="." instance=ExtResource("19_1a0wt")]
+transform = Transform3D(10, 0, 0, 0, 1, 0, 0, 0, 10, 1.86817, 1.0276, 36.3486)
+
+[node name="stones6" parent="." instance=ExtResource("19_1a0wt")]
+transform = Transform3D(10, 0, 0, 0, 1, 0, 0, 0, 10, 0.0304627, 1.0276, 42.3486)
 
 [connection signal="board_accessed" from="Grid/BoardGridItem" to="LevelNarratorController" method="_on_board_grid_item_board_accessed"]

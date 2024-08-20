@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://e7c1tab1gair"]
+[gd_scene load_steps=32 format=3 uid="uid://e7c1tab1gair"]
 
 [ext_resource type="Script" path="res://scripts/gameplay/levels/level.gd" id="1_0ljhq"]
 [ext_resource type="Script" path="res://scripts/gameplay/levels/giant_grid_manager.gd" id="2_1qffy"]
@@ -14,6 +14,14 @@
 [ext_resource type="Theme" uid="uid://dajx1ty4mxj6b" path="res://art/themes/default.tres" id="12_45cwr"]
 [ext_resource type="Script" path="res://scripts/narrator/narrator.gd" id="13_aup2h"]
 [ext_resource type="Shader" path="res://art/shaders/glitch.gdshader" id="13_qt2g8"]
+[ext_resource type="PackedScene" uid="uid://j3ngj1m61bvm" path="res://art/models/kenney_platformer-kit/block-moving.glb" id="15_k3yqp"]
+[ext_resource type="Script" path="res://scripts/gameplay/levels/vibrate.gd" id="16_yd644"]
+[ext_resource type="PackedScene" uid="uid://b2eut4bbtmulj" path="res://art/models/kenney_platformer-kit/flowers.glb" id="17_5mvbx"]
+[ext_resource type="Script" path="res://scripts/gameplay/levels/spin.gd" id="18_846ht"]
+[ext_resource type="PackedScene" uid="uid://dn652yfooiof4" path="res://art/models/kenney_platformer-kit/block-grass-low-hexagon.glb" id="19_3wqg5"]
+[ext_resource type="PackedScene" uid="uid://uh7o6725yqk2" path="res://art/models/kenney_platformer-kit/flowers-tall.glb" id="20_cs5be"]
+[ext_resource type="PackedScene" uid="uid://jgprhl5lxtfg" path="res://art/models/kenney_platformer-kit/tree-pine.glb" id="21_8pamy"]
+[ext_resource type="PackedScene" uid="uid://dcvi4wk1beu0q" path="res://art/models/kenney_platformer-kit/stones.glb" id="22_k3ult"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_c5ljt"]
 panorama = ExtResource("9_cdqtd")
@@ -198,3 +206,55 @@ script = ExtResource("13_aup2h")
 background = NodePath("../TextureRect2")
 label_subtitles = NodePath("../TextureRect2/Subtitles")
 seconds_between_lines = 1.5
+
+[node name="block-moving3" parent="." instance=ExtResource("15_k3yqp")]
+transform = Transform3D(6.77069, 6.40418, 3.62549, -4.9215, 7.60308, -4.23933, -5.47143, 1.08604, 8.29963, -29.9109, 15.6476, -37.8396)
+script = ExtResource("16_yd644")
+vibration_strength = 0.001
+vibr_diration = 0.1
+
+[node name="block-moving4" parent="." instance=ExtResource("15_k3yqp")]
+transform = Transform3D(8.29629, -4.69357, -3.02355, 3.66501, 8.66364, -3.39249, 4.21179, 1.70637, 8.90781, -30.3538, 15.962, -32.6312)
+script = ExtResource("16_yd644")
+vibration_strength = 0.001
+vibr_diration = 0.1
+
+[node name="flowers2" parent="." instance=ExtResource("17_5mvbx")]
+transform = Transform3D(0.617352, 0, 0.786687, 0, 1, 0, -0.786687, 0, 0.617352, 4.62441, -0.0100384, 9.1083)
+script = ExtResource("18_846ht")
+spinspeed = 30.0
+
+[node name="flowers3" parent="." instance=ExtResource("17_5mvbx")]
+transform = Transform3D(0.573904, 0, -0.818922, 0, 1, 0, 0.818922, 0, 0.573904, -3.37559, -0.0100384, 6.1083)
+script = ExtResource("18_846ht")
+spinspeed = 30.0
+
+[node name="block-grass-low-hexagon2" parent="." instance=ExtResource("19_3wqg5")]
+transform = Transform3D(-3.43904, -4.04798, 8.47271, 9.37925, -1.91353, 2.89277, 0.45029, 8.9416, 4.45477, 71.7558, 4.99774, -68.5159)
+
+[node name="flowers-tall2" parent="block-grass-low-hexagon2" instance=ExtResource("20_cs5be")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3, 0.4, 0)
+
+[node name="tree-pine2" parent="block-grass-low-hexagon2" instance=ExtResource("21_8pamy")]
+transform = Transform3D(1, 4.54747e-12, 0, 2.09184e-11, 1, 0, -2.98023e-08, 1.81899e-11, 1, -1.28267, 1.00076, -2.38136)
+
+[node name="block-grass-large2" parent="block-grass-low-hexagon2" instance=ExtResource("8_ldpm5")]
+transform = Transform3D(1, 4.09273e-12, 0, 2.04636e-11, 1, 0, -2.23517e-08, 1.09139e-11, 1, -1.38262, 0.000797093, -2.77639)
+
+[node name="flowers-tall2" parent="." instance=ExtResource("20_cs5be")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.31503, -0.0100403, -1.74057)
+
+[node name="stones2" parent="." instance=ExtResource("22_k3ult")]
+transform = Transform3D(6.12333, -0.490068, 6.20389, -1.47488, 0.700122, 6.98625, -7.76721, -0.519291, 3.56428, 6.25386, 0.782494, 22.8302)
+
+[node name="stones3" parent="." instance=ExtResource("22_k3ult")]
+transform = Transform3D(6.08559, -0.463868, 6.43803, 3.18647, 0.885904, 3.37102, -7.26719, 0, 6.86935, -9.90866, -2.18563, 29.2086)
+
+[node name="stones4" parent="." instance=ExtResource("22_k3ult")]
+transform = Transform3D(6.07278, -0.465539, 6.43807, -2.52734, 0.655051, 7.12063, -7.53219, -0.595132, 2.8014, -6.44187, -0.370377, 30.8917)
+
+[node name="stones5" parent="." instance=ExtResource("22_k3ult")]
+transform = Transform3D(6.83578, 0.0987465, 7.23167, -0.678325, 0.995113, -0.71761, -7.26719, -1.38244e-08, 6.86935, -1.4607, 2.23781, 33.6778)
+
+[node name="stones6" parent="." instance=ExtResource("22_k3ult")]
+transform = Transform3D(6.0702, -0.46264, 6.46136, 7.77504, 0.513907, -3.62473, -1.64359, 0.722401, 6.71656, 6.78646, 0.547014, 39.1349)
